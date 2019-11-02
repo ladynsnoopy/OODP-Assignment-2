@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Cineplex {
 	private ArrayList<Cinema> cinemaArr;
 	private String location;
-	private int CineplexID;
-	private static int cineplex_counter=0;
+	private String CineplexID;
 
 	public Cineplex(ArrayList<Cinema> cinemaArr, String location) {
 		super();
