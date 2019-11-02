@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Movie {
 	private int movieID;
+	private static int movie_counter=0;
 	private String name;
 	private String showingStatus;
 	private ArrayList<String> cast;
@@ -21,11 +22,11 @@ public class Movie {
 	public void addShowtime(Showtime s) {
 		showtimeArr.add(s);
 	}
-
-	public Movie(int movieID, String name, String showingStatus, ArrayList<String> cast, ArrayList<String> director,
+//TODO calculate average overall user rating
+	public Movie(String name, String showingStatus, ArrayList<String> cast, ArrayList<String> director,
 			String type, ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String overallUserRating,
 			String movieRating, int ticketSales) {
-		this.movieID = movieID;
+		this.movieID = movie_counter++;
 		this.name = name;
 		this.showingStatus = showingStatus;
 		this.cast = cast;
@@ -109,6 +110,13 @@ public class Movie {
 
 	public String getOverallUserRating() {
 		return this.overallUserRating;
+	}
+	
+	public double getOverallUserRatingInInt() {
+		if(overallUserRating.equals("NA"))
+			return 0;
+		else
+			return Integer.parseInt(overallUserRating);
 	}
 
 	public void setOverallUserRating(String aOverallUserRating) {

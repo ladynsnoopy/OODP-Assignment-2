@@ -12,6 +12,23 @@ public class Ticket {
 		this.showtime = showtime;
 		this.ticketID = counter++;
 	}
+	
+	public int getIsAdult() {
+		return isAdult;
+	}
+
+	public void setIsAdult(int isAdult) {
+		this.isAdult = isAdult;
+	}
+
+	public boolean isWeekend() {
+		return isWeekend;
+	}
+
+	public void setWeekend(boolean isWeekend) {
+		this.isWeekend = isWeekend;
+	}
+
 	public int getTicketID() {
 		return ticketID;
 	}
@@ -21,10 +38,14 @@ public class Ticket {
 	public double getFinalPrice() {
 		return finalPrice;
 	}
+	//set isWeekend isAdult before final price
 	public void setFinalPrice(Calendar a, Price b) {
 		double base = 0;
 		boolean isHols = a.checkHols(showtime);
 		switch (isAdult) {
+		//base price depending if child adult or senior
+		//if holidays, will add to base price
+		//if weekend then multiplied 
 		case (1): {
 			base = b.getPriceChild();
 			break;

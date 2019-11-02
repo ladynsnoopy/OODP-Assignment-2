@@ -6,12 +6,13 @@ public class Cineplex {
 	private ArrayList<Cinema> cinemaArr;
 	private String location;
 	private int CineplexID;
+	private static int cineplex_counter=0;
 
-	public Cineplex(ArrayList<Cinema> cinemaArr, String location, int cineplexID) {
+	public Cineplex(ArrayList<Cinema> cinemaArr, String location) {
 		super();
 		this.cinemaArr = cinemaArr;
 		this.location = location;
-		CineplexID = cineplexID;
+		this.CineplexID = cineplex_counter++;
 	}
 
 	public ArrayList<Cinema> getCinemaArr() {

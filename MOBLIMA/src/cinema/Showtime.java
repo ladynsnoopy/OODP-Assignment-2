@@ -4,13 +4,14 @@ public class Showtime {
 	private Cinema cinema;
 	private String timing;
 	private int showtimeID;
+	private static int showtime_counter=0;
 	private boolean[][] seatingplan;
 
-	public Showtime(Cinema cinema, String timing, int showtimeID) {
+	public Showtime(Cinema cinema, String timing) {
 		super();
 		this.cinema = cinema;
 		this.timing = timing;
-		this.showtimeID = showtimeID;
+		this.showtimeID = showtime_counter++;
 		this.seatingplan = new boolean[cinema.getTotalRow()][cinema.getTotalCol()];
 	}
 

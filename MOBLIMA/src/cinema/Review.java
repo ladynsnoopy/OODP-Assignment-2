@@ -5,12 +5,13 @@ public class Review {
 	private String comment;
 	private String userID;
 	private int reviewID;
+	private static int review_counter=0;
 
-	public Review(int rating, String comment, String userID, int reviewID) {
+	public Review(int rating, String comment, String userID) {
 		this.rating=rating;
 		this.comment=comment;
 		this.userID=userID;
-		this.reviewID=reviewID;
+		this.reviewID=review_counter++;
 		
 	}
 	

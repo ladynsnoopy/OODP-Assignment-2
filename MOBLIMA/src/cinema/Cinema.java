@@ -7,15 +7,16 @@ public class Cinema {
 	private int totalNumSeat;
 	private Seat[] seatArr;
 	private int cinemaID;
+	private static int cine_counter=0;
 
-	public Cinema(String type, int totalRow, int totalCol, int cinemaID) {
+	public Cinema(String type, int totalRow, int totalCol) {
 		super();
 		this.type = type;
 		this.totalRow = totalRow;
 		this.totalCol = totalCol;
 		this.seatArr = new Seat[totalRow * totalCol];
 		this.generateSeats();
-		this.cinemaID = cinemaID;
+		this.cinemaID = cine_counter++;
 	}
 
 	public String getType() {
@@ -55,6 +56,7 @@ public class Cinema {
 	}
 
 	public void setCinemaID(int cinemaID) {
+		//TODO include cineplex ID; final format should be xxx
 		this.cinemaID = cinemaID;
 	}
 
