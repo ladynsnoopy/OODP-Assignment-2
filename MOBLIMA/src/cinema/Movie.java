@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Movie {
 	private int movieID;
-	private static int movie_counter=0;
+	private static int movie_counter = 0;
 	private String name;
 	private String showingStatus;
 	private ArrayList<String> cast;
@@ -19,13 +19,15 @@ public class Movie {
 	public void addReview(Review r) {
 		reviewArr.add(r);
 	}
+
 	public void addShowtime(Showtime s) {
 		showtimeArr.add(s);
 	}
+
 //TODO calculate average overall user rating
-	public Movie(String name, String showingStatus, ArrayList<String> cast, ArrayList<String> director,
-			String type, ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String overallUserRating,
-			String movieRating, int ticketSales) {
+	public Movie(String name, String showingStatus, ArrayList<String> cast, ArrayList<String> director, String type,
+			ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String overallUserRating, String movieRating,
+			int ticketSales) {
 		this.movieID = movie_counter++;
 		this.name = name;
 		this.showingStatus = showingStatus;
@@ -109,18 +111,30 @@ public class Movie {
 	}
 
 	public String getOverallUserRating() {
-		return this.overallUserRating;
+		if(overallUserRating.equals("NA"))
+			return this.overallUserRating;
+		else {
+			double avg=0;
+			for (int i=0;i<reviewArr.size();i++) {
+				avg += (reviewArr.get(i).getRating());				
+			}
+			avg /= reviewArr.size();
+			return String.valueOf(avg);
+		}
+			
 	}
-	
+
 	public double getOverallUserRatingInInt() {
 		if(overallUserRating.equals("NA"))
 			return 0;
-		else
-			return Integer.parseInt(overallUserRating);
-	}
-
-	public void setOverallUserRating(String aOverallUserRating) {
-		this.overallUserRating = aOverallUserRating;
+		else {
+			double avg=0;
+			for (int i=0;i<reviewArr.size();i++) {
+				avg += (reviewArr.get(i).getRating());				
+			}
+			avg /= reviewArr.size();
+			return avg;
+		}	
 	}
 
 	public String getMovieRating() {
