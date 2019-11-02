@@ -24,7 +24,7 @@ public class Movie {
 		showtimeArr.add(s);
 	}
 
-//TODO calculate average overall user rating
+
 	public Movie(String name, String showingStatus, ArrayList<String> cast, ArrayList<String> director, String type,
 			ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String overallUserRating, String movieRating,
 			int ticketSales) {
