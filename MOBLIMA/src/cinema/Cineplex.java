@@ -1,6 +1,7 @@
 package cinema;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Cineplex {
 	private ArrayList<Cinema> cinemaArr;
@@ -11,9 +12,20 @@ public class Cineplex {
 		super();
 		this.cinemaArr = cinemaArr;
 		this.location = location;
-		this.CineplexID = cineplex_counter++;
+		this.CineplexID = generateRandomChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ",2);
 	}
+	//generate random letters
+	public static String generateRandomChars(String candidateChars, int length) {
+	    StringBuilder sb = new StringBuilder();
+	    Random random = new Random();
+	    for (int i = 0; i < length; i++) {
+	        sb.append(candidateChars.charAt(random.nextInt(candidateChars
+	                .length())));
+	    }
 
+	    return sb.toString();
+	}
+	
 	public ArrayList<Cinema> getCinemaArr() {
 		return cinemaArr;
 	}
@@ -30,11 +42,11 @@ public class Cineplex {
 		this.location = location;
 	}
 
-	public int getCineplexID() {
+	public String getCineplexID() {
 		return CineplexID;
 	}
 
-	public void setCineplexID(int cineplexID) {
+	public void setCineplexID(String cineplexID) {
 		CineplexID = cineplexID;
 	}
 

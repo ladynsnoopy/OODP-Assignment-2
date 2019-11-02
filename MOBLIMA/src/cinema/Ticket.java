@@ -38,6 +38,10 @@ public class Ticket {
 	public double getFinalPrice() {
 		return finalPrice;
 	}
+	public Showtime getShowtime() {
+		return showtime;
+	}
+
 	//set isWeekend isAdult before final price
 	public void setFinalPrice(Calendar a, Price b) {
 		double base = 0;

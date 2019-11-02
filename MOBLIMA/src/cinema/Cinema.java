@@ -6,17 +6,17 @@ public class Cinema {
 	private int totalCol;
 	private int totalNumSeat;
 	private Seat[] seatArr;
-	private int cinemaID;
-	private static int cine_counter=0;
+	private String cinemaID;
+	private static int cine_counter = 0;
 
-	public Cinema(String type, int totalRow, int totalCol) {
+	public Cinema(String type, int totalRow, int totalCol, Cineplex cineplex) {
 		super();
 		this.type = type;
 		this.totalRow = totalRow;
 		this.totalCol = totalCol;
 		this.seatArr = new Seat[totalRow * totalCol];
 		this.generateSeats();
-		this.cinemaID = cine_counter++;
+		this.cinemaID = cineplex.getCineplexID() + Integer.toString(cine_counter++);
 	}
 
 	public String getType() {
@@ -51,14 +51,10 @@ public class Cinema {
 		this.totalNumSeat = totalRow * totalCol;
 	}
 
-	public int getCinemaID() {
+	public String getCinemaID() {
 		return cinemaID;
 	}
 
-	public void setCinemaID(int cinemaID) {
-		//TODO include cineplex ID; final format should be xxx
-		this.cinemaID = cinemaID;
-	}
 
 	public Seat[] getSeatArr() {
 		return seatArr;
