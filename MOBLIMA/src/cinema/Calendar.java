@@ -18,7 +18,7 @@ public class Calendar {
 		boolean isHols = false;
 		for(int i = 0;i< holArr.size();i++)
 		{
-			if(showtime.getTiming().equals(holArr.get(i)))
+			if(a.getTiming().equals(holArr.get(i)))
 			{
 				isHols = true;
 				break;
