@@ -7,6 +7,7 @@ public class Movie {
 	private static int movie_counter = 0;
 	private String name;
 	private String showingStatus;
+	private String synopsis;
 	private ArrayList<String> cast;
 	private ArrayList<String> director;
 	private String type;
@@ -25,12 +26,13 @@ public class Movie {
 	}
 
 
-	public Movie(String name, String showingStatus, ArrayList<String> cast, ArrayList<String> director, String type,
+	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, ArrayList<String> director, String type,
 			ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String overallUserRating, String movieRating,
 			int ticketSales) {
 		this.movieID = movie_counter++;
 		this.name = name;
 		this.showingStatus = showingStatus;
+		this.synopsis = synopsis;
 		this.cast = cast;
 		this.director = director;
 		this.type = type;
@@ -40,6 +42,18 @@ public class Movie {
 		this.movieRating = movieRating;
 		this.ticketSales = ticketSales;
 
+	}
+	
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	public void setShowingStatus(String showingStatus) {
+		this.showingStatus = showingStatus;
 	}
 
 	public int getMovieID() {
@@ -143,5 +157,12 @@ public class Movie {
 
 	public void setMovieRating(String aMovieRating) {
 		this.movieRating = aMovieRating;
+	}
+	public ArrayList<String> getReviewIDs() {
+		ArrayList<String> reviewIDs = new ArrayList<String>();
+		for(int i=0;i<reviewArr.size();i++) {
+			reviewIDs.add(Integer.toString(reviewArr.get(i).getReviewID()));
+		}
+		return reviewIDs;
 	}
 }

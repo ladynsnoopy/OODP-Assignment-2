@@ -73,7 +73,7 @@ public class csvRW {
 	// takes in data as List<String>
 	public static void writeToCSV(String dbname, ArrayList<String> data) {
 
-		String path = "./resources/" + dbname + ".csv";
+		String path = "src\\cinema\\resources\\"+ dbname+".csv\\";
 		// List<String> newrow = Arrays.asList("user","pw");
 		for (int i=0;i<data.size();i++) {
 			data.set(i, format(data.get(i)));
