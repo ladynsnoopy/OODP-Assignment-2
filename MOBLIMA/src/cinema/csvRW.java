@@ -8,7 +8,7 @@ public class csvRW {
 
 	// Search for a specific row in database
 	// Based on first column
-	// Returns column number
+	// Returns row number
 	public static int search(String dbname, String target) {
 		String path = "./resources/" + dbname + ".csv";
 		BufferedReader in;
