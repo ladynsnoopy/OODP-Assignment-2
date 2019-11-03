@@ -190,22 +190,35 @@ public class csvRW {
 		return null;
 	}
 
-	public static void editCSV(String dbname, int targetRow, int targetcol, String change) {
+	
+	
+	
+	public static void editCSV(String dbname, String targetID, String col_name, String change) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(path));
 			StringBuffer sb = new StringBuffer("");
-			int lineno = 0;
 			String row;
 			change = format(change);
+			
+			String head;
+			head = in.readLine();
+			sb.append(head + "\n");
+			int targetcol = 0;
+			String[] headData = head.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+			for (int j = 0; j < headData.length; j++) {
+				if (headData[j].equals(col_name)) {
+					targetcol = j;
+					break;
+				}
+			}
+			
 			while ((row = in.readLine()) != null) {
-				if (lineno != targetRow) {
+				String[] rowData = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+				if (rowData[0].equals(targetID) == false) {
 					sb.append(row + "\n");
-					System.out.println(sb);
-				} else if (lineno == targetRow) {
-					String[] rowData = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-					// rowData[targetcol] = change;
-					// System.out.println(rowData[targetcol]);
+		
+				} else if (rowData[0].equals(targetID)) {
 					int totalcol = rowData.length;
 					for (int i = 0; i < totalcol; i++) {
 						if (i == targetcol && i == totalcol - 1) {
@@ -225,7 +238,6 @@ public class csvRW {
 
 					}
 				}
-				lineno++;
 			}
 			in.close();
 
