@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class MovieList {
 	private ArrayList<Movie> movieArr = new ArrayList<Movie>();
-	private int cineplexID;
+	private String cineplexID;
 	
-	public MovieList(ArrayList<Movie> movieArr, int cineplexID) {
+	public MovieList(String cineplexID) {
 		this.cineplexID=cineplexID;
-		this.movieArr=movieArr;
 	}
 	
 	public void addMovie(Movie m) {
@@ -23,11 +22,11 @@ public class MovieList {
 		this.movieArr = aMovieArr;
 	}
 
-	public int getCineplexID() {
+	public String getCineplexID() {
 		return this.cineplexID;
 	}
 
-	public void setCineplexID(int aCineplexID) {
+	public void setCineplexID(String aCineplexID) {
 		this.cineplexID = aCineplexID;
 	}
 

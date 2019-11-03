@@ -6,14 +6,14 @@ public class Cinema {
 	private int totalCol;
 	private int totalNumSeat;
 	private String cinemaID;
-	private static int cine_counter = 1;
+//	private static int cine_counter = 1;
 
-	public Cinema(String type, int totalRow, int totalCol, Cineplex cineplex) {
+	public Cinema(String type, int totalRow, int totalCol, Cineplex cineplex, String cinemaID) {
 		super();
 		this.type = type;
 		this.totalRow = totalRow;
 		this.totalCol = totalCol;
-		this.cinemaID = cineplex.getCineplexID() + Integer.toString(cine_counter++);
+		this.cinemaID = cinemaID;
 	}
 
 	public String getType() {
