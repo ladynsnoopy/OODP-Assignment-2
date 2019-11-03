@@ -47,14 +47,12 @@ public class csvTester {
 //		a.addMovieToCSV(testermovie);
 		
 		
-		ArrayList<String> result = csvRW.search("moviedatabase", "Test Movie");
-		System.out.println(result);
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter movie name to edit: ");
-		String mv_name = sc.next();
-		
-		
+//		String mv_name = sc.next();
+		ArrayList<String> result = csvRW.search("moviedatabase", "Movie ID", "0");
+		System.out.println(result);
 		
 ////	
 //	//delete example
