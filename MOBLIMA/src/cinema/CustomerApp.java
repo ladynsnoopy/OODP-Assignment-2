@@ -43,7 +43,7 @@ public class CustomerApp {
 	}
 //	public static buyTicket(int showtimeID, int x, int y)
 //	{
-//		
+//		//TODO buyticket
 //	}
 	
 	// returns one array list of all the bookingHistory  
@@ -91,7 +91,7 @@ public class CustomerApp {
 			
 	}
 	
-	
+	//TODO view sorted top 5
 
 }
 

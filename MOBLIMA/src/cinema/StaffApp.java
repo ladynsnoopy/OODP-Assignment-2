@@ -106,6 +106,7 @@ public class StaffApp {
 			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
 			break;
 		}
+		//TODO finish edit of movie
 
 	}
 	
@@ -145,5 +146,7 @@ public class StaffApp {
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
 		
 	}
+	//TODO update showtimes
+	//TODO configure ticket prices, holiday
 
 }
