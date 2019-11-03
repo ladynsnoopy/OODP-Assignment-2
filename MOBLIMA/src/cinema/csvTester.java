@@ -46,12 +46,14 @@ public class csvTester {
 //		MovieToCSV a = new MovieToCSV();
 //		a.addMovieToCSV(testermovie);
 		
-		ArrayList<String[]> result = new ArrayList<String[]>(csvRW.readCSV("ticketdatabase"));
-		String[] toadd = {"4.5","Action","19"};
-		result.add(toadd);
-		csvRW.rewrite("ticketdatabase", result);
+//		ArrayList<String[]> result = new ArrayList<String[]>(csvRW.readCSV("ticketdatabase"));
+//		String[] toadd = {"4.5","Action","19"};
+//		result.add(toadd);
+//		csvRW.rewrite("ticketdatabase", result);
 		
 		
+		
+		csvRW.editCSV("moviedatabase", "1", "Title" , "NEW EDIT");
 		
 		
 		
