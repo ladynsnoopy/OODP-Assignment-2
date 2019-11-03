@@ -2,7 +2,7 @@ package cinema;
 
 public class SeatingPlan {
 
-	public void printSeatingPlan(Showtime showtime) {
+	public static void printSeatingPlan(Showtime showtime) {
 		showtime.setSeatingPlan();
 		System.out.println("Cinema: " + showtime.getCinema().getCinemaID());
 		System.out.println();

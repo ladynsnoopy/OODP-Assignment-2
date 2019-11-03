@@ -15,7 +15,7 @@ public class Movie {
 	private ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 	private String overallUserRating = "NA";
 	private String movieRating;
-	private int ticketSales;
+	private int ticketSales=0;
 
 	public void addReview(Review r) {
 		reviewArr.add(r);
@@ -26,8 +26,7 @@ public class Movie {
 	}
 
 
-	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, ArrayList<String> director, String type,
-			ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String movieRating, int ticketSales) {
+	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, ArrayList<String> director, String type,String movieRating) {
 		this.movieID = movie_counter++;
 		this.name = name;
 		this.showingStatus = showingStatus;
@@ -35,10 +34,7 @@ public class Movie {
 		this.cast = cast;
 		this.director = director;
 		this.type = type;
-		this.reviewArr = reviewArr;
-		this.showtimeArr = showtimeArr;
 		this.movieRating = movieRating;
-		this.ticketSales = ticketSales;
 
 	}
 	

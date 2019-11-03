@@ -3,7 +3,7 @@ package cinema;
 import java.util.ArrayList;
 
 public class StaffToCSV {
-	public void addStaffToCSV(Staff staff) {
+	public static void addStaffToCSV(Staff staff) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(staff.getUsername());
 		data.add(staff.getPassword());

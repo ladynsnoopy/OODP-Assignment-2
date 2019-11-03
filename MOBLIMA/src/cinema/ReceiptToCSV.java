@@ -3,7 +3,7 @@ package cinema;
 import java.util.ArrayList;
 
 public class ReceiptToCSV {
-	public void addReceiptToCSV(Receipt receipt) {
+	public static void addReceiptToCSV(Receipt receipt) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(receipt.getTID());
 		data.add(receipt.getPaymentMode());

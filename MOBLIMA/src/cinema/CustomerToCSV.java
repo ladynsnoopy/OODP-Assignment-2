@@ -3,7 +3,7 @@ package cinema;
 import java.util.ArrayList;
 
 public class CustomerToCSV {
-	public void addCustomerToCSV(Customer customer) {
+	public static void addCustomerToCSV(Customer customer) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(Integer.toString(customer.getCustID()));
 		data.add(customer.getName());

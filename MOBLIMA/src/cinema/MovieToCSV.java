@@ -3,7 +3,7 @@ package cinema;
 import java.util.ArrayList;
 
 public class MovieToCSV {
-	public void addMovieToCSV(Movie movie) {
+	public static void addMovieToCSV(Movie movie) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(Integer.toString(movie.getMovieID()));
 		data.add(movie.getName());
