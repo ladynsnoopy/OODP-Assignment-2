@@ -74,6 +74,36 @@ public class csvRW {
 		}
 	}
 
+	public static void rewrite(String dbname, ArrayList<String[]> data) {
+		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
+		try {
+//			for (int i = 0; i < data.size(); i++) {
+//				for (int j = 0; j < data.get(0).length; j++) {
+//					data.get(i)[j] = format(data.get(i)[j]);
+//				}
+//			}
+			StringBuffer sb = new StringBuffer();
+			FileWriter fw = new FileWriter(new File(path));
+			for (int i = 0; i < data.size(); i++) {
+				for (int j = 0; j < data.get(0).length; j++) {
+						sb.append(data.get(i)[j]);
+						sb.append(",");
+					}
+					sb.append("\n");
+				}
+			
+			System.out.println(sb);
+			// Write entire string buffer into the file
+			fw.write(sb.toString());
+			fw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	// write data to bottom of csv file
 	// takes in data as List<String>
 	public static void writeToCSV(String dbname, ArrayList<String> data) {
@@ -89,8 +119,8 @@ public class csvRW {
 			csvWriter.append("\n");
 			csvWriter.flush();
 			csvWriter.close();
+
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
