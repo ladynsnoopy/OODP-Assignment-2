@@ -2,6 +2,7 @@ package cinema;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class csvRW {
@@ -9,14 +10,14 @@ public class csvRW {
 	// Search for a specific row in database
 	// Based on first column
 	// Returns row number
-	public static int search(String dbname, String target) {
-		String path = "./resources/" + dbname + ".csv";
+	public static ArrayList<String> search(String dbname, String target) {
+		String path = "src\\cinema\\resources\\"+ dbname+".csv\\";
 		BufferedReader in;
 		// int count = 0; // no need a count variable can use size()
 		try {
 			in = new BufferedReader(new FileReader(path));
 			String row;
-			List<String[]> csvData = new ArrayList<String[]>();
+			ArrayList<String[]> csvData = new ArrayList<String[]>();
 
 			while ((row = in.readLine()) != null) {
 				String[] rowData = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
@@ -25,23 +26,22 @@ public class csvRW {
 			}
 			in.close();
 			for (int i = 0; i < csvData.size(); i++) {
-				if (csvData.get(i)[0].equals(target)) {
-					return i;
+				if (csvData.get(i)[1].equals(target)) {
+					ArrayList<String> result = new ArrayList<String>(Arrays.asList(csvData.get(i)));
+					return result;
 				}
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return -1;
+		return null;
 	}
 
 	// Delete row in database
 	public static void delete(String dbname, int targetRow) {
-		String path = "./resources/" + dbname + ".csv";
+		String path = "src\\cinema\\resources\\"+ dbname+".csv\\";
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(path));
 			StringBuffer sb = new StringBuffer("");
@@ -61,10 +61,8 @@ public class csvRW {
 			fw.close();
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -93,7 +91,7 @@ public class csvRW {
 	// Read database file based on name
 	public static ArrayList<String[]> readCSV(String dbname) {
 		try {
-			String path = "./resources/" + dbname + ".csv";
+			String path = "src\\cinema\\resources\\"+ dbname+".csv\\";
 			BufferedReader in = new BufferedReader(new FileReader(path));
 			String row;
 			ArrayList<String[]> csvData = new ArrayList<String[]>();
@@ -116,7 +114,7 @@ public class csvRW {
 	}
 
 	public static void editCSV(String dbname, int targetRow, int targetcol, String change) {
-		String path = "./resources/" + dbname + ".csv";
+		String path = "src\\cinema\\resources\\"+ dbname+".csv\\";
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(path));
 			StringBuffer sb = new StringBuffer("");
