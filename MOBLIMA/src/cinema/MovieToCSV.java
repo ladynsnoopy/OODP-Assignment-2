@@ -15,6 +15,8 @@ public class MovieToCSV {
 		data.add(movie.getOverallUserRating());
 		data.add(Integer.toString(movie.getTicketSales()));
 		data.add(movie.getReviewIDs().toString());
+		data.add(movie.getShowtimeIDs().toString());
+		data.add(movie.getMovieRating());
 		csvRW.writeToCSV("moviedatabase", data);
 	}
 }

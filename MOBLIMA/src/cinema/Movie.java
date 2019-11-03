@@ -27,8 +27,7 @@ public class Movie {
 
 
 	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, ArrayList<String> director, String type,
-			ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String overallUserRating, String movieRating,
-			int ticketSales) {
+			ArrayList<Review> reviewArr, ArrayList<Showtime> showtimeArr, String movieRating, int ticketSales) {
 		this.movieID = movie_counter++;
 		this.name = name;
 		this.showingStatus = showingStatus;
@@ -38,7 +37,6 @@ public class Movie {
 		this.type = type;
 		this.reviewArr = reviewArr;
 		this.showtimeArr = showtimeArr;
-		this.overallUserRating = overallUserRating;
 		this.movieRating = movieRating;
 		this.ticketSales = ticketSales;
 
@@ -125,7 +123,7 @@ public class Movie {
 	}
 
 	public String getOverallUserRating() {
-		if(overallUserRating.equals("NA"))
+		if(reviewArr.isEmpty())
 			return this.overallUserRating;
 		else {
 			double avg=0;
@@ -133,13 +131,14 @@ public class Movie {
 				avg += (reviewArr.get(i).getRating());				
 			}
 			avg /= reviewArr.size();
+			this.overallUserRating = Double.toString(avg);
 			return String.valueOf(avg);
 		}
 			
 	}
 
-	public double getOverallUserRatingInInt() {
-		if(overallUserRating.equals("NA"))
+	public double getOverallUserRatingInDouble() {
+		if(reviewArr.isEmpty())
 			return 0;
 		else {
 			double avg=0;
@@ -147,6 +146,7 @@ public class Movie {
 				avg += (reviewArr.get(i).getRating());				
 			}
 			avg /= reviewArr.size();
+			this.overallUserRating = Double.toString(avg);
 			return avg;
 		}	
 	}
@@ -164,5 +164,13 @@ public class Movie {
 			reviewIDs.add(Integer.toString(reviewArr.get(i).getReviewID()));
 		}
 		return reviewIDs;
+	}
+	public ArrayList<String> getShowtimeIDs() {
+		ArrayList<String> showtimeIDs = new ArrayList<String>();
+		for(int i=0; i<showtimeArr.size();i++) {
+			showtimeIDs.add(Integer.toString(showtimeArr.get(i).getShowtimeID()));
+		}
+		return showtimeIDs;
+
 	}
 }

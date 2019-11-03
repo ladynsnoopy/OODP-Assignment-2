@@ -42,7 +42,7 @@ public class csvTester {
 		Cinema Ctest = new Cinema("normal",10,10,cine);
 		Showtime test = new Showtime(Ctest,"7pm Sunday");
 		showtimelist.add(test);
-		Movie testermovie = new Movie("Test Movie","Showing","In which a movie is tested",castlist,directorlist,"Action",review,showtimelist,"4.5","PG13",0);
+		Movie testermovie = new Movie("Test Movie","Showing","In which a movie is tested",castlist,directorlist,"Action",review,showtimelist,"PG13",0);
 		MovieToCSV a = new MovieToCSV();
 		a.addMovieToCSV(testermovie);
 ////	
