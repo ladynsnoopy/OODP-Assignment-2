@@ -5,7 +5,6 @@ public class Cinema {
 	private int totalRow;
 	private int totalCol;
 	private int totalNumSeat;
-	private Seat[] seatArr;
 	private String cinemaID;
 	private static int cine_counter = 1;
 
@@ -14,8 +13,6 @@ public class Cinema {
 		this.type = type;
 		this.totalRow = totalRow;
 		this.totalCol = totalCol;
-		this.seatArr = new Seat[totalRow * totalCol];
-		this.generateSeats();
 		this.cinemaID = cineplex.getCineplexID() + Integer.toString(cine_counter++);
 	}
 
@@ -53,23 +50,6 @@ public class Cinema {
 
 	public String getCinemaID() {
 		return cinemaID;
-	}
-
-
-	public Seat[] getSeatArr() {
-		return seatArr;
-	}
-
-	// generates appropriate number of seats according to cinema size, then adds in
-	// array
-	public void generateSeats() {
-		int count = 0;
-		for (int i = 0; i < totalRow; i++) {
-			for (int j = 0; j < totalCol; j++) {
-				seatArr[count] = new Seat(i, j, false);
-				count++;
-			}
-		}
 	}
 
 }
