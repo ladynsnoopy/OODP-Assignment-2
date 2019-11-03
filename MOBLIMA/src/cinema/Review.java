@@ -5,7 +5,7 @@ public class Review {
 	private String comment;
 	private String userID;
 	private int reviewID;
-	private static int review_counter=0;
+	private static int review_counter=1;
 
 	public Review(int rating, String comment, String userID) {
 		this.rating=rating;

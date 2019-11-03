@@ -7,7 +7,7 @@ public class Cinema {
 	private int totalNumSeat;
 	private Seat[] seatArr;
 	private String cinemaID;
-	private static int cine_counter = 0;
+	private static int cine_counter = 1;
 
 	public Cinema(String type, int totalRow, int totalCol, Cineplex cineplex) {
 		super();

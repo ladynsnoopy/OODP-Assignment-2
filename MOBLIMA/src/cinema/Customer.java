@@ -3,7 +3,7 @@ package cinema;
 import java.util.ArrayList;
 
 public class Customer {
-	static int count = 0;
+	static int count = 1;
 	private String name, mobileNum, email;
 	private int custID;
 	private ArrayList<Receipt> bookingHistory;

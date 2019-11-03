@@ -8,9 +8,9 @@ public class Cineplex {
 	private String location;
 	private String CineplexID;
 
-	public Cineplex(ArrayList<Cinema> cinemaArr, String location) {
+	public Cineplex(String location) {
 		super();
-		this.cinemaArr = cinemaArr;
+//		this.cinemaArr = cinemaArr;
 		this.location = location;
 		this.CineplexID = generateRandomChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ",2);
 	}
