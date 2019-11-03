@@ -85,7 +85,7 @@ public class StaffApp {
 	}
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
-	// boundary class asks for which to change, if 1-5 use this function
+	// boundary class asks for which to change, if 1-6 use this function
 	public static void editMovieStringDetails(int selection, String moviename, String change) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", moviename);
 		String id = result.get(0);
@@ -104,6 +104,9 @@ public class StaffApp {
 			break;
 		case 5:
 			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
+			break;
+		case 6:
+			csvRW.editCSV("moviedatabase", id, "Director", change);
 			break;
 		}
 
