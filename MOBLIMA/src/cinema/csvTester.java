@@ -46,14 +46,22 @@ public class csvTester {
 //		MovieToCSV a = new MovieToCSV();
 //		a.addMovieToCSV(testermovie);
 		
+		ArrayList<String[]> result = new ArrayList<String[]>(csvRW.readCSV("ticketdatabase"));
+		String[] toadd = {"4.5","Action","19"};
+		result.add(toadd);
+		csvRW.rewrite("ticketdatabase", result);
 		
 		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter movie name to edit: ");
+		
+		
+		
+//		
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Enter movie name to edit: ");
 //		String mv_name = sc.next();
-		ArrayList<String> result = csvRW.search("moviedatabase", "Movie ID", "0");
-		System.out.println(result);
-		
+//		ArrayList<String> result = csvRW.search("moviedatabase", "Movie ID", "0");
+//		System.out.println(result);
+//		
 ////	
 //	//delete example
 //	csvRW.delete("staffdatabase", 6);

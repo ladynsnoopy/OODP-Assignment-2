@@ -8,8 +8,8 @@ import java.util.List;
 public class csvRW {
 
 	// Search for a specific row in database
-	// Based on first column
-	// Returns row number
+	// Takes the column name eg "Title" and target string "Lego Movie"
+	// Returns the entire row of details
 	public static ArrayList<String> search(String dbname, String colname, String target) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		BufferedReader in;
@@ -38,6 +38,46 @@ public class csvRW {
 					return result;
 				}
 			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	// Search for a specific row in database
+	// Takes the column name eg "Title" and target string "Lego Movie"
+	// Returns the every row that matches the result
+	public static ArrayList<String[]> searchMultipleRow(String dbname, String colname, String target) {
+		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
+		BufferedReader in;
+		// int count = 0; // no need a count variable can use size()
+		try {
+			in = new BufferedReader(new FileReader(path));
+			String row;
+			ArrayList<String[]> csvData = new ArrayList<String[]>();
+
+			while ((row = in.readLine()) != null) {
+				String[] rowData = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+				// count++;
+				csvData.add(rowData);
+			}
+			in.close();
+			int targetcol = 0;
+			for (int j = 0; j < csvData.get(0).length; j++) {
+				if (csvData.get(0)[j].equals(colname)) {
+					targetcol = j;
+					break;
+				}
+			}
+			ArrayList<String[]> result = new ArrayList<String[]>();
+			for (int i = 0; i < csvData.size(); i++) {
+				if (csvData.get(i)[targetcol].equals(target)) {
+					result.add(csvData.get(i));
+				}
+			}
+			return result;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -86,12 +126,12 @@ public class csvRW {
 			FileWriter fw = new FileWriter(new File(path));
 			for (int i = 0; i < data.size(); i++) {
 				for (int j = 0; j < data.get(0).length; j++) {
-						sb.append(data.get(i)[j]);
-						sb.append(",");
-					}
-					sb.append("\n");
+					sb.append(data.get(i)[j]);
+					sb.append(",");
 				}
-			
+				sb.append("\n");
+			}
+
 			System.out.println(sb);
 			// Write entire string buffer into the file
 			fw.write(sb.toString());
