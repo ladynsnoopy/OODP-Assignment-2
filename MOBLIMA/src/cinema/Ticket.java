@@ -2,6 +2,7 @@ package cinema;
 
 public class Ticket {
 	private Showtime showtime;
+	private String movietitle;
 	private int isAdult;
 	private boolean isWeekend;
 	private int ticketID;
@@ -40,6 +41,14 @@ public class Ticket {
 	}
 	public Showtime getShowtime() {
 		return showtime;
+	}
+
+	public String getMovietitle() {
+		return movietitle;
+	}
+
+	public void setMovietitle(String movietitle) {
+		this.movietitle = movietitle;
 	}
 
 	//set isWeekend isAdult before final price

@@ -45,7 +45,13 @@ public class Customer {
 	public void addBookingHistory(Receipt a) {
 		bookingHistory.add(a);
 	}
-	
+	public ArrayList<String> getTIDs() {
+		ArrayList<String> bookinghistory = new ArrayList<String>();
+		for(int i=0;i<bookingHistory.size();i++) {
+			bookinghistory.add(bookingHistory.get(i).getTID());
+		}
+		return bookinghistory;
+	}
 	
 
 }
