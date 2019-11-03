@@ -1,7 +1,7 @@
 package cinema;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 public class csvTester {
 	public static void main(String[] args) {
@@ -29,22 +29,33 @@ public class csvTester {
 //		addstuff.add("oh no, we are so bad, at this");
 //		csvRW.writeToCSV("staffdatabase", addstuff);
 		
-		ArrayList<String> castlist = new ArrayList<String>();
-		castlist.add("Michael Johnson");
-		castlist.add("Jane Doe");
-		ArrayList<String> directorlist = new ArrayList<String>();
-		directorlist.add("Michael Bay");
-		Review testreview = new Review(4,"Hello it's me","How have you been");
-		ArrayList<Review> review = new ArrayList<Review>();
-		review.add(testreview);
-		ArrayList<Showtime> showtimelist = new ArrayList<Showtime>();
-		Cineplex cine = new Cineplex("NTU");
-		Cinema Ctest = new Cinema("normal",10,10,cine);
-		Showtime test = new Showtime(Ctest,"7pm Sunday");
-		showtimelist.add(test);
-		Movie testermovie = new Movie("Test Movie","Showing","In which a movie is tested",castlist,directorlist,"Action",review,showtimelist,"PG13",0);
-		MovieToCSV a = new MovieToCSV();
-		a.addMovieToCSV(testermovie);
+//		ArrayList<String> castlist = new ArrayList<String>();
+//		castlist.add("Michael Johnson");
+//		castlist.add("Jane Doe");
+//		ArrayList<String> directorlist = new ArrayList<String>();
+//		directorlist.add("Michael Bay");
+//		Review testreview = new Review(4,"Hello it's me","How have you been");
+//		ArrayList<Review> review = new ArrayList<Review>();
+//		review.add(testreview);
+//		ArrayList<Showtime> showtimelist = new ArrayList<Showtime>();
+//		Cineplex cine = new Cineplex("NTU");
+//		Cinema Ctest = new Cinema("normal",10,10,cine);
+//		Showtime test = new Showtime(Ctest,"7pm Sunday");
+//		showtimelist.add(test);
+//		Movie testermovie = new Movie("Test Movie","Showing","In which a movie is tested",castlist,directorlist,"Action",review,showtimelist,"PG13",0);
+//		MovieToCSV a = new MovieToCSV();
+//		a.addMovieToCSV(testermovie);
+		
+		
+		ArrayList<String> result = csvRW.search("moviedatabase", "Test Movie");
+		System.out.println(result);
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter movie name to edit: ");
+		String mv_name = sc.next();
+		
+		
+		
 ////	
 //	//delete example
 //	csvRW.delete("staffdatabase", 6);
