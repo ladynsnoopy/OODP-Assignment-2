@@ -25,8 +25,8 @@ public class csvTester {
 
 //	//adding example
 		ArrayList<String> addstuff = new ArrayList<String>();
-		addstuff.add("gv009");
-		addstuff.add("password123,lol help,yeeeeeee");
+		addstuff.add("gv019");
+		addstuff.add("hahaha,lol help,yeeeeeee");
 		csvRW.writeToCSV("staffdatabase", addstuff);
 ////	
 //	//delete example
