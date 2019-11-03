@@ -5,23 +5,7 @@ import java.util.*;
 
 public class csvTester {
 	public static void main(String[] args) {
-		// read data test
-		// returns an array of string array
-		// List<String[]> csvData = new ArrayList<String[]>();
-		// csvData = csvRW.readCSV("staffdatabase");
-		// example of going thru data-change the string to int
-		// int i = Integer.parseInt(csvData.get(0)[0]);
-		// System.out.println(i);
-		// more example to just print all the data
-//	for (int j=0; j<csvData.size();j++) {
-//		System.out.println(csvData.get(j)[0]);
-//	}
 
-		// search example to find the row data is in
-		// i can change this to return the whole row instead
-		// search returns -1 if data not there
-		// int a = csvRW.search("staffdatabase", "gv003");
-		// System.out.println(a);
 
 //	//adding example
 //		ArrayList<String> addstuff = new ArrayList<String>();
@@ -46,23 +30,28 @@ public class csvTester {
 //		MovieToCSV a = new MovieToCSV();
 //		a.addMovieToCSV(testermovie);
 		
-//		ArrayList<String[]> result = new ArrayList<String[]>(csvRW.readCSV("ticketdatabase"));
-//		String[] toadd = {"4.5","Action","19"};
-//		result.add(toadd);
-//		csvRW.rewrite("ticketdatabase", result);
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter movie name to edit: ");
+		String mv_name = sc.next();
+		ArrayList<String> result = csvRW.search("moviedatabase", "Title", mv_name);
+		String id = result.get(0);
+		
+		System.out.println("Movie details are:");
+		for(int i=0; i <result.size();i++) {
+			System.out.println(result.get(i));
+		}
+		
+		System.out.println("Enter column name to edit:");
+		String col_name = sc.next();
+		System.out.println("Enter new data to be inserted:");
+		String new_data = sc.next();
+		
+		csvRW.editCSV("moviedatabase", id , col_name , new_data);
 		
 		
 		
-		csvRW.editCSV("moviedatabase", "1", "Title" , "NEW EDIT");
-		
-		
-		
-//		
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("Enter movie name to edit: ");
-//		String mv_name = sc.next();
-//		ArrayList<String> result = csvRW.search("moviedatabase", "Movie ID", "0");
-//		System.out.println(result);
+
 //		
 ////	
 //	//delete example
