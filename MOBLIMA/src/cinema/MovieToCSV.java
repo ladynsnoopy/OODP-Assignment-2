@@ -3,16 +3,14 @@ package cinema;
 import java.util.ArrayList;
 
 public class MovieToCSV {
-	public void addMovieToCSV(Movie movie) {
+	public static void addMovieToCSV(Movie movie) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(Integer.toString(movie.getMovieID()));
 		data.add(movie.getName());
 		data.add(movie.getType());
 		data.add(movie.getShowingStatus());
 		data.add(movie.getSynopsis());
-		String directorData = movie.getDirector().toString();
-		directorData = directorData.substring(1, directorData.length()-1);
-		data.add(directorData);
+		data.add(movie.getDirector());
 		String castData = movie.getCast().toString();
 		castData = castData.substring(1, castData.length()-1);
 		data.add(castData);

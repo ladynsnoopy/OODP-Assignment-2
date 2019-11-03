@@ -7,6 +7,7 @@ import java.util.List;
 public class StaffApp {
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
+	public static ArrayList<MovieList> movielistArr = new ArrayList<MovieList>();
 
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
@@ -27,53 +28,89 @@ public class StaffApp {
 	}
 
 	public static void createCineplexAndCinemas() {
-		Cineplex cowboyTown = new Cineplex("NTU");
-		Cineplex jurassicPark = new Cineplex("NUS");
-		Cineplex theCentral = new Cineplex("SMU");
+		Cineplex cowboyTown = new Cineplex("NTU","AA");
+		Cineplex jurassicPark = new Cineplex("NUS","BB");
+		Cineplex theCentral = new Cineplex("SMU","CC");
 
 		cineplexArr.add(cowboyTown);
 		cineplexArr.add(jurassicPark);
 		cineplexArr.add(theCentral);
 
-		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown);
-		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown);
-		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown);
+		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown,"AA1");
+		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown,"AA2");
+		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown,"AA3");
 
-		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark);
-		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark);
-		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark);
+		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark,"BB1");
+		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark,"BB2");
+		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark,"BB3");
 
-		Cinema c1 = new Cinema("Normal", 10, 10, theCentral);
-		Cinema c2 = new Cinema("Normal", 10, 15, theCentral);
-		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral);
+		Cinema c1 = new Cinema("Normal", 10, 10, theCentral,"CC1");
+		Cinema c2 = new Cinema("Normal", 10, 15, theCentral,"CC2");
+		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral,"CC3");
 
-		cinemaArr.add(a1); // ID 1
-		cinemaArr.add(a2); // ID 2
-		cinemaArr.add(a3); // ID 3
-		cinemaArr.add(b1); // ID 4
-		cinemaArr.add(b2); // ID 5
-		cinemaArr.add(b3); // ID 6
-		cinemaArr.add(c1); // ID 7
-		cinemaArr.add(c2); // ID 8
-		cinemaArr.add(c3); // ID 9
+		cinemaArr.add(a1); // ID AA1
+		cinemaArr.add(a2); // ID AA2
+		cinemaArr.add(a3); // ID AA3
+		cinemaArr.add(b1); // ID BB1
+		cinemaArr.add(b2); // ID BB2
+		cinemaArr.add(b3); // ID BB3
+		cinemaArr.add(c1); // ID CC1
+		cinemaArr.add(c2); // ID CC2
+		cinemaArr.add(c3); // ID CC3
+		
+		MovieList movielistAA = new MovieList("AA");
+		MovieList movielistBB = new MovieList("BB");
+		MovieList movielistCC = new MovieList("CC");
+		
+		movielistArr.add(movielistAA);
+		movielistArr.add(movielistBB);
+		movielistArr.add(movielistCC);
 	}
 
 	public static void createMovie(String name, String showingStatus, String synopsis, ArrayList<String> cast,
-			ArrayList<String> director, String type, String movieRating) {
+			String director, String type, String movieRating, String cineplexID) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
+		switch(cineplexID) {
+		case "AA":
+			movielistArr.get(0).addMovie(a);
+			break;
+		case "BB":
+			movielistArr.get(1).addMovie(a);
+			break;
+		case "CC":
+			movielistArr.get(2).addMovie(a);
+			break;
+		}
 		MovieToCSV.addMovieToCSV(a);
 	}
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
 	// boundary class asks for which to change, if 1-5 use this function
-	public static void editMovieStringDetails(int selection, String change) {
+	public static void editMovieStringDetails(int selection, String moviename, String change) {
+		ArrayList<String> result = csvRW.search("moviedatabase", "Name", moviename);
+		String id = result.get(0);
 		switch (selection) {
 		case 1:
-
+			csvRW.editCSV("moviedatabase", id, "Name", change);
+			break;
+		case 2:
+			csvRW.editCSV("moviedatabase", id, "Type", change);
+			break;
+		case 3:
+			csvRW.editCSV("moviedatabase", id, "ShowingStatus", change);
+			break;
+		case 4:
+			csvRW.editCSV("moviedatabase", id, "Synopsis", change);
+			break;
+		case 5:
+			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
+			break;
 		}
 
 	}
-
+	
+	
+	//boundary class needs to check that CinemaID and movietitle exists
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
 		Cinema temp = null;
 		String showtimes;
@@ -82,6 +119,10 @@ public class StaffApp {
 				temp = cinemaArr.get(i);
 				break;
 			}
+			else if(i==cinemaArr.size()-1){
+				System.out.println("Invalid Cinema ID");
+				return;
+			}
 		}
 		Showtime showtime = new Showtime(temp, timing);
 		ShowtimeToCSV.addShowtimeToCSV(showtime);
@@ -89,19 +130,19 @@ public class StaffApp {
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = result.get(0);
 		
-		if (result.get(10) == null) {
-			List<String> showtimelist = new ArrayList<String>();
-			showtimelist.add(Integer.toString(showtime.getShowtimeID()));
-			showtimes = showtimelist.toString();
+		if (result.get(10).equals("")) {
+			System.out.println(showtime.getShowtimeID());
+			showtimes = Integer.toString(showtime.getShowtimeID());
+
 		} else {
 			showtimes = result.get(10);
-			int stringsize = showtimes.length();
-			showtimes = showtimes.substring(1, stringsize - 1); // cuts off brackets
-			List<String> showtimelist = Arrays.asList(showtimes.split("\\s*,\\s*"));
+			List<String> items = Arrays.asList(showtimes.split("\\s*,\\s*"));
+			ArrayList<String> showtimelist = new ArrayList<String>(items);
 			showtimelist.add(Integer.toString(showtime.getShowtimeID()));
 			showtimes = showtimelist.toString();
+			showtimes = showtimes.substring(1, showtimes.length()-1);
 		}
-		csvRW.editCSV("moviedatabase", id, "Showtime", showtimes);
+		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
 		
 	}
 

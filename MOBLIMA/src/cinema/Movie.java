@@ -9,7 +9,7 @@ public class Movie {
 	private String showingStatus;
 	private String synopsis;
 	private ArrayList<String> cast;
-	private ArrayList<String> director;
+	private String director;
 	private String type;
 	private ArrayList<Review> reviewArr = new ArrayList<Review>();
 	private ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
@@ -26,7 +26,7 @@ public class Movie {
 	}
 
 
-	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, ArrayList<String> director, String type,String movieRating) {
+	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, String director, String type,String movieRating) {
 		this.movieID = movie_counter++;
 		this.name = name;
 		this.showingStatus = showingStatus;
@@ -94,11 +94,11 @@ public class Movie {
 		this.cast = aCast;
 	}
 
-	public ArrayList<String> getDirector() {
+	public String getDirector() {
 		return this.director;
 	}
 
-	public void setDirector(ArrayList<String> aDirector) {
+	public void setDirector(String aDirector) {
 		this.director = aDirector;
 	}
 
