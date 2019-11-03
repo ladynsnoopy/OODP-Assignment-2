@@ -1,4 +1,6 @@
 MovieID,Name,Type,ShowingStatus,Synopsis,Director,Cast,OverallRating,TicketSales,ReviewID,ShowtimeID,Rating
-2,Test Movie,Action,Showing,In which a movie is tested,[Michael Bay],"[Michael Johnson, Jane Doe]",4,0,[1],[1],PG13
-3,Test 1,Comedy,Coming soon,my life,[ass],"[shit,butt]",5,0,[1],[1],PG13
-1,NEW EDIT,Comedy,Coming soon,my life,[ass],"[shit,butt]",5,0,[1],[1],PG13
+2,Test Movie,Action,Showing,In which a movie is tested,Michael JEFFERY Jordan,"Michael Johnson, Jane Doe",4,0,[1],[1],PG13
+3,Test 1,Comedy,Coming soon,my life,ass,"shit,butt",5,0,[1],[1],PG13
+1,NEW EDIT,Comedy,Coming soon,my life,ass,"shit,butt",5,0,[1],[1],PG13
+1,Test Movie,Action,Showing,In which a movie is tested,Michael Bay,"Michael Johnson, Jane Doe",NA,0,,,PG13
+1,Test Movie,Action,Showing,In which a movie is tested,Michael Bay,"Michael Johnson, Jane Doe",NA,0,,,PG13
