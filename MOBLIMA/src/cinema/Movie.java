@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Movie {
 	private int movieID;
-	private static int movie_counter = 0;
+	private static int movie_counter = 1;
 	private String name;
 	private String showingStatus;
 	private String synopsis;

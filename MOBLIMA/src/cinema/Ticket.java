@@ -5,7 +5,7 @@ public class Ticket {
 	private int isAdult;
 	private boolean isWeekend;
 	private int ticketID;
-	static int counter = 0;
+	static int counter = 1;
 	private double finalPrice;
 	public Ticket(Showtime showtime) {
 		super();

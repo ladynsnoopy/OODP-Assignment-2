@@ -4,7 +4,7 @@ public class Showtime {
 	private Cinema cinema;
 	private String timing;
 	private int showtimeID;
-	private static int showtime_counter=0;
+	private static int showtime_counter=1;
 	private boolean[][] seatingplan;
 
 	public Showtime(Cinema cinema, String timing) {
