@@ -7,6 +7,8 @@ public class Price {
 	private double priceWeekend; // percentage based
 	private double priceHol; // add price to base
 	
+	
+	//TODO should we initialize default values for prices?
 	public Price(double priceAdult, double priceChild, double priceSenior, double priceWeekend,
 			double priceHol, double finalPrice) {
 		super();

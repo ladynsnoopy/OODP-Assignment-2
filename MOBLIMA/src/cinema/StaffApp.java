@@ -28,25 +28,25 @@ public class StaffApp {
 	}
 
 	public static void createCineplexAndCinemas() {
-		Cineplex cowboyTown = new Cineplex("NTU","AA");
-		Cineplex jurassicPark = new Cineplex("NUS","BB");
-		Cineplex theCentral = new Cineplex("SMU","CC");
+		Cineplex cowboyTown = new Cineplex("NTU", "AA");
+		Cineplex jurassicPark = new Cineplex("NUS", "BB");
+		Cineplex theCentral = new Cineplex("SMU", "CC");
 
 		cineplexArr.add(cowboyTown);
 		cineplexArr.add(jurassicPark);
 		cineplexArr.add(theCentral);
 
-		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown,"AA1");
-		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown,"AA2");
-		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown,"AA3");
+		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown, "AA1");
+		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown, "AA2");
+		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown, "AA3");
 
-		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark,"BB1");
-		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark,"BB2");
-		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark,"BB3");
+		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark, "BB1");
+		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark, "BB2");
+		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark, "BB3");
 
-		Cinema c1 = new Cinema("Normal", 10, 10, theCentral,"CC1");
-		Cinema c2 = new Cinema("Normal", 10, 15, theCentral,"CC2");
-		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral,"CC3");
+		Cinema c1 = new Cinema("Normal", 10, 10, theCentral, "CC1");
+		Cinema c2 = new Cinema("Normal", 10, 15, theCentral, "CC2");
+		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral, "CC3");
 
 		cinemaArr.add(a1); // ID AA1
 		cinemaArr.add(a2); // ID AA2
@@ -57,11 +57,11 @@ public class StaffApp {
 		cinemaArr.add(c1); // ID CC1
 		cinemaArr.add(c2); // ID CC2
 		cinemaArr.add(c3); // ID CC3
-		
+
 		MovieList movielistAA = new MovieList("AA");
 		MovieList movielistBB = new MovieList("BB");
 		MovieList movielistCC = new MovieList("CC");
-		
+
 		movielistArr.add(movielistAA);
 		movielistArr.add(movielistBB);
 		movielistArr.add(movielistCC);
@@ -70,7 +70,7 @@ public class StaffApp {
 	public static void createMovie(String name, String showingStatus, String synopsis, ArrayList<String> cast,
 			String director, String type, String movieRating, String cineplexID) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
-		switch(cineplexID) {
+		switch (cineplexID) {
 		case "AA":
 			movielistArr.get(0).addMovie(a);
 			break;
@@ -106,12 +106,11 @@ public class StaffApp {
 			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
 			break;
 		}
-		//TODO finish edit of movie
+		// TODO finish edit of movie
 
 	}
-	
-	
-	//boundary class needs to check that CinemaID and movietitle exists
+
+	// boundary class needs to check that CinemaID and movietitle exists
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
 		Cinema temp = null;
 		String showtimes;
@@ -119,18 +118,17 @@ public class StaffApp {
 			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
 				temp = cinemaArr.get(i);
 				break;
-			}
-			else if(i==cinemaArr.size()-1){
+			} else if (i == cinemaArr.size() - 1) {
 				System.out.println("Invalid Cinema ID");
 				return;
 			}
 		}
 		Showtime showtime = new Showtime(temp, timing);
 		ShowtimeToCSV.addShowtimeToCSV(showtime);
-		//adding showtimeID to moviedatabase
+		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = result.get(0);
-		
+
 		if (result.get(10).equals("")) {
 			System.out.println(showtime.getShowtimeID());
 			showtimes = Integer.toString(showtime.getShowtimeID());
@@ -141,12 +139,71 @@ public class StaffApp {
 			ArrayList<String> showtimelist = new ArrayList<String>(items);
 			showtimelist.add(Integer.toString(showtime.getShowtimeID()));
 			showtimes = showtimelist.toString();
-			showtimes = showtimes.substring(1, showtimes.length()-1);
+			showtimes = showtimes.substring(1, showtimes.length() - 1);
 		}
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
-		
+
 	}
-	//TODO update showtimes
-	//TODO configure ticket prices, holiday
+
+	// TODO update showtimes
+	//yo junteng mah man i think its right but pls double check for me HAHA
+	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
+		Cinema temp = null;
+		Showtime tempST = null;
+		String movieID;
+		//checking if cinemaID exists
+		for (int i = 0; i < cinemaArr.size(); i++) {
+			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
+				temp = cinemaArr.get(i);
+				break;
+			} else if (i == cinemaArr.size() - 1) {
+				System.out.println("Invalid Cinema ID");
+				return;
+			}
+		}
+		// Check if movietitle exists 
+		ArrayList<String[]> moviedata = new ArrayList<String[]>(csvRW.readCSV("moviedatabase"));
+		for (int i = 0; i < moviedata.size(); i++) {
+			if (moviedata.get(i)[1].equals(movietitle)) {
+				// check if showtimeID exists
+				movieID = moviedata.get(i)[0];
+				String[] showtimes = moviedata.get(1)[10].split(",");
+				//if user tries to update new showtime a new one will be created
+				for (int j = 0; j < showtimes.length; j++) {
+					if (showtimes[j].equals(showtimeID))
+						createShowtime(cinemaID, timing, movietitle);
+				}
+				break;
+			} else if (i == moviedata.size() - 1) {
+				System.out.println("Invalid Movie ID");
+				return;
+			}
+		}
+		csvRW.editCSV("showtimedatabase", showtimeID , "Timing", timing);
+		return;
+	}
+
+	// TODO configure ticket prices, holiday
+	public static void configureTicketprice(int selection, Price p, double newPrice) {
+		switch(selection) {
+		case(1):
+			p.setPriceAdult(newPrice);
+		case(2):
+			p.setPriceChild(newPrice);
+		case(3):
+			p.setPriceSenior(newPrice);
+		case(4):
+			p.setPriceWeekend(newPrice);
+		case(5):
+			p.setPriceHol(newPrice);
+		}
+	}
+
+	//not sure about this
+	public static void configureHoliday (String hol, Calendar c) {
+		c.addHolArr(hol);
+	}
+	
+	
 
 }
