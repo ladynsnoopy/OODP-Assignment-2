@@ -10,12 +10,18 @@ public class MovieToCSV {
 		data.add(movie.getType());
 		data.add(movie.getShowingStatus());
 		data.add(movie.getSynopsis());
-		data.add(movie.getDirector().toString());
-		data.add(movie.getCast().toString());
+		data.add(movie.getDirector());
+		String castData = movie.getCast().toString();
+		castData = castData.substring(1, castData.length()-1);
+		data.add(castData);
 		data.add(movie.getOverallUserRating());
 		data.add(Integer.toString(movie.getTicketSales()));
-		data.add(movie.getReviewIDs().toString());
-		data.add(movie.getShowtimeIDs().toString());
+		String reviewData = movie.getReviewIDs().toString();
+		reviewData = reviewData.substring(1, reviewData.length()-1);
+		data.add(reviewData);
+		String showtimeData = movie.getShowtimeIDs().toString();
+		showtimeData = showtimeData.substring(1, showtimeData.length()-1);
+		data.add(showtimeData);
 		data.add(movie.getMovieRating());
 		csvRW.writeToCSV("moviedatabase", data);
 	}
