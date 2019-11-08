@@ -11,6 +11,12 @@ public class CustomerApp {
 		CustomerToCSV.addCustomerToCSV(a);
 	}
 
+	public static int customerExists(String email) {
+		if (csvRW.search("customerdatabase", "Email", email) == null)
+			return -1;
+		return 1;
+	}
+	
 	// returns a string array of movies
 	public static String[] searchMovies() {
 		ArrayList<String[]> list = csvRW.readCSV("moviedatabase");
