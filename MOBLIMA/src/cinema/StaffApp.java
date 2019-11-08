@@ -146,12 +146,12 @@ public class StaffApp {
 	}
 
 	// TODO update showtimes
-	//yo junteng mah man i think its right but pls double check for me HAHA
+	// yo junteng mah man i think its right but pls double check for me HAHA
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
 		Showtime tempST = null;
 		String movieID;
-		//checking if cinemaID exists
+		// checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
 			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
 				temp = cinemaArr.get(i);
@@ -161,17 +161,22 @@ public class StaffApp {
 				return;
 			}
 		}
-		// Check if movietitle exists 
+		// Check if movietitle exists
 		ArrayList<String[]> moviedata = new ArrayList<String[]>(csvRW.readCSV("moviedatabase"));
 		for (int i = 0; i < moviedata.size(); i++) {
 			if (moviedata.get(i)[1].equals(movietitle)) {
 				// check if showtimeID exists
 				movieID = moviedata.get(i)[0];
 				String[] showtimes = moviedata.get(1)[10].split(",");
-				//if user tries to update new showtime a new one will be created
+				// if user tries to update new showtime a new one will be created
 				for (int j = 0; j < showtimes.length; j++) {
-					if (showtimes[j].equals(showtimeID))
-						createShowtime(cinemaID, timing, movietitle);
+					if (showtimes[j].equals(showtimeID)) {
+						break;
+					} else if (j == showtimes.length - 1) {
+						System.out.println("ShowtimeID does not exist");
+						return;
+					}
+
 				}
 				break;
 			} else if (i == moviedata.size() - 1) {
@@ -179,31 +184,34 @@ public class StaffApp {
 				return;
 			}
 		}
-		csvRW.editCSV("showtimedatabase", showtimeID , "Timing", timing);
+		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
 		return;
 	}
 
 	// TODO configure ticket prices, holiday
 	public static void configureTicketprice(int selection, Price p, double newPrice) {
-		switch(selection) {
-		case(1):
+		switch (selection) {
+		case (1):
 			p.setPriceAdult(newPrice);
-		case(2):
+			break;
+		case (2):
 			p.setPriceChild(newPrice);
-		case(3):
+			break;
+		case (3):
 			p.setPriceSenior(newPrice);
-		case(4):
+			break;
+		case (4):
 			p.setPriceWeekend(newPrice);
-		case(5):
+			break;
+		case (5):
 			p.setPriceHol(newPrice);
+			break;
 		}
 	}
 
-	//not sure about this
-	public static void configureHoliday (String hol, Calendar c) {
+	// not sure about this
+	public static void configureHoliday(String hol, Calendar c) {
 		c.addHolArr(hol);
 	}
-	
-	
 
 }
