@@ -77,18 +77,23 @@ public class StaffApp {
 		switch (selection) {
 		case 1:
 			csvRW.editCSV("moviedatabase", id, "Name", change);
+			System.out.println("Title updated");
 			break;
 		case 2:
 			csvRW.editCSV("moviedatabase", id, "Type", change);
+			System.out.println("Type updated");
 			break;
 		case 3:
 			csvRW.editCSV("moviedatabase", id, "ShowingStatus", change);
+			System.out.println("Showing status updated");
 			break;
 		case 4:
 			csvRW.editCSV("moviedatabase", id, "Synopsis", change);
+			System.out.println("Synopsis updated");
 			break;
 		case 5:
-			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
+			csvRW.editCSV("moviedatabase", id, "Rating", change);
+			System.out.println("Rating updated");
 			break;
 		case 6:
 			csvRW.editCSV("moviedatabase", id, "Director", change);
