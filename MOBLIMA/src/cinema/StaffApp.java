@@ -114,9 +114,9 @@ public class StaffApp {
 	// boundary class needs to check that CinemaID and movietitle exists
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
 		Cinema temp = null;
-		String showtimes;
+		
 		for (int i = 0; i < cinemaArr.size(); i++) {
-			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
+			if (cinemaID.equals(cinemaArr.get(i).getCinemaID())) {
 				temp = cinemaArr.get(i);
 				break;
 			} else if (i == cinemaArr.size() - 1) {
@@ -124,6 +124,7 @@ public class StaffApp {
 				return;
 			}
 		}
+		String showtimes;
 		Showtime showtime = new Showtime(temp, timing);
 		ShowtimeToCSV.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
@@ -153,7 +154,7 @@ public class StaffApp {
 		String movieID;
 		//checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
-			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
+			if (cinemaID.equals(cinemaArr.get(i).getCinemaID())) {
 				temp = cinemaArr.get(i);
 				break;
 			} else if (i == cinemaArr.size() - 1) {
