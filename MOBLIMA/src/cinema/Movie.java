@@ -147,6 +147,10 @@ public class Movie {
 		}	
 	}
 
+	public void setOverallUserRating(String anOverallRating) {
+		this.overallUserRating = anOverallRating;
+	}
+
 	public String getMovieRating() {
 		return this.movieRating;
 	}
