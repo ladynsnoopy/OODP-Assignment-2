@@ -9,5 +9,6 @@ public class ShowtimeToCSV {
 		data.add(showtime.getCinema().getCinemaID());
 		data.add(showtime.getTiming());
 		csvRW.writeToCSV("showtimedatabase", data);
+	
 	}
 }

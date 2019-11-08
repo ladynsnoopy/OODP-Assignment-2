@@ -47,10 +47,33 @@ public class CustomerApp {
 		
 		
 	}
-//	public static buyTicket(int showtimeID, int x, int y)
-//	{
-//		//TODO buyticket
-//	}
+	//TODO buyticket
+	public int static buyTicket(int showtimeID, int x, int y)
+	{
+	
+		ArrayList<String[]> occupied = csvRW.searchMultipleRow("seatingplandatabase", "ShowtimeID", Integer.toString(showtimeID));
+		boolean dontsearch = false;
+		if(occupied == null)
+			dontsearch = true;
+		String target = Integer.toString(x) + ","+Integer.toString(y);
+		if(dontsearch == false)
+		{
+			for(int k = 0;k<occupied.size();k++)
+			{
+				if(occupied.get(k)[1].equals(target))
+					return -1; // cannot buy this ticket because its occupied already
+			}
+		}
+		
+		// if seat is available for customer to buy, make the change to the seatingplan database
+		ArrayList<String> new_occupied = new ArrayList<String>;
+		new_occupied.add(Integer.toString(showtimeID));
+		new_occupied.add(target);
+		csvRW.writeToCSV("seatingplandatabase", new_occupied);
+		return 1; // purchase is successful
+
+		
+	}
 	
 	// returns one array list of all the bookingHistory  
 	public static ArrayList<String> searchBookingHistory(int custID)
