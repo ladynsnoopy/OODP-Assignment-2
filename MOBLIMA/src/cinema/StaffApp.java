@@ -8,6 +8,7 @@ public class StaffApp {
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
 	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
+	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
