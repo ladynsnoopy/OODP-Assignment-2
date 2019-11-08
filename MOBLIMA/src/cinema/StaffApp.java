@@ -82,6 +82,7 @@ public class StaffApp {
 			break;
 		}
 		MovieToCSV.addMovieToCSV(a);
+		System.out.println("Movie creation successful");
 	}
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
@@ -92,18 +93,23 @@ public class StaffApp {
 		switch (selection) {
 		case 1:
 			csvRW.editCSV("moviedatabase", id, "Name", change);
+			System.out.println("Movie title updated");
 			break;
 		case 2:
 			csvRW.editCSV("moviedatabase", id, "Type", change);
+			System.out.println("Type of movie updated");
 			break;
 		case 3:
 			csvRW.editCSV("moviedatabase", id, "ShowingStatus", change);
+			System.out.println("Showing status updated");
 			break;
 		case 4:
 			csvRW.editCSV("moviedatabase", id, "Synopsis", change);
+			System.out.println("Synopsis updated");
 			break;
 		case 5:
 			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
+			System.out.println("Rating updated");
 			break;
 		}
 		// TODO finish edit of movie
@@ -142,7 +148,8 @@ public class StaffApp {
 			showtimes = showtimes.substring(1, showtimes.length() - 1);
 		}
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
-
+		System.out.println("Showtime creation successful");
+		return;
 	}
 
 	// TODO update showtimes
@@ -185,6 +192,7 @@ public class StaffApp {
 			}
 		}
 		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
+		System.out.println("Showtime updating successful");
 		return;
 	}
 
@@ -193,18 +201,23 @@ public class StaffApp {
 		switch (selection) {
 		case (1):
 			p.setPriceAdult(newPrice);
+			System.out.println("Adult price updated");
 			break;
 		case (2):
 			p.setPriceChild(newPrice);
+			System.out.println("Child price updated");
 			break;
 		case (3):
 			p.setPriceSenior(newPrice);
+			System.out.println("Senior price updated");
 			break;
 		case (4):
 			p.setPriceWeekend(newPrice);
+			System.out.println("Weekend price updated");
 			break;
 		case (5):
 			p.setPriceHol(newPrice);
+			System.out.println("Holiday price updated");
 			break;
 		}
 	}
@@ -212,6 +225,7 @@ public class StaffApp {
 	// not sure about this
 	public static void configureHoliday(String hol, Calendar c) {
 		c.addHolArr(hol);
+		System.out.println("New holiday date added");
 	}
 
 }
