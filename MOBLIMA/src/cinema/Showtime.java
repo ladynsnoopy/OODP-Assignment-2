@@ -9,6 +9,7 @@ public class Showtime {
 	private String timing;
 	private int showtimeID;
 	private static int showtime_counter = 1;
+	// boolean 2D array to keep track of occupied status of seats in a 2D form
 	private boolean[][] seatingplan;
 	private Seat[] seatArr;
 
@@ -63,9 +64,7 @@ public class Showtime {
 	}
 
 	/*
-	 * Seating plan in terms of seat[] index: 
-	 * 0,1,2,3,4,5 
-	 * 6,7,8,9,10,11 etc
+	 * Seating plan in terms of seat[] index: 0,1,2,3,4,5 6,7,8,9,10,11 etc
 	 * 
 	 * so seat index = yCoor * no of columns + xCoor
 	 */
@@ -87,6 +86,7 @@ public class Showtime {
 				this.seatArr[seat_index].setOccupied(true);
 			}
 		}
+		// updates boolean array according to occupied status of seat
 		for (int i = 0; i < cinema.getTotalNumSeat(); i++) {
 			seatingplan[seatArr[i].getyCoor()][seatArr[i].getxCoor()] = seatArr[i].isOccupied();
 		}
