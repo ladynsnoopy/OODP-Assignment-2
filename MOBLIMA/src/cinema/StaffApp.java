@@ -89,8 +89,15 @@ public class StaffApp {
 		case 5:
 			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
 			break;
+		case 6:
+			csvRW.editCSV("moviedatabase", id, "Director", change);
+			System.out.println("Director updated");
+		case 7:
+			csvRW.editCSV("moviedatabase", id, "Cast", change);
+			System.out.println("Cast updated");
 		}
-		// TODO finish edit of movie
+		
+		
 
 	}
 
