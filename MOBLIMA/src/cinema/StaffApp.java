@@ -2,6 +2,7 @@ package cinema;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class StaffApp {
@@ -96,10 +97,14 @@ public class StaffApp {
 			csvRW.editCSV("moviedatabase", id, "Cast", change);
 			System.out.println("Cast updated");
 		}
-		
-		
-
 	}
+	
+	public static boolean movieExists(String title) {
+		if (csvRW.search("moviedatabase", "Name", title) == null)
+			return false;
+		return true;
+	}
+	
 
 	// boundary class needs to check that CinemaID and movietitle exists
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
@@ -194,15 +199,27 @@ public class StaffApp {
 		c.addHolArr(hol);
 	}
 	
-	public static String showTopMovies (int selection) {
-		ArrayList<String[]> movieDB= csvRW.readCSV("moviedatabase");
-		ArrayList<String[]> topRatings;
-		ArrayList<String[]> topSales;
-		for (int i=0; i < movieDB.size(); i++) {
-			topRatings.add(movieDB.get(i)[1]);
 
+	public static ArrayList<String> showTopMovies (int selection) {
+		ArrayList<Movie> movieObjArr = CSVtoMovie.csvToMovieObject();
+		OverallRatingComparator ratingsComparator = new OverallRatingComparator();
+		TicketSalesComparator salesComparator = new TicketSalesComparator();
+		ArrayList<String> output = new ArrayList<String>();
+
+		// 1: sort by overall rating, 2: sort by total sales
+		switch(selection) {
+		case 1:
+			Collections.sort(movieObjArr, ratingsComparator);
+			for (int i=0; i<=5; i++) {
+				output.add(String.format("%s : %d", movieObjArr.get(i).getName(), movieObjArr.get(i).getOverallUserRatingInDouble()));
+			}
+		case 2:
+			Collections.sort(movieObjArr, salesComparator);
+			for (int i=0; i<=5; i++) {
+				output.add(String.format("%s : %d", movieObjArr.get(i).getName(), movieObjArr.get(i).getTicketSales()));
+			}
 		}
-
+		return output;
 	}
 
 }
