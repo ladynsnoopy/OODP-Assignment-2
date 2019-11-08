@@ -3,6 +3,7 @@ package cinema;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class StaffApp {
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
