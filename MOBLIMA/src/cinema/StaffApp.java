@@ -7,7 +7,8 @@ import java.util.List;
 public class StaffApp {
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
-	public static ArrayList<MovieList> movielistArr = new ArrayList<MovieList>();
+	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
+	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
@@ -37,15 +38,15 @@ public class StaffApp {
 		cineplexArr.add(theCentral);
 
 		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown, "AA1");
-		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown, "AA2");
+		Cinema a2 = new Cinema("Normal", 15, 10, cowboyTown, "AA2");
 		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown, "AA3");
 
 		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark, "BB1");
-		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark, "BB2");
+		Cinema b2 = new Cinema("Normal", 15, 10, jurassicPark, "BB2");
 		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark, "BB3");
 
 		Cinema c1 = new Cinema("Normal", 10, 10, theCentral, "CC1");
-		Cinema c2 = new Cinema("Normal", 10, 15, theCentral, "CC2");
+		Cinema c2 = new Cinema("Normal", 15, 11, theCentral, "CC2");
 		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral, "CC3");
 
 		cinemaArr.add(a1); // ID AA1
@@ -58,31 +59,13 @@ public class StaffApp {
 		cinemaArr.add(c2); // ID CC2
 		cinemaArr.add(c3); // ID CC3
 
-		MovieList movielistAA = new MovieList("AA");
-		MovieList movielistBB = new MovieList("BB");
-		MovieList movielistCC = new MovieList("CC");
-
-		movielistArr.add(movielistAA);
-		movielistArr.add(movielistBB);
-		movielistArr.add(movielistCC);
 	}
 
 	public static void createMovie(String name, String showingStatus, String synopsis, ArrayList<String> cast,
 			String director, String type, String movieRating, String cineplexID) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
-		switch (cineplexID) {
-		case "AA":
-			movielistArr.get(0).addMovie(a);
-			break;
-		case "BB":
-			movielistArr.get(1).addMovie(a);
-			break;
-		case "CC":
-			movielistArr.get(2).addMovie(a);
-			break;
-		}
+		movieArr.add(a);
 		MovieToCSV.addMovieToCSV(a);
-		System.out.println("Movie creation successful");
 	}
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
@@ -93,26 +76,28 @@ public class StaffApp {
 		switch (selection) {
 		case 1:
 			csvRW.editCSV("moviedatabase", id, "Name", change);
-			System.out.println("Movie title updated");
 			break;
 		case 2:
 			csvRW.editCSV("moviedatabase", id, "Type", change);
-			System.out.println("Type of movie updated");
 			break;
 		case 3:
 			csvRW.editCSV("moviedatabase", id, "ShowingStatus", change);
-			System.out.println("Showing status updated");
 			break;
 		case 4:
 			csvRW.editCSV("moviedatabase", id, "Synopsis", change);
-			System.out.println("Synopsis updated");
 			break;
 		case 5:
 			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
-			System.out.println("Rating updated");
 			break;
+		case 6:
+			csvRW.editCSV("moviedatabase", id, "Director", change);
+			System.out.println("Director updated");
+		case 7:
+			csvRW.editCSV("moviedatabase", id, "Cast", change);
+			System.out.println("Cast updated");
 		}
-		// TODO finish edit of movie
+		
+		
 
 	}
 
@@ -148,17 +133,15 @@ public class StaffApp {
 			showtimes = showtimes.substring(1, showtimes.length() - 1);
 		}
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
-		System.out.println("Showtime creation successful");
-		return;
+
 	}
 
 	// TODO update showtimes
-	// yo junteng mah man i think its right but pls double check for me HAHA
+	//yo junteng mah man i think its right but pls double check for me HAHA
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
-		Showtime tempST = null;
 		String movieID;
-		// checking if cinemaID exists
+		//checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
 			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
 				temp = cinemaArr.get(i);
@@ -168,22 +151,17 @@ public class StaffApp {
 				return;
 			}
 		}
-		// Check if movietitle exists
+		// Check if movietitle exists 
 		ArrayList<String[]> moviedata = new ArrayList<String[]>(csvRW.readCSV("moviedatabase"));
 		for (int i = 0; i < moviedata.size(); i++) {
 			if (moviedata.get(i)[1].equals(movietitle)) {
 				// check if showtimeID exists
 				movieID = moviedata.get(i)[0];
 				String[] showtimes = moviedata.get(1)[10].split(",");
-				// if user tries to update new showtime a new one will be created
+				//if user tries to update new showtime a new one will be created
 				for (int j = 0; j < showtimes.length; j++) {
-					if (showtimes[j].equals(showtimeID)) {
-						break;
-					} else if (j == showtimes.length - 1) {
-						System.out.println("ShowtimeID does not exist");
-						return;
-					}
-
+					if (showtimes[j].equals(showtimeID))
+						createShowtime(cinemaID, timing, movietitle);
 				}
 				break;
 			} else if (i == moviedata.size() - 1) {
@@ -191,41 +169,40 @@ public class StaffApp {
 				return;
 			}
 		}
-		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
-		System.out.println("Showtime updating successful");
+		csvRW.editCSV("showtimedatabase", showtimeID , "Timing", timing);
 		return;
 	}
 
 	// TODO configure ticket prices, holiday
 	public static void configureTicketprice(int selection, Price p, double newPrice) {
-		switch (selection) {
-		case (1):
+		switch(selection) {
+		case(1):
 			p.setPriceAdult(newPrice);
-			System.out.println("Adult price updated");
-			break;
-		case (2):
+		case(2):
 			p.setPriceChild(newPrice);
-			System.out.println("Child price updated");
-			break;
-		case (3):
+		case(3):
 			p.setPriceSenior(newPrice);
-			System.out.println("Senior price updated");
-			break;
-		case (4):
+		case(4):
 			p.setPriceWeekend(newPrice);
-			System.out.println("Weekend price updated");
-			break;
-		case (5):
+		case(5):
 			p.setPriceHol(newPrice);
-			System.out.println("Holiday price updated");
-			break;
 		}
 	}
 
-	// not sure about this
-	public static void configureHoliday(String hol, Calendar c) {
+	//not sure about this
+	public static void configureHoliday (String hol, Calendar c) {
 		c.addHolArr(hol);
-		System.out.println("New holiday date added");
+	}
+	
+	public static String showTopMovies (int selection) {
+		ArrayList<String[]> movieDB= csvRW.readCSV("moviedatabase");
+		ArrayList<String[]> topRatings;
+		ArrayList<String[]> topSales;
+		for (int i=0; i < movieDB.size(); i++) {
+			topRatings.add(movieDB.get(i)[1]);
+
+		}
+
 	}
 
 }

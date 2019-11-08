@@ -14,6 +14,7 @@ public class Cinema {
 		this.totalRow = totalRow;
 		this.totalCol = totalCol;
 		this.cinemaID = cinemaID;
+		this.totalNumSeat = totalRow * totalCol;
 	}
 
 	public String getType() {
