@@ -96,10 +96,14 @@ public class StaffApp {
 			csvRW.editCSV("moviedatabase", id, "Cast", change);
 			System.out.println("Cast updated");
 		}
-		
-		
-
 	}
+	
+	public static int movieExists(String title) {
+		if (csvRW.search("moviedatabase", "Name", title) == null)
+			return -1;
+		return 1;
+	}
+	
 
 	// boundary class needs to check that CinemaID and movietitle exists
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
