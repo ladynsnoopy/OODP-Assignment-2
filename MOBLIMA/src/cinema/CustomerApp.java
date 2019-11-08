@@ -10,11 +10,14 @@ public class CustomerApp {
 		Customer a = new Customer(name, mobileNum, email);
 		CustomerToCSV.addCustomerToCSV(a);
 	}
-
+    // returns customerID if it exists
 	public static int customerExists(String email) {
 		if (csvRW.search("customerdatabase", "Email", email) == null)
 			return -1;
-		return 1;
+		else
+		{
+			return Integer.parseInt(csvRW.search("customerdatabase", "Email", email).get(0));
+		}
 	}
 	
 	// returns a string array of movies
@@ -28,17 +31,22 @@ public class CustomerApp {
 		}
 		return movies;
 	}
+	// link to Movie class
 	// returns a string array of timings for a particular movie
-	public static String[] getShowtimesForMovie(int movieID)
+	public static String[][] getShowtimesForMovie(int movieID)
 	{
 		ArrayList <String> result = csvRW.search("moviedatabase", "MovieID",Integer.toString(movieID));
-		String a = result.get(result.size()-2); // Get all the showtimeID of the particular movie
-		String[] arr = a.split(","); // store all the showtimeID in a string array
-		String[] showtimes = new String[arr.length];
+		String a = result.get(10); // Get all the showtimeID of the particular movie
+		String cut = a.substring(1,a.length()-1); // cut away the ""
+		String[] arr = cut.split(","); // store all the showtimeID in a string array
+		String[][] showtimes = new String[arr.length][];
+		String[] inside = new String[2];
 		for(int i = 0; i<arr.length;i++)
 		{
 			ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID",arr[i]); 
-			showtimes[i] = b.get(b.size()-1); // get timing for each showtimeID and store it into showtimes array
+			inside[0] = b.get(1);
+			inside[1] = b.get(b.size()-1);
+			showtimes[i] = inside;// get timing for each showtimeID and store it into showtimes array
 		}
 		return showtimes;
 		
@@ -47,8 +55,16 @@ public class CustomerApp {
 		
 		
 	}
+	public static int searchOneMovie(String name)
+	{
+		ArrayList <String> result = csvRW.search("moviedatabase", "Name", name);
+		if(result != null)
+			return Integer.parseInt(result.get(0)); // returns movieID
+		else 
+			return -1;
+	}
 	//TODO buyticket
-	public int static buyTicket(int showtimeID, int x, int y)
+	public static int buyTicket(int showtimeID, int x, int y)
 	{
 	
 		ArrayList<String[]> occupied = csvRW.searchMultipleRow("seatingplandatabase", "ShowtimeID", Integer.toString(showtimeID));
@@ -74,21 +90,28 @@ public class CustomerApp {
 
 		
 	}
+
 	
-	// returns one array list of all the bookingHistory  
-	public static ArrayList<String> searchBookingHistory(int custID)
+	// returns one 2D array of all the bookingHistory  
+	public static String[][] searchBookingHistory(int custID)
 	{
 	
 		ArrayList<String> tids = csvRW.search("customerdatabase", "CustomerID",Integer.toString(custID)); 
-		String a = tids.get(tids.size()-1); // Get all the receipt's TID of the customer 
-		String[] arr = a.split(",");  // store the TIDs in a string array
-		ArrayList<String> finallist = new ArrayList<String>();
+		String a = tids.get(4); // Get all the receipt's TID of the customer 
+		String cut = a.substring(1,a.length()-1); // cut away the ""
+		String[] arr = cut.split(",");  // store the TIDs in a string array
+		String[][] main = new String[arr.length][];
 		for(int i = 0;i<arr.length;i++)
 		{
 			ArrayList<String> b = csvRW.search("paymentdatabase", "TID",arr[i]);
-			finallist.addAll(b); 
+			String [] stockArr = new String[b.size()];
+			for(int k = 0; k<b.size();k++)
+			{
+				stockArr[k] = b.get(k);
+			}
+			main[i] = stockArr;
 		}
-		return finallist;
+		return main;
 		
 	}
 	public static void addReview(int rating, String comment, String userID, String movie_name)
