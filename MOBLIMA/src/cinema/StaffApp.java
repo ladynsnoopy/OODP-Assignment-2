@@ -98,10 +98,10 @@ public class StaffApp {
 		}
 	}
 	
-	public static int movieExists(String title) {
+	public static boolean movieExists(String title) {
 		if (csvRW.search("moviedatabase", "Name", title) == null)
-			return -1;
-		return 1;
+			return false;
+		return true;
 	}
 	
 
