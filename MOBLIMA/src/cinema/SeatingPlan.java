@@ -26,5 +26,8 @@ public class SeatingPlan {
 			}
 			System.out.println();
 		}
+		System.out.println("Key:");
+		System.out.println("    O: Unoccupied seat");
+		System.out.println("    X: Occupied seat");
 	}
 }

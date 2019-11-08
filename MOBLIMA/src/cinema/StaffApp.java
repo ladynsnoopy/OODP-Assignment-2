@@ -7,7 +7,7 @@ import java.util.List;
 public class StaffApp {
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
-	public static ArrayList<MovieList> movielistArr = new ArrayList<MovieList>();
+	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
 
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
@@ -58,29 +58,12 @@ public class StaffApp {
 		cinemaArr.add(c2); // ID CC2
 		cinemaArr.add(c3); // ID CC3
 
-		MovieList movielistAA = new MovieList("AA");
-		MovieList movielistBB = new MovieList("BB");
-		MovieList movielistCC = new MovieList("CC");
-
-		movielistArr.add(movielistAA);
-		movielistArr.add(movielistBB);
-		movielistArr.add(movielistCC);
 	}
 
 	public static void createMovie(String name, String showingStatus, String synopsis, ArrayList<String> cast,
 			String director, String type, String movieRating, String cineplexID) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
-		switch (cineplexID) {
-		case "AA":
-			movielistArr.get(0).addMovie(a);
-			break;
-		case "BB":
-			movielistArr.get(1).addMovie(a);
-			break;
-		case "CC":
-			movielistArr.get(2).addMovie(a);
-			break;
-		}
+		movieArr.add(a);
 		MovieToCSV.addMovieToCSV(a);
 		System.out.println("Movie creation successful");
 	}
@@ -156,7 +139,6 @@ public class StaffApp {
 	// yo junteng mah man i think its right but pls double check for me HAHA
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
-		Showtime tempST = null;
 		String movieID;
 		// checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
