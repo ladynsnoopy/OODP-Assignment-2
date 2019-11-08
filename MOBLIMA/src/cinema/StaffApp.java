@@ -10,7 +10,8 @@ public class StaffApp {
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
 	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
 	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
-
+	public static Calendar calendar = createCalendar();
+	
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
 		StaffToCSV.addStaffToCSV(a);
@@ -226,6 +227,26 @@ public class StaffApp {
 			}
 		}
 		return output;
+	}
+	
+	
+	public static Calendar createCalendar() {
+		ArrayList<String> holDates = new ArrayList<String>();
+		holDates.add("20191111");
+		holDates.add("20191125");
+		holDates.add("20191124");
+		holDates.add("20191115");
+		ArrayList<String> wkndDates = new ArrayList<String>();
+		wkndDates.add("20191109");
+		wkndDates.add("20191110");
+		wkndDates.add("20191116");
+		wkndDates.add("20191117");
+		wkndDates.add("20191123");
+		wkndDates.add("20191124");
+		wkndDates.add("20191130");
+		Calendar c = new Calendar(holDates, wkndDates);
+		return c;
+		
 	}
 
 }

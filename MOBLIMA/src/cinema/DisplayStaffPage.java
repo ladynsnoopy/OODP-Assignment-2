@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DisplayStaffPage {
 
-	public static void displayUserPage() {
+	public static void displayStaffPage() {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		// do customer initialisation stuff
@@ -41,9 +41,21 @@ public class DisplayStaffPage {
 				} catch (Exception e) {
 				}
 				break;
-			case 2: // call search Movie function
+			case 2:
+				editMovieDetails();
+				System.out.println("Press enter to return\n");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+				}
 				break;
-			case 3: // call view seating plan function
+			case 3:
+				addShowtime();
+				System.out.println("Press enter to return\n");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+				}
 				break;
 			case 4: // call buyTicket function
 				break;
@@ -106,30 +118,200 @@ public class DisplayStaffPage {
 			return;
 
 		}
-		
+
 	}
 
 	public static void editMovieDetails() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter (1) to edit movie title");
-		System.out.println("Enter (2) to edit movie type(genre)");
-		System.out.println("Enter (3) to edit showing status");
-		System.out.println("Enter (4) to edit movie synopsis");
-		System.out.println("Enter (5) to edit movie rating");
-		System.out.println("Enter (6) to edit movie director");
-		System.out.println("Enter (7) to edit movie cast");
+		System.out.println("Enter name of movie to edit:");
+		String name = sc.nextLine();
+		if (!StaffApp.movieExists(name)) {
+			System.out.println("Movie does not exist");
+			editMovieDetails();
+			return;
+		}
+
+		Boolean loop = true;
 		int input;
-		while (true) {
-			if (sc.hasNextInt()) {
-				input = sc.nextInt();
-				if (input >= 1 && input <= 8) {
-					break;
-				}
-			} else {
-				sc.next();
+		String change;
+		while (loop) {
+			System.out.println("Enter (1) to edit movie title");
+			System.out.println("Enter (2) to edit movie type(genre)");
+			System.out.println("Enter (3) to edit showing status");
+			System.out.println("Enter (4) to edit movie synopsis");
+			System.out.println("Enter (5) to edit movie rating");
+			System.out.println("Enter (6) to edit movie director");
+			System.out.println("Enter (7) to edit movie cast");
+			while (true) {
+				if (sc.hasNextInt()) {
+					input = sc.nextInt();
+					if (input >= 1 && input <= 8) {
+						sc.nextLine();
+						break;
+					}
+				} else
+					sc.next();
 			}
 
+			switch (input) {
+			case (1):
+				System.out.println("Enter new title:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(1, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (2):
+				System.out.println("Enter new type for movie:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(2, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (3):
+				// TODO remove showtimes when status set to end of showing
+				System.out.println("Enter new showing status:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(3, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (4):
+				System.out.println("Enter new synopsis:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(4, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (5):
+				System.out.println("Enter new rating:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(5, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (6):
+				System.out.println("Enter new director name:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(6, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (7):
+				System.out.println("Enter new cast:");
+				change = sc.nextLine();
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.editMovieStringDetails(7, name, change);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			}
 		}
 	}
 
+	public static void addShowtime() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the movie to be added");
+		String movie = sc.nextLine();
+		System.out.println(movie);
+		// System.out.println(csvRW.search("moviedatabase", "Name", movie).get(1));
+		if (!StaffApp.movieExists(movie)) {
+			System.out.println("Movie does not exist");
+			addShowtime();
+			return;
+		}
+		boolean loop = true;
+		StaffApp.createCineplexAndCinemas();
+		String cinemaID = null;
+		while (loop) {
+			System.out.println("Enter cinema to add showtime:");
+			cinemaID = sc.nextLine();
+			for (int i = 0; i < StaffApp.cinemaArr.size(); i++) {
+				if (cinemaID.equals(StaffApp.cinemaArr.get(i).getCinemaID())) {
+					loop = false;
+					break;
+				} else if (i == StaffApp.cinemaArr.size() - 1) {
+					System.out.println("Invalid Cinema ID");
+					continue;
+				}
+			}
+		}
+
+		System.out.println("Enter date for new showtime (YYMMDD)");
+		String date = sc.next();
+		System.out.println("Enter time for new showtime (24h format)");
+		String time = sc.next();
+		String timing = date + time;
+
+		StaffApp.createShowtime(cinemaID, timing, movie);
+	}
+
+	public static int editConfirmation() {
+		Scanner sc1 = new Scanner(System.in);
+		System.out.println("Press (1) to confirm edit");
+		System.out.println("Press (2) to re-enter edit");
+		System.out.println("Press (3) to cancel and return to menu");
+		int input;
+		while (true) {
+			if (sc1.hasNextInt()) {
+				input = sc1.nextInt();
+				if (input >= 1 && input <= 3) {
+					sc1.nextLine();
+					break;
+				}
+			} else {
+				sc1.next();
+			}
+			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
+		}
+		return input;
+	}
 }
