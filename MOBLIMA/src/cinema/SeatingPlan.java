@@ -9,14 +9,14 @@ public class SeatingPlan {
 		System.out.println("--------------SCREEN--------------");
 		System.out.print("    ");
 		for (int i = 0; i < showtime.getCinema().getTotalCol(); i++) {
-			System.out.print((i + 1) + " ");
+			System.out.print((i) + " ");
 		}
 		System.out.println();
 		for (int j = 0; j < showtime.getCinema().getTotalRow(); j++) {
-			if (j < 9) {
-				System.out.print((j + 1) + "   ");
+			if (j < 10) {
+				System.out.print((j) + "   ");
 			} else {
-				System.out.print((j + 1) + "  ");
+				System.out.print((j) + "  ");
 			}
 			for (int k = 0; k < showtime.getCinema().getTotalCol(); k++) {
 				if (showtime.getSeatingplan()[j][k] == true)
@@ -26,5 +26,9 @@ public class SeatingPlan {
 			}
 			System.out.println();
 		}
+		System.out.println();
+		System.out.println("Key:");
+		System.out.println("    O: Unoccupied seat");
+		System.out.println("    X: Occupied seat");
 	}
 }

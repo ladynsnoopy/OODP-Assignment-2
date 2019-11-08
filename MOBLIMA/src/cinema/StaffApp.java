@@ -7,7 +7,8 @@ import java.util.List;
 public class StaffApp {
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
-	public static ArrayList<MovieList> movielistArr = new ArrayList<MovieList>();
+	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
+	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
@@ -37,15 +38,15 @@ public class StaffApp {
 		cineplexArr.add(theCentral);
 
 		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown, "AA1");
-		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown, "AA2");
+		Cinema a2 = new Cinema("Normal", 15, 10, cowboyTown, "AA2");
 		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown, "AA3");
 
 		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark, "BB1");
-		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark, "BB2");
+		Cinema b2 = new Cinema("Normal", 15, 10, jurassicPark, "BB2");
 		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark, "BB3");
 
 		Cinema c1 = new Cinema("Normal", 10, 10, theCentral, "CC1");
-		Cinema c2 = new Cinema("Normal", 10, 15, theCentral, "CC2");
+		Cinema c2 = new Cinema("Normal", 15, 11, theCentral, "CC2");
 		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral, "CC3");
 
 		cinemaArr.add(a1); // ID AA1
@@ -58,29 +59,12 @@ public class StaffApp {
 		cinemaArr.add(c2); // ID CC2
 		cinemaArr.add(c3); // ID CC3
 
-		MovieList movielistAA = new MovieList("AA");
-		MovieList movielistBB = new MovieList("BB");
-		MovieList movielistCC = new MovieList("CC");
-
-		movielistArr.add(movielistAA);
-		movielistArr.add(movielistBB);
-		movielistArr.add(movielistCC);
 	}
 
 	public static void createMovie(String name, String showingStatus, String synopsis, ArrayList<String> cast,
 			String director, String type, String movieRating, String cineplexID) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
-		switch (cineplexID) {
-		case "AA":
-			movielistArr.get(0).addMovie(a);
-			break;
-		case "BB":
-			movielistArr.get(1).addMovie(a);
-			break;
-		case "CC":
-			movielistArr.get(2).addMovie(a);
-			break;
-		}
+		movieArr.add(a);
 		MovieToCSV.addMovieToCSV(a);
 	}
 
@@ -149,7 +133,6 @@ public class StaffApp {
 	//yo junteng mah man i think its right but pls double check for me HAHA
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
-		Showtime tempST = null;
 		String movieID;
 		//checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
