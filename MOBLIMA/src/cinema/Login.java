@@ -1,4 +1,5 @@
 package cinema;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Login {
 	public static  void menu()
@@ -42,7 +43,8 @@ public class Login {
 	{
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
-		// do customer initialisation stuff
+		int custID = custLogin(); // custID is the customer ID of the customer using the App now;
+		System.out.println("Please enter your email: ");
 		while(loop)
 		{
 			System.out.println("What would you like to do?");
@@ -69,24 +71,95 @@ public class Login {
 			}
 			switch(input)
 			{
-			case 1: StaffApp.movielistArr.pr
+			case 1: displayAllMovie();
+					
 					break;
-			case 2: // call search Movie function
+			case 2: displaySearchMovie();
 					break;
 			case 3: // call view seating plan function
 					break;
 			case 4: // call buyTicket function
 					break;
-			case 5: // call view BookingHistory
+			case 5: displayBookingHistory(custID);
 					break;
 			case 6: // call view Top 5 movie
 					break;
 			case 7: // call view Top 5 movie
 					break;
-			}
+			} 
+			sc.close();
 			
 		}
 		
+		
+	}
+	public static int custLogin()
+	{
+		// do customer initialization
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter your email: ");
+		String email = sc.nextLine();
+		if(CustomerApp.customerExists(email) == -1)
+		{
+			System.out.println("Please enter your Name and Mobile Number");
+			String name = sc.nextLine();
+			String mobileNum = sc.nextLine();
+			CustomerApp.createCustomer(name, mobileNum, email);
+		}
+		int ID = CustomerApp.customerExists(email);
+		return ID;
+	}
+	public static void displayAllMovie()
+	{
+		String [] arr = CustomerApp.searchMovies();
+		System.out.println("Movie List:");
+		System.out.println("---------------------------");
+		for(int i = 1; i<arr.length;i++)
+		{
+			System.out.println(i+". "+ arr[i]);
+		}
+	}
+	public static void displaySearchMovie()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("What movie would you like to search for?");
+		String name = sc.nextLine();
+		int ID = CustomerApp.searchOneMovie(name);
+		if(ID != -1)
+		{
+			System.out.println("Showtimes for "+ name+":");
+			System.out.println("-----------------------------------------");
+			String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
+			for(int i = 0; i< showtimes.length;i++)
+			{
+				System.out.println(showtimes[i][1] + " CinemaID: "+showtimes[i][0]);
+				System.out.println("-----------------------------------------");
+			}
+			
+		}
+		else
+		{
+			System.out.println("This movie ["+ name+"] is not found.");
+		}
+		sc.close();
+		
+	}
+	public static void displayBookingHistory(int ID)
+	{
+		System.out.println("Booking History:");
+		System.out.println("---------------------");
+		String[][] bookHist = CustomerApp.searchBookingHistory(ID);
+		for(int i = 0; i<bookHist.length;i++)
+		{
+			
+			
+			System.out.println("Transaction ID: "+bookHist[i][0]);
+			System.out.println("Payment Mode: "+bookHist[i][1]);
+			System.out.println("Movie Name: "+bookHist[i][2]);
+			System.out.println("Amount: $"+bookHist[i][3]);
+			System.out.println();
+			
+		}
 		
 	}
 	
