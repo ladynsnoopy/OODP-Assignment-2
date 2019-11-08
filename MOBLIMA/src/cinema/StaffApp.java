@@ -77,18 +77,23 @@ public class StaffApp {
 		switch (selection) {
 		case 1:
 			csvRW.editCSV("moviedatabase", id, "Name", change);
+			System.out.println("Title updated");
 			break;
 		case 2:
 			csvRW.editCSV("moviedatabase", id, "Type", change);
+			System.out.println("Type updated");
 			break;
 		case 3:
 			csvRW.editCSV("moviedatabase", id, "ShowingStatus", change);
+			System.out.println("Showing status updated");
 			break;
 		case 4:
 			csvRW.editCSV("moviedatabase", id, "Synopsis", change);
+			System.out.println("Synopsis updated");
 			break;
 		case 5:
-			csvRW.editCSV("moviedatabase", id, "OverallRating", change);
+			csvRW.editCSV("moviedatabase", id, "Rating", change);
+			System.out.println("Rating updated");
 			break;
 		case 6:
 			csvRW.editCSV("moviedatabase", id, "Director", change);
@@ -109,9 +114,9 @@ public class StaffApp {
 	// boundary class needs to check that CinemaID and movietitle exists
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
 		Cinema temp = null;
-		String showtimes;
+		
 		for (int i = 0; i < cinemaArr.size(); i++) {
-			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
+			if (cinemaID.equals(cinemaArr.get(i).getCinemaID())) {
 				temp = cinemaArr.get(i);
 				break;
 			} else if (i == cinemaArr.size() - 1) {
@@ -119,6 +124,7 @@ public class StaffApp {
 				return;
 			}
 		}
+		String showtimes;
 		Showtime showtime = new Showtime(temp, timing);
 		ShowtimeToCSV.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
@@ -148,7 +154,7 @@ public class StaffApp {
 		String movieID;
 		//checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
-			if (cinemaID == cinemaArr.get(i).getCinemaID()) {
+			if (cinemaID.equals(cinemaArr.get(i).getCinemaID())) {
 				temp = cinemaArr.get(i);
 				break;
 			} else if (i == cinemaArr.size() - 1) {
