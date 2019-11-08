@@ -38,15 +38,15 @@ public class StaffApp {
 		cineplexArr.add(theCentral);
 
 		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown, "AA1");
-		Cinema a2 = new Cinema("Normal", 10, 15, cowboyTown, "AA2");
+		Cinema a2 = new Cinema("Normal", 15, 10, cowboyTown, "AA2");
 		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown, "AA3");
 
 		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark, "BB1");
-		Cinema b2 = new Cinema("Normal", 10, 15, jurassicPark, "BB2");
+		Cinema b2 = new Cinema("Normal", 15, 10, jurassicPark, "BB2");
 		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark, "BB3");
 
 		Cinema c1 = new Cinema("Normal", 10, 10, theCentral, "CC1");
-		Cinema c2 = new Cinema("Normal", 10, 15, theCentral, "CC2");
+		Cinema c2 = new Cinema("Normal", 15, 11, theCentral, "CC2");
 		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral, "CC3");
 
 		cinemaArr.add(a1); // ID AA1

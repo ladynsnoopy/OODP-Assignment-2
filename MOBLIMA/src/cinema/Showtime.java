@@ -56,7 +56,7 @@ public class Showtime {
 		int count = 0;
 		for (int i = 0; i < cinema.getTotalRow(); i++) {
 			for (int j = 0; j < cinema.getTotalCol(); j++) {
-				seatArr[count] = new Seat(i, j, false);
+				seatArr[count] = new Seat(j, i, false);
 				count++;
 			}
 		}
@@ -67,7 +67,7 @@ public class Showtime {
 	 * 0,1,2,3,4,5 
 	 * 6,7,8,9,10,11 etc
 	 * 
-	 * so seat index = yCoor * row size + xCoor
+	 * so seat index = yCoor * no of columns + xCoor
 	 */
 	public void setSeatingPlan() {
 		ArrayList<String[]> seats_occupied;
@@ -83,12 +83,12 @@ public class Showtime {
 				x = Integer.parseInt(coordinates.get(0));
 				y = Integer.parseInt(coordinates.get(1));
 				// sets the appropriate seat to occupied status
-				seat_index = (y * this.cinema.getTotalRow()) + x;
+				seat_index = (y * this.cinema.getTotalCol()) + x;
 				this.seatArr[seat_index].setOccupied(true);
 			}
 		}
 		for (int i = 0; i < cinema.getTotalNumSeat(); i++) {
-			seatingplan[seatArr[i].getxCoor()][seatArr[i].getyCoor()] = seatArr[i].isOccupied();
+			seatingplan[seatArr[i].getyCoor()][seatArr[i].getxCoor()] = seatArr[i].isOccupied();
 		}
 	}
 
