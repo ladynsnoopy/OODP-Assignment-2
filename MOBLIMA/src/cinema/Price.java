@@ -10,7 +10,7 @@ public class Price {
 	
 	//TODO should we initialize default values for prices?
 	public Price(double priceAdult, double priceChild, double priceSenior, double priceWeekend,
-			double priceHol, double finalPrice) {
+			double priceHol) {
 		super();
 	
 		this.priceAdult = priceAdult;

@@ -4,7 +4,7 @@ public class Ticket {
 	private Showtime showtime;
 	private String movietitle;
 	private int isAdult;
-	private boolean isWeekend;
+//	private boolean isWeekend;
 	private int ticketID;
 	static int counter = 1;
 	private double finalPrice;
@@ -22,13 +22,13 @@ public class Ticket {
 		this.isAdult = isAdult;
 	}
 
-	public boolean isWeekend() {
-		return isWeekend;
-	}
-
-	public void setWeekend(boolean isWeekend) {
-		this.isWeekend = isWeekend;
-	}
+//	public boolean isWeekend() {
+//		return isWeekend;
+//	}
+//
+//	public void setWeekend(boolean isWeekend) {
+//		this.isWeekend = isWeekend;
+//	}
 
 	public int getTicketID() {
 		return ticketID;
@@ -77,7 +77,7 @@ public class Ticket {
 		{
 			base += b.getPriceHol();
 		}
-		if(isWeekend)
+		if(a.checkHols(showtime))
 		{
 			base *= b.getPriceWeekend();
 		}

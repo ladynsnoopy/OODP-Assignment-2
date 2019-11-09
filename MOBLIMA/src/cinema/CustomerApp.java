@@ -112,9 +112,10 @@ public class CustomerApp {
 
 		
 	}
-	// hold isWeekend
-	public static void addTicket(int showtimeID,String movietitle,int isAdult)
+	// returns TicketID
+	public static Ticket addTicket(int showtimeID,String movietitle,int isAdult)
 	{
+		// I have assumed that by this stage all the info entered for parameters is correct
 		int index = 0;
 		for(int i = 0; i< StaffApp.showtimeArr.size();i++)
 		{
@@ -126,12 +127,36 @@ public class CustomerApp {
 		}
 		Ticket addnew = new Ticket(StaffApp.showtimeArr.get(index));
 		addnew.setIsAdult(isAdult);
-		//TODO make a global calender object
+		//TODO make a global Price object
+		Price prices = new Price(9.00,6.50,5.00, 1.1,3.00);
+		addnew.setFinalPrice(StaffApp.calendar,prices);
+		addnew.setMovietitle(movietitle);
+		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticketdatabase
+		ArrayList<String> movie_row = csvRW.search("moviedatabase","Name",movietitle);
+		String id = movie_row.get(0);
+		int ticketSalesCount = Integer.parseInt(movie_row.get(8))+1;
+		csvRW.editCSV("moviedatabase", id, "TicketSales", Integer.toString(ticketSalesCount)); // increase ticketSales count in movie database
+		// change the movie object ticketSales count
+		for(int k = 0; k<StaffApp.movieArr.size();k++)
+		{
+			if(searchOneMovie(movietitle) == StaffApp.movieArr.get(k).getMovieID())
+			{
+				StaffApp.movieArr.get(k).increaseTicketSalesByOne();
+				System.out.println("Movie object ticket count increased");
+				break;
+			}
+		}
 		
-		addnew.setFinalPrice(a, b);
-		
+		return addnew;	
 	}
-	
+	// returns transaction id
+	public static String addPayment(Ticket[] arr, String paymentmode)
+	{
+		Receipt receipt = new Receipt(arr,paymentmode);
+		receipt.calTotalAmt();
+		ReceiptToCSV.addReceiptToCSV(receipt);
+		return receipt.getTID();
+	}
 
 	
 	// returns one 2D array of all the bookingHistory  
@@ -166,6 +191,7 @@ public class CustomerApp {
 		}
 
 	}
+	
 	public static void addReview(int rating, String comment, String userID, String movie_name)
 	{
 		
@@ -174,6 +200,7 @@ public class CustomerApp {
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name);
 		String id = movie_row.get(0);
 		String reviews = movie_row.get(9);
+		// if there are no reviews
 		if(reviews.equals(""))
 		{
 			csvRW.editCSV("moviedatabase",id,"ReviewID",Integer.toString(a.getReviewID()));
@@ -181,18 +208,67 @@ public class CustomerApp {
 		}
 		else
 		{
-			String[] arr = reviews.split(",");
-			String b = "";
-			for(int i = 0; i<arr.length;i++)
+			// if there are more than one review
+			if(reviews.length() != 1)
 			{
-				b += arr[i]+",";
+				String cut = reviews.substring(1,reviews.length()-1);
+				String[] arr = cut.split(",");
+				String b = "";
+				for(int i = 0; i<arr.length;i++)
+				{
+					b += arr[i]+",";
+				}
+				b += Integer.toString(a.getReviewID());
+				csvRW.editCSV("moviedatabase",id,"ReviewID",b);
 			}
-			b += Integer.toString(a.getReviewID());
-			csvRW.editCSV("moviedatabase",id,"ReviewID",b);
+			else
+			{
+				// if there is one review
+				String b = reviews +"," + Integer.toString(a.getReviewID());
+				csvRW.editCSV("moviedatabase",id,"ReviewID",b);
+			}
+			
 			
 		}
 			
 			
+	}
+	// returns everything in customer databse except Transaction history
+	public static String[] findCustomer(int custID)
+	{
+		ArrayList<String> row =  csvRW.search("customerdatabase","CustomerID" ,Integer.toString(custID));
+		String[] result = new String[4];
+		result[0] = row.get(0);
+		result[1] = row.get(1);
+		result[2] = row.get(2);
+		result[3] = row.get(3);
+		return result;
+	}
+
+	public static void addReceiptinCustomerDatabase(int custID, String TID) {
+		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
+		String id = cust_row.get(0);
+		String TIDS = cust_row.get(4);
+		if (TIDS.equals("")) {
+			csvRW.editCSV("customerdatabase", id, "TID", TID);
+
+		} else {
+			// if there are more than one TID
+			if (TIDS.length() != 1) {
+				String cut = TIDS.substring(1, TIDS.length() - 1);
+				String[] arr = cut.split(",");
+				String b = "";
+				for (int i = 0; i < arr.length; i++) {
+					b += arr[i] + ",";
+				}
+				b += TID;
+				csvRW.editCSV("customerdatabase", id, "TID", b);
+			} else {
+				// if there is one TID
+				String b = TIDS + "," + TID;
+				csvRW.editCSV("customerdatabase", id, "TID", b);
+			}
+		}
 	}
 	
 	//TODO view sorted top 5

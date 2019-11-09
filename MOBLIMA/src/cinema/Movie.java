@@ -173,4 +173,8 @@ public class Movie {
 		return showtimeIDs;
 
 	}
+	public void increaseTicketSalesByOne()
+	{
+		ticketSales += 1;
+	}
 }
