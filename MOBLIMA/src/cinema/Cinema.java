@@ -4,7 +4,7 @@ package cinema;
  * Cinema object that contains number of rows and columns of seats in the
  * cinema, total number of seats and has a unique CinemaID
  * 
- * @author Jun Teng
+ * @author Oh Jun Teng
  * @version 1.0
  * @since 2019-11-09
  *
@@ -40,7 +40,7 @@ public class Cinema {
 	 * @param cineplex Total number of seats in a cinema.
 	 * @param cinemaID Unique String cinema ID.
 	 */
-	public Cinema(String type, int totalRow, int totalCol, Cineplex cineplex, String cinemaID) {
+	public Cinema(String type, int totalRow, int totalCol, String cinemaID) {
 		super();
 		this.type = type;
 		this.totalRow = totalRow;

@@ -51,6 +51,8 @@ public class StaffApp {
 	 * ArrayList for other methods to access.
 	 */
 	public static void createCineplexAndCinemas() {
+		ArrayList<Cinema> temp = new ArrayList<Cinema>();
+		
 		Cineplex cowboyTown = new Cineplex("NTU", "AA");
 		Cineplex jurassicPark = new Cineplex("NUS", "BB");
 		Cineplex theCentral = new Cineplex("SMU", "CC");
@@ -59,17 +61,35 @@ public class StaffApp {
 		cineplexArr.add(jurassicPark);
 		cineplexArr.add(theCentral);
 
-		Cinema a1 = new Cinema("Normal", 10, 10, cowboyTown, "AA1");
-		Cinema a2 = new Cinema("Normal", 15, 10, cowboyTown, "AA2");
-		Cinema a3 = new Cinema("Gold Class", 5, 5, cowboyTown, "AA3");
+		Cinema a1 = new Cinema("Normal", 10, 10, "AA1");
+		Cinema a2 = new Cinema("Normal", 15, 10, "AA2");
+		Cinema a3 = new Cinema("Gold Class", 5, 5, "AA3");
+		
+		temp = cineplexArr.get(0).getCinemaArr();
+		temp.add(a1);
+		temp.add(a2);
+		temp.add(a3);
+		cineplexArr.get(0).setCinemaArr(temp);
 
-		Cinema b1 = new Cinema("Normal", 10, 10, jurassicPark, "BB1");
-		Cinema b2 = new Cinema("Normal", 15, 10, jurassicPark, "BB2");
-		Cinema b3 = new Cinema("Gold Class", 5, 5, jurassicPark, "BB3");
+		Cinema b1 = new Cinema("Normal", 10, 10, "BB1");
+		Cinema b2 = new Cinema("Normal", 15, 10, "BB2");
+		Cinema b3 = new Cinema("Gold Class", 5, 5, "BB3");
+		
+		temp = cineplexArr.get(1).getCinemaArr();
+		temp.add(b1);
+		temp.add(b2);
+		temp.add(b3);
+		cineplexArr.get(0).setCinemaArr(temp);
 
-		Cinema c1 = new Cinema("Normal", 10, 10, theCentral, "CC1");
-		Cinema c2 = new Cinema("Normal", 15, 11, theCentral, "CC2");
-		Cinema c3 = new Cinema("Gold Class", 5, 5, theCentral, "CC3");
+		Cinema c1 = new Cinema("Normal", 10, 10, "CC1");
+		Cinema c2 = new Cinema("Normal", 15, 11, "CC2");
+		Cinema c3 = new Cinema("Gold Class", 5, 5, "CC3");
+		
+		temp = cineplexArr.get(0).getCinemaArr();
+		temp.add(c1);
+		temp.add(c2);
+		temp.add(c3);
+		cineplexArr.get(0).setCinemaArr(temp);
 
 		cinemaArr.add(a1); // ID AA1
 		cinemaArr.add(a2); // ID AA2
