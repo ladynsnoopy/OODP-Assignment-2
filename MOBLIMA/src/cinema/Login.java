@@ -281,6 +281,7 @@ public class Login {
 				} else {
 					sc.next();
 				}
+				System.out.println("Invalid Input. Please enter a valid number of seats.");
 			}
 			int x, y;
 			boolean keep_loop = true;
