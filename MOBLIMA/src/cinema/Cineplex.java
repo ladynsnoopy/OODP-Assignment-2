@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Cineplex object that contains ArrayList of cinema objects belonging to the
- * cineplex, location of cineplex, unique cineplex ID.
+ * Cineplex object that contains <code>ArrayList</code> of <code>Cinema</code>
+ * objects belonging to this cineplex, location of cineplex, unique cineplex ID.
  * 
  * @author Oh Jun Teng
  * @version 1.0
@@ -14,11 +14,15 @@ import java.util.Random;
  */
 public class Cineplex {
 	/**
-	 * ArrayList of cinema objects belonging to the cineplex
+	 * <code>ArrayList</code> of <code>Cinema</code> objects belonging to the
+	 * cineplex.
+	 * 
+	 * @see Cinema
 	 */
 	private ArrayList<Cinema> cinemaArr;
 	/**
-	 * Location of cineplex in String
+	 * Location of cineplex in <code>String</code>
+	 * 
 	 */
 	private String location;
 	/**
@@ -27,9 +31,9 @@ public class Cineplex {
 	private String CineplexID;
 
 	/**
-	 * Constructor of Cineplex object.
+	 * Constructor of <code>Cineplex</code> object.
 	 * 
-	 * @param location   Location of cineplex in String
+	 * @param location   Location of cineplex in <code>String</code>
 	 * @param cineplexID Unique cineplex ID
 	 */
 	public Cineplex(String location, String cineplexID) {
@@ -40,7 +44,10 @@ public class Cineplex {
 
 	/**
 	 * 
-	 * @return ArrayList of cinema objects belonging to the cineplex
+	 * @return <code>ArrayList</code> of <code>Cinema</code> objects belonging to
+	 *         this cineplex
+	 * 
+	 * @see Cinema
 	 */
 	public ArrayList<Cinema> getCinemaArr() {
 		return cinemaArr;
@@ -48,7 +55,10 @@ public class Cineplex {
 
 	/**
 	 * 
-	 * @param cinemaArr ArrayList of cinema objects belonging to the cineplex
+	 * @param cinemaArr <code>ArrayList</code> of <code>Cinema</code> objects
+	 *                  belonging to this cineplex
+	 * 
+	 * @see Cinema
 	 */
 	public void setCinemaArr(ArrayList<Cinema> cinemaArr) {
 		this.cinemaArr = cinemaArr;
@@ -56,7 +66,7 @@ public class Cineplex {
 
 	/**
 	 * 
-	 * @return Location of cineplex in String
+	 * @return Location of cineplex in <code>String</code>
 	 */
 	public String getLocation() {
 		return location;
@@ -64,7 +74,7 @@ public class Cineplex {
 
 	/**
 	 * 
-	 * @param location Location of cineplex in String
+	 * @param location Location of cineplex in <code>String</code>
 	 */
 	public void setLocation(String location) {
 		this.location = location;
