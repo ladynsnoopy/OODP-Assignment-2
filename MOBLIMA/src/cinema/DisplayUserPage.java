@@ -1,7 +1,7 @@
 package cinema;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Login {
+public class DisplayUserPage {
 	public static  void menu()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class Login {
 	        }
 	        System.out.println("Invalid Input. Please enter 1 or 2: ");
 	    }
-	    sc.close();
+	
 		if(input == 1)
 		{
 			// user module 
@@ -44,7 +44,6 @@ public class Login {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		int custID = custLogin(); // custID is the customer ID of the customer using the App now;
-		System.out.println("Please enter your email: ");
 		while(loop)
 		{
 			System.out.println("What would you like to do?");
@@ -55,11 +54,12 @@ public class Login {
 			System.out.println("Enter (5) to view list of top 5 movies by ticket sales.");
 			System.out.println("Enter (6) to view list of top 5 movies by overall reviewers' ratings.");
 			System.out.println("Enter (7) to add review. ");
+			System.out.println("Enter (8) to exit.");
 			int input;
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 7) {
+					if (input >= 1 && input <= 8) {
 						break;
 					}
 				} else {
@@ -92,8 +92,10 @@ public class Login {
 					break;
 			case 7: displayAddReview(custID);
 					break;
+			case 8: loop = false;
+					break;
 			} 
-			sc.close();
+
 			
 		}
 		
@@ -184,7 +186,6 @@ public class Login {
 		    }
 		    else
 		    {
-		    	sc.close();
 		    	return;
 		    }
 		
@@ -194,7 +195,6 @@ public class Login {
 		{
 			System.out.println("This movie ["+ name+"] is not found.");
 		}
-		sc.close();
 		
 	}
 	public static void displayBookingHistory(int ID)
@@ -225,9 +225,10 @@ public class Login {
 			System.out.println("What would you rate this movie upon 10?");
 			int rating = sc.nextInt();
 			System.out.println("What are your comments about this movie?");
+			sc.nextLine();
 			String comment = sc.nextLine(); 
-			CustomerApp.addReview(rating, comment, Integer.toString(custID), moviename);
 			System.out.println("Thank you for your review.");
+			CustomerApp.addReview(rating, comment, Integer.toString(custID), moviename);
 		}
 		else
 		{
@@ -396,11 +397,9 @@ public class Login {
 			System.out.println("Transaction ID: " +TID);
 			System.out.println("Number of tickets purchased: "+ numSeat);
 			System.out.println("Payment Mode: "+ payment);
-			sc.close();
 			return 1;
 		} else {
 			System.out.println("This movie [" + name + "] is not found.");
-			sc.close();
 			return -1; // unsuccessful buying ticket because movie name entered is not found
 		}
 

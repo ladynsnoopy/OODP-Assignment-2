@@ -94,10 +94,10 @@ public class DisplayStaffPage {
 				}
 				break;
 			case 8:
-				Login.displayTopMovies(2);
+				DisplayUserPage.displayTopMovies(2);
 				break;
 			case 9:
-				Login.displayTopMovies(1);
+				DisplayUserPage.displayTopMovies(1);
 				break;
 			case 10: // call view Top 5 movie
 				loop = false;
@@ -143,7 +143,7 @@ public class DisplayStaffPage {
 			}
 			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
 		}
-		sc.close();
+//		sc.close();
 		switch (input) {
 		case (1):
 			StaffApp.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);

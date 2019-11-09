@@ -317,7 +317,7 @@ public class csvRW {
 	 * @param str String to be altered.
 	 * @return Altered String
 	 */
-	private static String format(String str) {
+	public static String format(String str) {
 		return "\"" + str + "\"";
 	}
 }

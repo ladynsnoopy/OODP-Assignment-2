@@ -87,8 +87,8 @@ public class CustomerApp {
 		else if (a.length() == 1)
 		{
 			String[] review = searchforReview(Integer.parseInt(a));
-			result.add("User Rating: "+ review[0]);
-			result.add("Comment: "+ review[1]);
+			result.add("Comment: "+ review[0]);
+			result.add("User Rating: "+ review[1]);
 			return result;
 		}
 		else
@@ -99,8 +99,8 @@ public class CustomerApp {
 			for(int j = 0; j<arr.length;j++)
 			{
 				String[] review = searchforReview(Integer.parseInt(arr[j]));
-				result.add("User Rating: "+ review[0]);
-				result.add("Comment: "+ review[1]);
+				result.add("Comment: "+ review[0]);
+				result.add("User Rating: "+ review[1]);
  			}
 			return result;
 	
@@ -108,7 +108,12 @@ public class CustomerApp {
 	}
 	public static String[] searchforReview(int reviewID)
 	{
-		ArrayList <String> result = csvRW.search("reviewdatabase", "ReviewID", Integer.toString(reviewID));
+		System.out.println("Review Id: "+ reviewID);
+		String a = Integer.toString(reviewID);
+		a = csvRW.format(a);
+		ArrayList <String> result = csvRW.search("reviewdatabase", "ID",a);
+		if(result.equals(null))
+			System.out.println("This is null");
 		String[] rating_comment = new String[2];
 		rating_comment[0] = result.get(1);
 		rating_comment[1] = result.get(2);
@@ -281,7 +286,7 @@ public class CustomerApp {
 			
 			
 	}
-	// returns everything in customer databse except Transaction history
+	// returns everything in customer database except Transaction history
 	public static String[] findCustomer(int custID)
 	{
 		ArrayList<String> row =  csvRW.search("customerdatabase","CustomerID" ,Integer.toString(custID));
