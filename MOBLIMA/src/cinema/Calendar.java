@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Weekends, holidays holArr contains holiday dates. weekendArr contains weekend
  * dates.
  * 
- * @author Oh Jun Teng
+ * @author Lim Wai Leong
  * @version 1.0
  * @since 2019-11-09
  */
