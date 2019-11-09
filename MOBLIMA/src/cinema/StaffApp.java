@@ -306,8 +306,17 @@ public class StaffApp {
 	 * @param hol Holiday date to be added.
 	 * @param c   Calendar object to be altered.
 	 */
-	public static void configureHoliday(String hol, Calendar c) {
-		c.addHolArr(hol);
+	public static void configureDates(int selection, String date, Calendar c) {
+		switch(selection) {
+		case(1):
+			c.addHolArr(date);
+			System.out.println("Holiday date added");
+			break;
+		case(2):
+			c.addWkndArr(date);
+			System.out.println("Weekend date added");
+			break;
+		}
 	}
 
 	/**
