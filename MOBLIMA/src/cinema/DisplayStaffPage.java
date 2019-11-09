@@ -27,7 +27,7 @@ public class DisplayStaffPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 9) {
+					if (input >= 1 && input <= 10) {
 						break;
 					}
 				} else {

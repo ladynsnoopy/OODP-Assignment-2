@@ -39,7 +39,6 @@ public class csvRW {
 
 			while ((row = in.readLine()) != null) {
 				String[] rowData = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-				// count++;
 				csvData.add(rowData);
 			}
 			in.close();
@@ -157,11 +156,11 @@ public class csvRW {
 	public static void rewrite(String dbname, ArrayList<String[]> data) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		try {
-//			for (int i = 0; i < data.size(); i++) {
-//				for (int j = 0; j < data.get(0).length; j++) {
-//					data.get(i)[j] = format(data.get(i)[j]);
-//				}
-//			}
+			for (int i = 0; i < data.size(); i++) {
+				for (int j = 0; j < data.get(0).length; j++) {
+					data.get(i)[j] = format(data.get(i)[j]);
+				}
+			}
 			StringBuffer sb = new StringBuffer();
 			FileWriter fw = new FileWriter(new File(path));
 			for (int i = 0; i < data.size(); i++) {
@@ -195,9 +194,12 @@ public class csvRW {
 	public static void writeToCSV(String dbname, ArrayList<String> data) {
 
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
-		// List<String> newrow = Arrays.asList("user","pw");
+		String[] temp;
 		for (int i = 0; i < data.size(); i++) {
-			data.set(i, format(data.get(i)));
+			temp = data.get(i).split(",");
+			if (temp.length > 1) {
+				data.set(i, format(data.get(i)));
+			}
 		}
 		try {
 			FileWriter csvWriter = new FileWriter(path, true);
@@ -245,10 +247,11 @@ public class csvRW {
 
 	/**
 	 * Edits only the selected attribute in the database.
-	 * @param dbname Name of database to be changed.
+	 * 
+	 * @param dbname   Name of database to be changed.
 	 * @param targetID Unique ID of the selected row.
 	 * @param col_name Type of attribute to be changed.
-	 * @param change New attribute to be written in.
+	 * @param change   New attribute to be written in.
 	 */
 	public static void editCSV(String dbname, String targetID, String col_name, String change) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -256,7 +259,10 @@ public class csvRW {
 			BufferedReader in = new BufferedReader(new FileReader(path));
 			StringBuffer sb = new StringBuffer("");
 			String row;
-			change = format(change);
+			String[] temp;
+			temp = change.split(",");
+			if (temp.length>1)
+				change = format(change);
 
 			String head;
 			head = in.readLine();
@@ -314,6 +320,7 @@ public class csvRW {
 
 	/**
 	 * Adds "" to a string
+	 * 
 	 * @param str String to be altered.
 	 * @return Altered String
 	 */
