@@ -50,17 +50,16 @@ public class Login {
 			System.out.println("What would you like to do?");
 			System.out.println("Enter (1) to view list of movies.");
 			System.out.println("Enter (2) to search for a particular movie.");
-			System.out.println("Enter (3) to view seating plan.");
-			System.out.println("Enter (4) to purchase a ticket.");
-			System.out.println("Enter (5) to view your booking history.");
-			System.out.println("Enter (6) to view list of top 5 movies by ticket sales.");
-			System.out.println("Enter (7) to view list of top 5 movies by overall reviewers' ratings.");
-			System.out.println("Enter (8) to add review. ");
+			System.out.println("Enter (3) to purchase a ticket.");
+			System.out.println("Enter (4) to view your booking history.");
+			System.out.println("Enter (5) to view list of top 5 movies by ticket sales.");
+			System.out.println("Enter (6) to view list of top 5 movies by overall reviewers' ratings.");
+			System.out.println("Enter (7) to add review. ");
 			int input;
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 8) {
+					if (input >= 1 && input <= 7) {
 						break;
 					}
 				} else {
@@ -75,9 +74,7 @@ public class Login {
 					break;
 			case 2: displaySearchMovie();
 					break;
-			case 3: // call view seating plan function
-					break;
-			case 4: if(displayBuyTicket(custID) == 1) 
+			case 3: if(displayBuyTicket(custID) == 1) 
 					{
 						String[] info = CustomerApp.findCustomer(custID);
 						System.out.println("Customer ID: "+info[0]);
@@ -87,16 +84,14 @@ public class Login {
 						
 					}
 					break;
-			case 5: displayBookingHistory(custID);
+			case 4: displayBookingHistory(custID);
 					break;
-			case 6: // call view Top 5 movie
-					displayTopMovies(2);
+			case 5:displayTopMovies(2);
 					break;
-			case 7: // call view Top 5 movie
-					displayTopMovies(1);
+			case 6: displayTopMovies(1);
 					break;
-			case 8: displayAddReview(custID);
-				break;
+			case 7: displayAddReview(custID);
+					break;
 			} 
 			sc.close();
 			
@@ -154,15 +149,45 @@ public class Login {
 		int ID = CustomerApp.searchOneMovie(name);
 		if(ID != -1)
 		{
-			System.out.println("Showtimes for "+ name+":");
-			System.out.println("-----------------------------------------");
-			String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
-			for(int i = 0; i< showtimes.length;i++)
-			{
-				System.out.println("Showtime ID: "+ showtimes[i][0]);
-				System.out.println("Time and Date: "+ showtimes[i][1]);
-				System.out.println("-----------------------------------------");
+		    ArrayList <String> movieDetails = CustomerApp.searchMovieDetails(ID);
+		    for(int i = 0; i<movieDetails.size();i++)
+		    {
+		    	System.out.println(movieDetails.get(i));
+		    }
+		    System.out.println("Do you want to see the showtimes for this movie?");
+		    System.out.println("Enter (1) for Yes");
+		    System.out.println("Enter (2) for No");
+		    int ans;
+		    while (true) {
+				if (sc.hasNextInt()) {
+					ans = sc.nextInt();
+					if (ans == 1 || ans == 2) { 
+						break;
+					}
+				} else {
+					sc.next();
+				}
+				System.out.println("Invalid Input. Please enter either 1 and 2.");
 			}
+		    if(ans == 1)
+		    {
+		    	System.out.println();
+				System.out.println("Showtimes for "+ name+":");
+				System.out.println("-----------------------------------------");
+				String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
+				for(int i = 0; i< showtimes.length;i++)
+				{
+					System.out.println("Showtime ID: "+ showtimes[i][0]);
+					System.out.println("Time and Date: "+ showtimes[i][1]);
+					System.out.println("-----------------------------------------");
+				}
+		    }
+		    else
+		    {
+		    	sc.close();
+		    	return;
+		    }
+		
 			
 		}
 		else

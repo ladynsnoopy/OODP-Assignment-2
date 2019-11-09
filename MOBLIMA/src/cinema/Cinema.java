@@ -6,7 +6,6 @@ public class Cinema {
 	private int totalCol;
 	private int totalNumSeat;
 	private String cinemaID;
-//	private static int cine_counter = 1;
 
 	public Cinema(String type, int totalRow, int totalCol, Cineplex cineplex, String cinemaID) {
 		super();
