@@ -64,6 +64,12 @@ public class Calendar {
 	public void addHolArr(String hol) {
 		holArr.add(hol);
 	}
+	/**
+	 * @param hol ArrayList containing holiday dates in String format YYYYMMDD
+	 */
+	public void addWkndArr(String hol) {
+		weekendArr.add(hol);
+	}
 
 	/**
 	 * Checks if showtime date is holiday date
