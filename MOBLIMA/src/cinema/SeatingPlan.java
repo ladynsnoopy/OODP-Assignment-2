@@ -1,10 +1,12 @@
 package cinema;
 
 public class SeatingPlan {
-	/*
-	 *  Control class that takes in Showtime class and collects the necessary information to print the seating plan
+
+	/**
+	 * Control class that takes in Showtime class and collects the necessary information to print the seating plan
 	 *  
-	 *  Will print out seating plan in the correct format
+	 * Will print out seating plan in the correct format
+	 * @param showtime Showtime that the seating plan to be printed belongs to.
 	 */
 	public static void printSeatingPlan(Showtime showtime) {
 		showtime.setSeatingPlan();
