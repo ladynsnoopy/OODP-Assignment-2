@@ -65,7 +65,7 @@ public class StaffApp {
 		Cinema a2 = new Cinema("Normal", 15, 10, "AA2");
 		Cinema a3 = new Cinema("Gold Class", 5, 5, "AA3");
 		
-		temp = cineplexArr.get(0).getCinemaArr();
+		//temp = cineplexArr.get(0).getCinemaArr();
 		temp.add(a1);
 		temp.add(a2);
 		temp.add(a3);
@@ -74,22 +74,22 @@ public class StaffApp {
 		Cinema b1 = new Cinema("Normal", 10, 10, "BB1");
 		Cinema b2 = new Cinema("Normal", 15, 10, "BB2");
 		Cinema b3 = new Cinema("Gold Class", 5, 5, "BB3");
-		
-		temp = cineplexArr.get(1).getCinemaArr();
+		temp.clear();
+		//temp = cineplexArr.get(1).getCinemaArr();
 		temp.add(b1);
 		temp.add(b2);
 		temp.add(b3);
-		cineplexArr.get(0).setCinemaArr(temp);
+		cineplexArr.get(1).setCinemaArr(temp);
 
 		Cinema c1 = new Cinema("Normal", 10, 10, "CC1");
 		Cinema c2 = new Cinema("Normal", 15, 11, "CC2");
 		Cinema c3 = new Cinema("Gold Class", 5, 5, "CC3");
-		
-		temp = cineplexArr.get(0).getCinemaArr();
+		temp.clear();
+		//temp = cineplexArr.get(0).getCinemaArr();
 		temp.add(c1);
 		temp.add(c2);
 		temp.add(c3);
-		cineplexArr.get(0).setCinemaArr(temp);
+		cineplexArr.get(2).setCinemaArr(temp);
 
 		cinemaArr.add(a1); // ID AA1
 		cinemaArr.add(a2); // ID AA2
@@ -178,8 +178,13 @@ public class StaffApp {
 	 * @return boolean value true if exists, false if not.
 	 */
 	public static boolean movieExists(String title) {
+	
 		if (csvRW.search("moviedatabase", "Name", title) == null)
+		{
+			System.out.println("sOMETHING IS WRONG");
 			return false;
+		}
+			
 		return true;
 	}
 
@@ -213,6 +218,8 @@ public class StaffApp {
 		ShowtimeToCSV.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
+		if(result == null)
+			System.out.println("This fucking shit is null");
 		String id = result.get(0);
 
 		if (result.get(10).equals("")) {
