@@ -154,15 +154,45 @@ public class Login {
 		int ID = CustomerApp.searchOneMovie(name);
 		if(ID != -1)
 		{
-			System.out.println("Showtimes for "+ name+":");
-			System.out.println("-----------------------------------------");
-			String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
-			for(int i = 0; i< showtimes.length;i++)
-			{
-				System.out.println("Showtime ID: "+ showtimes[i][0]);
-				System.out.println("Time and Date: "+ showtimes[i][1]);
-				System.out.println("-----------------------------------------");
+		    ArrayList <String> movieDetails = CustomerApp.searchMovieDetails(ID);
+		    for(int i = 0; i<movieDetails.size();i++)
+		    {
+		    	System.out.println(movieDetails.get(i));
+		    }
+		    System.out.println("Do you want to see the showtimes for this movie?");
+		    System.out.println("Enter (1) for Yes");
+		    System.out.println("Enter (2) for No");
+		    int ans;
+		    while (true) {
+				if (sc.hasNextInt()) {
+					ans = sc.nextInt();
+					if (ans == 1 || ans == 2) { 
+						break;
+					}
+				} else {
+					sc.next();
+				}
+				System.out.println("Invalid Input. Please enter either 1 and 2.");
 			}
+		    if(ans == 1)
+		    {
+		    	System.out.println();
+				System.out.println("Showtimes for "+ name+":");
+				System.out.println("-----------------------------------------");
+				String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
+				for(int i = 0; i< showtimes.length;i++)
+				{
+					System.out.println("Showtime ID: "+ showtimes[i][0]);
+					System.out.println("Time and Date: "+ showtimes[i][1]);
+					System.out.println("-----------------------------------------");
+				}
+		    }
+		    else
+		    {
+		    	sc.close();
+		    	return;
+		    }
+		
 			
 		}
 		else
