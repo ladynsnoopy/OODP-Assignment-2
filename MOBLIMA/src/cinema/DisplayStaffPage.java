@@ -9,6 +9,7 @@ public class DisplayStaffPage {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		Price p = new Price();
+		Calendar c = StaffApp.calendar;
 		// do customer initialisation stuff
 		while (loop) {
 			System.out.println("What would you like to do?");
@@ -18,13 +19,15 @@ public class DisplayStaffPage {
 			System.out.println("Enter (4) to edit existing showtime details");
 			System.out.println("Enter (5) to edit ticket prices");
 			System.out.println("Enter (6) to add a new holiday date");
-			System.out.println("Enter (7) to view list of top 5 movies by ticket sales.");
-			System.out.println("Enter (8) to view list of top 5 movies by overall reviewers' ratings.");
+			System.out.println("Enter (7) to add a new weekend date");
+			System.out.println("Enter (8) to view list of top 5 movies by ticket sales.");
+			System.out.println("Enter (9) to view list of top 5 movies by overall reviewers' ratings.");
+			System.out.println("Enter (10) to exit");
 			int input;
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 8) {
+					if (input >= 1 && input <= 9) {
 						break;
 					}
 				} else {
@@ -58,13 +61,46 @@ public class DisplayStaffPage {
 				} catch (Exception e) {
 				}
 				break;
-			case 4: // call buyTicket function
+			case 4:
+				editShowtimeDetails();
+				System.out.println("Press enter to return\n");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+				}
 				break;
-			case 5: // call view BookingHistory
+			case 5:
+				editTicketPrice(p);
+				System.out.println("Press enter to return\n");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+				}
 				break;
-			case 6: // call view Top 5 movie
+			case 6:
+				newHolidayDate(c);
+				System.out.println("Press enter to return\n");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+				}
 				break;
-			case 7: // call view Top 5 movie
+			case 7:
+				newWeekendDate(c);
+				System.out.println("Press enter to return\n");
+				try {
+					System.in.read();
+				} catch (Exception e) {
+				}
+				break;
+			case 8:
+				Login.displayTopMovies(2);
+				break;
+			case 9:
+				Login.displayTopMovies(1);
+				break;
+			case 10: // call view Top 5 movie
+				loop = false;
 				break;
 			}
 
@@ -378,6 +414,7 @@ public class DisplayStaffPage {
 						break;
 					} else {
 						sc.next();
+						System.out.println("Invalid input");
 						continue;
 					}
 				}
@@ -400,6 +437,7 @@ public class DisplayStaffPage {
 						break;
 					} else {
 						sc.next();
+						System.out.println("Invalid input");
 						continue;
 					}
 				}
@@ -422,6 +460,7 @@ public class DisplayStaffPage {
 						break;
 					} else {
 						sc.next();
+						System.out.println("Invalid input");
 						continue;
 					}
 				}
@@ -441,10 +480,11 @@ public class DisplayStaffPage {
 					System.out.println("Enter new weekend percentage surcharge:");
 					if (sc.hasNextDouble()) {
 						newPrice = sc.nextDouble();
-						newPrice = newPrice/100;
+						newPrice = newPrice / 100;
 						break;
 					} else {
 						sc.next();
+						System.out.println("Invalid input");
 						continue;
 					}
 				}
@@ -459,7 +499,7 @@ public class DisplayStaffPage {
 					return;
 				}
 				break;
-			case(5):
+			case (5):
 				while (true) {
 					System.out.println("Enter new flat holiday surcharge:");
 					if (sc.hasNextDouble()) {
@@ -467,13 +507,14 @@ public class DisplayStaffPage {
 						break;
 					} else {
 						sc.next();
+						System.out.println("Invalid input");
 						continue;
 					}
 				}
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.configureTicketprice(3, p, newPrice);
+					StaffApp.configureTicketprice(5, p, newPrice);
 					return;
 				case (2):
 					continue;
@@ -481,13 +522,45 @@ public class DisplayStaffPage {
 					return;
 				}
 				break;
-				
 
 			}
 
 		}
 	}
 
+	public static void newHolidayDate(Calendar c) {
+		Scanner sc = new Scanner(System.in);
+
+		int date;
+		while (true) {
+			System.out.println("Enter a new holiday date(YYYYMMDD):");
+			if (sc.hasNextInt()) {
+				date = sc.nextInt();
+				break;
+			} else {
+				sc.next();
+			}
+			System.out.println("Invalid Input");
+		}
+		StaffApp.configureDates(1, Integer.toString(date), c);
+	}
+
+	public static void newWeekendDate(Calendar c) {
+		Scanner sc = new Scanner(System.in);
+
+		int date;
+		while (true) {
+			System.out.println("Enter a new weekend date(YYYYMMDD):");
+			if (sc.hasNextInt()) {
+				date = sc.nextInt();
+				break;
+			} else {
+				sc.next();
+			}
+			System.out.println("Invalid Input");
+		}
+		StaffApp.configureDates(2, Integer.toString(date), c);
+	}
 
 	public static int editConfirmation() {
 		Scanner sc1 = new Scanner(System.in);
