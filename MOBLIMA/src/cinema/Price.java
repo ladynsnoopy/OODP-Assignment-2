@@ -8,7 +8,15 @@ public class Price {
 	private double priceHol; // add price to base
 	
 	
+	
 	//TODO should we initialize default values for prices?
+	public Price() {
+		this.priceAdult = 7.5;
+		this.priceChild = 5.0;
+		this.priceSenior = 6.0;
+		this.priceWeekend = 0.2;
+		this.priceHol = 1.0;
+	}
 	public Price(double priceAdult, double priceChild, double priceSenior, double priceWeekend,
 			double priceHol) {
 		super();
