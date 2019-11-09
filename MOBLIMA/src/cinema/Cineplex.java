@@ -10,21 +10,9 @@ public class Cineplex {
 
 	public Cineplex(String location, String cineplexID) {
 		super();
-//		this.cinemaArr = cinemaArr;
 		this.location = location;
 		this.CineplexID = cineplexID;
 	}
-	//generate random letters
-//	public static String generateRandomChars(String candidateChars, int length) {
-//	    StringBuilder sb = new StringBuilder();
-//	    Random random = new Random();
-//	    for (int i = 0; i < length; i++) {
-//	        sb.append(candidateChars.charAt(random.nextInt(candidateChars
-//	                .length())));
-//	    }
-//
-//	    return sb.toString();
-//	}
 	
 	public ArrayList<Cinema> getCinemaArr() {
 		return cinemaArr;

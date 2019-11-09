@@ -22,6 +22,12 @@ public class Calendar {
 	public void addHolArr(String hol) {
 		holArr.add(hol);
 	}
+	/**
+	 * Checks if showtime date is holiday date
+	 * 
+	 * @param a showtime object
+	 * @return boolean true if is holiday, false if not
+	 */
 	public boolean checkHols(Showtime a) {
 		boolean isHols = false;
 		for(int i = 0;i< holArr.size();i++)

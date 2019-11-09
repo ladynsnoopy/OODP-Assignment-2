@@ -109,7 +109,7 @@ public class DisplayStaffPage {
 		sc.close();
 		switch (input) {
 		case (1):
-			StaffApp.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating, "1");
+			StaffApp.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);
 			return;
 		case (2):
 			addMovie();
