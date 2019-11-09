@@ -12,11 +12,26 @@ public class StaffApp {
 	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 	public static Calendar calendar = createCalendar();
 	
+	/**
+	 * Creates a staff account so staff can login and saves login info to staffdatabase.
+	 * @param username
+	 * @param password
+	 */
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
 		StaffToCSV.addStaffToCSV(a);
 	}
 
+	/**
+	 * Checks login information against staffdatabase.
+	 * 
+	 * Returns 0 if all information matches.
+	 * Returns -1 if password does not match.
+	 * Returns -2 if no such username exists.
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	public static int login(String username, String password) {
 		ArrayList<String[]> list = csvRW.readCSV("staffdatabase");
 		for (int i = 0; i < list.size(); i++) {
@@ -29,7 +44,10 @@ public class StaffApp {
 		}
 		return -2; // if no such username exists
 	}
-
+	/**
+	 * Creates all the pre-existing Cineplex and Cinema objects necessary for the program to continue.
+	 * Add the created objects to the relevant public static ArrayList for other methods to access.
+	 */
 	public static void createCineplexAndCinemas() {
 		Cineplex cowboyTown = new Cineplex("NTU", "AA");
 		Cineplex jurassicPark = new Cineplex("NUS", "BB");
@@ -63,6 +81,19 @@ public class StaffApp {
 
 	}
 
+	/**
+	 * Creates a Movie object.
+	 * Adds the newly created object to movieArr.
+	 * Adds the movie with all relevent details into moviedatabase.
+	 * @param name
+	 * @param showingStatus
+	 * @param synopsis
+	 * @param cast
+	 * @param director
+	 * @param type
+	 * @param movieRating
+	 * @param cineplexID
+	 */
 	public static void createMovie(String name, String showingStatus, String synopsis, ArrayList<String> cast,
 			String director, String type, String movieRating, String cineplexID) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
@@ -72,6 +103,14 @@ public class StaffApp {
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
 	// boundary class asks for which to change, if 1-5 use this function
+
+	/**
+	 * Edits movie details (title, type, showing status, synopsis, rating, director, cast list) in the moviedatabase.
+	 * Uses selection to determine what attribute to alter.
+	 * @param selection
+	 * @param moviename
+	 * @param change
+	 */
 	public static void editMovieStringDetails(int selection, String moviename, String change) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", moviename);
 		String id = result.get(0);
@@ -100,11 +139,18 @@ public class StaffApp {
 			csvRW.editCSV("moviedatabase", id, "Director", change);
 			System.out.println("Director updated");
 		case 7:
+			// Must put in the entire cast list
 			csvRW.editCSV("moviedatabase", id, "Cast", change);
 			System.out.println("Cast updated");
 		}
 	}
-	
+
+	/**
+	 * Checks that movie exists in moviedatabase when given title of movie.
+	 * Returns boolean value true if exists, false if not.
+	 * @param title
+	 * @return
+	 */
 	public static boolean movieExists(String title) {
 		if (csvRW.search("moviedatabase", "Name", title) == null)
 			return false;
@@ -113,6 +159,18 @@ public class StaffApp {
 	
 
 	// boundary class needs to check that CinemaID and movietitle exists
+	/**
+	 * Takes in cinemeID, timing and movietitle.
+	 * If cinemaID does not exists, prints error message and returns.
+	 * Else, fetches the relevant cinema object and feeds into constructor of showtime object.
+	 * Adds new showtime object to showtimeArr.
+	 * Adds new showtime object to showtimedatabase.
+	 * Adds showtimeID to moviedatabase for the relevant movie.
+	 * 
+	 * @param cinemaID
+	 * @param timing
+	 * @param movietitle
+	 */
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
 		Cinema temp = null;
 		
@@ -127,16 +185,16 @@ public class StaffApp {
 		}
 		String showtimes;
 		Showtime showtime = new Showtime(temp, timing);
+		showtimeArr.add(showtime);
 		ShowtimeToCSV.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = result.get(0);
 
 		if (result.get(10).equals("")) {
-			System.out.println(showtime.getShowtimeID());
 			showtimes = Integer.toString(showtime.getShowtimeID());
-
-		} else {
+		} 
+		else {
 			showtimes = result.get(10);
 			List<String> items = Arrays.asList(showtimes.split("\\s*,\\s*"));
 			ArrayList<String> showtimelist = new ArrayList<String>(items);
@@ -186,6 +244,12 @@ public class StaffApp {
 	}
 
 	// TODO configure ticket prices, holiday
+	/**
+	 * Uses selection to determine what to change.
+	 * @param selection
+	 * @param p
+	 * @param newPrice
+	 */
 	public static void configureTicketprice(int selection, Price p, double newPrice) {
 		switch(selection) {
 		case(1):
@@ -202,11 +266,22 @@ public class StaffApp {
 	}
 
 	//not sure about this
+	/**
+	 * Adds a new holiday date to Calendar.
+	 * @param hol
+	 * @param c
+	 */
 	public static void configureHoliday (String hol, Calendar c) {
 		c.addHolArr(hol);
 	}
 	
-
+	/**
+	 * Depending on selection, returns top 5 movies.
+	 * If selection == 1, returns sorted by overall rating.
+	 * If selection == 2, returns sorted by total sales.
+	 * @param selection
+	 * @return
+	 */
 	public static ArrayList<String> showTopMovies (int selection) {
 		ArrayList<Movie> movieObjArr = CSVtoMovie.csvToMovieObject();
 		OverallRatingComparator ratingsComparator = new OverallRatingComparator();
@@ -229,7 +304,11 @@ public class StaffApp {
 		return output;
 	}
 	
-	
+	/**
+	 * Creates special dates that have special prices. Ie. holday dates and weekend dates.
+	 * Returns calendar object
+	 * @return
+	 */
 	public static Calendar createCalendar() {
 		ArrayList<String> holDates = new ArrayList<String>();
 		holDates.add("20191111");

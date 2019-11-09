@@ -1,7 +1,11 @@
 package cinema;
 
 public class SeatingPlan {
-
+	/*
+	 *  Control class that takes in Showtime class and collects the necessary information to print the seating plan
+	 *  
+	 *  Will print out seating plan in the correct format
+	 */
 	public static void printSeatingPlan(Showtime showtime) {
 		showtime.setSeatingPlan();
 		System.out.println("Cinema: " + showtime.getCinema().getCinemaID());
