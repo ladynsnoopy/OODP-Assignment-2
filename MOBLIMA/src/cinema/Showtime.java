@@ -11,6 +11,7 @@ public class Showtime {
 	private static int showtime_counter = 1;
 	// boolean 2D array to keep track of occupied status of seats in a 2D form
 	private boolean[][] seatingplan;
+	// list of seats that are in this Showtime
 	private Seat[] seatArr;
 
 	public Showtime(Cinema cinema, String timing) {
@@ -51,8 +52,9 @@ public class Showtime {
 		return seatArr;
 	}
 
-	// generates appropriate number of seats according to cinema size, then adds in
-	// array
+	/**
+	 * generates appropriate number of seats according to cinema size, then adds into seatArr
+	 */
 	private void generateSeats() {
 		int count = 0;
 		for (int i = 0; i < cinema.getTotalRow(); i++) {
@@ -63,13 +65,18 @@ public class Showtime {
 		}
 	}
 
-	/*
+
+	/**
+	 * Sets seating plan for this Showtime
+	 * 
 	 * Seating plan in terms of seat[] index: 
 	 * 0,1,2,3,4,5 
 	 * 6,7,8,9,10,11
 	 *  etc
 	 * 
 	 * so seat index = yCoor * no of columns + xCoor
+	 * 
+	 * Will change the boolean 2D array to reflect the occupied status of the seats in seating plan
 	 */
 	public void setSeatingPlan() {
 		ArrayList<String[]> seats_occupied;
