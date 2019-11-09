@@ -47,6 +47,7 @@ public class DisplayUserPage {
 		while(loop)
 		{
 			System.out.println("What would you like to do?");
+			System.out.println();
 			System.out.println("Enter (1) to view list of movies.");
 			System.out.println("Enter (2) to search for a particular movie.");
 			System.out.println("Enter (3) to purchase a ticket.");
@@ -81,7 +82,7 @@ public class DisplayUserPage {
 						System.out.println("Customer Name: "+info[1]);
 						System.out.println("Mobile Number: "+info[2]);
 						System.out.println("Email: "+info[3]);
-						
+						System.out.println();
 					}
 					break;
 			case 4: displayBookingHistory(custID);
@@ -328,7 +329,7 @@ public class DisplayUserPage {
 			}
 			int x, y;
 			boolean keep_loop = true;
-			Ticket [] ticketArr = new Ticket[3];
+			ArrayList<Ticket> ticketArr = new ArrayList<Ticket>();
 			for (int h = 0; h < numSeat; h++) {
 				while (keep_loop) { // TODO the logic here may be a bit wrong
 					System.out.println("Please enter the x,y position of the seats:");
@@ -364,7 +365,7 @@ public class DisplayUserPage {
 							}
 							System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
 						}
-						ticketArr[h] = CustomerApp.addTicket(showID,name,num);
+						ticketArr.add(CustomerApp.addTicket(showID,name,num));
 						System.out.printf("\nPurchase of Ticket %d,%d for %s at %s is successful.\n", x, y, name,
 									timing);
 						break;
@@ -392,11 +393,24 @@ public class DisplayUserPage {
 				System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
 			}
 			String payment = getPaymentMode(paymentmode);
-			String TID = CustomerApp.addPayment(ticketArr, payment);
-			CustomerApp.addReceiptinCustomerDatabase(custID,TID); // add the stupid receipt into the customer database
-			System.out.println("Transaction ID: " +TID);
+			String[] result = CustomerApp.addPayment(ticketArr, payment);
+			CustomerApp.addReceiptinCustomerDatabase(custID,result[0]); // add the stupid receipt into the customer database
+			System.out.println("Here is your receipt:");
+			System.out.println("-------------------------------------");
+			System.out.println("Transaction ID: " +result[0]);
+			System.out.println("-------------------------------------");
+			System.out.println();
 			System.out.println("Number of tickets purchased: "+ numSeat);
 			System.out.println("Payment Mode: "+ payment);
+			for(int p = 0; p < ticketArr.size();p++)
+			{
+				ticketArr.get(p).getFinalPrice();
+				System.out.println("Ticket "+(p+1)+": $"+ticketArr.get(p).getFinalPrice());
+			}
+			System.out.println("Total Amount: $"+ result[1]);
+			System.out.println();
+			System.out.println("-------------------------------------");
+			System.out.println();
 			return 1;
 		} else {
 			System.out.println("This movie [" + name + "] is not found.");

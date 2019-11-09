@@ -39,15 +39,16 @@ public class CustomerApp {
 		String a = result.get(10); // Get all the showtimeID of the particular movie
 		if(a.length() != 1)
 		{
-			String cut = a.substring(1,a.length()-1);
+			System.out.println(a);
+			String cut = a.substring(1,a.length()-1); 
 			String [] arr = cut.split(","); // store all the showtimeID in a string array
 			String [][] showtimes = new String[arr.length][2];
 			for(int i = 0; i<arr.length;i++)
 			{
 				String[] inside = new String[2];
-				ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID",arr[i]);
+				ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID",arr[i].replaceAll("\\s+",""));
 				inside[0] = arr[i];
-				inside[1] =  b.get(b.size()-1);
+				inside[1] =  b.get(2);
 				showtimes[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
 			return showtimes;
@@ -108,12 +109,8 @@ public class CustomerApp {
 	}
 	public static String[] searchforReview(int reviewID)
 	{
-		System.out.println("Review Id: "+ reviewID);
 		String a = Integer.toString(reviewID);
-		a = csvRW.format(a);
 		ArrayList <String> result = csvRW.search("reviewdatabase", "ID",a);
-		if(result.equals(null))
-			System.out.println("This is null");
 		String[] rating_comment = new String[2];
 		rating_comment[0] = result.get(1);
 		rating_comment[1] = result.get(2);
@@ -134,13 +131,16 @@ public class CustomerApp {
 		ArrayList<String[]> occupied = csvRW.searchMultipleRow("seatingplandatabase", "ShowtimeID", Integer.toString(showtimeID));
 		boolean dontsearch = false;
 		if(occupied == null)
+		{
+			System.out.println("This shit was null");
 			dontsearch = true;
+		}
 		String target = Integer.toString(x) + ","+Integer.toString(y);
 		if(dontsearch == false)
 		{
 			for(int k = 0;k<occupied.size();k++)
 			{
-				if(occupied.get(k)[1].equals(target))
+				if(occupied.get(k)[1].equals(csvRW.format(target)))
 					return -1; // cannot buy this ticket because its occupied already
 			}
 		}
@@ -203,12 +203,15 @@ public class CustomerApp {
 		return addnew;	
 	}
 	// returns transaction id
-	public static String addPayment(Ticket[] arr, String paymentmode)
+	public static String[] addPayment(ArrayList<Ticket> arr, String paymentmode)
 	{
+		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr,paymentmode);
 		receipt.calTotalAmt();
 		ReceiptToCSV.addReceiptToCSV(receipt);
-		return receipt.getTID();
+		result[0] = receipt.getTID();
+		result[1] = Double.toString(receipt.getTotalAmt());
+		return result;
 	}
 
 	
@@ -253,6 +256,16 @@ public class CustomerApp {
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name);
 		String id = movie_row.get(0);
 		String reviews = movie_row.get(9);
+		for(int k = 0; k<StaffApp.movieArr.size();k++)
+		{
+			if(searchOneMovie(movie_name)== StaffApp.movieArr.get(k).getMovieID())
+			{
+				StaffApp.movieArr.get(k).addReview(a);
+				String userRating = Double.toString(StaffApp.movieArr.get(k).getOverallUserRatingInDouble());
+				csvRW.editCSV("moviedatabase",id,"OverallRating",userRating);
+				break;
+			}
+		}
 		// if there are no reviews
 		if(reviews.equals(""))
 		{

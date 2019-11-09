@@ -2,30 +2,34 @@ package cinema;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Receipt {
-	private Ticket[] ticketArr;
+	//private Ticket[] ticketArr;
+	private ArrayList<Ticket> ticketArr;
 	private String TID;
 	private String paymentMode;
+	private double totalAmt = 0;
 
-	public Receipt(Ticket[] ticketArr, String paymentMode) {
+	public Receipt(ArrayList<Ticket> arr, String paymentMode) {
 		super();
-		this.ticketArr = ticketArr;
+		this.ticketArr = arr;
 		this.paymentMode = paymentMode;
-		this.TID = ticketArr[0].getShowtime().getCinema().getCinemaID() + this.getCurrentDateTime();
-	}
-
-	public Ticket[] getTicketArr() {
-		return ticketArr;
-	}
-
-	public void setTicketArr(Ticket[] ticketArr) {
-		this.ticketArr = ticketArr;
+		this.TID = arr.get(0).getShowtime().getCinema().getCinemaID() + this.getCurrentDateTime();
 	}
 
 	public String getTID() {
 		return TID;
+	}
+
+
+	public ArrayList<Ticket> getTicketArr() {
+		return ticketArr;
+	}
+
+	public void setTicketArr(ArrayList<Ticket> ticketArr) {
+		this.ticketArr = ticketArr;
 	}
 
 	public String getPaymentMode() {
@@ -36,13 +40,17 @@ public class Receipt {
 		this.paymentMode = paymentMode;
 	}
 
-	public double calTotalAmt() {
+	public void calTotalAmt() {
 		double sum = 0;
-		for (int i = 0; i < ticketArr.length; i++) {
+		for (int i = 0; i < ticketArr.size(); i++) {
 			// remember to set before you get
-			sum += ticketArr[i].getFinalPrice();
+			sum += ticketArr.get(i).getFinalPrice();
 		}
-		return sum;
+		totalAmt = sum;
+	}
+	public double getTotalAmt()
+	{
+		return totalAmt;
 	}
 
 	public String getCurrentDateTime() {

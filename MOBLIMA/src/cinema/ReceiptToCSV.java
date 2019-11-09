@@ -7,8 +7,8 @@ public class ReceiptToCSV {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(receipt.getTID());
 		data.add(receipt.getPaymentMode());
-		data.add(receipt.getTicketArr()[0].getMovietitle());
-		data.add(Double.toString(receipt.calTotalAmt()));
+		data.add(receipt.getTicketArr().get(0).getMovietitle());
+		data.add(Double.toString(receipt.getTotalAmt()));
 		csvRW.writeToCSV("paymentdatabase", data);
 	}
 }
