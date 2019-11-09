@@ -351,8 +351,7 @@ public class DisplayStaffPage {
 		int input;
 		boolean loop = true;
 		double newPrice;
-		
-		
+
 		while (loop) {
 			System.out.println("Enter (1) to edit adult price");
 			System.out.println("Enter (2) to edit child price");
@@ -372,8 +371,16 @@ public class DisplayStaffPage {
 
 			switch (input) {
 			case (1):
-				System.out.println("Enter new adult price:");
-				newPrice = sc.nextDouble();
+				while (true) {
+					System.out.println("Enter new adult price:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						break;
+					} else {
+						sc.next();
+						continue;
+					}
+				}
 				input = editConfirmation();
 				switch (input) {
 				case (1):
@@ -386,8 +393,16 @@ public class DisplayStaffPage {
 				}
 				break;
 			case (2):
-				System.out.println("Enter new child price:");
-				newPrice = sc.nextDouble();
+				while (true) {
+					System.out.println("Enter new child price:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						break;
+					} else {
+						sc.next();
+						continue;
+					}
+				}
 				input = editConfirmation();
 				switch (input) {
 				case (1):
@@ -400,8 +415,16 @@ public class DisplayStaffPage {
 				}
 				break;
 			case (3):
-				System.out.println("Enter new senior price:");
-				newPrice = sc.nextDouble();
+				while (true) {
+					System.out.println("Enter new senior price:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						break;
+					} else {
+						sc.next();
+						continue;
+					}
+				}
 				input = editConfirmation();
 				switch (input) {
 				case (1):
@@ -413,10 +436,58 @@ public class DisplayStaffPage {
 					return;
 				}
 				break;
+			case (4):
+				while (true) {
+					System.out.println("Enter new weekend percentage surcharge:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						newPrice = newPrice/100;
+						break;
+					} else {
+						sc.next();
+						continue;
+					}
+				}
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.configureTicketprice(4, p, newPrice);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case(5):
+				while (true) {
+					System.out.println("Enter new flat holiday surcharge:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						break;
+					} else {
+						sc.next();
+						continue;
+					}
+				}
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					StaffApp.configureTicketprice(3, p, newPrice);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+				
 
 			}
+
 		}
 	}
+
 
 	public static int editConfirmation() {
 		Scanner sc1 = new Scanner(System.in);
