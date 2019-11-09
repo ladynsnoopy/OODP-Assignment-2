@@ -5,11 +5,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Contains methods that handles read and write to CSV.
+ * 
+ * @author Lim Wai Leong
+ * @version 1.0
+ * @since 2019-11-09
+ *
+ */
 public class csvRW {
 
 	// Search for a specific row in database
 	// Takes the column name eg "Title" and target string "Lego Movie"
 	// Returns the entire row of details
+	/**
+	 * Searches for a specific row in database. Takes the column name eg "Title" and
+	 * target string "Lego Movie". Returns the entire row of details.
+	 * 
+	 * @param dbname  Name of the database to be accessed.
+	 * @param colname Name of the column to be searched.
+	 * @param target  Target string to be found
+	 * @return Entire row of details in ArrayList<String> format. If search finds
+	 *         nothing, returns null.
+	 */
 	public static ArrayList<String> search(String dbname, String colname, String target) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		BufferedReader in;
@@ -49,6 +67,16 @@ public class csvRW {
 	// Search for a specific row in database
 	// Takes the column name eg "Title" and target string "Lego Movie"
 	// Returns the every row that matches the result
+	/**
+	 * Searches for a specific row in database. Takes the column name eg "Title" and
+	 * target string "Lego Movie". Returns the every row that matches the result
+	 * 
+	 * @param dbname
+	 * @param colname
+	 * @param target
+	 * @return Every row that matches the result in the format ArrayList<String[]>.
+	 *         If no result can be found, returns null.
+	 */
 	public static ArrayList<String[]> searchMultipleRow(String dbname, String colname, String target) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		BufferedReader in;
@@ -86,7 +114,13 @@ public class csvRW {
 		return null;
 	}
 
-	// Delete row in database
+	// Deletes row in database.
+	/**
+	 * Deletes selected row in the database.
+	 * 
+	 * @param dbname    Name of database to be changed.
+	 * @param targetRow Index of targeted row to be deleted.
+	 */
 	public static void delete(String dbname, int targetRow) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		try {
@@ -114,6 +148,12 @@ public class csvRW {
 		}
 	}
 
+	/**
+	 * Rewrites entire selected database.
+	 * 
+	 * @param dbname Name of database to be changed.
+	 * @param data   Data to be added to database.
+	 */
 	public static void rewrite(String dbname, ArrayList<String[]> data) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		try {
@@ -146,6 +186,12 @@ public class csvRW {
 
 	// write data to bottom of csv file
 	// takes in data as List<String>
+	/**
+	 * Takes in data as List<String>. Then writes to the csv file at the bottom.
+	 * 
+	 * @param dbname Name of database to be changed.
+	 * @param data   Data to be written to the database in ArrayList<String> format.
+	 */
 	public static void writeToCSV(String dbname, ArrayList<String> data) {
 
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -166,6 +212,13 @@ public class csvRW {
 	}
 
 	// Read database file based on name
+	/**
+	 * Reads selected database file and returns entire contents of file in
+	 * ArrayList<String[]> format.
+	 * 
+	 * @param dbname Name of database to be read.
+	 * @return Entire contents of csv file in ArrayList<String[]> format.
+	 */
 	public static ArrayList<String[]> readCSV(String dbname) {
 		try {
 			String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -190,9 +243,13 @@ public class csvRW {
 		return null;
 	}
 
-	
-	
-	
+	/**
+	 * Edits only the selected attribute in the database.
+	 * @param dbname Name of database to be changed.
+	 * @param targetID Unique ID of the selected row.
+	 * @param col_name Type of attribute to be changed.
+	 * @param change New attribute to be written in.
+	 */
 	public static void editCSV(String dbname, String targetID, String col_name, String change) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
 		try {
@@ -200,7 +257,7 @@ public class csvRW {
 			StringBuffer sb = new StringBuffer("");
 			String row;
 			change = format(change);
-			
+
 			String head;
 			head = in.readLine();
 			sb.append(head + "\n");
@@ -212,12 +269,12 @@ public class csvRW {
 					break;
 				}
 			}
-			
+
 			while ((row = in.readLine()) != null) {
 				String[] rowData = row.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 				if (rowData[0].equals(targetID) == false) {
 					sb.append(row + "\n");
-		
+
 				} else if (rowData[0].equals(targetID)) {
 					int totalcol = rowData.length;
 					for (int i = 0; i < totalcol; i++) {
@@ -255,6 +312,11 @@ public class csvRW {
 		}
 	}
 
+	/**
+	 * Adds "" to a string
+	 * @param str String to be altered.
+	 * @return Altered String
+	 */
 	private static String format(String str) {
 		return "\"" + str + "\"";
 	}
