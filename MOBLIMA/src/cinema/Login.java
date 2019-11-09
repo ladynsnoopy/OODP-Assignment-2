@@ -34,11 +34,11 @@ public class Login {
 		
 	}
 	//Movie-goer module 1. Search/List movie 
-	//2. View movie details – including reviews and ratings 
+	//2. View movie details ï¿½ including reviews and ratings 
 	//3. Check seat availability and selection of seat/s. 
 	//4. Book and purchase ticket 
 	//5. View booking history 
-	//6. List the Top 5 ranking by ticket sales OR by overall reviewers’ ratings 
+	//6. List the Top 5 ranking by ticket sales OR by overall reviewersï¿½ ratings 
 	public static  void displayUserPage()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -90,8 +90,10 @@ public class Login {
 			case 5: displayBookingHistory(custID);
 					break;
 			case 6: // call view Top 5 movie
+					displayTopMovies(2);
 					break;
 			case 7: // call view Top 5 movie
+					displayTopMovies(1);
 					break;
 			case 8: displayAddReview(custID);
 				break;
@@ -128,6 +130,21 @@ public class Login {
 		{
 			System.out.println(i+". "+ arr[i]);
 		}
+	}
+	public static void displayTopMovies(int selection)
+	{
+		switch(selection) {
+		case 1:
+			System.out.println("Top 5 movies by overall reviewers' ratings:");
+			break;
+		case 2:
+			System.out.println("Top 5 movies by ticket sales:");
+			break;
+		}
+		for (int i=0; i<=5; i++)
+		{
+			System.out.println(StaffApp.showTopMovies(selection).get(i));
+		};
 	}
 	public static void displaySearchMovie()
 	{
