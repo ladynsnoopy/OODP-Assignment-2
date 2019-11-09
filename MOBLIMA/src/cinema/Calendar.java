@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Calendar object that contains special dates that have special prices. Eg.
- * Weekends, holidays holArr contains holiday dates. weekendArr contains weekend
- * dates.
+ * Weekends, holidays. <code>holArr</code> contains holiday dates.
+ * <code>weekendArr</code> contains weekend dates.
  * 
  * @author Lim Wai Leong
  * @version 1.0
@@ -13,21 +13,23 @@ import java.util.ArrayList;
  */
 public class Calendar {
 	/**
-	 * ArrayList containing holiday dates in String format YYYYMMDD
+	 * <code>ArrayList</code> containing holiday dates in <code>String</code> format
+	 * YYYYMMDD
 	 */
 	private ArrayList<String> holArr; // DATE = YYYYMMDD
 	/**
-	 * ArrayList containing weekend dates in String format YYYYMMDD
+	 * <code>ArrayList</code> containing weekend dates in <code>String</code> format
+	 * YYYYMMDD
 	 */
 	private ArrayList<String> weekendArr;
 
 	/**
-	 * Constructor for Calendar object.
+	 * Constructor for <code>Calendar</code> object.
 	 * 
-	 * @param holArr     ArrayList containing holiday dates in String format
-	 *                   YYYYMMDD
-	 * @param weekendArr ArrayList containing weekend dates in String format
-	 *                   YYYYMMDD
+	 * @param holArr     <code>ArrayList</code> containing holiday dates in
+	 *                   <code>String</code> format YYYYMMDD
+	 * @param weekendArr <code>ArrayList</code> containing weekend dates in
+	 *                   <code>String</code> format YYYYMMDD
 	 */
 	public Calendar(ArrayList<String> holArr, ArrayList<String> weekendArr) {
 		super();
@@ -36,46 +38,50 @@ public class Calendar {
 	}
 
 	/**
-	 * @return ArrayList containing weekend dates in String format YYYYMMDD
+	 * @return ArrayList containing weekend dates in <code>String</code> format
+	 *         YYYYMMDD
 	 */
 	public ArrayList<String> getWeekendArr() {
 		return weekendArr;
 	}
 
 	/**
-	 * @param weekendArr ArrayList containing weekend dates in String format
-	 *                   YYYYMMDD
+	 * @param weekendArr <code>ArrayList</code> containing weekend dates in
+	 *                   <code>String</code> format YYYYMMDD
 	 */
 	public void setWeekendArr(ArrayList<String> weekendArr) {
 		this.weekendArr = weekendArr;
 	}
 
 	/**
-	 * @return ArrayList ArrayList containing holiday dates in String format
-	 *         YYYYMMDD
+	 * @return ArrayList <code>ArrayList</code> containing holiday dates in
+	 *         <code>String</code> format YYYYMMDD
 	 */
 	public ArrayList<String> getHolArr() {
 		return holArr;
 	}
 
 	/**
-	 * @param hol ArrayList containing holiday dates in String format YYYYMMDD
+	 * @param hol <code>ArrayList</code> containing holiday dates in
+	 *            <code>String</code> format YYYYMMDD
 	 */
 	public void addHolArr(String hol) {
 		holArr.add(hol);
 	}
+
 	/**
-	 * @param hol ArrayList containing holiday dates in String format YYYYMMDD
+	 * @param hol <code>ArrayList</code> containing holiday dates in
+	 *            <code>String</code> format YYYYMMDD
 	 */
 	public void addWkndArr(String hol) {
 		weekendArr.add(hol);
 	}
 
 	/**
-	 * Checks if showtime date is holiday date
+	 * Checks if <code>Showtime</code> date is holiday date
 	 * 
-	 * @param a showtime object to be checked
-	 * @return boolean true if is holiday, false if not
+	 * @param a <code>Showtime</code> object to be checked
+	 * @return <code>true</code> if is holiday, <code>false</code> if not
 	 */
 	public boolean checkHols(Showtime a) {
 		boolean isHols = false;
@@ -91,8 +97,8 @@ public class Calendar {
 	/**
 	 * Checks if a showtime is during the weekend.
 	 * 
-	 * @param a showtime object to be checked
-	 * @return boolean true if is weekend, false if not
+	 * @param a <code>Showtime</code> object to be checked
+	 * @return <code>true</code> if is weekend, <code>false</code> if not
 	 */
 	public boolean checkWeekend(Showtime a) {
 		boolean isWeekend = false;

@@ -1,8 +1,9 @@
 package cinema;
 
 /**
- * Cinema object that contains number of rows and columns of seats in the
- * cinema, total number of seats and has a unique CinemaID
+ * Cinema object that contains details specific to each cinema. Eg. number of
+ * rows and columns of seats in the cinema, total number of seats and a unique
+ * CinemaID
  * 
  * @author Oh Jun Teng
  * @version 1.0
@@ -11,7 +12,8 @@ package cinema;
  */
 public class Cinema {
 	/**
-	 * Type of cinema in String. Can be "Gold Class", "Normal".
+	 * Type of cinema in <code>String</code>. Can be
+	 * <code>Gold Class, Normal</code>.
 	 */
 	private String type;
 	/**
@@ -27,18 +29,19 @@ public class Cinema {
 	 */
 	private int totalNumSeat;
 	/**
-	 * Unique String cinema ID.
+	 * Unique <code>String</code> cinema ID.
 	 */
 	private String cinemaID;
 
 	/**
-	 * Constructor for cinema object.
+	 * Constructor for <code>Cinema</code> object.
 	 * 
-	 * @param type     Type of cinema in String. Can be "Gold Class", "Normal".
+	 * @param type     Type of cinema in <code>String</code>. Can be "Gold Class",
+	 *                 "Normal".
 	 * @param totalRow Total number of rows of seats in a cinema.
 	 * @param totalCol Total number of columns of seats in a cinema.
 	 * @param cineplex Total number of seats in a cinema.
-	 * @param cinemaID Unique String cinema ID.
+	 * @param cinemaID Unique <code>String</code> cinema ID.
 	 */
 	public Cinema(String type, int totalRow, int totalCol, String cinemaID) {
 		super();
@@ -51,7 +54,8 @@ public class Cinema {
 
 	/**
 	 * 
-	 * @return Type of cinema in String. Can be "Gold Class", "Normal".
+	 * @return Type of cinema in <code>String</code>. Can be
+	 *         <code>Gold Class, Normal</code>.
 	 */
 	public String getType() {
 		return type;
@@ -59,7 +63,8 @@ public class Cinema {
 
 	/**
 	 * 
-	 * @param type Type of cinema in String. Can be "Gold Class", "Normal".
+	 * @param type Type of cinema in <code>String</code>. Can be <code>Gold Class,
+	 *             Normal</code>.
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -115,7 +120,7 @@ public class Cinema {
 
 	/**
 	 * 
-	 * @return Unique String cinema ID.
+	 * @return Unique <code>String</code> cinema ID.
 	 */
 	public String getCinemaID() {
 		return cinemaID;

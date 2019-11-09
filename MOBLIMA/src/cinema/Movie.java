@@ -3,8 +3,10 @@ package cinema;
 import java.util.ArrayList;
 
 /**
- * Movie object that contains movie details, as well as an ArrayList<Review> of
- * reviews for the movie, and an ArrayList<Showtime> of showtimes for this
+ * 
+ * Movie object that contains movie details. Also contains
+ * <code>ArrayList<Review></code> of reviews for the movie, and an
+ * <code>ArrayList<Showtime></code> of <code>Showtime</code> objects for this
  * movie. Also contains average ratings left by reviewers.
  * 
  * @author Edhie Wahidin Michelle
@@ -18,7 +20,8 @@ public class Movie {
 	 */
 	private int movieID;
 	/**
-	 * Static counter that will increment every time a new movie object is created.
+	 * <code>Static</code> counter that will increment every time a new movie object
+	 * is created.
 	 */
 	private static int movie_counter = 1;
 	/**
@@ -26,8 +29,9 @@ public class Movie {
 	 */
 	private String name;
 	/**
-	 * Showing status of movie. Can be "Coming Soon, Preview, Now Showing, End of
-	 * Showing.
+	 * Showing status of movie. Can be
+	 * <code>Coming Soon, Preview, Now Showing, End of
+	 * Showing</code>.
 	 */
 	private String showingStatus;
 	/**
@@ -35,7 +39,7 @@ public class Movie {
 	 */
 	private String synopsis;
 	/**
-	 * ArrayList<String> of names of cast members
+	 * <code>ArrayList<String></code> of names of cast members
 	 */
 	private ArrayList<String> cast;
 	/*
@@ -43,44 +47,57 @@ public class Movie {
 	 */
 	private String director;
 	/**
-	 * Type or genre of movie. Can be "Action, Horror, Romance, Animated"
+	 * Type or genre of movie. Can be <code>Action, Horror, Romance, Animated</code>
 	 */
 	private String type;
 	/**
-	 * ArrayList of Review objects for this movie called reviewArr
+	 * <code>ArrayList</code> of <code>Review</code> objects for this movie called
+	 * <code>reviewArr</code>
+	 * 
+	 * @see Review
 	 */
 	private ArrayList<Review> reviewArr = new ArrayList<Review>();
 	/**
-	 * ArrayList of Showtime objects for this movie called showtimeArr
+	 * <code>ArrayList</code> of <code>Showtime</code> objects for this movie called
+	 * <code>showtimeArr</code>
+	 * 
+	 * @see Showtime
 	 */
 	private ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 	/**
-	 * Average rating of movie left by users, stored in String format. Defaults to
-	 * "NA" when no review has been left.
+	 * Average rating of movie left by users, stored in <code>String</code> format.
+	 * Defaults to <code>NA</code> when no review has been left.
 	 */
 	private String overallUserRating = "NA";
 	/**
-	 * Rating of movie. Can be "G, PG, PG13, NC16, M18, R21".
+	 * Rating of movie. Can be <code>G, PG, PG13, NC16, M18, R21</code>. Default is
+	 * <code>NA</code>.
 	 */
 	private String movieRating;
 	/**
-	 * Ticket sales for this movie. If no sales, default is int 0.
+	 * Ticket sales for this movie. If no sales, default is <code>int 0</code>.
 	 */
 	private int ticketSales = 0;
 
 	/**
-	 * Adds a review to the ArrayList of Review objects.
+	 * Adds a <code>Review</code> to the <code>ArrayList</code> of
+	 * <code>Review</code> objects.
 	 * 
-	 * @param r Review object to be inserted into ArrayList
+	 * @param r <code>Review</code> object to be inserted into
+	 *          <code>ArrayList</code>
+	 * @see Review
 	 */
 	public void addReview(Review r) {
 		reviewArr.add(r);
 	}
 
 	/**
-	 * Adds a showtime to the ArrayList of Showtime objects.
+	 * Adds a <code>Showtime</code> to the <code>ArrayList</code> of
+	 * <code>Showtime</code> objects.
 	 * 
-	 * @param s Showtime object to be inserted into ArrayList.
+	 * @param s <code>Showtime</code> object to be inserted into
+	 *          <code>ArrayList</code>.
+	 * @see Showtime
 	 */
 	public void addShowtime(Showtime s) {
 		showtimeArr.add(s);
@@ -90,14 +107,17 @@ public class Movie {
 	 * Constructor for Movie object
 	 * 
 	 * @param name          Title of movie
-	 * @param showingStatus Showing status of movie. Can be "Coming Soon, Preview,
-	 *                      Now Showing, End of Showing.
-	 * @param synopsis      ArrayList<String> of names of cast members
-	 * @param cast          ArrayList<String> of names of cast members
+	 * @param showingStatus Showing status of movie. Can be
+	 *                      <code>Coming Soon, Preview,
+	 *                      Now Showing, End of Showing</code>.
+	 * @param synopsis      <code>ArrayList<String></code> of names of cast members
+	 * @param cast          <code>ArrayList<String></code> of names of cast members
 	 * @param director      Name of director for the movie
-	 * @param type          Type or genre of movie. Can be "Action, Horror, Romance,
-	 *                      Animated"
-	 * @param movieRating   Rating of movie. Can be "G, PG, PG13, NC16, M18, R21".
+	 * @param type          Type or genre of movie. Can be
+	 *                      <code>Action, Horror, Romance,
+	 *                      Animated</code>
+	 * @param movieRating   Rating of movie. Can be
+	 *                      <code>G, PG, PG13, NC16, M18, R21</code>.
 	 */
 	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, String director,
 			String type, String movieRating) {
@@ -131,19 +151,22 @@ public class Movie {
 	}
 
 	/**
-	 * Changes showing status of movie. Can be "Coming Soon, Preview, Now Showing,
-	 * End of Showing.
+	 * Changes showing status of movie. Can be
+	 * <code>Coming Soon, Preview, Now Showing,
+	 * End of Showing</code>.
 	 * 
-	 * @param showingStatus Showing status of movie. Can be "Coming Soon, Preview,
-	 *                      Now Showing, End of Showing.
+	 * @param showingStatus Showing status of movie. Can be
+	 *                      <code>Coming Soon, Preview,
+	 *                      Now Showing, End of Showing</code>.
 	 */
 	public void setShowingStatus(String showingStatus) {
 		this.showingStatus = showingStatus;
 	}
 
 	/**
-	 * Changes showing status of movie. Can be "Coming Soon, Preview, Now Showing,
-	 * End of Showing.
+	 * Changes showing status of movie. Can be
+	 * <code>Coming Soon, Preview, Now Showing,
+	 * End of Showing</code>.
 	 * 
 	 * @return Showing Status
 	 */
@@ -197,9 +220,11 @@ public class Movie {
 	}
 
 	/**
-	 * Sets type/genre of movie. Can be "Action, Horror, Romance, Animated".
+	 * Sets type/genre of movie. Can be
+	 * <code>Action, Horror, Romance, Animated</code>.
 	 * 
-	 * @param a Type/genre of movie. Can be "Action, Horror, Romance, Animated"
+	 * @param a Type/genre of movie. Can be
+	 *          <code>Action, Horror, Romance, Animated</code>
 	 */
 	public void setType(String aType) {
 		this.type = aType;
@@ -224,18 +249,18 @@ public class Movie {
 	}
 
 	/**
-	 * Gets ArrayList<String> of cast list.
+	 * Gets <code>ArrayList<String></code> of cast list.
 	 * 
-	 * @return ArrayList<String> of cast list
+	 * @return <code>ArrayList<String></code> of cast list
 	 */
 	public ArrayList<String> getCast() {
 		return this.cast;
 	}
 
 	/**
-	 * Changes ArrayList<String> of cast list.
+	 * Changes <code>ArrayList<String></code> of cast list.
 	 * 
-	 * @param aCast ArrayList<String> of cast list
+	 * @param aCast <code>ArrayList<String></code> of cast list
 	 */
 	public void setCast(ArrayList<String> aCast) {
 		this.cast = aCast;
@@ -260,36 +285,45 @@ public class Movie {
 	}
 
 	/**
-	 * Gets ArrayList of Review objects under this movie.
+	 * Gets <code>ArrayList</code> of <code>Review</code> objects under this movie.
 	 * 
-	 * @return ArrayList of Reviews under this movie
+	 * @return <code>ArrayList</code> of <code>Reviews</code> under this movie
+	 * @see Review
 	 */
 	public ArrayList<Review> getReviewArr() {
 		return this.reviewArr;
 	}
 
 	/**
-	 * Sets ArrayList of Review objects under this movie.
+	 * Sets <code>ArrayList</code> of <code>Review</code> objects under this movie.
 	 * 
-	 * @param aReviewArr ArrayList of Review objects under this movie
+	 * @param aReviewArr <code>ArrayList</code> of <code>Review</code> objects under
+	 *                   this movie
+	 * @see Review
 	 */
 	public void setReviewArr(ArrayList<Review> aReviewArr) {
 		this.reviewArr = aReviewArr;
 	}
 
 	/**
-	 * Gets ArrayList of Showtime objects under this movie.
+	 * Gets <code>ArrayList</code> of <code>Showtime</code> objects under this
+	 * movie.
 	 * 
-	 * @return ArrayList of Showtime objects under this movie
+	 * @return <code>ArrayList</code> of <code>Showtime</code> objects under this
+	 *         movie
+	 * @see Showtime
 	 */
 	public ArrayList<Showtime> getShowtimeArr() {
 		return this.showtimeArr;
 	}
 
 	/**
-	 * Changes ArrayList of Showtime objects under this movie.
+	 * Changes <code>ArrayList<code> of <code>Showtime</code> objects under this
+	 * movie.
 	 * 
-	 * @param aShowtimeArr ArrayList of Showtime objects under this movie
+	 * @param aShowtimeArr <code>ArrayList</code> of <code>Showtime</code> objects
+	 *                     under this movie
+	 * @see Showtime
 	 */
 	public void setShowtimeArr(ArrayList<Showtime> aShowtimeArr) {
 		this.showtimeArr = aShowtimeArr;
@@ -299,7 +333,8 @@ public class Movie {
 	 * Calculates overall average user rating from all ratings in the reviews for
 	 * this movie.
 	 * 
-	 * @return String of overall average user rating
+	 * @return <code>String</code> of overall average user rating
+	 * @see Review#getRating()
 	 */
 	public String getOverallUserRating() {
 		if (reviewArr.isEmpty())
@@ -320,7 +355,8 @@ public class Movie {
 	 * Calculates overall average user rating from all ratings in the reviews for
 	 * this movie.
 	 * 
-	 * @return Double of overall average user rating
+	 * @return <code>Double</code> of overall average user rating
+	 * @see Review#getRating()
 	 */
 	public double getOverallUserRatingInDouble() {
 		if (reviewArr.isEmpty())
@@ -346,7 +382,7 @@ public class Movie {
 	}
 
 	/**
-	 * Gets movie rating. Can be "G, PG, PG13, NC16, M18, R21".
+	 * Gets movie rating. Can be <code>G, PG, PG13, NC16, M18, R21</code>.
 	 * 
 	 * @return Movie rating
 	 */
@@ -355,18 +391,20 @@ public class Movie {
 	}
 
 	/**
-	 * Changes movie rating. Can be "G, PG, PG13, NC16, M18, R21".
+	 * Changes movie rating. Can be <code>G, PG, PG13, NC16, M18, R21</code>.
 	 * 
-	 * @param aMovieRating Movie Rating. Can be "G, PG, PG13, NC16, M18, R21".
+	 * @param aMovieRating Movie Rating. Can be
+	 *                     <code>G, PG, PG13, NC16, M18, R21</code>.
 	 */
 	public void setMovieRating(String aMovieRating) {
 		this.movieRating = aMovieRating;
 	}
 
 	/**
-	 * Gets an ArrayList<String> of review IDs.
+	 * Gets an <code>ArrayList<String></code> of <code>Review</code> IDs.
 	 * 
-	 * @return ArrayList<String> of review IDs
+	 * @return <code>ArrayList<String></code> of <code>Review</code> IDs
+	 * @see Review#getReviewID()
 	 */
 	public ArrayList<String> getReviewIDs() {
 		ArrayList<String> reviewIDs = new ArrayList<String>();
@@ -377,9 +415,10 @@ public class Movie {
 	}
 
 	/**
-	 * Gets an ArrayList<String> of showtime IDs.
+	 * Gets an <code>ArrayList<String></code> of <code>Showtime</code> IDs.
 	 * 
-	 * @return ArrayList<String> of showtime IDs
+	 * @return ArrayList<String> of <code>Showtime</code> IDs
+	 * @see Showtime#getShowtimeID()
 	 */
 	public ArrayList<String> getShowtimeIDs() {
 		ArrayList<String> showtimeIDs = new ArrayList<String>();
