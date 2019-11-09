@@ -65,6 +65,55 @@ public class CustomerApp {
 			
 		
 	}
+	public static ArrayList<String> searchMovieDetails(int movieID)
+	{
+		ArrayList <String> movie_row = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
+		ArrayList <String> result = new ArrayList<String>();
+		result.add("Name: "+ movie_row.get(1));
+		result.add("Movie Type: "+ movie_row.get(2));
+		result.add("Showing Status: "+ movie_row.get(3));
+		result.add("Sypnosis: "+ movie_row.get(4));
+		result.add("Director: "+ movie_row.get(5));
+		String cutted = movie_row.get(6).substring(1,movie_row.get(6).length()-1);
+		result.add("Cast: "+ cutted); // make sure cast is more than one
+		result.add("Overall Rating: "+ movie_row.get(7));
+		result.add("Movie Age Rating: "+ movie_row.get(11));
+		String a = movie_row.get(9);
+		if(a.equals(""))
+		{
+			result.add("No reviews has been written about this movie yet.");
+			return result;
+		}
+		else if (a.length() == 1)
+		{
+			String[] review = searchforReview(Integer.parseInt(a));
+			result.add("User Rating: "+ review[0]);
+			result.add("Comment: "+ review[1]);
+			return result;
+		}
+		else
+		{
+	
+			String cut = a.substring(1,a.length()-1);
+			String [] arr = cut.split(","); // store all the showtimeID in a string array
+			for(int j = 0; j<arr.length;j++)
+			{
+				String[] review = searchforReview(Integer.parseInt(arr[j]));
+				result.add("User Rating: "+ review[0]);
+				result.add("Comment: "+ review[1]);
+ 			}
+			return result;
+	
+		}
+	}
+	public static String[] searchforReview(int reviewID)
+	{
+		ArrayList <String> result = csvRW.search("reviewdatabase", "ReviewID", Integer.toString(reviewID));
+		String[] rating_comment = new String[2];
+		rating_comment[0] = result.get(1);
+		rating_comment[1] = result.get(2);
+		return rating_comment;
+	}
 	public static int searchOneMovie(String name)
 	{
 		ArrayList <String> result = csvRW.search("moviedatabase", "Name", name);
