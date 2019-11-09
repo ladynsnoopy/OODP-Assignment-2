@@ -101,11 +101,10 @@ public class CustomerApp {
 			if(showtimeID == StaffApp.showtimeArr.get(i).getShowtimeID())
 			{
 				// mark the seat as occupied in the object
-				for(int j= 0;j <StaffApp.showtimeArr.get(i).getSeatArr().length; j++)
-				{
-					if((StaffApp.showtimeArr.get(i).getSeatArr()[i].getxCoor() == x) && (StaffApp.showtimeArr.get(i).getSeatArr()[i].getyCoor() == y))
-						StaffApp.showtimeArr.get(i).getSeatArr()[i].setOccupied(true);
-				}
+				// seat_index = yCoor * no of columns + xCoor
+				int seat_index;
+				seat_index = (y * StaffApp.showtimeArr.get(i).getCinema().getTotalCol()) + x;
+				StaffApp.showtimeArr.get(i).getSeatArr()[seat_index].setOccupied(true);
 			}
 		}
 		return 1; // purchase is successful

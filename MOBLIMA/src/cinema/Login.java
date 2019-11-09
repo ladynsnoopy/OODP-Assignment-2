@@ -275,7 +275,7 @@ public class Login {
 			while (true) {
 				if (sc.hasNextInt()) {
 					numSeat = sc.nextInt();
-					if (numSeat > 0 && numSeat < 100) { // checks that number of seats to be purchased is reasonable
+					if (numSeat > 0 && numSeat < StaffApp.showtimeArr.get(index).getCinema().getTotalNumSeat()) { // checks that number of seats to be purchased is reasonable
 						break;
 					}
 				} else {
@@ -294,7 +294,7 @@ public class Login {
 							x = sc.nextInt(); // TODO please check here
 							y = sc.nextInt();
 							if (x >= 0 && x < StaffApp.showtimeArr.get(index).getCinema().getTotalCol() && y >= 0
-									&& y < StaffApp.showtimeArr.get(index).getCinema().getTotalCol()) {
+									&& y < StaffApp.showtimeArr.get(index).getCinema().getTotalRow()) {
 								break;
 							}
 						} else {
