@@ -210,9 +210,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Creates a new <code>Movie</code> object and adds it into the movie database
+	 * Takes input from user for the movie details 
+	 * Creates a new <code>Movie</code> object with the details and adds it into the movie database
 	 * 
-	 * 	 
 	 */
 	public static void addMovie() {
 		Scanner sc = new Scanner(System.in);
@@ -249,7 +249,6 @@ interface DisplayStaffPage extends MainDisplayPage{
 			}
 			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
 		}
-//		sc.close();
 		switch (input) {
 		case (1):
 			StaffApp.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);
@@ -264,6 +263,12 @@ interface DisplayStaffPage extends MainDisplayPage{
 
 	}
 
+	/**
+	 * Gets user input to decide which movie to edit
+	 * First performs a check in the database to determine if the movie exists
+	 * Uses selection to determine which attribute of the movie to edit
+	 *  
+	 */
 	public static void editMovieDetails() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter name of movie to edit:");
@@ -326,7 +331,6 @@ interface DisplayStaffPage extends MainDisplayPage{
 				}
 				break;
 			case (3):
-				// TODO remove showtimes when status set to end of showing
 				System.out.println("Enter new showing status:");
 				change = sc.nextLine();
 				input = editConfirmation();
@@ -400,6 +404,13 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 	}
 
+	
+	/**
+	 * Gets user input for the showtime details
+	 * Checks if the details are valid
+	 * Gets input for new time and edits the database
+	 * 
+	 */
 	public static void addShowtime() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the movie to be added");
@@ -426,7 +437,6 @@ interface DisplayStaffPage extends MainDisplayPage{
 				}
 			}
 		}
-		// TODO if have time check valid showtimes
 		System.out.println("Enter date for new showtime (YYMMDD)");
 		String date = sc.next();
 		System.out.println("Enter time for new showtime (24h format)");
@@ -453,6 +463,12 @@ interface DisplayStaffPage extends MainDisplayPage{
 		StaffApp.createShowtime(cinemaID, timing, movie);
 	}
 
+	/**
+	 * Gets user input to determine which showtime is to be edited
+	 * Checks are done to ensure a existing showtime is edited
+	 * Gets input for new time and edits the database
+	 * 
+	 */
 	public static void editShowtimeDetails() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the movie to be updated:");
@@ -488,6 +504,12 @@ interface DisplayStaffPage extends MainDisplayPage{
 
 	}
 
+	
+	/**
+	 * Edits the attributes of the <code>Price</code> object
+	 * Uses selection to determine which attribute to edit
+	 * 
+	 */
 	public static void editTicketPrice() {
 		Scanner sc = new Scanner(System.in);
 		int input;
@@ -634,6 +656,10 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 	}
 
+	/**
+	 * Adds a new holiday date to the <code>Calendar</code> object
+	 * 
+	 */
 	public static void newHolidayDate() {
 		Scanner sc = new Scanner(System.in);
 
@@ -651,6 +677,10 @@ interface DisplayStaffPage extends MainDisplayPage{
 		StaffApp.configureDates(1, Integer.toString(date), StaffApp.calendar);
 	}
 
+	/**
+	 * Adds a new holiday date to the <code>Calendar</code> object
+	 * 
+	 */
 	public static void newWeekendDate() {
 		Scanner sc = new Scanner(System.in);
 
@@ -668,6 +698,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 		StaffApp.configureDates(2, Integer.toString(date), StaffApp.calendar);
 	}
 
+	/**
+	 * Selection statement to act as confirmation for actions 
+	 */
 	public static int editConfirmation() {
 		Scanner sc1 = new Scanner(System.in);
 		System.out.println("Press (1) to confirm edit");
@@ -688,7 +721,12 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 		return input;
 	}
-
+	
+	/**
+	 * Program will only continue after enter key is add
+	 * Method is used between selection of options
+	 * 
+	 */
 	public static void enterToReturn() {
 		System.out.println("Press enter to return\n");
 		try {
