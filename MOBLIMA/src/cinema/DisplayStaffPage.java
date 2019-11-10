@@ -2,14 +2,23 @@ package cinema;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-
+/**
+ * Contains methods that handles read and write to CSV.
+ * 
+ * @author Lim Wai Leong
+ * @version 1.0
+ * @since 2019-11-09
+ *
+ */
 interface DisplayStaffPage extends MainDisplayPage{
-
+	
+	/**
+	 * Displays the initial menu page shown to the staff after login
+	 * 
+	 */
 	public static void displayStaffPage() {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
-		Price p = StaffApp.price;
-		Calendar c = StaffApp.calendar;
 		// do customer initialisation stuff
 		while (loop) {
 			System.out.println("What would you like to do?");
@@ -77,6 +86,10 @@ interface DisplayStaffPage extends MainDisplayPage{
 
 	}
 
+	/**
+	 * Displays the menu page shown to the staff after selecting the view info option
+	 * 
+	 */
 	public static void viewInfo() {
 		while (true) {
 			Scanner sc = new Scanner(System.in);
@@ -132,6 +145,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 
 	}
 
+	/**
+	 * Displays all the <code>Showtime</code> entries from showtime database
+	 */
 	public static void displayAllShowtimes() {
 		String[] arr = StaffApp.searchShowtimes();
 		System.out.println("Showtime List:");
@@ -141,6 +157,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 	}
 
+	/**
+	 * Displays the holiday dates and weekend dates from the <code>Calendar</code> object
+	 */
 	public static void displayHolWkndDates() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter (1) to view list of holiday dates.");
@@ -177,6 +196,10 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 	}
 
+	
+	/**
+	 * Displays all the prices from the <code>Price</code> object
+	 */
 	public static void displayPrices() {
 		System.out.println("Adult price:    $" + StaffApp.price.getPriceAdult());
 		System.out.println("Child price:    $" + StaffApp.price.getPriceChild());
@@ -186,6 +209,11 @@ interface DisplayStaffPage extends MainDisplayPage{
 		System.out.println();
 	}
 
+	/**
+	 * Creates a new <code>Movie</code> object and adds it into the movie database
+	 * 
+	 * 	 
+	 */
 	public static void addMovie() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the name of the movie:");
