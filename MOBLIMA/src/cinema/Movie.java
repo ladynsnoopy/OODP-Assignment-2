@@ -23,7 +23,7 @@ public class Movie {
 	 * <code>Static</code> counter that will increment every time a new movie object
 	 * is created.
 	 */
-	private static int movie_counter = 1;
+	private static int movie_counter = counterInit();
 	/**
 	 * Title of movie
 	 */
@@ -130,6 +130,15 @@ public class Movie {
 		this.type = type;
 		this.movieRating = movieRating;
 
+	}
+	/**
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("moviedatabase"));
+		return data.size();
 	}
 
 	/**

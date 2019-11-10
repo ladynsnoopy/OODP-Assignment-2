@@ -16,7 +16,7 @@ public class Customer {
 	 * <code>Static</code> counter that will increment every time a
 	 * <code>Customer</code> object is created.
 	 */
-	static int count = 1;
+	static int count  = counterInit();
 	/**
 	 * Customer name, mobile number and email in <code>String</code> format.
 	 */
@@ -46,6 +46,15 @@ public class Customer {
 		this.email = email;
 		this.custID = count++;
 		bookingHistory = new ArrayList<Receipt>();
+	}
+	/**
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("customerdatabase"));
+		return data.size();
 	}
 
 	/**

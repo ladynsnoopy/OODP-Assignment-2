@@ -7,7 +7,7 @@ public class Review {
 	private String comment;
 	private String userID;
 	private int reviewID;
-	private static int review_counter=1;
+	private static int review_counter= counterInit();
 
 	public Review(int rating, String comment, String userID) {
 		this.rating=rating;
@@ -15,6 +15,15 @@ public class Review {
 		this.userID=userID;
 		this.reviewID=review_counter++;
 		
+	}
+	/**
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("reviewdatabase"));
+		return data.size();
 	}
 	
 	public int getRating() {
