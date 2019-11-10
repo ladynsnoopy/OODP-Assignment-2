@@ -4,21 +4,64 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Showtime object that represent a particular instance of a movie showing at a
+ * particular time.</br>
+ * Contains <code>Cinema</code> class that the cinema this showtime is located
+ * at belongs to, timing of showtime, seatingplan of the showtime, and list of
+ * <code>Seat</code> objects that are contained in this <code>Showtime</code>.
+ * 
+ * @author Lim Wai Leong
+ * @version 1.0
+ * @since 2019-11-10
+ *
+ */
 public class Showtime {
+	/**
+	 * <code>Cinema</code> class that the cinema this showtime is located at belongs
+	 * to
+	 */
 	private Cinema cinema;
+	/**
+	 * Timing that this showtime will be at in YYYYMMDDHHmm format
+	 */
 	private String timing;
+	/**
+	 * Unique showtime ID for this <code>Showtime</code>
+	 */
 	private int showtimeID;
+	/**
+	 * Counter that will increment for every new <code>Showtime</code> object
+	 */
 	private static int showtime_counter = counterInit();
 	// boolean 2D array to keep track of occupied status of seats in a 2D form
+	/**
+	 * Boolean representation of seating plan. <code>true</code> if seat is
+	 * occupied, <code>false</code> if seat is unoccupied. Provided x and y
+	 * coordinates of a particular seat, can check if seat is occupied in
+	 * <code>seatingplan[x-coor][y-coor]</code>.
+	 */
 	private boolean[][] seatingplan;
 	// list of seats that are in this Showtime
+	/**
+	 * Simple list of <code>Seat</code> objects that belong to this
+	 * <code>Showtime</code>.
+	 * 
+	 * @see Seat
+	 */
 	private Seat[] seatArr;
-	
-	public static int counterInit() {
-		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("Showtimedatabase"));
-		return data.size();
-	}
 
+	/**
+	 * Constructor of <code>Showtime</code> object.</br>
+	 * Size of <code>searArr</code> will be determined by total number of rows and
+	 * columns fetched from <code>Cinema</code> class.</br>
+	 * Size of <code>boolean</code> seatingplan will be determined by total number
+	 * of rows and columns fetched from <code>Cinema</code> class.
+	 * 
+	 * @param cinema <code>Cinema</code> object showtime is located in
+	 * @param timing Timing of this showtime in YYYYMMDDHHmm format
+	 * @see Seat
+	 */
 	public Showtime(Cinema cinema, String timing) {
 		super();
 		this.cinema = cinema;
@@ -58,7 +101,8 @@ public class Showtime {
 	}
 
 	/**
-	 * generates appropriate number of seats according to cinema size, then adds into seatArr
+	 * Generates appropriate number of seats according to cinema size, then adds
+	 * into <code>seatArr</code>
 	 */
 	private void generateSeats() {
 		int count = 0;
@@ -70,18 +114,18 @@ public class Showtime {
 		}
 	}
 
-
 	/**
-	 * Sets seating plan for this Showtime
+	 * Sets seating plan for this <code>Showtime</code>
 	 * 
-	 * Seating plan in terms of seat[] index: 
-	 * 0,1,2,3,4,5 
-	 * 6,7,8,9,10,11
-	 *  etc
+	 * Seating plan in terms of <code>seat[]</code> index:</br>
+	 * 0,1,2,3,4,5 </br>
+	 * 6,7,8,9,10,11 </br>
+	 * etc
 	 * 
 	 * so seat index = yCoor * no of columns + xCoor
 	 * 
-	 * Will change the boolean 2D array to reflect the occupied status of the seats in seating plan
+	 * Will change the boolean 2D array to reflect the occupied status of the seats
+	 * in seating plan
 	 */
 	public void setSeatingPlan() {
 		ArrayList<String[]> seats_occupied;
@@ -107,16 +151,25 @@ public class Showtime {
 		}
 	}
 
-<<<<<<< HEAD
-	public void addShowtimeToCSV(Showtime showtime) {
-		ArrayList<String> data = new ArrayList<String>();
-		data.add(Integer.toString(showtime.showtimeID));
-		data.add(showtime.cinema.getCinemaID());
-		data.add(showtime.timing);
-		csvRW.writeToCSV("showtimedatabase", data);
-	
+	/**
+	 * Counts number of entries in data
+	 * @return
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("Showtimedatabase"));
+		return data.size();
 	}
 
-=======
->>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
+
+ 	public void addShowtimeToCSV(Showtime showtime) {
+ 		ArrayList<String> data = new ArrayList<String>();
+ 		data.add(Integer.toString(showtime.showtimeID));
+ 		data.add(showtime.cinema.getCinemaID());
+ 		data.add(showtime.timing);
+ 		csvRW.writeToCSV("showtimedatabase", data);
+	
+ 	}
+
+
+
 }
