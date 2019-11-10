@@ -1,5 +1,7 @@
 package cinema;
 
+import java.util.ArrayList;
+
 public class Staff {
 	private String username;
 	private String password;
@@ -24,5 +26,12 @@ public class Staff {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public static void addStaffToCSV(Staff staff) {
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(staff.getUsername());
+		data.add(staff.getPassword());
+		csvRW.writeToCSV("staffdatabase", data);
 	}
 }

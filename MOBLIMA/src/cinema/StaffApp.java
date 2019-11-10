@@ -16,19 +16,19 @@ public class StaffApp {
 	 * Creates a staff account so staff can login and saves login info to
 	 * staffdatabase.
 	 * 
-	 * @param username
-	 * @param password
+	 * @param username Username of staff
+	 * @param password Password of staff
 	 */
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
-		StaffToCSV.addStaffToCSV(a);
+		Staff.addStaffToCSV(a);
 	}
 
 	/**
 	 * Checks login information against staffdatabase.
 	 * 
-	 * @param username
-	 * @param password
+	 * @param username Username of staff
+	 * @param password Password of staff
 	 * @return 0 if all information matches. Returns -1 if password does not match.
 	 *         Returns -2 if no such username exists.
 	 */
@@ -52,7 +52,7 @@ public class StaffApp {
 	 */
 	public static void createCineplexAndCinemas() {
 		ArrayList<Cinema> temp = new ArrayList<Cinema>();
-		
+
 		Cineplex cowboyTown = new Cineplex("NTU", "AA");
 		Cineplex jurassicPark = new Cineplex("NUS", "BB");
 		Cineplex theCentral = new Cineplex("SMU", "CC");
@@ -64,8 +64,8 @@ public class StaffApp {
 		Cinema a1 = new Cinema("Normal", 10, 10, "AA1");
 		Cinema a2 = new Cinema("Normal", 15, 10, "AA2");
 		Cinema a3 = new Cinema("Gold Class", 5, 5, "AA3");
-		
-		//temp = cineplexArr.get(0).getCinemaArr();
+
+		// temp = cineplexArr.get(0).getCinemaArr();
 		temp.add(a1);
 		temp.add(a2);
 		temp.add(a3);
@@ -75,7 +75,7 @@ public class StaffApp {
 		Cinema b2 = new Cinema("Normal", 15, 10, "BB2");
 		Cinema b3 = new Cinema("Gold Class", 5, 5, "BB3");
 		temp.clear();
-		//temp = cineplexArr.get(1).getCinemaArr();
+		// temp = cineplexArr.get(1).getCinemaArr();
 		temp.add(b1);
 		temp.add(b2);
 		temp.add(b3);
@@ -85,7 +85,7 @@ public class StaffApp {
 		Cinema c2 = new Cinema("Normal", 15, 11, "CC2");
 		Cinema c3 = new Cinema("Gold Class", 5, 5, "CC3");
 		temp.clear();
-		//temp = cineplexArr.get(0).getCinemaArr();
+		// temp = cineplexArr.get(0).getCinemaArr();
 		temp.add(c1);
 		temp.add(c2);
 		temp.add(c3);
@@ -120,7 +120,7 @@ public class StaffApp {
 			String director, String type, String movieRating) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
 		movieArr.add(a);
-		MovieToCSV.addMovieToCSV(a);
+		Movie.addMovieToCSV(a);
 	}
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
@@ -174,17 +174,19 @@ public class StaffApp {
 	/**
 	 * Checks that movie exists in moviedatabase when given title of movie.
 	 * 
+	 * 
 	 * @param title Title of movie.
 	 * @return boolean value true if exists, false if not.
 	 */
 	public static boolean movieExists(String title) {
-	
-		if (csvRW.search("moviedatabase", "Name", title) == null)
-		{
-			System.out.println("sOMETHING IS WRONG");
+
+		if (csvRW.search("moviedatabase", "Name", title) == null) {
 			return false;
 		}
-			
+		else if (csvRW.search("moviedatabase", "Name", title).get(3).equals("End of Showing")) {
+			return false;
+		}
+
 		return true;
 	}
 
@@ -215,10 +217,10 @@ public class StaffApp {
 		String showtimes;
 		Showtime showtime = new Showtime(temp, timing);
 		showtimeArr.add(showtime);
-		ShowtimeToCSV.addShowtimeToCSV(showtime);
+		Showtime.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
-		if(result == null)
+		if (result == null)
 			System.out.println("This fucking shit is null");
 		String id = result.get(0);
 
@@ -240,7 +242,6 @@ public class StaffApp {
 	// yo junteng mah man i think its right but pls double check for me HAHA
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
-		String movieID;
 		// checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
 			if (cinemaID.equals(cinemaArr.get(i).getCinemaID())) {
@@ -251,25 +252,9 @@ public class StaffApp {
 				return;
 			}
 		}
-		// Check if movietitle exists
-		ArrayList<String[]> moviedata = new ArrayList<String[]>(csvRW.readCSV("moviedatabase"));
-		for (int i = 0; i < moviedata.size(); i++) {
-			if (moviedata.get(i)[1].equals(movietitle)) {
-				// check if showtimeID exists
-				movieID = moviedata.get(i)[0];
-				String[] showtimes = moviedata.get(1)[10].split(",");
-				// if user tries to update new showtime a new one will be created
-				for (int j = 0; j < showtimes.length; j++) {
-					if (showtimes[j].equals(showtimeID))
-						createShowtime(cinemaID, timing, movietitle);
-				}
-				break;
-			} else if (i == moviedata.size() - 1) {
-				System.out.println("Invalid Movie ID");
-				return;
-			}
-		}
+				
 		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
+		System.out.println("Showtime updated");
 		return;
 	}
 
@@ -308,18 +293,20 @@ public class StaffApp {
 
 	// not sure about this
 	/**
-	 * Adds a new holiday date to Calendar.
 	 * 
-	 * @param hol Holiday date to be added.
-	 * @param c   Calendar object to be altered.
+	 * @param selection Choice of what kind of date to add. "0" for holiday date,
+	 *                  "1" for weekend date.
+	 * @param date      date to be added to the calendar. Should be in
+	 *                  <code>String</code> format YYYYMMDD.
+	 * @param c         Calendar object date is to be added to.
 	 */
 	public static void configureDates(int selection, String date, Calendar c) {
-		switch(selection) {
-		case(1):
+		switch (selection) {
+		case (1):
 			c.addHolArr(date);
 			System.out.println("Holiday date added");
 			break;
-		case(2):
+		case (2):
 			c.addWkndArr(date);
 			System.out.println("Weekend date added");
 			break;

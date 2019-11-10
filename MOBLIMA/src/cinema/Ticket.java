@@ -1,5 +1,7 @@
 package cinema;
 
+import java.util.ArrayList;
+
 public class Ticket {
 	private Showtime showtime;
 	private String movietitle;
@@ -85,7 +87,14 @@ public class Ticket {
 		
 	}
 	
-	
+	public static void addTicketToCSV(Ticket ticket)
+	{
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(Integer.toString(ticket.getTicketID()));
+		data.add(ticket.getMovietitle());
+		data.add(Double.toString(ticket.getFinalPrice()));
+		csvRW.writeToCSV("ticketdatabase", data);
+	}
 	
 
 }
