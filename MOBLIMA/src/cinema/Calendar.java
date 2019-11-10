@@ -33,8 +33,8 @@ public class Calendar {
 	 */
 	public Calendar(ArrayList<String> holArr, ArrayList<String> weekendArr) {
 		super();
-		this.holArr = holArr;
-		this.weekendArr = weekendArr;
+		Calendar.holArr = holArr;
+		Calendar.weekendArr = weekendArr;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Calendar {
 	 *                   <code>String</code> format YYYYMMDD
 	 */
 	public void setWeekendArr(ArrayList<String> weekendArr) {
-		this.weekendArr = weekendArr;
+		Calendar.weekendArr = weekendArr;
 	}
 
 	/**
