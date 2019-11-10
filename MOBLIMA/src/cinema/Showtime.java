@@ -4,10 +4,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Showtime object that represent a particular instance of a movie showing at a
+ * particular time.</br>
+ * Contains <code>Cinema</code> class that the cinema this showtime is located
+ * at belongs to, timing of showtime, seatingplan of the showtime, and list of
+ * <code>Seat</code> objects that are contained in this <code>Showtime</code>.
+ * 
+ * @author Lim Wai Leong
+ * @version 1.0
+ * @since 2019-11-10
+ *
+ */
 public class Showtime {
+	/**
+	 * <code>Cinema</code> class that the cinema this showtime is located at belongs
+	 * to
+	 */
 	private Cinema cinema;
+	/**
+	 * Timing that this showtime will be at in YYYYMMDDHHmm format
+	 */
 	private String timing;
+	/**
+	 * Unique showtime ID for this <code>Showtime</code>
+	 */
 	private int showtimeID;
+	/**
+	 * Static counter that will increment everytime a new <code>Showtime</code> object is created.
+	 */
 	private static int showtime_counter = 1;
 	// boolean 2D array to keep track of occupied status of seats in a 2D form
 	private boolean[][] seatingplan;
@@ -53,7 +78,8 @@ public class Showtime {
 	}
 
 	/**
-	 * generates appropriate number of seats according to cinema size, then adds into seatArr
+	 * generates appropriate number of seats according to cinema size, then adds
+	 * into seatArr
 	 */
 	private void generateSeats() {
 		int count = 0;
@@ -65,18 +91,15 @@ public class Showtime {
 		}
 	}
 
-
 	/**
 	 * Sets seating plan for this Showtime
 	 * 
-	 * Seating plan in terms of seat[] index: 
-	 * 0,1,2,3,4,5 
-	 * 6,7,8,9,10,11
-	 *  etc
+	 * Seating plan in terms of seat[] index: 0,1,2,3,4,5 6,7,8,9,10,11 etc
 	 * 
 	 * so seat index = yCoor * no of columns + xCoor
 	 * 
-	 * Will change the boolean 2D array to reflect the occupied status of the seats in seating plan
+	 * Will change the boolean 2D array to reflect the occupied status of the seats
+	 * in seating plan
 	 */
 	public void setSeatingPlan() {
 		ArrayList<String[]> seats_occupied;
