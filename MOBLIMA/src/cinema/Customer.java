@@ -156,4 +156,24 @@ public class Customer {
 		return bookinghistory;
 	}
 
+<<<<<<< HEAD
+	/**
+	 * Takes in <code>Customer</code> object and writes all attributes and data into
+	 * customerdatabase. Utilizes csvRW.
+	 * 
+	 * @param customer <code>Customer</code> object to be written into database
+	 * @see csvRW#writeToCSV(String, ArrayList)
+	 */
+	public void addCustomerToCSV(Customer customer) {
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(Integer.toString(customer.custID));
+		data.add(customer.name);
+		data.add(customer.mobileNum);
+		data.add(customer.email);
+		data.add(customer.getTIDs().toString());
+		csvRW.writeToCSV("customerdatabase", data);
+	}
+
+=======
+>>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }

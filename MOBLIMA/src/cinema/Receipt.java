@@ -59,4 +59,23 @@ public class Receipt {
 		return dateFormat.format(date);
 	}
 
+<<<<<<< HEAD
+	/**
+	 * Takes in <code>Receipt</code> object and writes all attributes and data into
+	 * paymentdatabase. Utilizes csvRW.
+	 * 
+	 * @param receipt <code>Receipt</code> object to be written into database
+	 * @see csvRW#writeToCSV(String, ArrayList)
+	 */
+	public void addReceiptToCSV(Receipt receipt) {
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(receipt.TID);
+		data.add(receipt.paymentMode);
+		data.add(receipt.ticketArr.get(0).getMovietitle());
+		data.add(Double.toString(receipt.totalAmt));
+		csvRW.writeToCSV("paymentdatabase", data);
+	}
+
+=======
+>>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }

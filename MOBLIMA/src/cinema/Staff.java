@@ -28,10 +28,10 @@ public class Staff {
 		this.password = password;
 	}
 
-	public static void addStaffToCSV(Staff staff) {
+	public void addStaffToCSV(Staff staff) {
 		ArrayList<String> data = new ArrayList<String>();
-		data.add(staff.getUsername());
-		data.add(staff.getPassword());
+		data.add(staff.username);
+		data.add(staff.password);
 		csvRW.writeToCSV("staffdatabase", data);
 	}
 }

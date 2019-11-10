@@ -87,12 +87,12 @@ public class Ticket {
 		
 	}
 	
-	public static void addTicketToCSV(Ticket ticket)
+	public void addTicketToCSV(Ticket ticket)
 	{
 		ArrayList<String> data = new ArrayList<String>();
-		data.add(Integer.toString(ticket.getTicketID()));
-		data.add(ticket.getMovietitle());
-		data.add(Double.toString(ticket.getFinalPrice()));
+		data.add(Integer.toString(ticket.ticketID));
+		data.add(ticket.movietitle);
+		data.add(Double.toString(ticket.finalPrice));
 		csvRW.writeToCSV("ticketdatabase", data);
 	}
 	

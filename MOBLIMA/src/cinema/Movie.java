@@ -435,4 +435,38 @@ public class Movie {
 	public void increaseTicketSalesByOne() {
 		ticketSales += 1;
 	}
+<<<<<<< HEAD
+
+	/**
+	 * Takes in <code>Movie</code> object and writes all attributes and data into
+	 * moviedatabase. Utilizes csvRW.
+	 * 
+	 * @param movie customer <code>Movie</code> object to be written into database
+	 * @see csvRW#writeToCSV(String, ArrayList)
+	 */
+	public void addMovieToCSV(Movie movie) {
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(Integer.toString(movie.movieID));
+		data.add(movie.name);
+		data.add(movie.type);
+		data.add(movie.showingStatus);
+		data.add(movie.synopsis);
+		data.add(movie.director);
+		String castData = movie.cast.toString();
+		castData = castData.substring(1, castData.length() - 1);
+		data.add(castData);
+		data.add(movie.overallUserRating);
+		data.add(Integer.toString(movie.ticketSales));
+		String reviewData = movie.reviewArr.toString();
+		reviewData = reviewData.substring(1, reviewData.length() - 1);
+		data.add(reviewData);
+		String showtimeData = movie.showtimeArr.toString();
+		showtimeData = showtimeData.substring(1, showtimeData.length() - 1);
+		data.add(showtimeData);
+		data.add(movie.movieRating);
+		csvRW.writeToCSV("moviedatabase", data);
+	}
+
+=======
+>>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }
