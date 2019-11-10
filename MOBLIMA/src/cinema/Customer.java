@@ -156,7 +156,6 @@ public class Customer {
 		return bookinghistory;
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Takes in <code>Customer</code> object and writes all attributes and data into
 	 * customerdatabase. Utilizes csvRW.
@@ -174,6 +173,4 @@ public class Customer {
 		csvRW.writeToCSV("customerdatabase", data);
 	}
 
-=======
->>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }
