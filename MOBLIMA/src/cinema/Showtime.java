@@ -67,16 +67,16 @@ public class Showtime {
 
 
 	/**
-	 * Sets seating plan for this Showtime
+	 * Sets seating plan for this Showtime</br>
 	 * 
-	 * Seating plan in terms of seat[] index: 
-	 * 0,1,2,3,4,5 
-	 * 6,7,8,9,10,11
-	 *  etc
+	 * Seating plan in terms of seat[] index: </br>
+	 * 0,1,2,3,4,5 </br>
+	 * 6,7,8,9,10,11</br>
+	 *  etc</br>
 	 * 
-	 * so seat index = yCoor * no of columns + xCoor
+	 * so seat index = yCoor * no of columns + xCoor</br>
 	 * 
-	 * Will change the boolean 2D array to reflect the occupied status of the seats in seating plan
+	 * Will change the boolean 2D array to reflect the occupied status of the seats in seating plan</br>
 	 */
 	public void setSeatingPlan() {
 		ArrayList<String[]> seats_occupied;
