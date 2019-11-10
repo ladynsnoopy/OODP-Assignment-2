@@ -332,31 +332,40 @@ public class DisplayStaffPage {
 				}
 			}
 		}
-		// TODO if have time check valid showtimes
-		System.out.println("Enter date for new showtime (YYMMDD)");
-		String date = sc.next();
-		System.out.println("Enter time for new showtime (24h format)");
-		String time = sc.next();
-		String timing = date + time;
-
-		System.out.println("Press (1) to confirm edit");
-		System.out.println("Press (2) to re-enter edit");
-		System.out.println("Press (3) to cancel and return to menu");
-		int input;
 		while (true) {
-			if (sc.hasNextInt()) {
-				input = sc.nextInt();
-				if (input >= 1 && input <= 3) {
-					sc.nextLine();
-					break;
+			System.out.println("Enter date for new showtime (YYMMDD)");
+			String date = sc.next();
+			System.out.println("Enter time for new showtime (24h format)");
+			String time = sc.next();
+			String timing = date + time;
+
+			System.out.println("Press (1) to confirm edit");
+			System.out.println("Press (2) to re-enter edit");
+			System.out.println("Press (3) to cancel and return to menu");
+			int input;
+			while (true) {
+				if (sc.hasNextInt()) {
+					input = sc.nextInt();
+					if (input >= 1 && input <= 3) {
+						sc.nextLine();
+						break;
+					}
+				} else {
+					sc.next();
 				}
-			} else {
-				sc.next();
+				System.out.println("Invalid Input. Please enter a number between 1 and 3.");
 			}
-			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
+			switch (input) {
+			case (1):
+				StaffApp.createShowtime(cinemaID, timing, movie);
+				return;
+			case (2):
+				continue;
+			case (3):
+				return;
+			}
 		}
 
-		StaffApp.createShowtime(cinemaID, timing, movie);
 	}
 
 	public static void editShowtimeDetails() {
@@ -373,7 +382,7 @@ public class DisplayStaffPage {
 		StaffApp.createCineplexAndCinemas();
 		String cinemaID = null;
 		while (loop) {
-			System.out.println("Enter cinema to add showtime:");
+			System.out.println("Enter cinema to update showtime:");
 			cinemaID = sc.nextLine();
 			for (int i = 0; i < StaffApp.cinemaArr.size(); i++) {
 				if (cinemaID.equals(StaffApp.cinemaArr.get(i).getCinemaID())) {
@@ -386,11 +395,22 @@ public class DisplayStaffPage {
 			}
 		}
 
+		ArrayList<String> moviedata = new ArrayList<String>(csvRW.search("moviedatabase", "Name", movie));
+		String existingIDs = moviedata.get(10);
+
 		System.out.println("Enter showtimeID to edit:");
 		String showtimeID = sc.next();
-		System.out.println("Enter new timing for the showtime:");
-		String timing = sc.next();
-		StaffApp.updateShowtimes(showtimeID, cinemaID, movie, timing);
+
+		if (existingIDs.contains(showtimeID)) {
+			System.out.println("Enter new timing for the showtime:");
+			String timing = sc.next();
+			StaffApp.updateShowtimes(showtimeID, cinemaID, movie, timing);
+			return;
+		} else {
+			System.out.println("Showtime does not exist for movie");
+			System.out.println("Returning to menu");
+			return;
+		}
 
 	}
 

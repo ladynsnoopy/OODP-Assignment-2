@@ -242,7 +242,6 @@ public class StaffApp {
 	// yo junteng mah man i think its right but pls double check for me HAHA
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
-		String movieID;
 		// checking if cinemaID exists
 		for (int i = 0; i < cinemaArr.size(); i++) {
 			if (cinemaID.equals(cinemaArr.get(i).getCinemaID())) {
@@ -253,25 +252,9 @@ public class StaffApp {
 				return;
 			}
 		}
-		// Check if movietitle exists
-		ArrayList<String[]> moviedata = new ArrayList<String[]>(csvRW.readCSV("moviedatabase"));
-		for (int i = 0; i < moviedata.size(); i++) {
-			if (moviedata.get(i)[1].equals(movietitle)) {
-				// check if showtimeID exists
-				movieID = moviedata.get(i)[0];
-				String[] showtimes = moviedata.get(1)[10].split(",");
-				// if user tries to update new showtime a new one will be created
-				for (int j = 0; j < showtimes.length; j++) {
-					if (showtimes[j].equals(showtimeID))
-						createShowtime(cinemaID, timing, movietitle);
-				}
-				break;
-			} else if (i == moviedata.size() - 1) {
-				System.out.println("Invalid Movie ID");
-				return;
-			}
-		}
+				
 		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
+		System.out.println("Showtime updated");
 		return;
 	}
 
