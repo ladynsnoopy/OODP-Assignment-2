@@ -30,17 +30,38 @@ public class Showtime {
 	 * Unique showtime ID for this <code>Showtime</code>
 	 */
 	private int showtimeID;
+	/**
+	 * Counter that will increment for every new <code>Showtime</code> object
+	 */
 	private static int showtime_counter = counterInit();
 	// boolean 2D array to keep track of occupied status of seats in a 2D form
+	/**
+	 * Boolean representation of seating plan. <code>true</code> if seat is
+	 * occupied, <code>false</code> if seat is unoccupied. Provided x and y
+	 * coordinates of a particular seat, can check if seat is occupied in
+	 * <code>seatingplan[x-coor][y-coor]</code>.
+	 */
 	private boolean[][] seatingplan;
 	// list of seats that are in this Showtime
+	/**
+	 * Simple list of <code>Seat</code> objects that belong to this
+	 * <code>Showtime</code>.
+	 * 
+	 * @see Seat
+	 */
 	private Seat[] seatArr;
-	
-	public static int counterInit() {
-		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("Showtimedatabase"));
-		return data.size();
-	}
 
+	/**
+	 * Constructor of <code>Showtime</code> object.</br>
+	 * Size of <code>searArr</code> will be determined by total number of rows and
+	 * columns fetched from <code>Cinema</code> class.</br>
+	 * Size of <code>boolean</code> seatingplan will be determined by total number
+	 * of rows and columns fetched from <code>Cinema</code> class.
+	 * 
+	 * @param cinema <code>Cinema</code> object showtime is located in
+	 * @param timing Timing of this showtime in YYYYMMDDHHmm format
+	 * @see Seat
+	 */
 	public Showtime(Cinema cinema, String timing) {
 		super();
 		this.cinema = cinema;
@@ -80,8 +101,8 @@ public class Showtime {
 	}
 
 	/**
-	 * generates appropriate number of seats according to cinema size, then adds
-	 * into seatArr
+	 * Generates appropriate number of seats according to cinema size, then adds
+	 * into <code>seatArr</code>
 	 */
 	private void generateSeats() {
 		int count = 0;
@@ -94,9 +115,12 @@ public class Showtime {
 	}
 
 	/**
-	 * Sets seating plan for this Showtime
+	 * Sets seating plan for this <code>Showtime</code>
 	 * 
-	 * Seating plan in terms of seat[] index: 0,1,2,3,4,5 6,7,8,9,10,11 etc
+	 * Seating plan in terms of <code>seat[]</code> index:</br>
+	 * 0,1,2,3,4,5 </br>
+	 * 6,7,8,9,10,11 </br>
+	 * etc
 	 * 
 	 * so seat index = yCoor * no of columns + xCoor
 	 * 
@@ -125,6 +149,15 @@ public class Showtime {
 		for (int i = 0; i < cinema.getTotalNumSeat(); i++) {
 			seatingplan[seatArr[i].getyCoor()][seatArr[i].getxCoor()] = seatArr[i].isOccupied();
 		}
+	}
+
+	/**
+	 * Counts number of entries in data
+	 * @return
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("Showtimedatabase"));
+		return data.size();
 	}
 
 }
