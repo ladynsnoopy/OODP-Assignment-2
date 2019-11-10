@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * An control class that will handle methods relating to the customer module. It
- * will manage and control objects that are neccessary to allow the customer
+ * will manage and control objects that are necessary to allow the customer
  * module to search/list movies, view movie details, check seat availability and
  * allow selection of seats, book and purchase movie tickets, and view past
  * booking history of the customer.
@@ -20,20 +20,25 @@ import java.util.ArrayList;
 public class CustomerApp implements DisplayUserPage {
 	/**
 	 * Creates a new customer object and adds it into customer database
-	 * @param name Name of customer
+	 * 
+	 * @param name      Name of customer
 	 * @param mobileNum Mobile Number of a customer
-	 * @param email Email of a customer
+	 * @param email     Email of a customer
+	 * @see Customer
 	 */
 
 	public static void createCustomer(String name, String mobileNum, String email) {
 		Customer a = new Customer(name, mobileNum, email);
 		CustomerToCSV.addCustomerToCSV(a);
 	}
+
 	/**
 	 * Checks if a customer is an existing customer
+	 * 
 	 * @param email Email of a customer
-	 * @return -1 if customer's email is not found in the customer database. 
-	 * 	Returns Customer ID if customer's email is found in the customer database
+	 * @return -1 if customer's email is not found in the customer database. Returns
+	 *         Customer ID if customer's email is found in the customer database
+	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
 	public static int customerExists(String email) {
 		if (csvRW.search("customerdatabase", "Email", email) == null)
@@ -45,8 +50,10 @@ public class CustomerApp implements DisplayUserPage {
 
 	// returns a string array of movies
 	/**
+	 * Returns names of all movies that exist in database.
 	 * 
 	 * @return <code>String</code> array of movie names
+	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
 	public static String[] searchMovies() {
 		ArrayList<String[]> list = csvRW.readCSV("moviedatabase");
@@ -60,8 +67,19 @@ public class CustomerApp implements DisplayUserPage {
 	}
 
 	// link to Movie class
-	// returns a 2d string array of timings for a particular movie eg. [[ShowtimeID,Timing],[ShowtimeID,Timing],....]
-	// 
+	// returns a 2d string array of timings for a particular movie eg.
+	// [[ShowtimeID,Timing],[ShowtimeID,Timing],....]
+	//
+	/**
+	 * Searches through database and returns a 2D array of showtime timings for a
+	 * particular movie. Is meant to help in creating <code>Showtime</code> objects.
+	 * 
+	 * @param movieID movieID of target movie
+	 * @return 2D array of showtime timings for a particular movie in
+	 *         <code>[[ShowtimeID,Timing],[ShowtimeID,Timing],....]</code> format
+	 * @see Showtime
+	 * @see csvRW#search(String, String, String)
+	 */
 	public static String[][] getShowtimesForMovie(int movieID) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
 		String a = result.get(10); // Get all the showtimeID of the particular movie
@@ -89,14 +107,30 @@ public class CustomerApp implements DisplayUserPage {
 		}
 
 	}
-    // gets all the details of a movie and stores into ArrayList<String>
+
+	// gets all the details of a movie and stores into ArrayList<String>
+	/**
+	 * Searches through database and returns all details of target movie. Will print
+	 * <code>No reviews has been written about this movie yet.</code> if no reviews
+	 * can be found. </br>
+	 * Otherwise will be in sequence of Name, Movie Type, Showing Status, Synopsis,
+	 * Director, Cast, Overall Rating, Movie Age Rating, Comment, and User's Rating
+	 * </br>
+	 * Will call <code>searchforReview</code>.
+	 * 
+	 * @param movieID Unique <code>movieID</code> of target movie
+	 * @return All details of a target movie stored in a
+	 *         <code>ArrayList&lt;String&gt;</code>.
+	 * @see csvRW#search(String, String, String)
+	 * @see CustomerApp#searchforReview(int)
+	 */
 	public static ArrayList<String> searchMovieDetails(int movieID) {
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
 		ArrayList<String> result = new ArrayList<String>();
 		result.add("Name: " + movie_row.get(1));
 		result.add("Movie Type: " + movie_row.get(2));
 		result.add("Showing Status: " + movie_row.get(3));
-		result.add("Sypnosis: " + movie_row.get(4));
+		result.add("Synopsis: " + movie_row.get(4));
 		result.add("Director: " + movie_row.get(5));
 		String cutted = movie_row.get(6).substring(1, movie_row.get(6).length() - 1);
 		result.add("Cast: " + cutted); // make sure cast is more than one
@@ -108,33 +142,53 @@ public class CustomerApp implements DisplayUserPage {
 			return result;
 		} else if (a.length() == 1) { // if there is only one review
 			String[] review = searchforReview(Integer.parseInt(a));
-			result.add("Comment: "+ review[1]); 
-			result.add("User's Rating: "+ review[0]);
+			result.add("Comment: " + review[1]);
+			result.add("User's Rating: " + review[0]);
 
 			return result;
 		} else {
 
-			String cut = a.substring(1, a.length() - 1); //if there are more than one review
+			String cut = a.substring(1, a.length() - 1); // if there are more than one review
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			for (int j = 0; j < arr.length; j++) {
 				String[] review = searchforReview(Integer.parseInt(arr[j]));
-				result.add("Comment: "+ review[1]);
-				result.add("User Rating: "+ review[0]);
- 			}
+				result.add("Comment: " + review[1]);
+				result.add("User Rating: " + review[0]);
+			}
 			return result;
 
 		}
 	}
-	// returns an String array of size 2 containing the user rating and comment given a particular reviewID
-	public static String[] searchforReview(int reviewID) { 
+
+	// returns an String array of size 2 containing the user rating and comment
+	// given a particular reviewID
+	/**
+	 * Searches through database for review details (User rating, comment) given a
+	 * target <code>reviewID</code>.
+	 * 
+	 * @param reviewID unique <code>reviewID</code> for target review
+	 * @return <code>String</code> array of size 2 containing the user rating and
+	 *         comment in indexes 0 and 1 respectively
+	 * @see csvRW#search(String, String, String)
+	 */
+	public static String[] searchforReview(int reviewID) {
 		String a = Integer.toString(reviewID);
-		ArrayList <String> result = csvRW.search("reviewdatabase", "ReviewID",a);
+		ArrayList<String> result = csvRW.search("reviewdatabase", "ReviewID", a);
 		String[] rating_comment = new String[2];
 		rating_comment[0] = result.get(0);
 		rating_comment[1] = result.get(1);
 		return rating_comment;
 	}
 
+	/**
+	 * Searches through database for matching <code>movieID</code> given movie
+	 * title.
+	 * 
+	 * @param name Movie title of target movie
+	 * @return <code>movieID</code> that matches target movie if target found. Else,
+	 *         returns -1.
+	 * @see csvRW#search(String, String, String)
+	 */
 	public static int searchOneMovie(String name) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", name);
 		if (result != null)
@@ -142,15 +196,27 @@ public class CustomerApp implements DisplayUserPage {
 		else
 			return -1;
 	}
+
 	// this function deals with the seatingplan database when a ticket is bought
+	/**
+	 * Carries out purchase of ticket by customer when given <code>showtimeID</code>
+	 * and x and y coordinates of desired seat. Will store seat information into
+	 * seatingplandatabase when bought.
+	 * 
+	 * @param showtimeID Unique <code>showtimeID</code> of target showtime
+	 * @param x          X-coordinate of seat
+	 * @param y          Y-coordinate of seat
+	 * @return -1 if seat is already occupied. </br>
+	 *         1 if purchase was successful.
+	 */
 	public static int buyTicket(int showtimeID, int x, int y) {
 
 		ArrayList<String[]> occupied = csvRW.searchMultipleRow("seatingplandatabase", "ShowtimeID",
 				Integer.toString(showtimeID)); // checks the seatingplan database to see which are the occupied seats
 		boolean dontsearch = false;
 		if (occupied == null) {
-			System.out.println("This shit was null");
-			dontsearch = true; // 
+//			System.out.println("This shit was null");
+			dontsearch = true; //
 		}
 		String target = Integer.toString(x) + "," + Integer.toString(y);
 		if (dontsearch == false) {
@@ -178,17 +244,25 @@ public class CustomerApp implements DisplayUserPage {
 		return 1; // purchase is successful
 
 	}
-
+//TODO finish the rest @JT
 	// returns TicketID
-	// this function deals with the creation of the Ticket object, addition into the Ticket database, alter the TicketSales in movie database
+	// this function deals with the creation of the Ticket object, addition into the
+	// Ticket database, alter the TicketSales in movie database
 	// and alter movie object's ticket sales count
+	/**
+	 * 
+	 * @param showtimeID
+	 * @param movietitle
+	 * @param isAdult
+	 * @return
+	 */
 	public static Ticket addTicket(int showtimeID, String movietitle, int isAdult) {
 		// I have assumed that by this stage all the info entered for parameters is
 		// correct
 		int index = 0;
 		for (int i = 0; i < StaffApp.showtimeArr.size(); i++) {
 			if (showtimeID == StaffApp.showtimeArr.get(i).getShowtimeID()) {
-				index = i;  // get the index of the showtime object in the showtimeArr
+				index = i; // get the index of the showtime object in the showtimeArr
 				break;
 			}
 		}
@@ -196,8 +270,9 @@ public class CustomerApp implements DisplayUserPage {
 		addnew.setIsAdult(isAdult); // set the isAdult option of Ticket
 		// TODO make a global Price object
 		Price prices = new Price(9.00, 6.50, 5.00, 1.1, 3.00);
-		addnew.setFinalPrice(StaffApp.calendar, prices); // set the final price of the Ticket based on holiday and weekend dates in Calendar and Prices 
-		addnew.setMovietitle(movietitle); 
+		addnew.setFinalPrice(StaffApp.calendar, prices); // set the final price of the Ticket based on holiday and
+															// weekend dates in Calendar and Prices
+		addnew.setMovietitle(movietitle);
 		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticket database
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = movie_row.get(0);
@@ -217,18 +292,20 @@ public class CustomerApp implements DisplayUserPage {
 		return addnew;
 	}
 
-	// returns String array of size 2 containing TID and total amount of a given receipt
+	// returns String array of size 2 containing TID and total amount of a given
+	// receipt
 	public static String[] addPayment(ArrayList<Ticket> arr, String paymentmode) {
 		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr, paymentmode); // creates a new Receipt object
 		receipt.calTotalAmt(); // calculates the total amount of the Receipt
 		ReceiptToCSV.addReceiptToCSV(receipt); // writes it to the Receipt database
 		result[0] = receipt.getTID(); //
-		result[1] = Double.toString(receipt.getTotalAmt()); 
+		result[1] = Double.toString(receipt.getTotalAmt());
 		return result;
 	}
 
-	// returns one 2D array of all the bookingHistory eg. [ [TID, Payment Mode, Movie Name, Total Amount], ...]
+	// returns one 2D array of all the bookingHistory eg. [ [TID, Payment Mode,
+	// Movie Name, Total Amount], ...]
 	public static String[][] searchBookingHistory(int custID) {
 
 		ArrayList<String> tids = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
@@ -239,7 +316,7 @@ public class CustomerApp implements DisplayUserPage {
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
 				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i]);
-				if(b == null)
+				if (b == null)
 					System.out.println("THIS IS NULL");
 				inside[0] = arr[i];
 				inside[1] = b.get(1);
@@ -251,7 +328,7 @@ public class CustomerApp implements DisplayUserPage {
 		} else {
 			String[][] result = new String[1][4];
 			String[] inside = new String[4];
-			ArrayList<String> b = csvRW.search("paymentdatabase", "TID",a);
+			ArrayList<String> b = csvRW.search("paymentdatabase", "TID", a);
 			inside[0] = a;
 			inside[1] = b.get(1);
 			inside[2] = b.get(2);
@@ -259,27 +336,30 @@ public class CustomerApp implements DisplayUserPage {
 			result[0] = inside;
 			return result;
 		}
-		
+
 	}
 
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
 
 		Review a = new Review(rating, comment, userID);
 		ReviewToCSV.addReviewToCSV(a);
-		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name); // search for that movie in movie database
+		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name); // search for that movie in
+																							// movie database
 		String id = movie_row.get(0);
 		String reviews = movie_row.get(9);
 		for (int k = 0; k < StaffApp.movieArr.size(); k++) {
 			if (searchOneMovie(movie_name) == StaffApp.movieArr.get(k).getMovieID()) {
-				StaffApp.movieArr.get(k).addReview(a);       // add the review to the movie object in movieArr
+				StaffApp.movieArr.get(k).addReview(a); // add the review to the movie object in movieArr
 				String userRating = Double.toString(StaffApp.movieArr.get(k).getOverallUserRatingInDouble());
-				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the movie database
+				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the
+																					// movie database
 				break;
 			}
 		}
 		// if there are no reviews initially
 		if (reviews.equals("")) {
-			csvRW.editCSV("moviedatabase", id, "ReviewID", Integer.toString(a.getReviewID())); // write reviewID to movie database
+			csvRW.editCSV("moviedatabase", id, "ReviewID", Integer.toString(a.getReviewID())); // write reviewID to
+																								// movie database
 
 		} else {
 			// if there are more than one review
@@ -302,7 +382,8 @@ public class CustomerApp implements DisplayUserPage {
 
 	}
 
-	// returns everything in customer database except Transaction history given a CustomerID
+	// returns everything in customer database except Transaction history given a
+	// CustomerID
 	public static String[] findCustomer(int custID) {
 		ArrayList<String> row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String[] result = new String[4];
@@ -312,13 +393,14 @@ public class CustomerApp implements DisplayUserPage {
 		result[3] = row.get(3);
 		return result;
 	}
+
 	// writes to customer database for a new receipt
 	public static void addReceiptinCustomerDatabase(int custID, String TID) {
 		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String id = cust_row.get(0);
-		System.out.println("id:"+ id);
+		System.out.println("id:" + id);
 		String TIDS = cust_row.get(4);
-		System.out.println("TIDS:"+ TIDS);
+		System.out.println("TIDS:" + TIDS);
 		if (TIDS.equals("[]")) { // when there are no receipts initially
 			csvRW.editCSV("customerdatabase", id, "TID", TID);
 
@@ -344,4 +426,3 @@ public class CustomerApp implements DisplayUserPage {
 	// TODO view sorted top 5
 
 }
-
