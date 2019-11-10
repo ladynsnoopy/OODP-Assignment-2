@@ -1,5 +1,6 @@
 package cinema;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainDisplayPage {
@@ -31,16 +32,40 @@ public class MainDisplayPage {
 				DisplayUserPage.displayUserPage();
 				break;
 			case 2:
-				DisplayStaffPage.displayStaffPage();
+				if (loginVerification())
+					DisplayStaffPage.displayStaffPage();
+				else {
+					System.out.println("Login failed");
+				}
 				break;
 			case 3:
 				loop = false;
 				break;
 			}
 		}
-			
-		
-		
+	}
+
+	public static boolean loginVerification() {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("Enter username:");
+			String user = sc.next();
+			System.out.println("Enter password:");
+			String password = sc.next();
+			ArrayList<String> staffDetails = new ArrayList<String>(csvRW.search("staffdatabase", "Username", user));
+			if (staffDetails.equals(null)) {
+				System.out.println("Invalid username");
+				return false;
+			}
+			if (staffDetails.get(1).contentEquals(password)) {
+				System.out.println("Login successful");
+				return true;
+			}
+			else {
+				System.out.println("Invalid password");
+				return false;
+			}
+		}
 
 	}
 
