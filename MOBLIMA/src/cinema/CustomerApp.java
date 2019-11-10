@@ -21,7 +21,7 @@ public class CustomerApp {
 
 	public static void createCustomer(String name, String mobileNum, String email) {
 		Customer a = new Customer(name, mobileNum, email);
-		CustomerToCSV.addCustomerToCSV(a);
+		Customer.addCustomerToCSV(a);
 	}
 
 	// returns customerID if it exists
@@ -181,7 +181,7 @@ public class CustomerApp {
 		Price prices = new Price(9.00, 6.50, 5.00, 1.1, 3.00);
 		addnew.setFinalPrice(StaffApp.calendar, prices);
 		addnew.setMovietitle(movietitle);
-		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticketdatabase
+		Ticket.addTicketToCSV(addnew); // write new ticket to ticketdatabase
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = movie_row.get(0);
 		int ticketSalesCount = Integer.parseInt(movie_row.get(8)) + 1;
@@ -205,7 +205,7 @@ public class CustomerApp {
 		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr, paymentmode);
 		receipt.calTotalAmt();
-		ReceiptToCSV.addReceiptToCSV(receipt);
+		Receipt.addReceiptToCSV(receipt);
 		result[0] = receipt.getTID();
 		result[1] = Double.toString(receipt.getTotalAmt());
 		return result;
@@ -247,7 +247,7 @@ public class CustomerApp {
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
 
 		Review a = new Review(rating, comment, userID);
-		ReviewToCSV.addReviewToCSV(a);
+		Review.addReviewToCSV(a);
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name);
 		String id = movie_row.get(0);
 		String reviews = movie_row.get(9);
