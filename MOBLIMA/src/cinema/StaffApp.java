@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class StaffApp implements DisplayStaffPage{
+public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
 	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();

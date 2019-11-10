@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  */
 
-public class CustomerApp {
+public class CustomerApp implements DisplayUserPage {
 	/**
 	 * Creates a new customer object and adds it into customer database
 	 * @param name Name of customer

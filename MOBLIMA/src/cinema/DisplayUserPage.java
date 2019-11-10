@@ -1,7 +1,7 @@
 package cinema;
 import java.util.ArrayList;
 import java.util.Scanner;
-public class DisplayUserPage {
+interface DisplayUserPage {
 	public static  void menu()
 	{
 		Scanner sc = new Scanner(System.in);
