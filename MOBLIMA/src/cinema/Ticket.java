@@ -8,12 +8,21 @@ public class Ticket {
 	private int isAdult;
 //	private boolean isWeekend;
 	private int ticketID;
-	static int counter = 1;
+	static int counter = counterInit();
 	private double finalPrice;
 	public Ticket(Showtime showtime) {
 		super();
 		this.showtime = showtime;
 		this.ticketID = counter++;
+	}
+	/**
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("ticketdatabase"));
+		return data.size();
 	}
 	
 	public int getIsAdult() {

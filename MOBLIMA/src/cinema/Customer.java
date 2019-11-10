@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Customer object that contains unique customer ID, name, mobile number, email,
- * and an <code>ArrayList<Receipt></code> of receipts of previous bookings.
+ * and an <code>ArrayList&lt;Receipt&gt;</code> of receipts of previous bookings.
  * 
  * @author Myat Hmu Khin
  * @version 1.0
@@ -16,7 +16,7 @@ public class Customer {
 	 * <code>Static</code> counter that will increment every time a
 	 * <code>Customer</code> object is created.
 	 */
-	static int count = 1;
+	static int count  = counterInit();
 	/**
 	 * Customer name, mobile number and email in <code>String</code> format.
 	 */
@@ -46,6 +46,15 @@ public class Customer {
 		this.email = email;
 		this.custID = count++;
 		bookingHistory = new ArrayList<Receipt>();
+	}
+	/**
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("customerdatabase"));
+		return data.size();
 	}
 
 	/**
@@ -121,9 +130,9 @@ public class Customer {
 	}
 
 	/**
-	 * Gets lists of previous receipts in <code>ArrayList<Receipt></code> format.
+	 * Gets lists of previous receipts in <code>ArrayList&lt;Receipt&gt;</code> format.
 	 * 
-	 * @return <code>ArrayList<Receipt></code> of receipts of previous bookings
+	 * @return <code>ArrayList&lt;Receipt&gt;</code> of receipts of previous bookings
 	 * @see Receipt
 	 */
 	public ArrayList<Receipt> getBookingHistory() {
@@ -142,10 +151,10 @@ public class Customer {
 
 	/**
 	 * Gets ticket IDs of receipts in booking history in
-	 * <code>ArrayList<String></code> format.
+	 * <code>ArrayList&lt;String&gt;</code> format.
 	 * 
 	 * @return Ticket IDs of receipts in booking history in
-	 *         <code>ArrayList<String></code> format.
+	 *         <code>ArrayList&lt;String&gt;</code> format.
 	 * @see Receipt#getTID()
 	 */
 	public ArrayList<String> getTIDs() {
@@ -155,7 +164,6 @@ public class Customer {
 		}
 		return bookinghistory;
 	}
-
 
 	/**
 	 * Takes in <code>Customer</code> object and writes all attributes and data into
@@ -174,5 +182,4 @@ public class Customer {
 		csvRW.writeToCSV("customerdatabase", data);
 	}
 
-
-}
+}s

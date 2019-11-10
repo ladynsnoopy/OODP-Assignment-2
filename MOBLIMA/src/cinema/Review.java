@@ -7,7 +7,7 @@ public class Review {
 	private String comment;
 	private String userID;
 	private int reviewID;
-	private static int review_counter=1;
+	private static int review_counter= counterInit();
 
 	public Review(int rating, String comment, String userID) {
 		this.rating=rating;
@@ -15,6 +15,15 @@ public class Review {
 		this.userID=userID;
 		this.reviewID=review_counter++;
 		
+	}
+	/**
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
+	 */
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("reviewdatabase"));
+		return data.size();
 	}
 	
 	public int getRating() {
@@ -49,7 +58,6 @@ public class Review {
 		this.reviewID = aReviewID;
 	}
 
-
 	/**
 	 * Takes in <code>Review</code> object and writes all attributes and data into
 	 * reviewdatabase. Utilizes csvRW.
@@ -57,8 +65,7 @@ public class Review {
 	 * @param review <code>Review</code> object to be written into database
 	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
-	public void addReviewToCSV(Review review)
-	{
+	public void addReviewToCSV(Review review) {
 		ArrayList<String> data = new ArrayList<String>();
 		data.add(Integer.toString(review.rating));
 		data.add(review.comment);
@@ -66,5 +73,4 @@ public class Review {
 		data.add(Integer.toString(review.reviewID));
 		csvRW.writeToCSV("reviewdatabase", data);
 	}
-
 }

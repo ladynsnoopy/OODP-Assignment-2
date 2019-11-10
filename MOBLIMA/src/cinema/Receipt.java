@@ -59,7 +59,6 @@ public class Receipt {
 		return dateFormat.format(date);
 	}
 
-
 	/**
 	 * Takes in <code>Receipt</code> object and writes all attributes and data into
 	 * paymentdatabase. Utilizes csvRW.
@@ -75,6 +74,5 @@ public class Receipt {
 		data.add(Double.toString(receipt.totalAmt));
 		csvRW.writeToCSV("paymentdatabase", data);
 	}
-
 
 }

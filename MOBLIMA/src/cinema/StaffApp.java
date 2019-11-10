@@ -5,12 +5,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class StaffApp {
+public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
 	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
 	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 	public static Calendar calendar = createCalendar();
+	public static Price price = new Price();
 
 	/**
 	 * Creates a staff account so staff can login and saves login info to
@@ -368,4 +369,18 @@ public class StaffApp {
 
 	}
 
+	public static String[] searchShowtimes() {
+		ArrayList<String[]> list = csvRW.readCSV("showtimedatabase");
+		String[] showtimes = new String[list.size()];
+		int num = 0;
+		for (int i = 0; i < list.size(); i++) {
+			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " +  list.get(i)[1] + " |Timing:" + list.get(i)[2]);
+			num++;
+		}
+		return showtimes;
+	}
+	
+	
+	
+	
 }
