@@ -152,24 +152,29 @@ public class Showtime {
 	}
 
 	/**
-	 * Counts number of entries in data
-	 * @return
+	 * Counts number of entries in data to act as counter for ID
+	 * 
+	 * @return <code>int</code> counter
 	 */
 	public static int counterInit() {
 		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("Showtimedatabase"));
 		return data.size();
 	}
 
+	/**
+	 * Takes in this <code>Showtime</code> object and writes all attributes and data
+	 * into reviewdatabase. Utilizes csvRW.
+	 * 
+	 * @param showtime this <code>Showtime</code> object to be written into database
+	 * @see csvRW#writeToCSV(String, ArrayList)
+	 */
+	public void addShowtimeToCSV(Showtime showtime) {
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(Integer.toString(showtime.showtimeID));
+		data.add(showtime.cinema.getCinemaID());
+		data.add(showtime.timing);
+		csvRW.writeToCSV("showtimedatabase", data);
 
- 	public void addShowtimeToCSV(Showtime showtime) {
- 		ArrayList<String> data = new ArrayList<String>();
- 		data.add(Integer.toString(showtime.showtimeID));
- 		data.add(showtime.cinema.getCinemaID());
- 		data.add(showtime.timing);
- 		csvRW.writeToCSV("showtimedatabase", data);
-	
- 	}
-
-
+	}
 
 }
