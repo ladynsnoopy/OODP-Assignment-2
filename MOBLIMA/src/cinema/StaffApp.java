@@ -21,7 +21,7 @@ public class StaffApp {
 	 */
 	public static void createStaff(String username, String password) {
 		Staff a = new Staff(username, password);
-		Staff.addStaffToCSV(a);
+		a.addStaffToCSV(a);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class StaffApp {
 			String director, String type, String movieRating) {
 		Movie a = new Movie(name, showingStatus, synopsis, cast, director, type, movieRating);
 		movieArr.add(a);
-		Movie.addMovieToCSV(a);
+		a.addMovieToCSV(a);
 	}
 
 	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
@@ -217,7 +217,7 @@ public class StaffApp {
 		String showtimes;
 		Showtime showtime = new Showtime(temp, timing);
 		showtimeArr.add(showtime);
-		Showtime.addShowtimeToCSV(showtime);
+		showtime.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
 		if (result == null)
