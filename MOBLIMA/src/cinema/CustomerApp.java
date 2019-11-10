@@ -84,14 +84,13 @@ public class CustomerApp implements DisplayUserPage {
 		ArrayList<String> result = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
 		String a = result.get(10); // Get all the showtimeID of the particular movie
 		if (a.length() != 1) {
-			System.out.println(a);
 			String cut = a.substring(1, a.length() - 1);
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			String[][] showtimes = new String[arr.length][2];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[2];
 				ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID", arr[i].replaceAll("\\s+", ""));
-				inside[0] = arr[i];
+				inside[0] = arr[i].replaceAll("\\s+", "");
 				inside[1] = b.get(2);
 				showtimes[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
@@ -99,7 +98,7 @@ public class CustomerApp implements DisplayUserPage {
 		} else {
 			String[][] showtimes = new String[1][2];
 			String[] inside = new String[2];
-			ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID", a);
+			ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID", a.replaceAll("\\s+", ""));
 			inside[0] = a;
 			inside[1] = b.get(b.size() - 1);
 			showtimes[0] = inside;
@@ -284,7 +283,6 @@ public class CustomerApp implements DisplayUserPage {
 		for (int k = 0; k < StaffApp.movieArr.size(); k++) {
 			if (searchOneMovie(movietitle) == StaffApp.movieArr.get(k).getMovieID()) {
 				StaffApp.movieArr.get(k).increaseTicketSalesByOne();
-				System.out.println("Movie object ticket count increased");
 				break;
 			}
 		}
@@ -310,13 +308,14 @@ public class CustomerApp implements DisplayUserPage {
 
 		ArrayList<String> tids = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String a = tids.get(4); // Get all the receipt's TID of the customer
-		if (a.length() != 1) {
+		if (a.length() > 15) {
+			a = a.substring(1,a.length()-1);
 			String[] arr = a.split(","); // store the TIDs in a string array
 			String[][] result = new String[arr.length][4];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
-				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i]);
-				if (b == null)
+				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s",""));
+				if(b == null)
 					System.out.println("THIS IS NULL");
 				inside[0] = arr[i];
 				inside[1] = b.get(1);
@@ -349,10 +348,10 @@ public class CustomerApp implements DisplayUserPage {
 		String reviews = movie_row.get(9);
 		for (int k = 0; k < StaffApp.movieArr.size(); k++) {
 			if (searchOneMovie(movie_name) == StaffApp.movieArr.get(k).getMovieID()) {
-				StaffApp.movieArr.get(k).addReview(a); // add the review to the movie object in movieArr
-				String userRating = Double.toString(StaffApp.movieArr.get(k).getOverallUserRatingInDouble());
-				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the
-																					// movie database
+				StaffApp.movieArr.get(k).addReview(a);       // add the review to the movie object in movieArr
+				String userRating = StaffApp.movieArr.get(k).getOverallUserRating();
+				System.out.println("overall user rating: " + userRating);
+				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the movie database
 				break;
 			}
 		}
@@ -398,17 +397,14 @@ public class CustomerApp implements DisplayUserPage {
 	public static void addReceiptinCustomerDatabase(int custID, String TID) {
 		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String id = cust_row.get(0);
-		System.out.println("id:" + id);
 		String TIDS = cust_row.get(4);
-		System.out.println("TIDS:" + TIDS);
 		if (TIDS.equals("[]")) { // when there are no receipts initially
 			csvRW.editCSV("customerdatabase", id, "TID", TID);
 
 		} else {
 			// if there are more than one receipt initially
-			if (TIDS.length() != 1) {
-				String cut = TIDS.substring(1, TIDS.length() - 1);
-				String[] arr = cut.split(",");
+			if (TIDS.length() < 15) {
+				String[] arr = TIDS.split(",");
 				String b = "";
 				for (int i = 0; i < arr.length; i++) {
 					b += arr[i] + ",";

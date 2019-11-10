@@ -139,7 +139,7 @@ interface DisplayUserPage extends MainDisplayPage {
 			System.out.println("Top 5 movies by ticket sales:");
 			break;
 		}
-		for (int i=0; i<=5; i++)
+		for (int i=0; i<5; i++)
 		{
 			System.out.println(StaffApp.showTopMovies(selection).get(i));
 		};
@@ -180,8 +180,9 @@ interface DisplayUserPage extends MainDisplayPage {
 				String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
 				for(int i = 0; i< showtimes.length;i++)
 				{
+					String showstring = showtimes[i][1];
 					System.out.println("Showtime ID: "+ showtimes[i][0]);
-					System.out.println("Time and Date: "+ showtimes[i][1]);
+					System.out.println("Time and Date: "+ showstring.substring(0,2)+ "-"+showstring.substring(2,4)+"-"+showstring.substring(4,6)+" "+showstring.substring(6));
 					System.out.println("-----------------------------------------");
 				}
 		    }
@@ -286,8 +287,9 @@ interface DisplayUserPage extends MainDisplayPage {
 			System.out.println("-----------------------------------------");
 			String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
 			for (int i = 0; i < showtimes.length; i++) {
-				System.out.println("Showtime ID: " + showtimes[i][0]);
-				System.out.println("Time and Date: " + showtimes[i][1]);
+				String showstring = showtimes[i][1];
+				System.out.println("Showtime ID: "+ showtimes[i][0]);
+				System.out.println("Time and Date: "+ showstring.substring(0,2)+ "-"+showstring.substring(2,4)+"-"+showstring.substring(4,6)+" "+showstring.substring(6));
 				System.out.println("-----------------------------------------");
 			}
 			System.out.println("Enter the showtime ID that you would like to buy: ");
@@ -298,7 +300,7 @@ interface DisplayUserPage extends MainDisplayPage {
 				if (sc.hasNextInt()) {
 					showID = sc.nextInt();
 					if (checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID entered is
-																			// valid
+														// valid
 						break;
 					}
 				} else {
