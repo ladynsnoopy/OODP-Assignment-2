@@ -139,7 +139,7 @@ interface DisplayUserPage extends MainDisplayPage {
 			System.out.println("Top 5 movies by ticket sales:");
 			break;
 		}
-		for (int i=0; i<=5; i++)
+		for (int i=0; i<5; i++)
 		{
 			System.out.println(StaffApp.showTopMovies(selection).get(i));
 		};

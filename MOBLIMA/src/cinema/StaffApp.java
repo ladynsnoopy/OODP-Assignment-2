@@ -331,13 +331,13 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 		switch (selection) {
 		case 1:
 			Collections.sort(movieObjArr, ratingsComparator);
-			for (int i = 0; i <= 5; i++) {
-				output.add(String.format("%s : %d", movieObjArr.get(i).getName(),
-						movieObjArr.get(i).getOverallUserRatingInDouble()));
+			for (int i = 0; i < 5; i++) {
+				output.add(String.format("%s : %s", movieObjArr.get(i).getName(),
+						movieObjArr.get(i).getOverallUserRating()));
 			}
 		case 2:
 			Collections.sort(movieObjArr, salesComparator);
-			for (int i = 0; i <= 5; i++) {
+			for (int i = 0; i < 5; i++) {
 				output.add(String.format("%s : %d", movieObjArr.get(i).getName(), movieObjArr.get(i).getTicketSales()));
 			}
 		}
