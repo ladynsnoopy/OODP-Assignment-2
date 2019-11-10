@@ -174,13 +174,16 @@ public class StaffApp {
 	/**
 	 * Checks that movie exists in moviedatabase when given title of movie.
 	 * 
+	 * 
 	 * @param title Title of movie.
 	 * @return boolean value true if exists, false if not.
 	 */
 	public static boolean movieExists(String title) {
 
 		if (csvRW.search("moviedatabase", "Name", title) == null) {
-			System.out.println("sOMETHING IS WRONG");
+			return false;
+		}
+		else if (csvRW.search("moviedatabase", "Name", title).get(3).equals("End of Showing")) {
 			return false;
 		}
 
