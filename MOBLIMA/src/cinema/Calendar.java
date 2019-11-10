@@ -16,12 +16,12 @@ public class Calendar {
 	 * <code>ArrayList</code> containing holiday dates in <code>String</code> format
 	 * YYYYMMDD
 	 */
-	private static ArrayList<String> holArr; // DATE = YYYYMMDD
+	private ArrayList<String> holArr; // DATE = YYYYMMDD
 	/**
 	 * <code>ArrayList</code> containing weekend dates in <code>String</code> format
 	 * YYYYMMDD
 	 */
-	private static ArrayList<String> weekendArr;
+	private ArrayList<String> weekendArr;
 
 	/**
 	 * Constructor for <code>Calendar</code> object.
@@ -41,7 +41,7 @@ public class Calendar {
 	 * @return ArrayList containing weekend dates in <code>String</code> format
 	 *         YYYYMMDD
 	 */
-	public static ArrayList<String> getWeekendArr() {
+	public ArrayList<String> getWeekendArr() {
 		return weekendArr;
 	}
 
@@ -57,7 +57,7 @@ public class Calendar {
 	 * @return ArrayList <code>ArrayList</code> containing holiday dates in
 	 *         <code>String</code> format YYYYMMDD
 	 */
-	public static ArrayList<String> getHolArr() {
+	public ArrayList<String> getHolArr() {
 		return holArr;
 	}
 
