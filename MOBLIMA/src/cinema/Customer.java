@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Customer object that contains unique customer ID, name, mobile number, email,
- * and an <code>ArrayList<Receipt></code> of receipts of previous bookings.
+ * and an <code>ArrayList&lt;Receipt&gt;</code> of receipts of previous bookings.
  * 
  * @author Myat Hmu Khin
  * @version 1.0
@@ -130,9 +130,9 @@ public class Customer {
 	}
 
 	/**
-	 * Gets lists of previous receipts in <code>ArrayList<Receipt></code> format.
+	 * Gets lists of previous receipts in <code>ArrayList&lt;Receipt&gt;</code> format.
 	 * 
-	 * @return <code>ArrayList<Receipt></code> of receipts of previous bookings
+	 * @return <code>ArrayList&lt;Receipt&gt;</code> of receipts of previous bookings
 	 * @see Receipt
 	 */
 	public ArrayList<Receipt> getBookingHistory() {
@@ -151,10 +151,10 @@ public class Customer {
 
 	/**
 	 * Gets ticket IDs of receipts in booking history in
-	 * <code>ArrayList<String></code> format.
+	 * <code>ArrayList&lt;String&gt;</code> format.
 	 * 
 	 * @return Ticket IDs of receipts in booking history in
-	 *         <code>ArrayList<String></code> format.
+	 *         <code>ArrayList&lt;String&gt;</code> format.
 	 * @see Receipt#getTID()
 	 */
 	public ArrayList<String> getTIDs() {
