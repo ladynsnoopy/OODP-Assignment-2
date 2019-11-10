@@ -3,8 +3,20 @@ package cinema;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Boundary class specifically for staff operations. Will be called by
+ * <code>MainDisplayPage</code> when staff module is selected. Mainly contains
+ * of menu options as well as preventing errors from occuring due to the input.
+ * 
+ * @author Myat Hmu Khin
+ * @author Lim Wai Leong
+ * @author Edhie Wahidin Michelle
+ * @version 1.0
+ * @since 2019-11-10
+ *
+ */
 public class DisplayStaffPage {
-
+//TODO @jun teng finish commenting documentation
 	public static void displayStaffPage() {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;

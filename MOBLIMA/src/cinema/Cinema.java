@@ -12,8 +12,7 @@ package cinema;
  */
 public class Cinema {
 	/**
-	 * Type of cinema in <code>String</code>. Can be
-	 * <code>Gold Class, Normal</code>.
+	 * Type of cinema in <code>String</code>. Can be "Gold Class", "Normal".
 	 */
 	private String type;
 	/**
@@ -40,7 +39,6 @@ public class Cinema {
 	 *                 "Normal".
 	 * @param totalRow Total number of rows of seats in a cinema.
 	 * @param totalCol Total number of columns of seats in a cinema.
-	 * @param cineplex Total number of seats in a cinema.
 	 * @param cinemaID Unique <code>String</code> cinema ID.
 	 */
 	public Cinema(String type, int totalRow, int totalCol, String cinemaID) {
@@ -54,8 +52,7 @@ public class Cinema {
 
 	/**
 	 * 
-	 * @return Type of cinema in <code>String</code>. Can be
-	 *         <code>Gold Class, Normal</code>.
+	 * @return Type of cinema in <code>String</code>. Can be "Gold Class", "Normal".
 	 */
 	public String getType() {
 		return type;
@@ -63,8 +60,8 @@ public class Cinema {
 
 	/**
 	 * 
-	 * @param type Type of cinema in <code>String</code>. Can be <code>Gold Class,
-	 *             Normal</code>.
+	 * @param type Type of cinema in <code>String</code>. Can be "Gold Class",
+	 *             "Normal".
 	 */
 	public void setType(String type) {
 		this.type = type;

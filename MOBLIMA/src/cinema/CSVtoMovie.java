@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Converts all movies stored in database to Movie objects. Utilizes
- * <code>csvRW</code>.
+ * Control class that converts all movies stored in database to Movie objects.
+ * Utilizes <code>csvRW</code>.
  * 
  * @see Movie
  * @see csvRW
@@ -17,11 +17,11 @@ import java.util.Arrays;
 public class CSVtoMovie {
 	/**
 	 * 
-	 * Returns <code>ArrayList<Movie></code> containing all movies that exist in
-	 * moviedatabase.
+	 * Returns <code>ArrayList</code> of <code>Movie</code> containing all movies
+	 * that exist in moviedatabase.
 	 * 
-	 * @return <code>ArrayList<Movie></code> containing all movies that exist in
-	 *         moviedatabase
+	 * @return <code>ArrayList</code> of <code>Movie</code> containing all movies
+	 *         that exist in moviedatabase
 	 */
 	public static ArrayList<Movie> csvToMovieObject() {
 		ArrayList<String[]> db = csvRW.readCSV("moviedatabase");

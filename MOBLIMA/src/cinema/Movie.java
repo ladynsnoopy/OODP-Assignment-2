@@ -5,9 +5,9 @@ import java.util.ArrayList;
 /**
  * 
  * Movie object that contains movie details. Also contains
- * <code>ArrayList<Review></code> of reviews for the movie, and an
- * <code>ArrayList<Showtime></code> of <code>Showtime</code> objects for this
- * movie. Also contains average ratings left by reviewers.
+ * <code>ArrayList</code> of <code>Review</code> objects for the movie, and an
+ * <code>ArrayList</code> of <code>Showtime</code> objects for this movie. Also
+ * contains average ratings left by reviewers.
  * 
  * @author Edhie Wahidin Michelle
  * @version 1.0
@@ -39,9 +39,9 @@ public class Movie {
 	 */
 	private String synopsis;
 	/**
-	 * <code>ArrayList<String></code> of names of cast members
+	 * <code>ArrayList</code> of names of cast members
 	 */
-	private ArrayList<String> cast;
+	private ArrayList cast;
 	/*
 	 * Name of director for the movie
 	 */
@@ -110,8 +110,8 @@ public class Movie {
 	 * @param showingStatus Showing status of movie. Can be
 	 *                      <code>Coming Soon, Preview,
 	 *                      Now Showing, End of Showing</code>.
-	 * @param synopsis      <code>ArrayList<String></code> of names of cast members
-	 * @param cast          <code>ArrayList<String></code> of names of cast members
+	 * @param synopsis      <code>ArrayList</code> of names of cast members
+	 * @param cast          <code>ArrayList</code> of names of cast members
 	 * @param director      Name of director for the movie
 	 * @param type          Type or genre of movie. Can be
 	 *                      <code>Action, Horror, Romance,
@@ -119,7 +119,7 @@ public class Movie {
 	 * @param movieRating   Rating of movie. Can be
 	 *                      <code>G, PG, PG13, NC16, M18, R21</code>.
 	 */
-	public Movie(String name, String showingStatus, String synopsis, ArrayList<String> cast, String director,
+	public Movie(String name, String showingStatus, String synopsis, ArrayList cast, String director,
 			String type, String movieRating) {
 		this.movieID = movie_counter++;
 		this.name = name;
@@ -223,7 +223,7 @@ public class Movie {
 	 * Sets type/genre of movie. Can be
 	 * <code>Action, Horror, Romance, Animated</code>.
 	 * 
-	 * @param a Type/genre of movie. Can be
+	 * @param aType Type/genre of movie. Can be
 	 *          <code>Action, Horror, Romance, Animated</code>
 	 */
 	public void setType(String aType) {
@@ -249,20 +249,20 @@ public class Movie {
 	}
 
 	/**
-	 * Gets <code>ArrayList<String></code> of cast list.
+	 * Gets <code>ArrayList</code> of cast list.
 	 * 
-	 * @return <code>ArrayList<String></code> of cast list
+	 * @return <code>ArrayList</code> of cast list
 	 */
-	public ArrayList<String> getCast() {
+	public ArrayList getCast() {
 		return this.cast;
 	}
 
 	/**
-	 * Changes <code>ArrayList<String></code> of cast list.
+	 * Changes <code>ArrayList</code> of cast list.
 	 * 
-	 * @param aCast <code>ArrayList<String></code> of cast list
+	 * @param aCast <code>ArrayList</code> of cast list
 	 */
-	public void setCast(ArrayList<String> aCast) {
+	public void setCast(ArrayList aCast) {
 		this.cast = aCast;
 	}
 
@@ -318,7 +318,7 @@ public class Movie {
 	}
 
 	/**
-	 * Changes <code>ArrayList<code> of <code>Showtime</code> objects under this
+	 * Changes <code>ArrayList</code> of <code>Showtime</code> objects under this
 	 * movie.
 	 * 
 	 * @param aShowtimeArr <code>ArrayList</code> of <code>Showtime</code> objects
@@ -401,13 +401,13 @@ public class Movie {
 	}
 
 	/**
-	 * Gets an <code>ArrayList<String></code> of <code>Review</code> IDs.
+	 * Gets an <code>ArrayList</code> of <code>Review</code> IDs.
 	 * 
-	 * @return <code>ArrayList<String></code> of <code>Review</code> IDs
+	 * @return <code>ArrayList</code> of <code>Review</code> IDs
 	 * @see Review#getReviewID()
 	 */
-	public ArrayList<String> getReviewIDs() {
-		ArrayList<String> reviewIDs = new ArrayList<String>();
+	public ArrayList getReviewIDs() {
+		ArrayList reviewIDs = new ArrayList();
 		for (int i = 0; i < reviewArr.size(); i++) {
 			reviewIDs.add(Integer.toString(reviewArr.get(i).getReviewID()));
 		}
@@ -415,13 +415,13 @@ public class Movie {
 	}
 
 	/**
-	 * Gets an <code>ArrayList<String></code> of <code>Showtime</code> IDs.
+	 * Gets an <code>ArrayList</code> of <code>Showtime</code> IDs.
 	 * 
-	 * @return ArrayList<String> of <code>Showtime</code> IDs
+	 * @return ArrayList of <code>Showtime</code> IDs
 	 * @see Showtime#getShowtimeID()
 	 */
-	public ArrayList<String> getShowtimeIDs() {
-		ArrayList<String> showtimeIDs = new ArrayList<String>();
+	public ArrayList getShowtimeIDs() {
+		ArrayList showtimeIDs = new ArrayList();
 		for (int i = 0; i < showtimeArr.size(); i++) {
 			showtimeIDs.add(Integer.toString(showtimeArr.get(i).getShowtimeID()));
 		}

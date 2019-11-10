@@ -2,10 +2,21 @@ package cinema;
 
 import java.util.Scanner;
 
+/**
+ * Overall boundary class between the user and program for the whole
+ * application. Will call <code>DisplayStaffPage</code> or
+ * <code>DisplayUserPage</code> depending on which module is selected.
+ * 
+ * <code>main(String[] args)</code> function is here.
+ * 
+ * @author Myat Hmu Khin
+ * @version 1.0
+ * @since 2019-11-10
+ *
+ */
 public class MainDisplayPage {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		boolean loop = true;
 		while (loop) {
 			Scanner sc = new Scanner(System.in);
@@ -38,9 +49,6 @@ public class MainDisplayPage {
 				break;
 			}
 		}
-			
-		
-		
 
 	}
 
