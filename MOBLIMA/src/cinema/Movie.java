@@ -435,7 +435,6 @@ public class Movie {
 	public void increaseTicketSalesByOne() {
 		ticketSales += 1;
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Takes in <code>Movie</code> object and writes all attributes and data into
@@ -467,6 +466,4 @@ public class Movie {
 		csvRW.writeToCSV("moviedatabase", data);
 	}
 
-=======
->>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }
