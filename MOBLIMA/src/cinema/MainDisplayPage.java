@@ -3,7 +3,7 @@ package cinema;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainDisplayPage {
+interface MainDisplayPage {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

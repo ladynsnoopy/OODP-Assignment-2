@@ -3,7 +3,7 @@ package cinema;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-interface DisplayStaffPage {
+interface DisplayStaffPage extends MainDisplayPage{
 
 	public static void displayStaffPage() {
 		Scanner sc = new Scanner(System.in);
