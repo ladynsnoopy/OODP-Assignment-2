@@ -139,12 +139,19 @@ public class Receipt {
 		return dateFormat.format(date);
 	}
 
-	public static void addReceiptToCSV(Receipt receipt) {
+	/**
+	 * Takes in <code>Receipt</code> object and writes all attributes and data into
+	 * paymentdatabase. Utilizes csvRW.
+	 * 
+	 * @param receipt <code>Receipt</code> object to be written into database
+	 * @see csvRW#writeToCSV(String, ArrayList)
+	 */
+	public void addReceiptToCSV(Receipt receipt) {
 		ArrayList<String> data = new ArrayList<String>();
-		data.add(receipt.getTID());
-		data.add(receipt.getPaymentMode());
-		data.add(receipt.getTicketArr().get(0).getMovietitle());
-		data.add(Double.toString(receipt.getTotalAmt()));
+		data.add(receipt.TID);
+		data.add(receipt.paymentMode);
+		data.add(receipt.ticketArr.get(0).getMovietitle());
+		data.add(Double.toString(receipt.totalAmt));
 		csvRW.writeToCSV("paymentdatabase", data);
 	}
 

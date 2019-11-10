@@ -443,26 +443,26 @@ public class Movie {
 	 * @param movie customer <code>Movie</code> object to be written into database
 	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
-	public static void addMovieToCSV(Movie movie) {
+	public void addMovieToCSV(Movie movie) {
 		ArrayList<String> data = new ArrayList<String>();
-		data.add(Integer.toString(movie.getMovieID()));
-		data.add(movie.getName());
-		data.add(movie.getType());
-		data.add(movie.getShowingStatus());
-		data.add(movie.getSynopsis());
-		data.add(movie.getDirector());
-		String castData = movie.getCast().toString();
+		data.add(Integer.toString(movie.movieID));
+		data.add(movie.name);
+		data.add(movie.type);
+		data.add(movie.showingStatus);
+		data.add(movie.synopsis);
+		data.add(movie.director);
+		String castData = movie.cast.toString();
 		castData = castData.substring(1, castData.length() - 1);
 		data.add(castData);
-		data.add(movie.getOverallUserRating());
-		data.add(Integer.toString(movie.getTicketSales()));
-		String reviewData = movie.getReviewIDs().toString();
+		data.add(movie.overallUserRating);
+		data.add(Integer.toString(movie.ticketSales));
+		String reviewData = movie.reviewArr.toString();
 		reviewData = reviewData.substring(1, reviewData.length() - 1);
 		data.add(reviewData);
-		String showtimeData = movie.getShowtimeIDs().toString();
+		String showtimeData = movie.showtimeArr.toString();
 		showtimeData = showtimeData.substring(1, showtimeData.length() - 1);
 		data.add(showtimeData);
-		data.add(movie.getMovieRating());
+		data.add(movie.movieRating);
 		csvRW.writeToCSV("moviedatabase", data);
 	}
 

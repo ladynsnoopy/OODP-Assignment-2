@@ -166,12 +166,12 @@ public class Customer {
 	 * @param customer <code>Customer</code> object to be written into database
 	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
-	public static void addCustomerToCSV(Customer customer) {
+	public void addCustomerToCSV(Customer customer) {
 		ArrayList<String> data = new ArrayList<String>();
-		data.add(Integer.toString(customer.getCustID()));
-		data.add(customer.getName());
-		data.add(customer.getMobileNum());
-		data.add(customer.getEmail());
+		data.add(Integer.toString(customer.custID));
+		data.add(customer.name);
+		data.add(customer.mobileNum);
+		data.add(customer.email);
 		data.add(customer.getTIDs().toString());
 		csvRW.writeToCSV("customerdatabase", data);
 	}

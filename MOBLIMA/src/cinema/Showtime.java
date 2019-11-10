@@ -102,11 +102,11 @@ public class Showtime {
 		}
 	}
 
-	public static void addShowtimeToCSV(Showtime showtime) {
+	public void addShowtimeToCSV(Showtime showtime) {
 		ArrayList<String> data = new ArrayList<String>();
-		data.add(Integer.toString(showtime.getShowtimeID()));
-		data.add(showtime.getCinema().getCinemaID());
-		data.add(showtime.getTiming());
+		data.add(Integer.toString(showtime.showtimeID));
+		data.add(showtime.cinema.getCinemaID());
+		data.add(showtime.timing);
 		csvRW.writeToCSV("showtimedatabase", data);
 	
 	}
