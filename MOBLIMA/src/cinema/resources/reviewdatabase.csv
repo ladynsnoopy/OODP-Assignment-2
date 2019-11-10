@@ -1,2 +1,3 @@
-﻿ReviewID,Rating,Comment,UserID
-"1","7","ok","4"
+﻿Rating,Comment,UserID,ReviewID
+8,good,1,1
+8,really good,2,2

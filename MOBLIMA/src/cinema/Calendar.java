@@ -38,18 +38,14 @@ public class Calendar {
 	}
 
 	/**
-	 * Gets <code>ArrayList</code> containing weekend dates
-	 * 
-	 * @return <code>ArrayList</code> containing weekend dates in
-	 *         <code>String</code> format YYYYMMDD
+	 * @return ArrayList containing weekend dates in <code>String</code> format
+	 *         YYYYMMDD
 	 */
 	public ArrayList<String> getWeekendArr() {
 		return weekendArr;
 	}
 
 	/**
-	 * Changes <code>ArrayList</code> containing weekend dates
-	 * 
 	 * @param weekendArr <code>ArrayList</code> containing weekend dates in
 	 *                   <code>String</code> format YYYYMMDD
 	 */
@@ -58,9 +54,7 @@ public class Calendar {
 	}
 
 	/**
-	 * Gets <code>ArrayList</code> containing holiday dates
-	 * 
-	 * @return <code>ArrayList</code> containing holiday dates in
+	 * @return ArrayList <code>ArrayList</code> containing holiday dates in
 	 *         <code>String</code> format YYYYMMDD
 	 */
 	public ArrayList<String> getHolArr() {
@@ -68,20 +62,16 @@ public class Calendar {
 	}
 
 	/**
-	 * Adds a new holiday date to the <code>ArrayList</code> containing holiday
-	 * dates
-	 * 
-	 * @param hol Holiday date in <code>String</code> format YYYYMMDD
+	 * @param hol <code>ArrayList</code> containing holiday dates in
+	 *            <code>String</code> format YYYYMMDD
 	 */
 	public void addHolArr(String hol) {
 		holArr.add(hol);
 	}
 
 	/**
-	 * Adds a new holiday date to the <code>ArrayList</code> containing weekend
-	 * dates
-	 * 
-	 * @param hol Weekend date in <code>String</code> format YYYYMMDD
+	 * @param hol <code>ArrayList</code> containing holiday dates in
+	 *            <code>String</code> format YYYYMMDD
 	 */
 	public void addWkndArr(String hol) {
 		weekendArr.add(hol);

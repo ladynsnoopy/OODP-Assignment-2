@@ -21,7 +21,7 @@ public class CustomerApp {
 
 	public static void createCustomer(String name, String mobileNum, String email) {
 		Customer a = new Customer(name, mobileNum, email);
-		Customer.addCustomerToCSV(a);
+		CustomerToCSV.addCustomerToCSV(a);
 	}
 
 	// returns customerID if it exists
@@ -93,8 +93,9 @@ public class CustomerApp {
 			return result;
 		} else if (a.length() == 1) {
 			String[] review = searchforReview(Integer.parseInt(a));
-			result.add("Comment: " + review[0]);
-			result.add("User Rating: " + review[1]);
+			result.add("Comment: "+ review[1]);
+			result.add("User's Rating: "+ review[0]);
+
 			return result;
 		} else {
 
@@ -102,9 +103,9 @@ public class CustomerApp {
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			for (int j = 0; j < arr.length; j++) {
 				String[] review = searchforReview(Integer.parseInt(arr[j]));
-				result.add("Comment: " + review[0]);
-				result.add("User Rating: " + review[1]);
-			}
+				result.add("Comment: "+ review[1]);
+				result.add("User Rating: "+ review[0]);
+ 			}
 			return result;
 
 		}
@@ -112,10 +113,10 @@ public class CustomerApp {
 
 	public static String[] searchforReview(int reviewID) {
 		String a = Integer.toString(reviewID);
-		ArrayList<String> result = csvRW.search("reviewdatabase", "ID", a);
+		ArrayList <String> result = csvRW.search("reviewdatabase", "ReviewID",a);
 		String[] rating_comment = new String[2];
-		rating_comment[0] = result.get(1);
-		rating_comment[1] = result.get(2);
+		rating_comment[0] = result.get(0);
+		rating_comment[1] = result.get(1);
 		return rating_comment;
 	}
 
@@ -181,7 +182,7 @@ public class CustomerApp {
 		Price prices = new Price(9.00, 6.50, 5.00, 1.1, 3.00);
 		addnew.setFinalPrice(StaffApp.calendar, prices);
 		addnew.setMovietitle(movietitle);
-		Ticket.addTicketToCSV(addnew); // write new ticket to ticketdatabase
+		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticketdatabase
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = movie_row.get(0);
 		int ticketSalesCount = Integer.parseInt(movie_row.get(8)) + 1;
@@ -205,7 +206,7 @@ public class CustomerApp {
 		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr, paymentmode);
 		receipt.calTotalAmt();
-		Receipt.addReceiptToCSV(receipt);
+		ReceiptToCSV.addReceiptToCSV(receipt);
 		result[0] = receipt.getTID();
 		result[1] = Double.toString(receipt.getTotalAmt());
 		return result;
@@ -217,12 +218,13 @@ public class CustomerApp {
 		ArrayList<String> tids = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String a = tids.get(4); // Get all the receipt's TID of the customer
 		if (a.length() != 1) {
-			String cut = a.substring(1, a.length() - 1); // cut away the ""
-			String[] arr = cut.split(","); // store the TIDs in a string array
+			String[] arr = a.split(","); // store the TIDs in a string array
 			String[][] result = new String[arr.length][4];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
 				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i]);
+				if(b == null)
+					System.out.println("THIS IS NULL");
 				inside[0] = arr[i];
 				inside[1] = b.get(1);
 				inside[2] = b.get(2);
@@ -233,7 +235,7 @@ public class CustomerApp {
 		} else {
 			String[][] result = new String[1][4];
 			String[] inside = new String[4];
-			ArrayList<String> b = csvRW.search("paymentdatabase", "TID", a);
+			ArrayList<String> b = csvRW.search("paymentdatabase", "TID",a);
 			inside[0] = a;
 			inside[1] = b.get(1);
 			inside[2] = b.get(2);
@@ -241,13 +243,13 @@ public class CustomerApp {
 			result[0] = inside;
 			return result;
 		}
-
+		
 	}
 
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
 
 		Review a = new Review(rating, comment, userID);
-		Review.addReviewToCSV(a);
+		ReviewToCSV.addReviewToCSV(a);
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name);
 		String id = movie_row.get(0);
 		String reviews = movie_row.get(9);
@@ -298,8 +300,10 @@ public class CustomerApp {
 	public static void addReceiptinCustomerDatabase(int custID, String TID) {
 		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String id = cust_row.get(0);
+		System.out.println("id:"+ id);
 		String TIDS = cust_row.get(4);
-		if (TIDS.equals("")) {
+		System.out.println("TIDS:"+ TIDS);
+		if (TIDS.equals("[]")) {
 			csvRW.editCSV("customerdatabase", id, "TID", TID);
 
 		} else {
@@ -324,3 +328,4 @@ public class CustomerApp {
 	// TODO view sorted top 5
 
 }
+

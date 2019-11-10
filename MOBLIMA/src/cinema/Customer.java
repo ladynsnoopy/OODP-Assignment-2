@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Customer object that contains unique customer ID, name, mobile number, email,
- * and an <code>ArrayList</code> of <code>Receipt</code> objects of previous
- * bookings.
+ * and an <code>ArrayList<Receipt></code> of receipts of previous bookings.
  * 
  * @author Myat Hmu Khin
  * @version 1.0
@@ -27,7 +26,7 @@ public class Customer {
 	 */
 	private int custID;
 	/**
-	 * <code>ArrayList</code> of <code>Receipt</code> objects of previous bookings.
+	 * <code>ArrayList<Receipt></code> of receipts of previous bookings.
 	 * 
 	 * @see Receipt
 	 */
@@ -122,11 +121,9 @@ public class Customer {
 	}
 
 	/**
-	 * Gets lists of previous receipts in <code>ArrayList</code> of
-	 * <code>Receipt</code> objects format.
+	 * Gets lists of previous receipts in <code>ArrayList<Receipt></code> format.
 	 * 
-	 * @return <code>ArrayList</code> of <code>Receipt</code> objects of previous
-	 *         bookings
+	 * @return <code>ArrayList<Receipt></code> of receipts of previous bookings
 	 * @see Receipt
 	 */
 	public ArrayList<Receipt> getBookingHistory() {
@@ -144,11 +141,11 @@ public class Customer {
 	}
 
 	/**
-	 * Gets ticket IDs of receipts in booking history in <code>ArrayList</code> of
-	 * <code>String</code> format.
+	 * Gets ticket IDs of receipts in booking history in
+	 * <code>ArrayList<String></code> format.
 	 * 
-	 * @return Ticket IDs of receipts in booking history in <code>ArrayList</code>
-	 *         of <code>String</code> format.
+	 * @return Ticket IDs of receipts in booking history in
+	 *         <code>ArrayList<String></code> format.
 	 * @see Receipt#getTID()
 	 */
 	public ArrayList<String> getTIDs() {
@@ -159,6 +156,7 @@ public class Customer {
 		return bookinghistory;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Takes in <code>Customer</code> object and writes all attributes and data into
 	 * customerdatabase. Utilizes csvRW.
@@ -176,4 +174,6 @@ public class Customer {
 		csvRW.writeToCSV("customerdatabase", data);
 	}
 
+=======
+>>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }

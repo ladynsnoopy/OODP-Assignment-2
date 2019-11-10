@@ -25,8 +25,8 @@ public class csvRW {
 	 * @param dbname  Name of the database to be accessed.
 	 * @param colname Name of the column to be searched.
 	 * @param target  Target string to be found
-	 * @return Entire row of details in <code>ArrayList</code> format. If search
-	 *         finds nothing, returns <code>null</code>.
+	 * @return Entire row of details in <code>ArrayList<String></code> format. If
+	 *         search finds nothing, returns <code>null</code>.
 	 */
 	public static ArrayList<String> search(String dbname, String colname, String target) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -70,13 +70,15 @@ public class csvRW {
 	 * Searches for a specific row in database. Takes the column name eg "Title" and
 	 * target string "Lego Movie". Returns the every row that matches the result
 	 * 
-	 * @param dbname  Target database name
-	 * @param colname Target column name
-	 * @param target  Target search keyword
+	 * @param dbname
+	 * @param colname
+	 * @param target
 	 * @return Every row that matches the result in the format
-	 *         <code>ArrayList</code> of <code>String[]</code>. If no result can be
-	 *         found, returns <code>null</code>.
+	 *         <code>ArrayList<String[]></code>. If no result can be found, returns
+	 *         <code>null</code>.
 	 * 
+	 * @throws FileNotFoundException If database file does not exits.
+	 * @throws IOException           If method fails to write to csv file.
 	 */
 	public static ArrayList<String[]> searchMultipleRow(String dbname, String colname, String target) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -122,6 +124,8 @@ public class csvRW {
 	 * @param dbname    Name of database to be changed.
 	 * @param targetRow Index of targeted row to be deleted.
 	 * 
+	 * @throws FileNotFoundException If database file does not exits.
+	 * @throws IOException           If method fails to write to csv file.
 	 */
 	public static void delete(String dbname, int targetRow) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -156,6 +160,8 @@ public class csvRW {
 	 * @param dbname Name of database to be changed.
 	 * @param data   Data to be added to database.
 	 * 
+	 * @throws FileNotFoundException If database file does not exits.
+	 * @throws IOException           If method fails to write to csv file.
 	 */
 	public static void rewrite(String dbname, ArrayList<String[]> data) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";
@@ -190,13 +196,14 @@ public class csvRW {
 	// write data to bottom of csv file
 	// takes in data as List<String>
 	/**
-	 * Takes in data as <code>List</code> of <code>String</code>. Then writes to the
-	 * csv file at the bottom.
+	 * Takes in data as <code>List<String></code>. Then writes to the csv file at
+	 * the bottom.
 	 * 
 	 * @param dbname Name of database to be changed.
-	 * @param data   Data to be written to the database in <code>ArrayList</code> of
-	 *               <code>String</code> format.
+	 * @param data   Data to be written to the database in
+	 *               <code>ArrayList<String></code> format.
 	 * 
+	 * @throws IOException If method fails to write to csv file.
 	 */
 	public static void writeToCSV(String dbname, ArrayList<String> data) {
 
@@ -223,12 +230,14 @@ public class csvRW {
 	// Read database file based on name
 	/**
 	 * Reads selected database file and returns entire contents of file in
-	 * <code>ArrayList</code> of <code>String[]</code> format.
+	 * <code>ArrayList<String[]></code> format.
 	 * 
 	 * @param dbname Name of database to be read.
-	 * @return Entire contents of csv file in <code>ArrayList</code> of
-	 *         <code>String[]</code> format.
+	 * @return Entire contents of csv file in <code>ArrayList<String[]></code>
+	 *         format.
 	 * 
+	 * @throws FileNotFoundException If database file does not exits.
+	 * @throws IOException           If method fails to write to csv file.
 	 */
 	public static ArrayList<String[]> readCSV(String dbname) {
 		try {
@@ -262,6 +271,8 @@ public class csvRW {
 	 * @param col_name Type of attribute to be changed.
 	 * @param change   New attribute to be written in.
 	 * 
+	 * @throws FileNotFoundException If database file does not exits.
+	 * @throws IOException           If method fails to write to csv file.
 	 */
 	public static void editCSV(String dbname, String targetID, String col_name, String change) {
 		String path = "src\\cinema\\resources\\" + dbname + ".csv\\";

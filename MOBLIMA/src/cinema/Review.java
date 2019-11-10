@@ -1,7 +1,5 @@
 package cinema;
 
-import java.util.ArrayList;
-
 public class Review {
 	private int rating;
 	private String comment;
@@ -48,6 +46,7 @@ public class Review {
 	public void setReviewID(int aReviewID) {
 		this.reviewID = aReviewID;
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Takes in <code>Review</code> object and writes all attributes and data into
@@ -65,4 +64,6 @@ public class Review {
 		data.add(Integer.toString(review.reviewID));
 		csvRW.writeToCSV("reviewdatabase", data);
 	}
+=======
+>>>>>>> 18bd40b085d95aa674a00ccb58f825c2404b0e55
 }
