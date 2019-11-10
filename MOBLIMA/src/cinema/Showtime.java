@@ -8,11 +8,16 @@ public class Showtime {
 	private Cinema cinema;
 	private String timing;
 	private int showtimeID;
-	private static int showtime_counter = 1;
+	private static int showtime_counter = counterInit();
 	// boolean 2D array to keep track of occupied status of seats in a 2D form
 	private boolean[][] seatingplan;
 	// list of seats that are in this Showtime
 	private Seat[] seatArr;
+	
+	public static int counterInit() {
+		ArrayList<String[]> data = new ArrayList<String[]>(csvRW.readCSV("Showtimedatabase"));
+		return data.size();
+	}
 
 	public Showtime(Cinema cinema, String timing) {
 		super();
