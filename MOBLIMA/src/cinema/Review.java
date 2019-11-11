@@ -10,7 +10,7 @@ public class Review {
 	private static int review_counter= counterInit();
 
 	public Review(int rating, String comment, String userID) {
-		this.rating=rating;
+		this.rating=rating; //out of 10
 		this.comment=comment;
 		this.userID=userID;
 		this.reviewID=review_counter++;
