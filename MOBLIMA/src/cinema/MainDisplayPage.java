@@ -10,7 +10,7 @@ interface MainDisplayPage {
 		boolean loop = true;
 		while (loop) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("---------Welcome to MOBLIMA---------");
+			System.out.println("---------------Welcome to MOBLIMA--------------");
 			System.out.println("Enter (1) for access to user page");
 			System.out.println("Enter (2) for access to staff page");
 			System.out.println("Enter (3) to exit");

@@ -37,26 +37,30 @@ public class Price {
 	/**
 	 * Default constructor for <code>Price</code> object.
 	 */
+	private double priceGoldClass;
 	public Price() {
 		this.priceAdult = 7.5;
 		this.priceChild = 5.0;
 		this.priceSenior = 6.0;
 		this.priceWeekend = 0.2;
 		this.priceHol = 1.0;
+		this.priceGoldClass = 10.0;
 	}
 
 	/**
 	 * Constructor for <code>Price</code> object.
 	 * 
-	 * @param priceAdult   Pricing for an adult movie-goer
-	 * @param priceChild   Pricing for a child movie-goer
-	 * @param priceSenior  Pricing for a senior movie-goer
-	 * @param priceWeekend Pricing for when selected showtime is on a weekend. Is in
-	 *                     percentage of increase to base price.
-	 * @param priceHol     Pricing for when selected showtime is on a holiday date.
-	 *                     Is in terms of flat increment to base price.
+	 * @param priceAdult     Pricing for an adult movie-goer
+	 * @param priceChild     Pricing for a child movie-goer
+	 * @param priceSenior    Pricing for a senior movie-goer
+	 * @param priceWeekend   Pricing for when selected showtime is on a weekend. Is in
+	 *                       percentage of increase to base price.
+	 * @param priceHol       Pricing for when selected showtime is on a holiday date.
+	 *                       Is in terms of flat increment to base price.
+	 * @param priceGoldClass Pricing for when selected showtime is at a gold class cinema. Is in
+	 * 						 terms of flat increment to base price.                   
 	 */
-	public Price(double priceAdult, double priceChild, double priceSenior, double priceWeekend, double priceHol) {
+	public Price(double priceAdult, double priceChild, double priceSenior, double priceWeekend, double priceHol, double priceGoldClass) {
 		super();
 
 		this.priceAdult = priceAdult;
@@ -64,6 +68,23 @@ public class Price {
 		this.priceSenior = priceSenior;
 		this.priceWeekend = priceWeekend;
 		this.priceHol = priceHol;
+		this.priceGoldClass = priceGoldClass;
+	}
+	/**
+	 * 
+	 * @return Current Gold Class pricing
+	 */
+
+	public double getPriceGoldClass() {
+		return priceGoldClass;
+	}
+	/**
+	 * Changes gold class pricing
+	 * @param priceGoldClass
+	 */
+
+	public void setPriceGoldClass(double priceGoldClass) {
+		this.priceGoldClass = priceGoldClass;
 	}
 
 	/**

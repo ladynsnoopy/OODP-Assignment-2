@@ -63,7 +63,7 @@ public class Ticket {
 	}
 
 	//set isWeekend isAdult before final price
-	public void setFinalPrice(Calendar a, Price b) {
+	public void setFinalPrice(Calendar a, Price b, String cinetype) {
 		double base = 0;
 		boolean isHols = a.checkHols(showtime);
 		switch (isAdult) {
@@ -91,6 +91,10 @@ public class Ticket {
 		if(a.checkHols(showtime))
 		{
 			base *= b.getPriceWeekend();
+		}
+		if(cinetype.equals("Gold Class"))
+		{
+			base += b.getPriceGoldClass();
 		}
 		finalPrice = base;	
 		

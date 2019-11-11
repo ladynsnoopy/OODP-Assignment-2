@@ -123,10 +123,13 @@ public class CustomerApp implements DisplayUserPage {
 	 * @see csvRW#search(String, String, String)
 	 * @see CustomerApp#searchforReview(int)
 	 */
+
 	public static ArrayList<String> searchMovieDetails(int movieID) {
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
 		ArrayList<String> result = new ArrayList<String>();
-		result.add("Name: " + movie_row.get(1));
+		result.add("-----------------------------------------------");
+		result.add(movie_row.get(1));
+		result.add("-----------------------------------------------");
 		result.add("Movie Type: " + movie_row.get(2));
 		result.add("Showing Status: " + movie_row.get(3));
 		result.add("Synopsis: " + movie_row.get(4));
@@ -135,6 +138,7 @@ public class CustomerApp implements DisplayUserPage {
 		result.add("Cast: " + cutted); // make sure cast is more than one
 		result.add("Overall Rating: " + movie_row.get(7));
 		result.add("Movie Age Rating: " + movie_row.get(11));
+		result.add("-----------------------------------------------");
 		String a = movie_row.get(9);
 		if (a.equals("")) {
 			result.add("No reviews has been written about this movie yet.");
@@ -143,6 +147,7 @@ public class CustomerApp implements DisplayUserPage {
 			String[] review = searchforReview(Integer.parseInt(a));
 			result.add("Comment: " + review[1]);
 			result.add("User's Rating: " + review[0]);
+			result.add("-----------------------------------------------");
 
 			return result;
 		} else {
@@ -267,9 +272,8 @@ public class CustomerApp implements DisplayUserPage {
 		}
 		Ticket addnew = new Ticket(StaffApp.showtimeArr.get(index)); // create a new Ticket object
 		addnew.setIsAdult(isAdult); // set the isAdult option of Ticket
-		// TODO make a global Price object
-		Price prices = new Price(9.00, 6.50, 5.00, 1.1, 3.00);
-		addnew.setFinalPrice(StaffApp.calendar, prices); // set the final price of the Ticket based on holiday and
+		String cinetype = addnew.getShowtime().getCinema().getType();
+		addnew.setFinalPrice(StaffApp.calendar,StaffApp.price,cinetype); // set the final price of the Ticket based on holiday and
 															// weekend dates in Calendar and Prices
 		addnew.setMovietitle(movietitle);
 		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticket database
@@ -315,8 +319,6 @@ public class CustomerApp implements DisplayUserPage {
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
 				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s",""));
-				if(b == null)
-					System.out.println("THIS IS NULL");
 				inside[0] = arr[i];
 				inside[1] = b.get(1);
 				inside[2] = b.get(2);
@@ -324,7 +326,8 @@ public class CustomerApp implements DisplayUserPage {
 				result[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
 			return result;
-		} else {
+		} else if(a.length() == 15)
+		{
 			String[][] result = new String[1][4];
 			String[] inside = new String[4];
 			ArrayList<String> b = csvRW.search("paymentdatabase", "TID", a);
@@ -334,6 +337,8 @@ public class CustomerApp implements DisplayUserPage {
 			inside[3] = b.get(3);
 			result[0] = inside;
 			return result;
+		}else {
+			return null;
 		}
 
 	}
@@ -419,6 +424,6 @@ public class CustomerApp implements DisplayUserPage {
 		}
 	}
 
-	// TODO view sorted top 5
+
 
 }
