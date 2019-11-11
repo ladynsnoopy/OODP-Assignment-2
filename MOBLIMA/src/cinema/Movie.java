@@ -47,7 +47,7 @@ public class Movie {
 	 */
 	private String director;
 	/**
-	 * Type or genre of movie. Can be <code>Action, Horror, Romance, Animated</code>
+	 * Type or genre of movie. Can be <code>Action, Horror, 3D</code>
 	 */
 	private String type;
 	/**
@@ -230,10 +230,10 @@ public class Movie {
 
 	/**
 	 * Sets type/genre of movie. Can be
-	 * <code>Action, Horror, Romance, Animated</code>.
+	 * <code>Action, Horror, 3D</code>.
 	 * 
 	 * @param a Type/genre of movie. Can be
-	 *          <code>Action, Horror, Romance, Animated</code>
+	 *          <code>Action, Horror, 3D</code>
 	 */
 	public void setType(String aType) {
 		this.type = aType;
