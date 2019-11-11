@@ -82,6 +82,8 @@ public class CustomerApp implements DisplayUserPage {
 	 */
 	public static String[][] getShowtimesForMovie(int movieID) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
+		if(result == null)
+			return null;
 		String a = result.get(10); // Get all the showtimeID of the particular movie
 		if (a.length() != 1) {
 			String cut = a.substring(1, a.length() - 1);

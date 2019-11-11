@@ -2,12 +2,7 @@ package cinema;
 import java.util.ArrayList;
 import java.util.Scanner;
 interface DisplayUserPage extends MainDisplayPage {
-	//Movie-goer module 1. Search/List movie 
-	//2. View movie details � including reviews and ratings 
-	//3. Check seat availability and selection of seat/s. 
-	//4. Book and purchase ticket 
-	//5. View booking history 
-	//6. List the Top 5 ranking by ticket sales OR by overall reviewers� ratings 
+	
 	public static  void displayUserPage()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -71,21 +66,21 @@ interface DisplayUserPage extends MainDisplayPage {
 		
 		
 	}
-	// returns customerID of the current user
+
 	public static int custLogin()
 	{
 		// do customer initialization
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter your email: ");
 		String email = sc.nextLine();
-		if(CustomerApp.customerExists(email) == -1)
+		if(CustomerApp.customerExists(email) == -1) // if customer is not in the database
 		{
 			System.out.println("Please enter your Name and Mobile Number");
 			String name = sc.nextLine();
 			String mobileNum = sc.nextLine();
-			CustomerApp.createCustomer(name, mobileNum, email);
+			CustomerApp.createCustomer(name, mobileNum, email); // make a new customer and add to database
 		}
-		int ID = CustomerApp.customerExists(email);
+		int ID = CustomerApp.customerExists(email); // returns CustID
 		return ID;
 	}
 	public static void displayAllMovie()
@@ -122,7 +117,7 @@ interface DisplayUserPage extends MainDisplayPage {
 		int ID = CustomerApp.searchOneMovie(name);
 		if(ID != -1)
 		{
-		    ArrayList <String> movieDetails = CustomerApp.searchMovieDetails(ID);
+		    ArrayList <String> movieDetails = CustomerApp.searchMovieDetails(ID); // gets all relevant movie details
 		    for(int i = 0; i<movieDetails.size();i++)
 		    {
 		    	System.out.println(movieDetails.get(i));
@@ -146,8 +141,13 @@ interface DisplayUserPage extends MainDisplayPage {
 		    {
 		    	System.out.println();
 				System.out.println("Showtimes for "+ name+":");
-				System.out.println("-----------------------------------------------");
+				System.out.println("-----------------------------------------------"); // prints out all the showtimes
 				String[][] showtimes = CustomerApp.getShowtimesForMovie(ID);
+				if(showtimes == null)
+				{
+					System.out.println("No showtimes are available yet.");
+					return;
+				}
 				for(int i = 0; i< showtimes.length;i++)
 				{
 					String showstring = showtimes[i][1];
@@ -216,6 +216,8 @@ interface DisplayUserPage extends MainDisplayPage {
 		}
 			
 	}
+	// pass in 2d array of [[ShowtimeID,Timing],...] for the relevant movie
+	//returns 1 if showtimeID is found in this array 
 	public static int checkValidityShowtime(String[][] show, int target)
 	{
 		for(int i = 0; i< show.length;i++)
@@ -228,6 +230,7 @@ interface DisplayUserPage extends MainDisplayPage {
 		}
 		return -1;
 	}
+	// returns a string containing the timing of showtime for a given showtimeID
 	public static String printRelevantShowTime(String[][] show, int target)
 	{
 		for(int i = 0; i< show.length;i++)
@@ -278,8 +281,7 @@ interface DisplayUserPage extends MainDisplayPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					showID = sc.nextInt();
-					if (checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID entered is
-														// valid
+					if (checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID entered belongs to that movie/is valid
 						break;
 					}
 				} else {
@@ -310,7 +312,7 @@ interface DisplayUserPage extends MainDisplayPage {
 			}
 			int x, y;
 			boolean keep_loop = true;
-			ArrayList<Ticket> ticketArr = new ArrayList<Ticket>();
+			ArrayList<Ticket> ticketArr = new ArrayList<Ticket>(); // make a new ticketArr to create a receipt object
 			for (int h = 0; h < numSeat; h++) {
 				while (keep_loop) { 
 					System.out.println("Please enter the x,y position of the seats:");
@@ -319,7 +321,7 @@ interface DisplayUserPage extends MainDisplayPage {
 							x = sc.nextInt();
 							y = sc.nextInt();
 							if (x >= 0 && x < StaffApp.showtimeArr.get(index).getCinema().getTotalCol() && y >= 0
-									&& y < StaffApp.showtimeArr.get(index).getCinema().getTotalRow()) {
+									&& y < StaffApp.showtimeArr.get(index).getCinema().getTotalRow()) { // checks that x,y is valid compared to cinema rows and columns
 								break;
 							}
 						} else {
@@ -347,7 +349,7 @@ interface DisplayUserPage extends MainDisplayPage {
 							}
 							System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
 						}
-						ticketArr.add(CustomerApp.addTicket(showID,name,num));
+						ticketArr.add(CustomerApp.addTicket(showID,name,num)); // adding to the TicketArr
 						System.out.printf("You are buying Ticket %d,%d to watch %s at %s.\n", x, y, name,
 								timingformatted);
 						break;
@@ -375,8 +377,8 @@ interface DisplayUserPage extends MainDisplayPage {
 				System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
 			}
 			String payment = getPaymentMode(paymentmode);
-			String[] result = CustomerApp.addPayment(ticketArr, payment);
-			CustomerApp.addReceiptinCustomerDatabase(custID,result[0]); // add the stupid receipt into the customer database
+			String[] result = CustomerApp.addPayment(ticketArr, payment); // create receipt object and adds to the payment database
+			CustomerApp.addReceiptinCustomerDatabase(custID,result[0]); // update booking history in customer database
 			System.out.println("Thank you for buying our tickets.");
 			System.out.println("Here is your receipt:");
 			System.out.println("-----------------------------------------------");
