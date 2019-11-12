@@ -2,18 +2,24 @@ package cinema;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+
 /**
- * Contains methods that handles read and write to CSV.
+ * Boundary class between <code>MainDisplayPage</code> and
+ * <code>StaffApp</code>. Provides printing and display of options in staff
+ * module.
  * 
  * @author Lim Wai Leong
  * @version 1.0
  * @since 2019-11-09
+ * @see StaffApp
+ * @see MainDisplayPage
  *
  */
-interface DisplayStaffPage extends MainDisplayPage{
-	
+interface DisplayStaffPage extends MainDisplayPage {
+
 	/**
-	 * Displays the initial menu page shown to the staff after login
+	 * Displays the initial menu page shown to the staff after login. Calls the
+	 * appropriate methods for each menu option.
 	 * 
 	 */
 	public static void displayStaffPage() {
@@ -87,7 +93,8 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Displays the menu page shown to the staff after selecting the view info option
+	 * Displays the menu page shown to the staff after selecting the view info
+	 * option
 	 * 
 	 */
 	public static void viewInfo() {
@@ -146,7 +153,7 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Displays all the <code>Showtime</code> entries from showtime database
+	 * Displays all the <code>Showtime</code> entries from showtime database.
 	 */
 	public static void displayAllShowtimes() {
 		String[] arr = StaffApp.searchShowtimes();
@@ -158,7 +165,8 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Displays the holiday dates and weekend dates from the <code>Calendar</code> object
+	 * Displays the holiday dates and weekend dates from the <code>Calendar</code>
+	 * object.
 	 */
 	public static void displayHolWkndDates() {
 		Scanner sc = new Scanner(System.in);
@@ -196,9 +204,8 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 	}
 
-	
 	/**
-	 * Displays all the prices from the <code>Price</code> object
+	 * Displays all the prices from the <code>Price</code> object.
 	 */
 	public static void displayPrices() {
 		System.out.println("Adult price:    $" + StaffApp.price.getPriceAdult());
@@ -210,8 +217,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Takes input from user for the movie details 
-	 * Creates a new <code>Movie</code> object with the details and adds it into the movie database
+	 * Allows staff to add a new movie. Takes input from user for the movie details.
+	 * Creates a new <code>Movie</code> object with the details and adds it into the
+	 * movie database.
 	 * 
 	 */
 	public static void addMovie() {
@@ -264,10 +272,10 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Gets user input to decide which movie to edit
-	 * First performs a check in the database to determine if the movie exists
-	 * Uses selection to determine which attribute of the movie to edit
-	 *  
+	 * Edits selected movie details. Gets user input to decide which movie to edit.
+	 * First performs a check in the database to determine if the movie exists. It
+	 * then uses selection to determine which attribute of the movie to edit.
+	 * 
 	 */
 	public static void editMovieDetails() {
 		Scanner sc = new Scanner(System.in);
@@ -404,11 +412,12 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 	}
 
-	
 	/**
-	 * Gets user input for the showtime details
-	 * Checks if the details are valid
-	 * Gets input for new time and edits the database
+	 * Gets user input for the showtime details for staff to add a new showtime.
+	 * Checks if the details are valid. Gets input for new time and edits the
+	 * database
+	 * 
+	 * @see Showtime
 	 * 
 	 */
 	public static void addShowtime() {
@@ -464,10 +473,11 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Gets user input to determine which showtime is to be edited
-	 * Checks are done to ensure a existing showtime is edited
-	 * Gets input for new time and edits the database
+	 * Gets user input to determine which showtime is to be edited. Checks are done
+	 * to ensure a existing showtime is edited. Gets input for new time and edits
+	 * the database.
 	 * 
+	 * @see Showtime
 	 */
 	public static void editShowtimeDetails() {
 		Scanner sc = new Scanner(System.in);
@@ -504,10 +514,11 @@ interface DisplayStaffPage extends MainDisplayPage{
 
 	}
 
-	
 	/**
-	 * Edits the attributes of the <code>Price</code> object
-	 * Uses selection to determine which attribute to edit
+	 * Edits the attributes of the <code>Price</code> object. Uses selection to
+	 * determine which attribute to edit.
+	 * 
+	 * @see Price
 	 * 
 	 */
 	public static void editTicketPrice() {
@@ -657,7 +668,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Adds a new holiday date to the <code>Calendar</code> object
+	 * Adds a new holiday date to the <code>Calendar</code> object.
+	 * 
+	 * @see Calendar#addHolArr(String)
 	 * 
 	 */
 	public static void newHolidayDate() {
@@ -678,8 +691,9 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Adds a new holiday date to the <code>Calendar</code> object
+	 * Adds a new weekend date to the <code>Calendar</code> object
 	 * 
+	 * @see Calendar#addWkndArr(String)
 	 */
 	public static void newWeekendDate() {
 		Scanner sc = new Scanner(System.in);
@@ -699,7 +713,7 @@ interface DisplayStaffPage extends MainDisplayPage{
 	}
 
 	/**
-	 * Selection statement to act as confirmation for actions 
+	 * Selection statement to act as confirmation for actions
 	 */
 	public static int editConfirmation() {
 		Scanner sc1 = new Scanner(System.in);
@@ -721,10 +735,10 @@ interface DisplayStaffPage extends MainDisplayPage{
 		}
 		return input;
 	}
-	
+
 	/**
-	 * Program will only continue after enter key is add
-	 * Method is used between selection of options
+	 * Program will only continue after enter key is inputed. Method is used between
+	 * selection of options
 	 * 
 	 */
 	public static void enterToReturn() {

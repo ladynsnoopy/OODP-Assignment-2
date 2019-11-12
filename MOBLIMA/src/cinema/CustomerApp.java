@@ -82,7 +82,7 @@ public class CustomerApp implements DisplayUserPage {
 	 */
 	public static String[][] getShowtimesForMovie(int movieID) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
-		if(result == null)
+		if (result == null)
 			return null;
 		String a = result.get(10); // Get all the showtimeID of the particular movie
 		if (a.length() != 1) {
@@ -214,6 +214,8 @@ public class CustomerApp implements DisplayUserPage {
 	 * @param y          Y-coordinate of seat
 	 * @return -1 if seat is already occupied. </br>
 	 *         1 if purchase was successful.
+	 * @see Ticket
+	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
 	public static int buyTicket(int showtimeID, int x, int y) {
 
@@ -250,17 +252,25 @@ public class CustomerApp implements DisplayUserPage {
 		return 1; // purchase is successful
 
 	}
-//TODO finish the rest @JT
+
 	// returns TicketID
 	// this function deals with the creation of the Ticket object, addition into the
 	// Ticket database, alter the TicketSales in movie database
 	// and alter movie object's ticket sales count
 	/**
+	 * Creates <code>Ticket</code> object according to <code>showtimeID</code>, age
+	 * of movie-goer, and title of movie given. Will also write ticket details into
+	 * ticket database, as well as increment <code>TicketSales</code> in movie
+	 * database to reflect sales of new tickets, as well as in the appropriate
+	 * <code>Movie</code> object.
 	 * 
-	 * @param showtimeID
-	 * @param movietitle
-	 * @param isAdult
-	 * @return
+	 * @param showtimeID Unique ID of showtime selected by customer
+	 * @param movietitle Title of movie selected by customer
+	 * @param isAdult    Selection between age categories. 1 for child, 2 for adult
+	 *                   and 3 for senior prices.
+	 * @return Newly created <code>Ticket</code> object.
+	 * @see Ticket
+	 * @see Movie#increaseTicketSalesByOne()
 	 */
 	public static Ticket addTicket(int showtimeID, String movietitle, int isAdult) {
 		// I have assumed that by this stage all the info entered for parameters is
@@ -275,8 +285,9 @@ public class CustomerApp implements DisplayUserPage {
 		Ticket addnew = new Ticket(StaffApp.showtimeArr.get(index)); // create a new Ticket object
 		addnew.setIsAdult(isAdult); // set the isAdult option of Ticket
 		String cinetype = addnew.getShowtime().getCinema().getType();
-		addnew.setFinalPrice(StaffApp.calendar,StaffApp.price,cinetype); // set the final price of the Ticket based on holiday and
-															// weekend dates in Calendar and Prices
+		addnew.setFinalPrice(StaffApp.calendar, StaffApp.price, cinetype); // set the final price of the Ticket based on
+																			// holiday and
+		// weekend dates in Calendar and Prices
 		addnew.setMovietitle(movietitle);
 		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticket database
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movietitle);
@@ -298,6 +309,19 @@ public class CustomerApp implements DisplayUserPage {
 
 	// returns String array of size 2 containing TID and total amount of a given
 	// receipt
+	/**
+	 * Gets TID and total amount of receipt given
+	 * <code>ArrayList&lt;Ticket&gt;</code> bought in this transaction by the
+	 * customer, and payment mode.
+	 * 
+	 * @param arr         <code>ArrayList&lt;Ticket&gt;</code> of tickets bought in
+	 *                    this transaction by the customer
+	 * @param paymentmode Customer's choice of payment mode. May be "Cash, Credit or
+	 *                    PayLah!"
+	 * @return <code>String[2]</code> array containing TID and total amount in
+	 *         respective indexes
+	 * @see Receipt
+	 */
 	public static String[] addPayment(ArrayList<Ticket> arr, String paymentmode) {
 		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr, paymentmode); // creates a new Receipt object
@@ -310,17 +334,26 @@ public class CustomerApp implements DisplayUserPage {
 
 	// returns one 2D array of all the bookingHistory eg. [ [TID, Payment Mode,
 	// Movie Name, Total Amount], ...]
+	/**
+	 * Gets all past booking history of customer, including past TIDs, payment mode,
+	 * movie name, total amount paid, when given unique customer ID.
+	 * 
+	 * @param custID Unique customer ID of customer requesting booking history
+	 * @return 2D array of all booking history in format: </br>
+	 *         [ [TID, Payment Mode, Movie Name, Total Amount], ...]
+	 * @see csvRW#search(String, String, String)
+	 */
 	public static String[][] searchBookingHistory(int custID) {
 
 		ArrayList<String> tids = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String a = tids.get(4); // Get all the receipt's TID of the customer
 		if (a.length() > 15) {
-			a = a.substring(1,a.length()-1);
+			a = a.substring(1, a.length() - 1);
 			String[] arr = a.split(","); // store the TIDs in a string array
 			String[][] result = new String[arr.length][4];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
-				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s",""));
+				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s", ""));
 				inside[0] = arr[i];
 				inside[1] = b.get(1);
 				inside[2] = b.get(2);
@@ -328,8 +361,7 @@ public class CustomerApp implements DisplayUserPage {
 				result[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
 			return result;
-		} else if(a.length() == 15)
-		{
+		} else if (a.length() == 15) {
 			String[][] result = new String[1][4];
 			String[] inside = new String[4];
 			ArrayList<String> b = csvRW.search("paymentdatabase", "TID", a);
@@ -339,12 +371,23 @@ public class CustomerApp implements DisplayUserPage {
 			inside[3] = b.get(3);
 			result[0] = inside;
 			return result;
-		}else {
+		} else {
 			return null;
 		}
 
 	}
 
+	/**
+	 * Allows movie-goer to add review to a selected movie. Will update both review
+	 * and movie database, as well as the relevant <code>Movie</code> object.
+	 * 
+	 * @param rating     Movie-goer's rating out of 10 in integers
+	 * @param comment    Comments left by Movie-goer
+	 * @param userID     UserID of movie-goer who left the review
+	 * @param movie_name Title of selected movie
+	 * @see csvRW#editCSV(String, String, String, String)
+	 * @see Movie#addReview(Review)
+	 */
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
 
 		Review a = new Review(rating, comment, userID);
@@ -355,10 +398,11 @@ public class CustomerApp implements DisplayUserPage {
 		String reviews = movie_row.get(9);
 		for (int k = 0; k < StaffApp.movieArr.size(); k++) {
 			if (searchOneMovie(movie_name) == StaffApp.movieArr.get(k).getMovieID()) {
-				StaffApp.movieArr.get(k).addReview(a);       // add the review to the movie object in movieArr
+				StaffApp.movieArr.get(k).addReview(a); // add the review to the movie object in movieArr
 				String userRating = StaffApp.movieArr.get(k).getOverallUserRating();
 				System.out.println("overall user rating: " + userRating);
-				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the movie database
+				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the
+																					// movie database
 				break;
 			}
 		}
@@ -390,6 +434,15 @@ public class CustomerApp implements DisplayUserPage {
 
 	// returns everything in customer database except Transaction history given a
 	// CustomerID
+	/**
+	 * Fetches all data stored about a customer. Includes name, mobile number, email
+	 * and all past TIDs.
+	 * 
+	 * @param custID Unique customer ID
+	 * @return <code>String[]</code> array of [name, mobile number, email, past
+	 *         TIDs]
+	 * @see csvRW#search(String, String, String)
+	 */
 	public static String[] findCustomer(int custID) {
 		ArrayList<String> row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String[] result = new String[4];
@@ -401,6 +454,15 @@ public class CustomerApp implements DisplayUserPage {
 	}
 
 	// writes to customer database for a new receipt
+	/**
+	 * Stores TID of new receipt when customer makes a purchase of tickets into
+	 * customer database to keep track of past booking history.
+	 * 
+	 * @param custID Unique customer ID
+	 * @param TID    TID to be inserted into customer database
+	 * @see csvRW#search(String, String, String)
+	 * @see csvRW#editCSV(String, String, String, String)
+	 */
 	public static void addReceiptinCustomerDatabase(int custID, String TID) {
 		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String id = cust_row.get(0);
@@ -425,7 +487,5 @@ public class CustomerApp implements DisplayUserPage {
 			}
 		}
 	}
-
-
 
 }
