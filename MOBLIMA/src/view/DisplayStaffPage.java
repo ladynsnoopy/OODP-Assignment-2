@@ -29,14 +29,14 @@ import java.util.ArrayList;
  * @see MainDisplayPage
  *
  */
-public interface DisplayStaffPage extends MainDisplayPage {
+public class DisplayStaffPage extends DisplayPageAb {
 
 	/**
 	 * Displays the initial menu page shown to the staff after login. Calls the
 	 * appropriate methods for each menu option.
 	 * 
 	 */
-	public static void displayStaffPage() {
+	public void menu() {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		// do customer initialisation stuff
@@ -68,39 +68,39 @@ public interface DisplayStaffPage extends MainDisplayPage {
 			switch (input) {
 			case 1:
 				addMovie();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 2:
 				editMovieDetails();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 3:
 				addShowtime();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 4:
 				editShowtimeDetails();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 5:
 				editTicketPrice();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 6:
 				newHolidayDate();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 7:
 				newWeekendDate();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 8:
 				viewInfo();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 9:
 				newStaffacc();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 10:
 				loop = false;
@@ -116,7 +116,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 	 * option
 	 * 
 	 */
-	public static void viewInfo() {
+	public void viewInfo() {
 		while (true) {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Enter (1) to view list of movies.");
@@ -141,30 +141,30 @@ public interface DisplayStaffPage extends MainDisplayPage {
 			switch (input) {
 			case 1:
 				DisplayUserPage.displayAllMovie();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 2:
 				displayAllShowtimes();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 3:
 				displayHolWkndDates();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 4:
 				displayPrices();
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 5:
 				DisplayUserPage.displayTopMovies(2);
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 6:
 				DisplayUserPage.displayTopMovies(1);
-				enterToReturn();
+				super.enterToReturn();
 				break;
 			case 7:
-				enterToReturn();
+				super.enterToReturn();
 				return;
 			}
 		}
@@ -774,11 +774,5 @@ public interface DisplayStaffPage extends MainDisplayPage {
 	 * selection of options
 	 * 
 	 */
-	public static void enterToReturn() {
-		System.out.println("Press enter to return\n");
-		try {
-			System.in.read();
-		} catch (Exception e) {
-		}
-	}
+
 }

@@ -30,13 +30,14 @@ import controller.csvRW;
  * @see MainDisplayPage
  *
  */
-public interface DisplayUserPage extends MainDisplayPage {
+public class DisplayUserPage extends DisplayPageAb {
+	
 
 	/**
 	 * Displays the initial menu page shown to user after login. Calls the
 	 * appropriate methods for each menu option.
 	 */
-	public static void displayUserPage() {
+	public void menu() {
 		Scanner sc = new Scanner(System.in);
 		boolean loop = true;
 		int custID = custLogin(); // custID is the customer ID of the customer using the App now;
@@ -67,11 +68,11 @@ public interface DisplayUserPage extends MainDisplayPage {
 			switch (input) {
 			case 1:
 				displayAllMovie();
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 2:
 				displaySearchMovie();
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 3:
 				if (displayBuyTicket(custID) == 1) {
@@ -82,27 +83,27 @@ public interface DisplayUserPage extends MainDisplayPage {
 					System.out.println("Email: " + info[3]);
 					System.out.println();
 				}
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 4:
 				displayBookingHistory(custID);
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 5:
 				displayTopMovies(2);
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 6:
 				displayTopMovies(1);
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 7:
 				displayAddReview(custID);
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			case 8:
 				loop = false;
-				DisplayStaffPage.enterToReturn();
+				super.enterToReturn();
 				break;
 			}
 

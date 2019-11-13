@@ -23,7 +23,7 @@ import controller.csvRW;
  * @see DisplayStaffPage
  *
  */
-interface MainDisplayPage {
+public class MainDisplayPage {
 
 	/**
 	 * Display of starting menu options when the program is started
@@ -33,6 +33,8 @@ interface MainDisplayPage {
 	public static void main(String[] args) {
 		CinemaController.createCineplexAndCinemas();
 		ShowtimeController.createShowtimes();
+		DisplayUserPage UP = new DisplayUserPage();
+		DisplayStaffPage SP = new DisplayStaffPage();
 		boolean loop = true;
 		while (loop) {
 			Scanner sc = new Scanner(System.in);
@@ -55,11 +57,11 @@ interface MainDisplayPage {
 //		    sc.close();
 			switch (input) {
 			case 1:
-				DisplayUserPage.displayUserPage();
+				UP.menu();
 				break;
 			case 2:
 				if (loginVerification())
-					DisplayStaffPage.displayStaffPage();
+					SP.menu();
 				else {
 					System.out.println("Login failed");
 				}
