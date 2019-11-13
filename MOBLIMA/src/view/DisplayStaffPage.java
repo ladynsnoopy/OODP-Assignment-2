@@ -16,13 +16,13 @@ import java.util.ArrayList;
 
 /**
  * Boundary class between <code>MainDisplayPage</code> and
- * <code>StaffApp</code>. Provides printing and display of options in staff
+ * <code>controller</code> package. Provides printing and display of options in staff
  * module.
  * 
  * @author Lim Wai Leong
  * @version 1.0
  * @since 2019-11-09
- * @see StaffApp
+ * @see controller
  * @see MainDisplayPage
  *
  */

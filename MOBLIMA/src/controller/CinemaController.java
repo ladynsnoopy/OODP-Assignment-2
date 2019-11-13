@@ -5,6 +5,17 @@ import java.util.ArrayList;
 import model.Cinema;
 import model.Cineplex;
 
+/**
+ * A control class that will handle methods relating to the cinema model. It
+ * allows for the initialization of cinemas and cineplexes .
+ * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ *
+ */
 public class CinemaController {
 
 	/**
@@ -17,27 +28,6 @@ public class CinemaController {
 	 * objects.
 	 */
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
-
-	/**
-	 * Checks login information against staffdatabase.
-	 * 
-	 * @param username Username of staff
-	 * @param password Password of staff
-	 * @return 0 if all information matches. Returns -1 if password does not match.
-	 *         Returns -2 if no such username exists.
-	 */
-	public static int login(String username, String password) {
-		ArrayList<String[]> list = csvRW.readCSV("staffdatabase");
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i)[0].equals(username)) {
-				if (list.get(i)[1].equals(password)) {
-					return 0;
-				} else
-					return -1; // if password does not match
-			}
-		}
-		return -2; // if no such username exists
-	}
 
 	/**
 	 * Creates all the pre-existing Cineplex and Cinema objects necessary for the

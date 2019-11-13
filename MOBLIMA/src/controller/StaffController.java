@@ -1,25 +1,15 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
-import model.Calendar;
-import model.Cinema;
-import model.Cineplex;
-import model.Movie;
-import model.Price;
-import model.Showtime;
+import java.util.ArrayList;
+
 import model.Staff;
 import view.DisplayStaffPage;
 import view.DisplayUserPage;
 
 /**
- * A control class that will handle methods relating to the staff module. It
- * will manage and control objects that are necessary to allow the staff to
- * login, create/update/remove movie listing, create/update/remove cinema
- * showtimes and the movies to be shown, and configure system settings.
+ * A control class that will handle methods relating to the staff model. 
+ * Contains methods that verify login and create new staff accounts
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
@@ -42,6 +32,26 @@ public class StaffController implements DisplayStaffPage, DisplayUserPage {
 		a.addStaffToCSV(a);
 	}
 
+	/**
+	 * Checks login information against staffdatabase.
+	 * 
+	 * @param username Username of staff
+	 * @param password Password of staff
+	 * @return 0 if all information matches. Returns -1 if password does not match.
+	 *         Returns -2 if no such username exists.
+	 */
+	public static int login(String username, String password) {
+		ArrayList<String[]> list = csvRW.readCSV("staffdatabase");
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i)[0].equals(username)) {
+				if (list.get(i)[1].equals(password)) {
+					return 0;
+				} else
+					return -1; // if password does not match
+			}
+		}
+		return -2; // if no such username exists
+	}
 
 
 

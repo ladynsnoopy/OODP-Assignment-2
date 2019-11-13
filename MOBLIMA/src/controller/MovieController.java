@@ -32,9 +32,6 @@ public class MovieController {
 		a.addMovieToCSV(a);
 	}
 
-	// 1:title 2:type 3:status 4:synopsis 5:rating 6:director 7:cast 8:showtime shit
-	// boundary class asks for which to change, if 1-5 use this function
-
 	/**
 	 * Edits movie details (title, type, showing status, synopsis, rating, director,
 	 * cast list) in the moviedatabase. Uses selection to determine what attribute
@@ -78,6 +75,22 @@ public class MovieController {
 			System.out.println("Cast updated");
 			break;
 		}
+	}
+
+	/**
+	 * Returns names of all movies that exist in database.
+	 * 
+	 * @return <code>String</code> array of movie names
+	 */
+	public static String[] searchMovies() {
+		ArrayList<String[]> list = csvRW.readCSV("moviedatabase");
+		String[] movies = new String[list.size()];
+		int num = 0;
+		for (int i = 0; i < list.size(); i++) {
+			movies[num] = list.get(i)[1];
+			num++;
+		}
+		return movies;
 	}
 
 	/**
@@ -126,5 +139,75 @@ public class MovieController {
 			}
 		}
 		return output;
+	}
+
+	/**
+	 * Searches for matching <code>movieID</code> given movie title.
+	 * 
+	 * @param name Movie title of target movie
+	 * @return <code>movieID</code> that matches target movie if target found. Else,
+	 *         returns -1.
+	 */
+	public static int searchOneMovie(String name) {
+		ArrayList<String> result = csvRW.search("moviedatabase", "Name", name);
+		if (result != null)
+			return Integer.parseInt(result.get(0)); // returns movieID given the movie name
+		else
+			return -1;
+	}
+
+	/**
+	 * Searches and returns all details of target movie. Will print
+	 * <code>No reviews has been written about this movie yet.</code> if no reviews
+	 * can be found. <br>
+	 * Otherwise will be in sequence of Name, Movie Type, Showing Status, Synopsis,
+	 * Director, Cast, Overall Rating, Movie Age Rating, Comment, and User's Rating
+	 * <br>
+	 * Will call <code>searchforReview</code>.
+	 * 
+	 * @param movieID Unique <code>movieID</code> of target movie
+	 * @return All details of a target movie stored in a
+	 *         <code>ArrayList&lt;String&gt;</code>.
+	 * @see CustomerApp#searchforReview(int)
+	 */
+
+	public static ArrayList<String> searchMovieDetails(int movieID) {
+		ArrayList<String> movie_row = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
+		ArrayList<String> result = new ArrayList<String>();
+		result.add("-----------------------------------------------");
+		result.add(movie_row.get(1));
+		result.add("-----------------------------------------------");
+		result.add("Movie Type: " + movie_row.get(2));
+		result.add("Showing Status: " + movie_row.get(3));
+		result.add("Synopsis: " + movie_row.get(4));
+		result.add("Director: " + movie_row.get(5));
+		String cutted = movie_row.get(6).substring(1, movie_row.get(6).length() - 1);
+		result.add("Cast: " + cutted); // make sure cast is more than one
+		result.add("Overall Rating: " + movie_row.get(7));
+		result.add("Movie Age Rating: " + movie_row.get(11));
+		result.add("-----------------------------------------------");
+		String a = movie_row.get(9);
+		if (a.equals("")) {
+			result.add("No reviews has been written about this movie yet.");
+			return result;
+		} else if (a.length() == 1) { // if there is only one review
+			String[] review = ReviewController.searchforReview(Integer.parseInt(a));
+			result.add("Comment: " + review[1]);
+			result.add("User's Rating: " + review[0]);
+			result.add("-----------------------------------------------");
+
+			return result;
+		} else {
+
+			String cut = a.substring(1, a.length() - 1); // if there are more than one review
+			String[] arr = cut.split(","); // store all the showtimeID in a string array
+			for (int j = 0; j < arr.length; j++) {
+				String[] review = ReviewController.searchforReview(Integer.parseInt(arr[j]));
+				result.add("Comment: " + review[1]);
+				result.add("User Rating: " + review[0]);
+			}
+			return result;
+
+		}
 	}
 }
