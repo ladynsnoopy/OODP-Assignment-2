@@ -26,7 +26,7 @@ public class Customer {
 	 */
 	private int custID;
 	/**
-	 * <code>ArrayList<Receipt></code> of receipts of previous bookings.
+	 * <code>ArrayList&lt;Receipt&gt;</code> of receipts of previous bookings.
 	 * 
 	 * @see Receipt
 	 */

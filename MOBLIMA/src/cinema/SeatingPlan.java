@@ -13,30 +13,30 @@ public class SeatingPlan {
 
 	/**
 	 * 
-	 * Prints out seating plan in the format of:<br />
-	 * Cinema: 1<br />
+	 * Prints out seating plan in the format of:<br>
+	 * Cinema: 1<br>
 	 * 
-	 * --------------SCREEN--------------<br />
-	 * 0 1 2 3 4 5 6 7 8 9 <br />
-	 * 0 O O O O O O O O O O <br />
-	 * 1 O O O O O O O O O O <br />
-	 * 2 O O O O O O O O O O <br />
-	 * 3 O O O O O O X O O O <br />
-	 * 4 O O O O O O O O O O <br />
-	 * 5 O O O O O X X O O O <br />
-	 * 6 O O O O O O O X O O <br />
-	 * 7 X O O O O O O O O O <br />
-	 * 8 O O O O O O O X O O <br />
-	 * 9 O O O O O O O O O O <br />
-	 * 10 O O O O O X O O O O <br />
-	 * 11 O O O O O O O O O O <br />
-	 * 12 O O O O O O O O O O <br />
-	 * 13 O O O O O O O O O O <br />
-	 * 14 O O O O O O O O O O <br />
-	 * <br />
-	 * Key:<br />
-	 * O: Unoccupied seat<br />
-	 * X: Occupied seat<br />
+	 * --------------SCREEN--------------<br>
+	 * 0 1 2 3 4 5 6 7 8 9 <br>
+	 * 0 O O O O O O O O O O <br>
+	 * 1 O O O O O O O O O O <br>
+	 * 2 O O O O O O O O O O <br>
+	 * 3 O O O O O O X O O O <br>
+	 * 4 O O O O O O O O O O <br>
+	 * 5 O O O O O X X O O O <br>
+	 * 6 O O O O O O O X O O <br>
+	 * 7 X O O O O O O O O O <br>
+	 * 8 O O O O O O O X O O <br>
+	 * 9 O O O O O O O O O O <br>
+	 * 10 O O O O O X O O O O <br>
+	 * 11 O O O O O O O O O O <br>
+	 * 12 O O O O O O O O O O <br>
+	 * 13 O O O O O O O O O O <br>
+	 * 14 O O O O O O O O O O <br>
+	 * <br>
+	 * Key:<br>
+	 * O: Unoccupied seat<br>
+	 * X: Occupied seat<br>
 	 * 
 	 * 
 	 * 

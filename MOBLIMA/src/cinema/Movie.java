@@ -5,9 +5,9 @@ import java.util.ArrayList;
 /**
  * 
  * Movie object that contains movie details. Also contains
- * <code>ArrayList<Review></code> of reviews for the movie, and an
- * <code>ArrayList<Showtime></code> of <code>Showtime</code> objects for this
- * movie. Also contains average ratings left by reviewers.
+ * <code>ArrayList&lt;Review&gt;</code> of reviews for the movie, and an
+ * <code>ArrayList&lt;Showtime&gt;</code> of <code>Showtime</code> objects for
+ * this movie. Also contains average ratings left by reviewers.
  * 
  * @author Edhie Wahidin Michelle
  * @version 1.0
@@ -39,7 +39,7 @@ public class Movie {
 	 */
 	private String synopsis;
 	/**
-	 * <code>ArrayList<String></code> of names of cast members
+	 * <code>ArrayList&lt;String&gt;</code> of names of cast members
 	 */
 	private ArrayList<String> cast;
 	/*
@@ -110,8 +110,10 @@ public class Movie {
 	 * @param showingStatus Showing status of movie. Can be
 	 *                      <code>Coming Soon, Preview,
 	 *                      Now Showing, End of Showing</code>.
-	 * @param synopsis      <code>ArrayList<String></code> of names of cast members
-	 * @param cast          <code>ArrayList<String></code> of names of cast members
+	 * @param synopsis      <code>ArrayList&lt;String&gt;</code> of names of cast
+	 *                      members
+	 * @param cast          <code>ArrayList&lt;String&gt;</code> of names of cast
+	 *                      members
 	 * @param director      Name of director for the movie
 	 * @param type          Type or genre of movie. Can be
 	 *                      <code>Action, Horror, Romance,
@@ -131,6 +133,7 @@ public class Movie {
 		this.movieRating = movieRating;
 
 	}
+
 	/**
 	 * Counts number of entries in data to act as counter for ID
 	 * 
@@ -229,11 +232,9 @@ public class Movie {
 	}
 
 	/**
-	 * Sets type/genre of movie. Can be
-	 * <code>Action, Horror, 3D</code>.
+	 * Sets type/genre of movie. Can be <code>Action, Horror, 3D</code>.
 	 * 
-	 * @param a Type/genre of movie. Can be
-	 *          <code>Action, Horror, 3D</code>
+	 * @param aType Type/genre of movie. Can be <code>Action, Horror, 3D</code>
 	 */
 	public void setType(String aType) {
 		this.type = aType;
@@ -258,18 +259,18 @@ public class Movie {
 	}
 
 	/**
-	 * Gets <code>ArrayList<String></code> of cast list.
+	 * Gets <code>ArrayList&lt;String&gt;</code> of cast list.
 	 * 
-	 * @return <code>ArrayList<String></code> of cast list
+	 * @return <code>ArrayList&lt;String&gt;</code> of cast list
 	 */
 	public ArrayList<String> getCast() {
 		return this.cast;
 	}
 
 	/**
-	 * Changes <code>ArrayList<String></code> of cast list.
+	 * Changes <code>ArrayList&lt;String&gt;</code> of cast list.
 	 * 
-	 * @param aCast <code>ArrayList<String></code> of cast list
+	 * @param aCast <code>ArrayList&lt;String&gt;</code> of cast list
 	 */
 	public void setCast(ArrayList<String> aCast) {
 		this.cast = aCast;
@@ -327,7 +328,7 @@ public class Movie {
 	}
 
 	/**
-	 * Changes <code>ArrayList<code> of <code>Showtime</code> objects under this
+	 * Changes <code>ArrayList</code> of <code>Showtime</code> objects under this
 	 * movie.
 	 * 
 	 * @param aShowtimeArr <code>ArrayList</code> of <code>Showtime</code> objects
@@ -410,9 +411,9 @@ public class Movie {
 	}
 
 	/**
-	 * Gets an <code>ArrayList<String></code> of <code>Review</code> IDs.
+	 * Gets an <code>ArrayList&lt;String&gt;</code> of <code>Review</code> IDs.
 	 * 
-	 * @return <code>ArrayList<String></code> of <code>Review</code> IDs
+	 * @return <code>ArrayList&lt;String&gt;</code> of <code>Review</code> IDs
 	 * @see Review#getReviewID()
 	 */
 	public ArrayList<String> getReviewIDs() {
@@ -424,9 +425,9 @@ public class Movie {
 	}
 
 	/**
-	 * Gets an <code>ArrayList<String></code> of <code>Showtime</code> IDs.
+	 * Gets an <code>ArrayList&lt;String&gt;</code> of <code>Showtime</code> IDs.
 	 * 
-	 * @return ArrayList<String> of <code>Showtime</code> IDs
+	 * @return ArrayList&lt;String&gt; of <code>Showtime</code> IDs
 	 * @see Showtime#getShowtimeID()
 	 */
 	public ArrayList<String> getShowtimeIDs() {

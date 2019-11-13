@@ -21,10 +21,10 @@ public class Ticket {
 	 */
 	private String movietitle;
 	/**
-	 * Selection between Adult, Child, and Senior age groups.</br>
-	 * 1: Child </br>
-	 * 2: Adult </br>
-	 * 3: Senior </br>
+	 * Selection between Adult, Child, and Senior age groups.<br>
+	 * 1: Child <br>
+	 * 2: Adult <br>
+	 * 3: Senior <br>
 	 */
 	private int isAdult;
 //	private boolean isWeekend;
@@ -67,7 +67,7 @@ public class Ticket {
 	 * Gets selection of age group
 	 * 
 	 * @return Selection of age group
-	 * @see this{@link #isAdult}
+	 * @see Ticket#isAdult
 	 */
 	public int getIsAdult() {
 		return isAdult;
@@ -77,7 +77,7 @@ public class Ticket {
 	 * Changes selection of age group
 	 * 
 	 * @param isAdult New selection of age group
-	 * @see this{@link #isAdult}
+	 * @see Ticket#isAdult
 	 */
 	public void setIsAdult(int isAdult) {
 		this.isAdult = isAdult;

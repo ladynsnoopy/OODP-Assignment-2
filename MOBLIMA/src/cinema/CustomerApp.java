@@ -110,10 +110,10 @@ public class CustomerApp implements DisplayUserPage {
 	/**
 	 * Searches and returns all details of target movie. Will print
 	 * <code>No reviews has been written about this movie yet.</code> if no reviews
-	 * can be found. </br>
+	 * can be found. <br>
 	 * Otherwise will be in sequence of Name, Movie Type, Showing Status, Synopsis,
 	 * Director, Cast, Overall Rating, Movie Age Rating, Comment, and User's Rating
-	 * </br>
+	 * <br>
 	 * Will call <code>searchforReview</code>.
 	 * 
 	 * @param movieID Unique <code>movieID</code> of target movie
@@ -204,7 +204,7 @@ public class CustomerApp implements DisplayUserPage {
 	 * @param showtimeID Unique <code>showtimeID</code> of target showtime
 	 * @param x          X-coordinate of seat
 	 * @param y          Y-coordinate of seat
-	 * @return -1 if seat is already occupied. </br>
+	 * @return -1 if seat is already occupied. <br>
 	 *         1 if purchase was successful.
 	 * @see Ticket
 	 */
@@ -330,7 +330,7 @@ public class CustomerApp implements DisplayUserPage {
 	 * movie name, total amount paid, when given unique customer ID.
 	 * 
 	 * @param custID Unique customer ID of customer requesting booking history
-	 * @return 2D array of all booking history in format: </br>
+	 * @return 2D array of all booking history in format: <br>
 	 *         [ [TID, Payment Mode, Movie Name, Total Amount], ...]
 	 */
 	public static String[][] searchBookingHistory(int custID) {

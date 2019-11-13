@@ -13,8 +13,8 @@ import java.util.Scanner;
  * @author Lim Wai Leong
  * @version 1.0
  * @since 2019-11-13
- * @see UserDisplayPage
- * @see StaffDisplayPage
+ * @see DisplayUserPage
+ * @see DisplayStaffPage
  *
  */
 interface MainDisplayPage {
@@ -69,7 +69,7 @@ interface MainDisplayPage {
 	/**
 	 * Verifies login for staff into staff module
 	 * 
-	 * @return <code>true</code> if login is verified </br>
+	 * @return <code>true</code> if login is verified <br>
 	 *         <code>false</code> if not verified
 	 */
 	public static boolean loginVerification() {

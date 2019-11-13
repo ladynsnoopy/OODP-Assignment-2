@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Showtime object that represent a particular instance of a movie showing at a
- * particular time.</br>
+ * particular time.<br>
  * Contains <code>Cinema</code> class that the cinema this showtime is located
  * at belongs to, timing of showtime, seatingplan of the showtime, and list of
  * <code>Seat</code> objects that are contained in this <code>Showtime</code>.
@@ -52,9 +52,9 @@ public class Showtime {
 	private Seat[] seatArr;
 
 	/**
-	 * Constructor of <code>Showtime</code> object.</br>
+	 * Constructor of <code>Showtime</code> object.<br>
 	 * Size of <code>searArr</code> will be determined by total number of rows and
-	 * columns fetched from <code>Cinema</code> class.</br>
+	 * columns fetched from <code>Cinema</code> class.<br>
 	 * Size of <code>boolean</code> seatingplan will be determined by total number
 	 * of rows and columns fetched from <code>Cinema</code> class.
 	 * 
@@ -153,9 +153,9 @@ public class Showtime {
 	/**
 	 * Sets seating plan for this <code>Showtime</code>
 	 * 
-	 * Seating plan in terms of <code>seat[]</code> index:</br>
-	 * 0,1,2,3,4,5 </br>
-	 * 6,7,8,9,10,11 </br>
+	 * Seating plan in terms of <code>seat[]</code> index:<br>
+	 * 0,1,2,3,4,5 <br>
+	 * 6,7,8,9,10,11 <br>
 	 * etc
 	 * 
 	 * so seat index = yCoor * no of columns + xCoor

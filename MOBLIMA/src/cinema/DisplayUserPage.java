@@ -135,7 +135,7 @@ interface DisplayUserPage extends MainDisplayPage {
 	/**
 	 * Displays top 5 movies based on either ratings or sales.
 	 * 
-	 * @param selection Choice between top 5 ratings or sales. </br>
+	 * @param selection Choice between top 5 ratings or sales. <br>
 	 *                  1 for ratings, 2 for sales.
 	 */
 	public static void displayTopMovies(int selection) {

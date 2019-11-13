@@ -712,8 +712,10 @@ interface DisplayStaffPage extends MainDisplayPage {
 		StaffApp.configureDates(2, Integer.toString(date), StaffApp.calendar);
 	}
 
+
 	/**
 	 * Selection statement to act as confirmation for actions
+	 * @return input of scanner
 	 */
 	public static int editConfirmation() {
 		Scanner sc1 = new Scanner(System.in);
