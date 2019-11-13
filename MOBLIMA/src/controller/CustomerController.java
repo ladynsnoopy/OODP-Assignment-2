@@ -77,7 +77,7 @@ public class CustomerController {
 		} else if (tid.length() == 15) {
 			String[][] result = new String[1][4];
 			String[] inside = new String[4];
-			ArrayList<String> payment_row = csvRW.search("paymentdatabase", "TID", a);
+			ArrayList<String> payment_row = csvRW.search("paymentdatabase", "TID", tid);
 			inside[0] = tid;
 			inside[1] = payment_row.get(1);
 			inside[2] = payment_row.get(2);

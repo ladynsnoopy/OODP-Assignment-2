@@ -55,7 +55,7 @@ public class ReviewController {
 		String reviews = movie_row.get(9);
 		for (int k = 0; k < MovieController.movieArr.size(); k++) {
 			if (MovieController.searchOneMovie(movie_name) == MovieController.movieArr.get(k).getMovieID()) {
-				MovieController.movieArr.get(k).addReview(a); // add the review to the movie object in movieArr
+				MovieController.movieArr.get(k).addReview(review); // add the review to the movie object in movieArr
 				String userRating = MovieController.movieArr.get(k).getOverallUserRating();
 				System.out.println("overall user rating: " + userRating);
 				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the
@@ -65,7 +65,7 @@ public class ReviewController {
 		}
 		// if there are no reviews initially
 		if (reviews.equals("")) {
-			csvRW.editCSV("moviedatabase", id, "ReviewID", Integer.toString(a.getReviewID())); // write reviewID to
+			csvRW.editCSV("moviedatabase", id, "ReviewID", Integer.toString(review.getReviewID())); // write reviewID to
 																								// movie database
 
 		} else {
@@ -77,7 +77,7 @@ public class ReviewController {
 				for (int i = 0; i < arr.length; i++) {
 					change += arr[i] + ",";
 				}
-				change += Integer.toString(a.getReviewID());
+				change += Integer.toString(review.getReviewID());
 				csvRW.editCSV("moviedatabase", id, "ReviewID", change); // write reviewID to movie database
 			} else {
 				// if there is one review

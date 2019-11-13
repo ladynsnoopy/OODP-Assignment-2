@@ -145,7 +145,7 @@ public class ShowtimeController {
 		} else {
 			String[][] showtimes = new String[1][2];
 			String[] inside = new String[2];
-			ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID", a.replaceAll("\\s+", ""));
+			ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID", showID.replaceAll("\\s+", ""));
 			inside[0] = showID;
 			inside[1] = show_row.get(show_row.size() - 1);
 			showtimes[0] = inside;
