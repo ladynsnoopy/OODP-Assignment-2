@@ -30,13 +30,13 @@ public class CSVtoShowtime {
 			String cinema = element[1];
 			String timing = element[2];
 			int k = 0;
-			for (int j = 0; j < StaffApp.cinemaArr.size(); j++) {
-				if (StaffApp.cinemaArr.get(j).getCinemaID().contains(cinema)) {
+			for (int j = 0; j < CinemaController.cinemaArr.size(); j++) {
+				if (CinemaController.cinemaArr.get(j).getCinemaID().contains(cinema)) {
 					k = j;
 					break;
 				}
 			}
-			Showtime o = new Showtime(StaffApp.cinemaArr.get(k), timing);
+			Showtime o = new Showtime(CinemaController.cinemaArr.get(k), timing);
 			o.setShowtimeID(showtimeID);
 
 			ShowtimeObjArr.add(o);

@@ -239,13 +239,13 @@ public class CustomerApp implements DisplayUserPage {
 		new_occupied.add(Integer.toString(showtimeID));
 		new_occupied.add(target);
 		csvRW.writeToCSV("seatingplandatabase", new_occupied);
-		for (int i = 0; i < StaffApp.showtimeArr.size(); i++) {
-			if (showtimeID == StaffApp.showtimeArr.get(i).getShowtimeID()) {
+		for (int i = 0; i < ShowtimeController.showtimeArr.size(); i++) {
+			if (showtimeID == ShowtimeController.showtimeArr.get(i).getShowtimeID()) {
 				// mark the seat as occupied in the object
 				// seat_index = yCoor * no of columns + xCoor
 				int seat_index;
-				seat_index = (y * StaffApp.showtimeArr.get(i).getCinema().getTotalCol()) + x;
-				StaffApp.showtimeArr.get(i).getSeatArr()[seat_index].setOccupied(true);
+				seat_index = (y * ShowtimeController.showtimeArr.get(i).getCinema().getTotalCol()) + x;
+				ShowtimeController.showtimeArr.get(i).getSeatArr()[seat_index].setOccupied(true);
 			}
 		}
 		return 1; // purchase is successful
@@ -275,16 +275,16 @@ public class CustomerApp implements DisplayUserPage {
 		// I have assumed that by this stage all the info entered for parameters is
 		// correct
 		int index = 0;
-		for (int i = 0; i < StaffApp.showtimeArr.size(); i++) {
-			if (showtimeID == StaffApp.showtimeArr.get(i).getShowtimeID()) {
+		for (int i = 0; i < ShowtimeController.showtimeArr.size(); i++) {
+			if (showtimeID == ShowtimeController.showtimeArr.get(i).getShowtimeID()) {
 				index = i; // get the index of the showtime object in the showtimeArr
 				break;
 			}
 		}
-		Ticket addnew = new Ticket(StaffApp.showtimeArr.get(index)); // create a new Ticket object
+		Ticket addnew = new Ticket(ShowtimeController.showtimeArr.get(index)); // create a new Ticket object
 		addnew.setIsAdult(isAdult); // set the isAdult option of Ticket
 		String cinetype = addnew.getShowtime().getCinema().getType();
-		addnew.setFinalPrice(StaffApp.calendar, StaffApp.price, cinetype); // set the final price of the Ticket based on
+		addnew.setFinalPrice(CalendarController.calendar, PriceController.price, cinetype); // set the final price of the Ticket based on
 																			// holiday and
 		// weekend dates in Calendar and Prices
 		addnew.setMovietitle(movietitle);
@@ -296,9 +296,9 @@ public class CustomerApp implements DisplayUserPage {
 																								// count in movie
 																								// database
 		// change the movie object's ticketSales count
-		for (int k = 0; k < StaffApp.movieArr.size(); k++) {
-			if (searchOneMovie(movietitle) == StaffApp.movieArr.get(k).getMovieID()) {
-				StaffApp.movieArr.get(k).increaseTicketSalesByOne();
+		for (int k = 0; k < MovieController.movieArr.size(); k++) {
+			if (searchOneMovie(movietitle) == MovieController.movieArr.get(k).getMovieID()) {
+				MovieController.movieArr.get(k).increaseTicketSalesByOne();
 				break;
 			}
 		}
@@ -393,10 +393,10 @@ public class CustomerApp implements DisplayUserPage {
 																							// movie database
 		String id = movie_row.get(0);
 		String reviews = movie_row.get(9);
-		for (int k = 0; k < StaffApp.movieArr.size(); k++) {
-			if (searchOneMovie(movie_name) == StaffApp.movieArr.get(k).getMovieID()) {
-				StaffApp.movieArr.get(k).addReview(a); // add the review to the movie object in movieArr
-				String userRating = StaffApp.movieArr.get(k).getOverallUserRating();
+		for (int k = 0; k < MovieController.movieArr.size(); k++) {
+			if (searchOneMovie(movie_name) == MovieController.movieArr.get(k).getMovieID()) {
+				MovieController.movieArr.get(k).addReview(a); // add the review to the movie object in movieArr
+				String userRating = MovieController.movieArr.get(k).getOverallUserRating();
 				System.out.println("overall user rating: " + userRating);
 				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the
 																					// movie database

@@ -5,6 +5,9 @@ import java.util.Scanner;
 import model.Calendar;
 import model.Price;
 import model.Showtime;
+import controller.CalendarController;
+import controller.MovieController;
+import controller.ShowtimeController;
 import controller.StaffApp;
 
 import java.util.ArrayList;
@@ -167,7 +170,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 	 * Displays all the <code>Showtime</code> entries from showtime database.
 	 */
 	public static void displayAllShowtimes() {
-		String[] arr = StaffApp.searchShowtimes();
+		String[] arr = ShowtimeController.searchShowtimes();
 		System.out.println("Showtime List:");
 		System.out.println("---------------------------");
 		for (int i = 1; i < arr.length; i++) {
@@ -197,7 +200,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		}
 		switch (input) {
 		case 1:
-			ArrayList<String> holArr = new ArrayList<String>(StaffApp.calendar.getHolArr());
+			ArrayList<String> holArr = new ArrayList<String>(CalendarController.calendar.getHolArr());
 			System.out.println("Holiday dates are:");
 			for (int i = 0; i < holArr.size(); i++) {
 				System.out.println(holArr.get(i).substring(0, 4) + "/" + holArr.get(i).substring(4, 6) + "/"
@@ -205,7 +208,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 			}
 			break;
 		case 2:
-			ArrayList<String> WkndArr = new ArrayList<String>(StaffApp.calendar.getWeekendArr());
+			ArrayList<String> WkndArr = new ArrayList<String>(CalendarController.calendar.getWeekendArr());
 			System.out.println("Holiday dates are:");
 			for (int i = 0; i < WkndArr.size(); i++) {
 				System.out.println(WkndArr.get(i).substring(0, 4) + "/" + WkndArr.get(i).substring(4, 6) + "/"
