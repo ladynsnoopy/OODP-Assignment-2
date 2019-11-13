@@ -26,6 +26,7 @@ import view.DisplayUserPage;
  * @version 1.0
  * @since 2019-11-13
  *
+ *
  */
 public class StaffApp implements DisplayStaffPage, DisplayUserPage {
 
