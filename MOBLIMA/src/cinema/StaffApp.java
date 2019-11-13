@@ -5,20 +5,59 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class StaffApp implements DisplayStaffPage, DisplayUserPage{
-	
+/**
+ * A control class that will handle methods relating to the staff module. It
+ * will manage and control objects that are necessary to allow the staff to
+ * login, create/update/remove movie listing, create/update/remove cinema
+ * showtimes and the movies to be shown, and configure system settings.
+ * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ */
+public class StaffApp implements DisplayStaffPage, DisplayUserPage {
+
+	/**
+	 * <code>ArrayList&lt;Cineplex&gt;</code> containing all <code>Cineplexes</code>
+	 * objects.
+	 */
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
+	/**
+	 * <code>ArrayList&lt;Cinema&gt;</code> containing all <code>Cinema</code>
+	 * objects.
+	 */
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
+	/**
+	 * <code>ArrayList&lt;Movie&gt;</code> containing all <code>Movie</code>
+	 * objects.
+	 */
 	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
+	/**
+	 * <code>ArrayList&lt;Showtime&gt;</code> containing all <code>Showtime</code>
+	 * objects.
+	 */
 	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
+	/**
+	 * Initialization of <code>Calendar</code> object that contains all special
+	 * dates that affect price.
+	 */
 	public static Calendar calendar = createCalendar();
+	/**
+	 * Initialization of <code>Price</code> object that modifies and determines
+	 * final price of ticket
+	 */
 	public static Price price = new Price();
-	
-	
+
+	/**
+	 * Creates a <code>Showtime</code> object for every showtime entry in the
+	 * database.
+	 */
 	public static void createShowtimes() {
 		showtimeArr = CSVtoShowtime.csvToShowtimeObject();
 	}
-	
+
 	/**
 	 * Creates a staff account so staff can login and saves login info to
 	 * staffdatabase.
@@ -189,8 +228,7 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 
 		if (csvRW.search("moviedatabase", "Name", title) == null) {
 			return false;
-		}
-		else if (csvRW.search("moviedatabase", "Name", title).get(3).equals("End of Showing")) {
+		} else if (csvRW.search("moviedatabase", "Name", title).get(3).equals("End of Showing")) {
 			return false;
 		}
 
@@ -247,6 +285,14 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 
 	// TODO update showtimes
 	// yo junteng mah man i think its right but pls double check for me HAHA
+	/**
+	 * Updates <code>Showtime</code> with new attributes.
+	 * 
+	 * @param showtimeID Unique ID for showtime
+	 * @param cinemaID   Unique ID for cinema
+	 * @param movietitle Title of movie in showtime to be updated
+	 * @param timing     Timing of showtime to be updated
+	 */
 	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
 		Cinema temp = null;
 		// checking if cinemaID exists
@@ -374,18 +420,23 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 
 	}
 
+	/**
+	 * Iterates through <code>showtimeArr</code> to return list of showtime
+	 * information.<br>
+	 * In format: ShowtimeID: ______ |Cinema: _______ |Timing: ______
+	 * 
+	 * @return List of showtime information as formatted above.
+	 */
 	public static String[] searchShowtimes() {
 		ArrayList<String[]> list = csvRW.readCSV("showtimedatabase");
 		String[] showtimes = new String[list.size()];
 		int num = 0;
 		for (int i = 0; i < list.size(); i++) {
-			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " +  list.get(i)[1] + " |Timing:" + list.get(i)[2]);
+			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
+					+ list.get(i)[2]);
 			num++;
 		}
 		return showtimes;
 	}
-	
-	
-	
-	
+
 }
