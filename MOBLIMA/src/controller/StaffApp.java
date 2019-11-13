@@ -1,9 +1,19 @@
-package cinema;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import model.Calendar;
+import model.Cinema;
+import model.Cineplex;
+import model.Movie;
+import model.Price;
+import model.Showtime;
+import model.Staff;
+import view.DisplayStaffPage;
+import view.DisplayUserPage;
 
 /**
  * A control class that will handle methods relating to the staff module. It
