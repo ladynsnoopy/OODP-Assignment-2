@@ -79,11 +79,11 @@ interface MainDisplayPage {
 			String user = sc.next();
 			System.out.println("Enter password:");
 			String password = sc.next();
-			ArrayList<String> staffDetails = new ArrayList<String>(csvRW.search("staffdatabase", "Username", user));
-			if (staffDetails.equals(null)) {
+			if (csvRW.search("staffdatabase", "Username", user) == null) {
 				System.out.println("Invalid username");
 				return false;
 			}
+			ArrayList<String> staffDetails = new ArrayList<String>(csvRW.search("staffdatabase", "Username", user));
 			if (staffDetails.get(1).contentEquals(password)) {
 				System.out.println("Login successful");
 				return true;
