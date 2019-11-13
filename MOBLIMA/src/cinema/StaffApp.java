@@ -432,8 +432,8 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage {
 		String[] showtimes = new String[list.size()];
 		int num = 0;
 		for (int i = 0; i < list.size(); i++) {
-			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
-					+ list.get(i)[2]);
+			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " +  list.get(i)[1] + " |Timing:" + list.get(i)[2].substring(0,2) +'/'+
+					list.get(i)[2].substring(2,4)+'/'+list.get(i)[2].substring(4,6)+'/'+list.get(i)[2].substring(6));
 			num++;
 		}
 		return showtimes;
