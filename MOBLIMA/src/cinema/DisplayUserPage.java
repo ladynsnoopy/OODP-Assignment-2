@@ -52,9 +52,11 @@ interface DisplayUserPage extends MainDisplayPage {
 			switch (input) {
 			case 1:
 				displayAllMovie();
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 2:
 				displaySearchMovie();
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 3:
 				if (displayBuyTicket(custID) == 1) {
@@ -65,21 +67,27 @@ interface DisplayUserPage extends MainDisplayPage {
 					System.out.println("Email: " + info[3]);
 					System.out.println();
 				}
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 4:
 				displayBookingHistory(custID);
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 5:
 				displayTopMovies(2);
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 6:
 				displayTopMovies(1);
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 7:
 				displayAddReview(custID);
+				DisplayStaffPage.enterToReturn();
 				break;
 			case 8:
 				loop = false;
+				DisplayStaffPage.enterToReturn();
 				break;
 			}
 
@@ -288,6 +296,13 @@ interface DisplayUserPage extends MainDisplayPage {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What is the name of the movie you would like to buy?");
 		String name = sc.nextLine();
+
+		if (csvRW.search("moviedatabase", "Name", name).get(3).equals("Coming Soon")) {
+			System.out.println("Movie is not available for booking yet");
+			System.out.println("Returning to menu..");
+			return -1;
+		}
+
 		int ID = CustomerApp.searchOneMovie(name); // this function checks the name of movie is valid
 		if (ID != -1) {
 			// prints show times for the movie
@@ -309,8 +324,9 @@ interface DisplayUserPage extends MainDisplayPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					showID = sc.nextInt();
-					if (CustomerApp.checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID entered
-																			// belongs to that movie/is valid
+					if (CustomerApp.checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID
+																						// entered
+						// belongs to that movie/is valid
 						break;
 					}
 				} else {
