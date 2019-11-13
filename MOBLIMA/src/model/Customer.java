@@ -8,6 +8,9 @@ import controller.csvRW;
  * Customer object that contains unique customer ID, name, mobile number, email,
  * and an <code>ArrayList&lt;Receipt&gt;</code> of receipts of previous bookings.
  * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-09

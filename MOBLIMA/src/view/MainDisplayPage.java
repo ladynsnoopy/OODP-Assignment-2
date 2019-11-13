@@ -13,8 +13,10 @@ import controller.csvRW;
  * <code>UserDisplayPage</code> and <code>StaffDisplayPage</code> for menu
  * options for the respective modules.
  * 
- * @author Myat Hmu Khin
  * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
  * @see DisplayUserPage

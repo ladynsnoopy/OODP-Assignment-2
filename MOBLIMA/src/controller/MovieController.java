@@ -15,7 +15,7 @@ import model.Movie;
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- *
+ * @see Movie
  *
  */
 public class MovieController {

@@ -8,6 +8,9 @@ import model.Showtime;
  * Control class to convert showtime entries in database to java objects.
  * 
  * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
  *

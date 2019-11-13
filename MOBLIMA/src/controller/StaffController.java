@@ -9,13 +9,16 @@ import view.DisplayUserPage;
 
 /**
  * A control class that will handle methods relating to the staff model. 
- * Contains methods that verify login and create new staff accounts
+ * Contains methods that verify login and create new staff objects
+ * 
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- *
+ * @see Staff
  *
  */
 public class StaffController implements DisplayStaffPage, DisplayUserPage {

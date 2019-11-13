@@ -6,7 +6,10 @@ import model.Showtime;
  * Control class that takes in Showtime class and collects the necessary
  * information to print the seating plan
  * 
+ * @author Lim Wai Leong
  * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-10
  *

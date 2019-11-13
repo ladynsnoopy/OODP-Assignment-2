@@ -7,7 +7,10 @@ import controller.csvRW;
 /**
  * Review object that contains rating, comments, userID, and a unique reviewID.
  * 
+ * @author Lim Wai Leong
  * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2109-11-13
  *

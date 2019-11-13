@@ -9,6 +9,7 @@ import model.Movie;
  * A control class that will handle methods relating to the Ticket model. It
  * allows for creation and addition for the <code>Ticket</code>
  * objects, and updates the database accordingly each time.
+ * The seating plan also reflects the updates each time.
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
@@ -16,8 +17,8 @@ import model.Movie;
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- *
- *
+ * @See Ticket
+ * @see SeatingPlan
  */
 public class TicketController {
 	/**

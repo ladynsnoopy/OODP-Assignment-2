@@ -16,7 +16,7 @@ import model.Showtime;
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- *
+ * @see Showtime
  *
  */
 public class ShowtimeController {

@@ -7,7 +7,10 @@ import java.util.Random;
  * Cineplex object that contains <code>ArrayList</code> of <code>Cinema</code>
  * objects belonging to this cineplex, location of cineplex, unique cineplex ID.
  * 
+ * @author Lim Wai Leong
  * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-09
  *

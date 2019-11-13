@@ -8,7 +8,10 @@ import controller.csvRW;
  * Object containing attributes of tickets, such as showtime, movie title,
  * unique ticket ID and price of ticket.
  * 
+ * @author Lim Wai Leong
  * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
  *

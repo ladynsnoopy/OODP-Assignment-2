@@ -14,7 +14,7 @@ import model.Receipt;
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- *
+ * @see Reciept 
  *
  */
 public class RecieptController {
@@ -50,6 +50,7 @@ public class RecieptController {
 			}
 		}
 	}
+	
 	/**
 	 * Gets TID and total amount of receipt given
 	 * <code>ArrayList&lt;Ticket&gt;</code> bought in this transaction by the

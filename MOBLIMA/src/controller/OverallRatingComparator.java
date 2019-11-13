@@ -8,9 +8,13 @@ import model.Movie;
  * Implements <code>Comparator</code> in order to sort <code>Movie</code> via
  * review ratings
  * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
  * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-10
+ * @see TicketSalesComparator
  *
  */
 public class OverallRatingComparator implements Comparator<Movie> {

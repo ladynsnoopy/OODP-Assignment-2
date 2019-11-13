@@ -4,6 +4,9 @@ package model;
  * Price object that determines the pricing of each ticket according to each
  * criteria. Criteria consists of age group, and showtime date.
  * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-10

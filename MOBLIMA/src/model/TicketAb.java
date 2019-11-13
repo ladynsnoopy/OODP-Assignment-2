@@ -4,8 +4,18 @@ import java.util.ArrayList;
 
 import controller.csvRW;
 
-// implements Ticket as an Abstract class so that method pricing of tickets can be changed/ overridden easily;
-
+// 
+/**
+ * Implements Ticket as an Abstract class so that method pricing of tickets can be changed/ overridden easily;
+ * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ */
 public abstract class TicketAb{
 	/**
 	 * <code>Showtime</code> object that ticket belongs to.
