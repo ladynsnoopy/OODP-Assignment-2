@@ -2,12 +2,13 @@ package controller;
 
 import java.util.ArrayList;
 
+
 import model.Customer;
 import model.Movie;
 import model.Receipt;
 import model.Review;
 import model.Showtime;
-import model.Ticket;
+import model.CurrentTicket;
 import view.DisplayUserPage;
 
 /**
@@ -271,7 +272,7 @@ public class CustomerApp implements DisplayUserPage {
 	 * @see Ticket
 	 * @see Movie#increaseTicketSalesByOne()
 	 */
-	public static Ticket addTicket(int showtimeID, String movietitle, int isAdult) {
+	public static CurrentTicket addTicket(int showtimeID, String movietitle, int isAdult) {
 		// I have assumed that by this stage all the info entered for parameters is
 		// correct
 		int index = 0;
@@ -281,7 +282,7 @@ public class CustomerApp implements DisplayUserPage {
 				break;
 			}
 		}
-		Ticket addnew = new Ticket(ShowtimeController.showtimeArr.get(index)); // create a new Ticket object
+		CurrentTicket addnew = new CurrentTicket(ShowtimeController.showtimeArr.get(index)); // create a new Ticket object
 		addnew.setIsAdult(isAdult); // set the isAdult option of Ticket
 		String cinetype = addnew.getShowtime().getCinema().getType();
 		addnew.setFinalPrice(CalendarController.calendar, PriceController.price, cinetype); // set the final price of the Ticket based on
@@ -321,7 +322,7 @@ public class CustomerApp implements DisplayUserPage {
 	 *         respective indexes
 	 * @see Receipt
 	 */
-	public static String[] addPayment(ArrayList<Ticket> arr, String paymentmode) {
+	public static String[] addPayment(ArrayList<CurrentTicket> arr, String paymentmode) {
 		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr, paymentmode); // creates a new Receipt object
 		receipt.calTotalAmt(); // calculates the total amount of the Receipt

@@ -24,9 +24,9 @@ public class Receipt {
 	 * <code>ArrayList</code> of <code>Ticket</code> objects that were bought in
 	 * this transaction.
 	 * 
-	 * @see Ticket
+	 * @see CurrentTicket
 	 */
-	private ArrayList<Ticket> ticketArr;
+	private ArrayList<CurrentTicket> ticketArr;
 	/**
 	 * Unique transaction ID of this <code>Receipt</code>. In format
 	 * XXXYYYYMMDDhhmm.
@@ -50,7 +50,7 @@ public class Receipt {
 	 * @param paymentMode Mode of payment by which customer paid for the movie
 	 *                    tickets. Can be "Cash, Credit or PayLah!"
 	 */
-	public Receipt(ArrayList<Ticket> arr, String paymentMode) {
+	public Receipt(ArrayList<CurrentTicket> arr, String paymentMode) {
 		super();
 		this.ticketArr = arr;
 		this.paymentMode = paymentMode;
@@ -73,7 +73,7 @@ public class Receipt {
 	 * @return <code>ArrayList</code> of <code>Ticket</code> objects bought in this
 	 *         transaction
 	 */
-	public ArrayList<Ticket> getTicketArr() {
+	public ArrayList<CurrentTicket> getTicketArr() {
 		return ticketArr;
 	}
 
@@ -84,7 +84,7 @@ public class Receipt {
 	 * @param ticketArr <code>ArrayList</code> of <code>Ticket</code> objects bought
 	 *                  in this transaction
 	 */
-	public void setTicketArr(ArrayList<Ticket> ticketArr) {
+	public void setTicketArr(ArrayList<CurrentTicket> ticketArr) {
 		this.ticketArr = ticketArr;
 	}
 
