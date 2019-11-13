@@ -27,6 +27,7 @@ interface MainDisplayPage {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		StaffApp.createCineplexAndCinemas();
+		StaffApp.createShowtimes();
 		boolean loop = true;
 		while (loop) {
 			Scanner sc = new Scanner(System.in);

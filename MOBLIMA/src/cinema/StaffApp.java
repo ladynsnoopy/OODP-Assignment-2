@@ -6,13 +6,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class StaffApp implements DisplayStaffPage, DisplayUserPage{
+	
 	public static ArrayList<Cineplex> cineplexArr = new ArrayList<Cineplex>();
 	public static ArrayList<Cinema> cinemaArr = new ArrayList<Cinema>();
 	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
 	public static ArrayList<Showtime> showtimeArr = new ArrayList<Showtime>();
 	public static Calendar calendar = createCalendar();
 	public static Price price = new Price();
-
+	
+	
+	public static void createShowtimes() {
+		showtimeArr = CSVtoShowtime.csvToShowtimeObject();
+	}
+	
 	/**
 	 * Creates a staff account so staff can login and saves login info to
 	 * staffdatabase.
@@ -253,7 +259,6 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage{
 				return;
 			}
 		}
-				
 		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
 		System.out.println("Showtime updated");
 		return;
