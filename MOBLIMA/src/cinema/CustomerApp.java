@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class CustomerApp implements DisplayUserPage {
 	/**
-	 * Creates a new customer object and adds it into customer database
+	 * Creates a new customer object
 	 * 
 	 * @param name      Name of customer
 	 * @param mobileNum Mobile Number of a customer
@@ -38,7 +38,6 @@ public class CustomerApp implements DisplayUserPage {
 	 * @param email Email of a customer
 	 * @return -1 if customer's email is not found in the customer database. Returns
 	 *         Customer ID if customer's email is found in the customer database
-	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
 	public static int customerExists(String email) {
 		if (csvRW.search("customerdatabase", "Email", email) == null)
@@ -53,7 +52,6 @@ public class CustomerApp implements DisplayUserPage {
 	 * Returns names of all movies that exist in database.
 	 * 
 	 * @return <code>String</code> array of movie names
-	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
 	public static String[] searchMovies() {
 		ArrayList<String[]> list = csvRW.readCSV("moviedatabase");
@@ -71,14 +69,13 @@ public class CustomerApp implements DisplayUserPage {
 	// [[ShowtimeID,Timing],[ShowtimeID,Timing],....]
 	//
 	/**
-	 * Searches through database and returns a 2D array of showtime timings for a
-	 * particular movie. Is meant to help in creating <code>Showtime</code> objects.
+	 * Searches and returns a 2D array of showtime timings for a particular movie.
+	 * Is meant to help in creating <code>Showtime</code> objects.
 	 * 
 	 * @param movieID movieID of target movie
 	 * @return 2D array of showtime timings for a particular movie in
 	 *         <code>[[ShowtimeID,Timing],[ShowtimeID,Timing],....]</code> format
 	 * @see Showtime
-	 * @see csvRW#search(String, String, String)
 	 */
 	public static String[][] getShowtimesForMovie(int movieID) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
@@ -111,7 +108,7 @@ public class CustomerApp implements DisplayUserPage {
 
 	// gets all the details of a movie and stores into ArrayList<String>
 	/**
-	 * Searches through database and returns all details of target movie. Will print
+	 * Searches and returns all details of target movie. Will print
 	 * <code>No reviews has been written about this movie yet.</code> if no reviews
 	 * can be found. </br>
 	 * Otherwise will be in sequence of Name, Movie Type, Showing Status, Synopsis,
@@ -122,7 +119,6 @@ public class CustomerApp implements DisplayUserPage {
 	 * @param movieID Unique <code>movieID</code> of target movie
 	 * @return All details of a target movie stored in a
 	 *         <code>ArrayList&lt;String&gt;</code>.
-	 * @see csvRW#search(String, String, String)
 	 * @see CustomerApp#searchforReview(int)
 	 */
 
@@ -169,13 +165,12 @@ public class CustomerApp implements DisplayUserPage {
 	// returns an String array of size 2 containing the user rating and comment
 	// given a particular reviewID
 	/**
-	 * Searches through database for review details (User rating, comment) given a
-	 * target <code>reviewID</code>.
+	 * Searches for review details (User rating, comment) given a target
+	 * <code>reviewID</code>.
 	 * 
 	 * @param reviewID unique <code>reviewID</code> for target review
 	 * @return <code>String</code> array of size 2 containing the user rating and
 	 *         comment in indexes 0 and 1 respectively
-	 * @see csvRW#search(String, String, String)
 	 */
 	public static String[] searchforReview(int reviewID) {
 		String a = Integer.toString(reviewID);
@@ -187,13 +182,11 @@ public class CustomerApp implements DisplayUserPage {
 	}
 
 	/**
-	 * Searches through database for matching <code>movieID</code> given movie
-	 * title.
+	 * Searches for matching <code>movieID</code> given movie title.
 	 * 
 	 * @param name Movie title of target movie
 	 * @return <code>movieID</code> that matches target movie if target found. Else,
 	 *         returns -1.
-	 * @see csvRW#search(String, String, String)
 	 */
 	public static int searchOneMovie(String name) {
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", name);
@@ -206,8 +199,7 @@ public class CustomerApp implements DisplayUserPage {
 	// this function deals with the seatingplan database when a ticket is bought
 	/**
 	 * Carries out purchase of ticket by customer when given <code>showtimeID</code>
-	 * and x and y coordinates of desired seat. Will store seat information into
-	 * seatingplandatabase when bought.
+	 * and x and y coordinates of desired seat.
 	 * 
 	 * @param showtimeID Unique <code>showtimeID</code> of target showtime
 	 * @param x          X-coordinate of seat
@@ -215,7 +207,6 @@ public class CustomerApp implements DisplayUserPage {
 	 * @return -1 if seat is already occupied. </br>
 	 *         1 if purchase was successful.
 	 * @see Ticket
-	 * @see csvRW#writeToCSV(String, ArrayList)
 	 */
 	public static int buyTicket(int showtimeID, int x, int y) {
 
@@ -341,7 +332,6 @@ public class CustomerApp implements DisplayUserPage {
 	 * @param custID Unique customer ID of customer requesting booking history
 	 * @return 2D array of all booking history in format: </br>
 	 *         [ [TID, Payment Mode, Movie Name, Total Amount], ...]
-	 * @see csvRW#search(String, String, String)
 	 */
 	public static String[][] searchBookingHistory(int custID) {
 
@@ -378,14 +368,13 @@ public class CustomerApp implements DisplayUserPage {
 	}
 
 	/**
-	 * Allows movie-goer to add review to a selected movie. Will update both review
-	 * and movie database, as well as the relevant <code>Movie</code> object.
+	 * Allows movie-goer to add review to a selected movie. Will update relevant
+	 * <code>Movie</code> object.
 	 * 
 	 * @param rating     Movie-goer's rating out of 10 in integers
 	 * @param comment    Comments left by Movie-goer
 	 * @param userID     UserID of movie-goer who left the review
 	 * @param movie_name Title of selected movie
-	 * @see csvRW#editCSV(String, String, String, String)
 	 * @see Movie#addReview(Review)
 	 */
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
@@ -441,7 +430,6 @@ public class CustomerApp implements DisplayUserPage {
 	 * @param custID Unique customer ID
 	 * @return <code>String[]</code> array of [name, mobile number, email, past
 	 *         TIDs]
-	 * @see csvRW#search(String, String, String)
 	 */
 	public static String[] findCustomer(int custID) {
 		ArrayList<String> row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
@@ -455,13 +443,12 @@ public class CustomerApp implements DisplayUserPage {
 
 	// writes to customer database for a new receipt
 	/**
-	 * Stores TID of new receipt when customer makes a purchase of tickets into
-	 * customer database to keep track of past booking history.
+	 * Stores TID of new receipt when customer makes a purchase of tickets to keep
+	 * track of past booking history.
 	 * 
 	 * @param custID Unique customer ID
 	 * @param TID    TID to be inserted into customer database
-	 * @see csvRW#search(String, String, String)
-	 * @see csvRW#editCSV(String, String, String, String)
+	 * @see Receipt
 	 */
 	public static void addReceiptinCustomerDatabase(int custID, String TID) {
 		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
@@ -487,41 +474,42 @@ public class CustomerApp implements DisplayUserPage {
 			}
 		}
 	}
+
 	// pass in 2d array of [[ShowtimeID,Timing],...] for the relevant movie
-		// returns 1 if showtimeID is found in this array
-		/**
-		 * Checks if showtime selected by customer exists as an object
-		 * 
-		 * @param show   2D array of showtimes and movies like [[ShowtimeID,Timing],...]
-		 * @param target Target <code>showtimeID</code>
-		 * @return 1 if <code>showtimeID</code> is found, -1 if no
-		 */
-		public static int checkValidityShowtime(String[][] show, int target) {
-			for (int i = 0; i < show.length; i++) {
-				if (target == Integer.parseInt(show[i][0])) {
-					return 1;
-				}
-
+	// returns 1 if showtimeID is found in this array
+	/**
+	 * Checks if showtime selected by customer exists as an object
+	 * 
+	 * @param show   2D array of showtimes and movies like [[ShowtimeID,Timing],...]
+	 * @param target Target <code>showtimeID</code>
+	 * @return 1 if <code>showtimeID</code> is found, -1 if no
+	 */
+	public static int checkValidityShowtime(String[][] show, int target) {
+		for (int i = 0; i < show.length; i++) {
+			if (target == Integer.parseInt(show[i][0])) {
+				return 1;
 			}
-			return -1;
+
 		}
+		return -1;
+	}
 
-		// returns a string containing the timing of showtime for a given showtimeID
-		/**
-		 * Gets timing of showtime given <code>showtimeID</code>
-		 * 
-		 * @param show   2D array of <code>showtimeID</code> and timing
-		 * @param target Target showtime
-		 * @return Timing for target showtime
-		 */
-		public static String printRelevantShowTime(String[][] show, int target) {
-			for (int i = 0; i < show.length; i++) {
-				if (target == Integer.parseInt(show[i][0])) {
-					return show[i][1];
-				}
-
+	// returns a string containing the timing of showtime for a given showtimeID
+	/**
+	 * Gets timing of showtime given <code>showtimeID</code>
+	 * 
+	 * @param show   2D array of <code>showtimeID</code> and timing
+	 * @param target Target showtime
+	 * @return Timing for target showtime
+	 */
+	public static String printRelevantShowTime(String[][] show, int target) {
+		for (int i = 0; i < show.length; i++) {
+			if (target == Integer.parseInt(show[i][0])) {
+				return show[i][1];
 			}
-			return "NOT VALID";
+
 		}
+		return "NOT VALID";
+	}
 
 }

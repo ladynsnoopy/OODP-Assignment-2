@@ -3,10 +3,30 @@ package cinema;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main boundary class between the user and the rest of the application.
+ * Responsible for console display of menu options for the user. Calls
+ * <code>UserDisplayPage</code> and <code>StaffDisplayPage</code> for menu
+ * options for the respective modules.
+ * 
+ * @author Myat Hmu Khin
+ * @author Lim Wai Leong
+ * @version 1.0
+ * @since 2019-11-13
+ * @see UserDisplayPage
+ * @see StaffDisplayPage
+ *
+ */
 interface MainDisplayPage {
 
+	/**
+	 * Display of starting menu options when the program is started
+	 * 
+	 * @param args <code>main()</code> function
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		StaffApp.createCineplexAndCinemas();
 		boolean loop = true;
 		while (loop) {
 			Scanner sc = new Scanner(System.in);
@@ -45,6 +65,12 @@ interface MainDisplayPage {
 		}
 	}
 
+	/**
+	 * Verifies login for staff into staff module
+	 * 
+	 * @return <code>true</code> if login is verified </br>
+	 *         <code>false</code> if not verified
+	 */
 	public static boolean loginVerification() {
 		Scanner sc = new Scanner(System.in);
 		while (true) {
@@ -60,8 +86,7 @@ interface MainDisplayPage {
 			if (staffDetails.get(1).contentEquals(password)) {
 				System.out.println("Login successful");
 				return true;
-			}
-			else {
+			} else {
 				System.out.println("Invalid password");
 				return false;
 			}

@@ -7,7 +7,8 @@ import java.util.Date;
 
 /**
  * Receipt object that contains <code>ArrayList</code> of <code>Ticket</code>
- * objects, TID, payment mode, and total amount paid.
+ * objects bought in the same transaction by the same customer, TID, payment
+ * mode, and total amount paid.
  * 
  * @author Myat Hmu Khin
  * @author Oh Jun Teng
