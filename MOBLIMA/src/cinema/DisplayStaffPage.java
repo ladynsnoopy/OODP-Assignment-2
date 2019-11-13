@@ -42,7 +42,7 @@ interface DisplayStaffPage extends MainDisplayPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 9) {
+					if (input >= 1 && input <= 10) {
 						break;
 					}
 				} else {
@@ -226,7 +226,7 @@ interface DisplayStaffPage extends MainDisplayPage {
 	 * Creates a new <code>Movie</code> object with the details and adds it into the
 	 * movie database.
 	 * 
-	 */
+	 */	
 	public static void addMovie() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the name of the movie:");
@@ -306,7 +306,7 @@ interface DisplayStaffPage extends MainDisplayPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 8) {
+					if (input >= 1 && input <= 7) {
 						sc.nextLine();
 						break;
 					}
