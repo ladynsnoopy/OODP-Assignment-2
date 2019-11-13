@@ -36,7 +36,8 @@ interface DisplayStaffPage extends MainDisplayPage {
 			System.out.println("Enter (6) to add a new holiday date");
 			System.out.println("Enter (7) to add a new weekend date");
 			System.out.println("Enter (8) to view information");
-			System.out.println("Enter (9) to exit");
+			System.out.println("Enter (9) to add a new staff account");
+			System.out.println("Enter (10) to exit");
 			int input;
 			while (true) {
 				if (sc.hasNextInt()) {
@@ -84,6 +85,10 @@ interface DisplayStaffPage extends MainDisplayPage {
 				enterToReturn();
 				break;
 			case 9:
+				newStaffacc();
+				enterToReturn();
+				break;
+			case 10:
 				loop = false;
 				break;
 			}
@@ -412,6 +417,18 @@ interface DisplayStaffPage extends MainDisplayPage {
 		}
 	}
 
+	
+	public static void newStaffacc() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter new username:");
+		String newUser = sc.nextLine();
+		System.out.println("Enter new passwork:");
+		String newPw = sc.nextLine();
+		StaffApp.createStaff(newUser, newPw);
+		System.out.println("New staff account created");
+		
+		return;
+	}
 	/**
 	 * Gets user input for the showtime details for staff to add a new showtime.
 	 * Checks if the details are valid. Gets input for new time and edits the
