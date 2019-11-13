@@ -11,10 +11,26 @@ import java.util.ArrayList;
  *
  */
 public class Review {
+	/**
+	 * Rating left by customer on movie, on a scale of 0 to 10.
+	 */
 	private int rating;
+	/**
+	 * Comment left by customer on the movie.
+	 */
 	private String comment;
+	/**
+	 * User ID of customer who left the comment.
+	 */
 	private String userID;
+	/**
+	 * Unique ID of this review
+	 */
 	private int reviewID;
+	/**
+	 * Counter to increment <code>reviewID</code> such that each review has an
+	 * unique ID
+	 */
 	private static int review_counter = counterInit();
 
 	/**

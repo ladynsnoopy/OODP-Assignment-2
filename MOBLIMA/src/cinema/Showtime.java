@@ -72,30 +72,66 @@ public class Showtime {
 		this.generateSeats();
 	}
 
+	/**
+	 * Gets <code>Cinema</code> object that this showtime belongs to
+	 * 
+	 * @return <code>Cinema</code> object that this showtime belongs to
+	 */
 	public Cinema getCinema() {
 		return cinema;
 	}
 
+	/**
+	 * Gets timing of showtime
+	 * 
+	 * @return Timing of this showtime
+	 */
 	public String getTiming() {
 		return timing;
 	}
 
+	/**
+	 * Changes timing of this showtime
+	 * 
+	 * @param timing Timing of this showtime in YYYYMMDDHHmm format
+	 */
 	public void setTiming(String timing) {
 		this.timing = timing;
 	}
 
+	/**
+	 * Gets unique showtime ID of this showtime
+	 * 
+	 * @return <code>ShowtimeID</code> of this showtime
+	 */
 	public int getShowtimeID() {
 		return showtimeID;
 	}
 
+	/**
+	 * Changes showtime ID for this showtime
+	 * 
+	 * @param showtimeID New showtime ID for this showtime
+	 */
 	public void setShowtimeID(int showtimeID) {
 		this.showtimeID = showtimeID;
 	}
 
+	/**
+	 * Gets <code>boolean</code> representation of seating plan of this showtime.
+	 * 
+	 * @return <code>boolean</code> 2D array representing occupation status of seats
+	 *         in seating plan
+	 */
 	public boolean[][] getSeatingplan() {
 		return seatingplan;
 	}
 
+	/**
+	 * Gets array of <code>Seat</code> objects belonging to this showtime.
+	 * 
+	 * @return Array of <code>Seat</code> objects belonging to this showtime
+	 */
 	public Seat[] getSeatArr() {
 		return seatArr;
 	}
