@@ -253,43 +253,6 @@ interface DisplayUserPage extends MainDisplayPage {
 
 	}
 
-	// pass in 2d array of [[ShowtimeID,Timing],...] for the relevant movie
-	// returns 1 if showtimeID is found in this array
-	/**
-	 * Checks if showtime selected by customer exists as an object
-	 * 
-	 * @param show   2D array of showtimes and movies like [[ShowtimeID,Timing],...]
-	 * @param target Target <code>showtimeID</code>
-	 * @return 1 if <code>showtimeID</code> is found, -1 if no
-	 */
-	public static int checkValidityShowtime(String[][] show, int target) {
-		for (int i = 0; i < show.length; i++) {
-			if (target == Integer.parseInt(show[i][0])) {
-				return 1;
-			}
-
-		}
-		return -1;
-	}
-
-	// returns a string containing the timing of showtime for a given showtimeID
-	/**
-	 * Gets timing of showtime given <code>showtimeID</code>
-	 * 
-	 * @param show   2D array of <code>showtimeID</code> and timing
-	 * @param target Target showtime
-	 * @return Timing for target showtime
-	 */
-	public static String printRelevantShowTime(String[][] show, int target) {
-		for (int i = 0; i < show.length; i++) {
-			if (target == Integer.parseInt(show[i][0])) {
-				return show[i][1];
-			}
-
-		}
-		return "NOT VALID";
-	}
-
 	/**
 	 * Checks that payment mode is valid.
 	 * 
@@ -346,7 +309,7 @@ interface DisplayUserPage extends MainDisplayPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					showID = sc.nextInt();
-					if (checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID entered
+					if (CustomerApp.checkValidityShowtime(showtimes, showID) == 1) { // this function checks that showID entered
 																			// belongs to that movie/is valid
 						break;
 					}
@@ -398,7 +361,7 @@ interface DisplayUserPage extends MainDisplayPage {
 						System.out.println("Invalid Input. Please enter a valid x,y position.");
 					}
 					int purchase = CustomerApp.buyTicket(showID, x, y);
-					String timing = printRelevantShowTime(showtimes, showID);
+					String timing = CustomerApp.printRelevantShowTime(showtimes, showID);
 					String timingformatted = timing.substring(0, 2) + "-" + timing.substring(2, 4) + "-"
 							+ timing.substring(4, 6) + " " + timing.substring(6);
 					if (purchase == 1) {
