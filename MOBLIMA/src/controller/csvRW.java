@@ -1,4 +1,4 @@
-package cinema;
+package controller;
 
 import java.io.*;
 import java.util.ArrayList;

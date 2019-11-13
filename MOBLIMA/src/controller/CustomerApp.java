@@ -1,6 +1,14 @@
-package cinema;
+package controller;
 
 import java.util.ArrayList;
+
+import model.Customer;
+import model.Movie;
+import model.Receipt;
+import model.Review;
+import model.Showtime;
+import model.Ticket;
+import view.DisplayUserPage;
 
 /**
  * An control class that will handle methods relating to the customer module. It

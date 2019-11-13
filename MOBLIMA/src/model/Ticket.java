@@ -1,6 +1,8 @@
-package cinema;
+package model;
 
 import java.util.ArrayList;
+
+import controller.csvRW;
 
 /**
  * Object containing attributes of tickets, such as showtime, movie title,

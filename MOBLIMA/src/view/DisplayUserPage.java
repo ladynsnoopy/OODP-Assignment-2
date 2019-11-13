@@ -1,7 +1,15 @@
-package cinema;
+package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import model.Customer;
+import model.Movie;
+import model.Ticket;
+import controller.CustomerApp;
+import controller.SeatingPlan;
+import controller.StaffApp;
+import controller.csvRW;
 
 /**
  * Boundary class between <code>MainDisplayPage</code> and
@@ -15,7 +23,7 @@ import java.util.Scanner;
  * @see MainDisplayPage
  *
  */
-interface DisplayUserPage extends MainDisplayPage {
+public interface DisplayUserPage extends MainDisplayPage {
 
 	/**
 	 * Displays the initial menu page shown to user after login. Calls the

@@ -1,6 +1,8 @@
-package cinema;
+package controller;
 
 import java.util.Comparator;
+
+import model.Movie;
 
 /**
  * Implements <code>Comparator</code> in order to sort <code>Movie</code> via

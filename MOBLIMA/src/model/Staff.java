@@ -1,6 +1,8 @@
-package cinema;
+package model;
 
 import java.util.ArrayList;
+
+import controller.csvRW;
 
 /**
  * Object containing staff username and password. To be used in verification of

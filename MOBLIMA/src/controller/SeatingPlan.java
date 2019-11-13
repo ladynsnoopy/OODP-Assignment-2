@@ -1,4 +1,6 @@
-package cinema;
+package controller;
+
+import model.Showtime;
 
 /**
  * Control class that takes in Showtime class and collects the necessary

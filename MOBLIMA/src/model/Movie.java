@@ -1,6 +1,8 @@
-package cinema;
+package model;
 
 import java.util.ArrayList;
+
+import controller.csvRW;
 
 /**
  * 

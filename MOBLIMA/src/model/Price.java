@@ -1,4 +1,4 @@
-package cinema;
+package model;
 
 /**
  * Price object that determines the pricing of each ticket according to each

@@ -1,6 +1,12 @@
-package cinema;
+package view;
 
 import java.util.Scanner;
+
+import model.Calendar;
+import model.Price;
+import model.Showtime;
+import controller.StaffApp;
+
 import java.util.ArrayList;
 
 /**
@@ -15,7 +21,7 @@ import java.util.ArrayList;
  * @see MainDisplayPage
  *
  */
-interface DisplayStaffPage extends MainDisplayPage {
+public interface DisplayStaffPage extends MainDisplayPage {
 
 	/**
 	 * Displays the initial menu page shown to the staff after login. Calls the

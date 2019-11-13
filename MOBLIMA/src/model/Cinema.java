@@ -1,4 +1,4 @@
-package cinema;
+package model;
 
 /**
  * Cinema object that contains details specific to each cinema. Eg. number of

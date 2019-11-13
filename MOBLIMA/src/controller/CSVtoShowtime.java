@@ -1,6 +1,8 @@
-package cinema;
+package controller;
 
 import java.util.ArrayList;
+
+import model.Showtime;
 
 /**
  * Control class to convert showtime entries in database to java objects.

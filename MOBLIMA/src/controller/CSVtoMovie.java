@@ -1,7 +1,11 @@
-package cinema;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import model.Movie;
+import model.Review;
+import model.Showtime;
 
 /**
  * Control class that converts all movies stored in database to Movie objects.

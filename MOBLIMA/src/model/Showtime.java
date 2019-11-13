@@ -1,8 +1,10 @@
-package cinema;
+package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import controller.csvRW;
 
 /**
  * Showtime object that represent a particular instance of a movie showing at a

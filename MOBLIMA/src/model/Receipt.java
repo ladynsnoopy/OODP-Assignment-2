@@ -1,9 +1,11 @@
-package cinema;
+package model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import controller.csvRW;
 
 /**
  * Receipt object that contains <code>ArrayList</code> of <code>Ticket</code>

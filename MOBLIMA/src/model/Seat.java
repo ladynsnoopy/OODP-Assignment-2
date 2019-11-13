@@ -1,4 +1,4 @@
-package cinema;
+package model;
 
 /**
  * Seat object that contains x and y coordinates and occupied status for the

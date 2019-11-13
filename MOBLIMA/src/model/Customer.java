@@ -1,6 +1,8 @@
-package cinema;
+package model;
 
 import java.util.ArrayList;
+
+import controller.csvRW;
 
 /**
  * Customer object that contains unique customer ID, name, mobile number, email,

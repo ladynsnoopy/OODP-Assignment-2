@@ -1,7 +1,10 @@
-package cinema;
+package view;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import controller.StaffApp;
+import controller.csvRW;
 
 /**
  * Main boundary class between the user and the rest of the application.
