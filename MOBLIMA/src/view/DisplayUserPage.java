@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import model.Customer;
 import model.Movie;
-import model.Ticket;
+import model.CurrentTicket;
 import controller.CustomerApp;
 import controller.SeatingPlan;
 import controller.StaffApp;
@@ -366,7 +366,7 @@ public interface DisplayUserPage extends MainDisplayPage {
 			}
 			int x, y;
 			boolean keep_loop = true;
-			ArrayList<Ticket> ticketArr = new ArrayList<Ticket>(); // make a new ticketArr to create a receipt object
+			ArrayList<CurrentTicket> ticketArr = new ArrayList<CurrentTicket>(); // make a new ticketArr to create a receipt object
 			for (int h = 0; h < numSeat; h++) {
 				while (keep_loop) {
 					System.out.println("Please enter the x,y position of the seats:");
