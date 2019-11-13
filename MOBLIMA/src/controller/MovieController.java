@@ -2,7 +2,6 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
 import model.Movie;
 
 
@@ -199,12 +198,12 @@ public class MovieController {
 		result.add("Overall Rating: " + movie_row.get(7));
 		result.add("Movie Age Rating: " + movie_row.get(11));
 		result.add("-----------------------------------------------");
-		String a = movie_row.get(9);
-		if (a.equals("")) {
+		String review_col = movie_row.get(9);
+		if (review_col.equals("")) {
 			result.add("No reviews has been written about this movie yet.");
 			return result;
-		} else if (a.length() == 1) { // if there is only one review
-			String[] review = ReviewController.searchforReview(Integer.parseInt(a));
+		} else if (review_col.length() == 1) { // if there is only one review
+			String[] review = ReviewController.searchforReview(Integer.parseInt(review_col));
 			result.add("Comment: " + review[1]);
 			result.add("User's Rating: " + review[0]);
 			result.add("-----------------------------------------------");
@@ -212,7 +211,7 @@ public class MovieController {
 			return result;
 		} else {
 
-			String cut = a.substring(1, a.length() - 1); // if there are more than one review
+			String cut = review_col.substring(1, review_col.length() - 1); // if there are more than one review
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			for (int j = 0; j < arr.length; j++) {
 				String[] review = ReviewController.searchforReview(Integer.parseInt(arr[j]));

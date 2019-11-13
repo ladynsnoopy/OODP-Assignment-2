@@ -129,25 +129,25 @@ public class ShowtimeController {
 		ArrayList<String> result = csvRW.search("moviedatabase", "MovieID", Integer.toString(movieID));
 		if (result == null)
 			return null;
-		String a = result.get(10); // Get all the showtimeID of the particular movie
-		if (a.length() != 1) {
-			String cut = a.substring(1, a.length() - 1);
+		String showID = result.get(10); // Get all the showtimeID of the particular movie
+		if (showID.length() != 1) {
+			String cut = showID.substring(1, showID.length() - 1);
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			String[][] showtimes = new String[arr.length][2];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[2];
-				ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID", arr[i].replaceAll("\\s+", ""));
+				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID", arr[i].replaceAll("\\s+", ""));
 				inside[0] = arr[i].replaceAll("\\s+", "");
-				inside[1] = b.get(2);
+				inside[1] = show_row.get(2);
 				showtimes[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
 			return showtimes;
 		} else {
 			String[][] showtimes = new String[1][2];
 			String[] inside = new String[2];
-			ArrayList<String> b = csvRW.search("showtimedatabase", "ShowtimeID", a.replaceAll("\\s+", ""));
-			inside[0] = a;
-			inside[1] = b.get(b.size() - 1);
+			ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID", a.replaceAll("\\s+", ""));
+			inside[0] = showID;
+			inside[1] = show_row.get(show_row.size() - 1);
 			showtimes[0] = inside;
 			return showtimes;
 		}

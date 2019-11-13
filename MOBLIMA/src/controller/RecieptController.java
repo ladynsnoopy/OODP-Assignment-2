@@ -37,16 +37,16 @@ public class RecieptController {
 			// if there are more than one receipt initially
 			if (TIDS.length() < 15) {
 				String[] arr = TIDS.split(",");
-				String b = "";
+				String change = "";
 				for (int i = 0; i < arr.length; i++) {
-					b += arr[i] + ",";
+					change += arr[i] + ",";
 				}
-				b += TID;
-				csvRW.editCSV("customerdatabase", id, "TID", b);
+				change += TID;
+				csvRW.editCSV("customerdatabase", id, "TID", change);
 			} else {
 				// if there is one TID
-				String b = TIDS + "," + TID;
-				csvRW.editCSV("customerdatabase", id, "TID", b);
+				String change = TIDS + "," + TID;
+				csvRW.editCSV("customerdatabase", id, "TID", change);
 			}
 		}
 	}

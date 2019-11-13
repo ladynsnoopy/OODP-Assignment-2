@@ -18,7 +18,7 @@ import view.DisplayUserPage;
  * @see Customer
  */
 
-public class CustomerController implements DisplayUserPage {
+public class CustomerController {
 	/**
 	 * Creates a new customer object
 	 * 
@@ -58,30 +58,30 @@ public class CustomerController implements DisplayUserPage {
 	 */
 	public static String[][] searchBookingHistory(int custID) {
 
-		ArrayList<String> tids = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
-		String a = tids.get(4); // Get all the receipt's TID of the customer
-		if (a.length() > 15) {
-			a = a.substring(1, a.length() - 1);
-			String[] arr = a.split(","); // store the TIDs in a string array
+		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
+		String tid = cust_row.get(4); // Get all the receipt's TID of the customer
+		if (tid.length() > 15) {
+			tid = tid.substring(1, tid.length() - 1);
+			String[] arr = tid.split(","); // store the TIDs in a string array
 			String[][] result = new String[arr.length][4];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
-				ArrayList<String> b = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s", ""));
+				ArrayList<String> payment_row = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s", ""));
 				inside[0] = arr[i];
-				inside[1] = b.get(1);
-				inside[2] = b.get(2);
-				inside[3] = b.get(3);
+				inside[1] = payment_row.get(1);
+				inside[2] = payment_row.get(2);
+				inside[3] = payment_row.get(3);
 				result[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
 			return result;
-		} else if (a.length() == 15) {
+		} else if (tid.length() == 15) {
 			String[][] result = new String[1][4];
 			String[] inside = new String[4];
-			ArrayList<String> b = csvRW.search("paymentdatabase", "TID", a);
-			inside[0] = a;
-			inside[1] = b.get(1);
-			inside[2] = b.get(2);
-			inside[3] = b.get(3);
+			ArrayList<String> payment_row = csvRW.search("paymentdatabase", "TID", a);
+			inside[0] = tid;
+			inside[1] = payment_row.get(1);
+			inside[2] = payment_row.get(2);
+			inside[3] = payment_row.get(3);
 			result[0] = inside;
 			return result;
 		} else {
@@ -99,12 +99,12 @@ public class CustomerController implements DisplayUserPage {
 	 *         TIDs]
 	 */
 	public static String[] findCustomer(int custID) {
-		ArrayList<String> row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
+		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String[] result = new String[4];
-		result[0] = row.get(0);
-		result[1] = row.get(1);
-		result[2] = row.get(2);
-		result[3] = row.get(3);
+		result[0] = cust_row.get(0);
+		result[1] = cust_row.get(1);
+		result[2] = cust_row.get(2);
+		result[3] = cust_row.get(3);
 		return result;
 	}
 

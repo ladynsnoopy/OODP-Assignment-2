@@ -21,7 +21,7 @@ import view.DisplayUserPage;
  * @see Staff
  *
  */
-public class StaffController implements DisplayStaffPage, DisplayUserPage {
+public class StaffController {
 
 	/**
 	 * Creates a staff account so staff can login and saves login info to

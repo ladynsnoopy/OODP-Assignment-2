@@ -27,8 +27,8 @@ public class ReviewController {
 	 *         comment in indexes 0 and 1 respectively
 	 */
 	public static String[] searchforReview(int reviewID) {
-		String a = Integer.toString(reviewID);
-		ArrayList<String> result = csvRW.search("reviewdatabase", "ReviewID", a);
+		String ID = Integer.toString(reviewID);
+		ArrayList<String> result = csvRW.search("reviewdatabase", "ReviewID", ID);
 		String[] rating_comment = new String[2];
 		rating_comment[0] = result.get(0);
 		rating_comment[1] = result.get(1);
@@ -47,8 +47,8 @@ public class ReviewController {
 	 */
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
 
-		Review a = new Review(rating, comment, userID);
-		a.addReviewToCSV(a);
+		Review review = new Review(rating, comment, userID);
+		review.addReviewToCSV(review);
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name); // search for that movie in
 																							// movie database
 		String id = movie_row.get(0);
@@ -73,16 +73,16 @@ public class ReviewController {
 			if (reviews.length() != 1) {
 				String cut = reviews.substring(1, reviews.length() - 1);
 				String[] arr = cut.split(",");
-				String b = "";
+				String change = "";
 				for (int i = 0; i < arr.length; i++) {
-					b += arr[i] + ",";
+					change += arr[i] + ",";
 				}
-				b += Integer.toString(a.getReviewID());
-				csvRW.editCSV("moviedatabase", id, "ReviewID", b); // write reviewID to movie database
+				change += Integer.toString(a.getReviewID());
+				csvRW.editCSV("moviedatabase", id, "ReviewID", change); // write reviewID to movie database
 			} else {
 				// if there is one review
-				String b = reviews + "," + Integer.toString(a.getReviewID());
-				csvRW.editCSV("moviedatabase", id, "ReviewID", b);
+				String change = reviews + "," + Integer.toString(review.getReviewID());
+				csvRW.editCSV("moviedatabase", id, "ReviewID", change);
 			}
 
 		}
