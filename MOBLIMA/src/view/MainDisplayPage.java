@@ -3,7 +3,8 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controller.StaffApp;
+import controller.CinemaController;
+import controller.ShowtimeController;
 import controller.csvRW;
 
 /**
@@ -28,9 +29,8 @@ interface MainDisplayPage {
 	 * @param args <code>main()</code> function
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		StaffApp.createCineplexAndCinemas();
-		StaffApp.createShowtimes();
+		CinemaController.createCineplexAndCinemas();
+		ShowtimeController.createShowtimes();
 		boolean loop = true;
 		while (loop) {
 			Scanner sc = new Scanner(System.in);

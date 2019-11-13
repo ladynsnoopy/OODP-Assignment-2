@@ -7,8 +7,10 @@ import model.Customer;
 import model.Movie;
 import model.CurrentTicket;
 import controller.CustomerApp;
+import controller.MovieController;
 import controller.SeatingPlan;
-import controller.StaffApp;
+import controller.ShowtimeController;
+import controller.StaffController;
 import controller.csvRW;
 
 /**
@@ -156,7 +158,7 @@ public interface DisplayUserPage extends MainDisplayPage {
 			break;
 		}
 		for (int i = 0; i < 5; i++) {
-			System.out.println(StaffApp.showTopMovies(selection).get(i));
+			System.out.println(MovieController.showTopMovies(selection).get(i));
 		}
 		;
 	}
@@ -344,9 +346,9 @@ public interface DisplayUserPage extends MainDisplayPage {
 
 			}
 			// prints seating plan of that show time for customers to choose
-			for (int i = 0; i < StaffApp.showtimeArr.size(); i++) {
-				if (showID == StaffApp.showtimeArr.get(i).getShowtimeID()) {
-					SeatingPlan.printSeatingPlan(StaffApp.showtimeArr.get(i));
+			for (int i = 0; i < ShowtimeController.showtimeArr.size(); i++) {
+				if (showID == ShowtimeController.showtimeArr.get(i).getShowtimeID()) {
+					SeatingPlan.printSeatingPlan(ShowtimeController.showtimeArr.get(i));
 					index = i;
 					break;
 				}
@@ -355,7 +357,7 @@ public interface DisplayUserPage extends MainDisplayPage {
 			while (true) {
 				if (sc.hasNextInt()) {
 					numSeat = sc.nextInt();
-					if (numSeat > 0 && numSeat < StaffApp.showtimeArr.get(index).getCinema().getTotalNumSeat()) {
+					if (numSeat > 0 && numSeat < ShowtimeController.showtimeArr.get(index).getCinema().getTotalNumSeat()) {
 						// checks that number of seats to be purchased is reasonable
 						break;
 					}
@@ -374,8 +376,8 @@ public interface DisplayUserPage extends MainDisplayPage {
 						if (sc.hasNextInt()) {
 							x = sc.nextInt();
 							y = sc.nextInt();
-							if (x >= 0 && x < StaffApp.showtimeArr.get(index).getCinema().getTotalCol() && y >= 0
-									&& y < StaffApp.showtimeArr.get(index).getCinema().getTotalRow()) {
+							if (x >= 0 && x < ShowtimeController.showtimeArr.get(index).getCinema().getTotalCol() && y >= 0
+									&& y < ShowtimeController.showtimeArr.get(index).getCinema().getTotalRow()) {
 								// checks that x,y is valid compared to cinema rows and columns
 								break;
 							}

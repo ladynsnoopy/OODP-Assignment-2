@@ -6,9 +6,11 @@ import model.Calendar;
 import model.Price;
 import model.Showtime;
 import controller.CalendarController;
+import controller.CinemaController;
 import controller.MovieController;
+import controller.PriceController;
 import controller.ShowtimeController;
-import controller.StaffApp;
+import controller.StaffController;
 
 import java.util.ArrayList;
 
@@ -222,12 +224,12 @@ public interface DisplayStaffPage extends MainDisplayPage {
 	 * Displays all the prices from the <code>Price</code> object.
 	 */
 	public static void displayPrices() {
-		System.out.println("Adult price:      $" + StaffApp.price.getPriceAdult());
-		System.out.println("Child price:      $" + StaffApp.price.getPriceChild());
-		System.out.println("Senior price:     $" + StaffApp.price.getPriceSenior());
-		System.out.println("Weekend price:    " + ((double) StaffApp.price.getPriceWeekend() * 100) + "% surcharge");
-		System.out.println("Holiday price:    $" + StaffApp.price.getPriceHol() + " flat increase");
-		System.out.println("Gold class price: $" + StaffApp.price.getPriceGoldClass());
+		System.out.println("Adult price:      $" + PriceController.price.getPriceAdult());
+		System.out.println("Child price:      $" + PriceController.price.getPriceChild());
+		System.out.println("Senior price:     $" + PriceController.price.getPriceSenior());
+		System.out.println("Weekend price:    " + ((double) PriceController.price.getPriceWeekend() * 100) + "% surcharge");
+		System.out.println("Holiday price:    $" + PriceController.price.getPriceHol() + " flat increase");
+		System.out.println("Gold class price: $" + PriceController.price.getPriceGoldClass());
 		System.out.println();
 	}
 
@@ -274,7 +276,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		}
 		switch (input) {
 		case (1):
-			StaffApp.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);
+			MovieController.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);
 			return;
 		case (2):
 			addMovie();
@@ -296,7 +298,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter name of movie to edit:");
 		String name = sc.nextLine();
-		if (!StaffApp.movieExists(name)) {
+		if (!MovieController.movieExists(name)) {
 			System.out.println("Movie does not exist");
 			editMovieDetails();
 			return;
@@ -331,7 +333,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(1, name, change);
+					MovieController.editMovieStringDetails(1, name, change);
 					return;
 				case (2):
 					continue;
@@ -345,7 +347,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(2, name, change);
+					MovieController.editMovieStringDetails(2, name, change);
 					return;
 				case (2):
 					continue;
@@ -359,7 +361,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(3, name, change);
+					MovieController.editMovieStringDetails(3, name, change);
 					return;
 				case (2):
 					continue;
@@ -373,7 +375,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(4, name, change);
+					MovieController.editMovieStringDetails(4, name, change);
 					return;
 				case (2):
 					continue;
@@ -387,7 +389,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(5, name, change);
+					MovieController.editMovieStringDetails(5, name, change);
 					return;
 				case (2):
 					continue;
@@ -401,7 +403,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(6, name, change);
+					MovieController.editMovieStringDetails(6, name, change);
 					return;
 				case (2):
 					continue;
@@ -415,7 +417,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.editMovieStringDetails(7, name, change);
+					MovieController.editMovieStringDetails(7, name, change);
 					return;
 				case (2):
 					continue;
@@ -434,7 +436,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		String newUser = sc.nextLine();
 		System.out.println("Enter new passwork:");
 		String newPw = sc.nextLine();
-		StaffApp.createStaff(newUser, newPw);
+		StaffController.createStaff(newUser, newPw);
 		System.out.println("New staff account created");
 		
 		return;
@@ -452,22 +454,22 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		System.out.println("Enter the movie to be added");
 		String movie = sc.nextLine();
 		System.out.println(movie);
-		if (!StaffApp.movieExists(movie)) {
+		if (!MovieController.movieExists(movie)) {
 			System.out.println("Movie does not exist");
 			addShowtime();
 			return;
 		}
 		boolean loop = true;
-		StaffApp.createCineplexAndCinemas();
+		CinemaController.createCineplexAndCinemas();
 		String cinemaID = null;
 		while (loop) {
 			System.out.println("Enter cinema to add showtime:");
 			cinemaID = sc.nextLine();
-			for (int i = 0; i < StaffApp.cinemaArr.size(); i++) {
-				if (cinemaID.equals(StaffApp.cinemaArr.get(i).getCinemaID())) {
+			for (int i = 0; i < CinemaController.cinemaArr.size(); i++) {
+				if (cinemaID.equals(CinemaController.cinemaArr.get(i).getCinemaID())) {
 					loop = false;
 					break;
-				} else if (i == StaffApp.cinemaArr.size() - 1) {
+				} else if (i == CinemaController.cinemaArr.size() - 1) {
 					System.out.println("Invalid Cinema ID");
 					continue;
 				}
@@ -496,7 +498,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
 		}
 
-		StaffApp.createShowtime(cinemaID, timing, movie);
+		ShowtimeController.createShowtime(cinemaID, timing, movie);
 	}
 
 	/**
@@ -511,22 +513,21 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		System.out.println("Enter the movie to be updated:");
 		String movie = sc.nextLine();
 		System.out.println(movie);
-		if (!StaffApp.movieExists(movie)) {
+		if (!MovieController.movieExists(movie)) {
 			System.out.println("Movie does not exist");
 			editShowtimeDetails();
 			return;
 		}
 		boolean loop = true;
-		StaffApp.createCineplexAndCinemas();
 		String cinemaID = null;
 		while (loop) {
 			System.out.println("Enter cinema to add showtime:");
 			cinemaID = sc.nextLine();
-			for (int i = 0; i < StaffApp.cinemaArr.size(); i++) {
-				if (cinemaID.equals(StaffApp.cinemaArr.get(i).getCinemaID())) {
+			for (int i = 0; i < CinemaController.cinemaArr.size(); i++) {
+				if (cinemaID.equals(CinemaController.cinemaArr.get(i).getCinemaID())) {
 					loop = false;
 					break;
-				} else if (i == StaffApp.cinemaArr.size() - 1) {
+				} else if (i == CinemaController.cinemaArr.size() - 1) {
 					System.out.println("Invalid Cinema ID");
 					continue;
 				}
@@ -537,7 +538,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 		String showtimeID = sc.next();
 		System.out.println("Enter new timing for the showtime:");
 		String timing = sc.next();
-		StaffApp.updateShowtimes(showtimeID, cinemaID, movie, timing);
+		ShowtimeController.updateShowtimes(showtimeID, cinemaID, movie, timing);
 
 	}
 
@@ -587,7 +588,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.configureTicketprice(1, StaffApp.price, newPrice);
+					PriceController.configureTicketprice(1, PriceController.price, newPrice);
 					return;
 				case (2):
 					continue;
@@ -610,7 +611,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.configureTicketprice(2, StaffApp.price, newPrice);
+					PriceController.configureTicketprice(2, PriceController.price, newPrice);
 					return;
 				case (2):
 					continue;
@@ -633,7 +634,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.configureTicketprice(3, StaffApp.price, newPrice);
+					PriceController.configureTicketprice(3, PriceController.price, newPrice);
 					return;
 				case (2):
 					continue;
@@ -657,7 +658,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.configureTicketprice(4, StaffApp.price, newPrice);
+					PriceController.configureTicketprice(4, PriceController.price, newPrice);
 					return;
 				case (2):
 					continue;
@@ -680,7 +681,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 				input = editConfirmation();
 				switch (input) {
 				case (1):
-					StaffApp.configureTicketprice(5, StaffApp.price, newPrice);
+					PriceController.configureTicketprice(5, PriceController.price, newPrice);
 					return;
 				case (2):
 					continue;
@@ -714,7 +715,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 			}
 			System.out.println("Invalid Input");
 		}
-		StaffApp.configureDates(1, Integer.toString(date), StaffApp.calendar);
+		CalendarController.configureDates(1, Integer.toString(date), CalendarController.calendar);
 	}
 
 	/**
@@ -736,7 +737,7 @@ public interface DisplayStaffPage extends MainDisplayPage {
 			}
 			System.out.println("Invalid Input");
 		}
-		StaffApp.configureDates(2, Integer.toString(date), StaffApp.calendar);
+		CalendarController.configureDates(2, Integer.toString(date), CalendarController.calendar);
 	}
 
 

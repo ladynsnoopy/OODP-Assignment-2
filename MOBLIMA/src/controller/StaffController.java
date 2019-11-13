@@ -42,38 +42,7 @@ public class StaffController implements DisplayStaffPage, DisplayUserPage {
 		a.addStaffToCSV(a);
 	}
 
-	// boundary class needs to check that CinemaID and movietitle exists
 
-	// not sure about this
 
-	/**
-	 * Depending on selection, returns top 5 movies.
-	 * 
-	 * @param selection Selection of which sort to return.
-	 * @return If selection == 1, returns sorted by overall rating. If selection ==
-	 *         2, returns sorted by total sales.
-	 */
-	public static ArrayList<String> showTopMovies(int selection) {
-		ArrayList<Movie> movieObjArr = CSVtoMovie.csvToMovieObject();
-		OverallRatingComparator ratingsComparator = new OverallRatingComparator();
-		TicketSalesComparator salesComparator = new TicketSalesComparator();
-		ArrayList<String> output = new ArrayList<String>();
-
-		// 1: sort by overall rating, 2: sort by total sales
-		switch (selection) {
-		case 1:
-			Collections.sort(movieObjArr, ratingsComparator);
-			for (int i = 0; i < 5; i++) {
-				output.add(String.format("%s : %s", movieObjArr.get(i).getName(),
-						movieObjArr.get(i).getOverallUserRating()));
-			}
-		case 2:
-			Collections.sort(movieObjArr, salesComparator);
-			for (int i = 0; i < 5; i++) {
-				output.add(String.format("%s : %d", movieObjArr.get(i).getName(), movieObjArr.get(i).getTicketSales()));
-			}
-		}
-		return output;
-	}
 
 }
