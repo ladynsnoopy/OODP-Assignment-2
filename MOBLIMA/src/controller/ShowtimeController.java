@@ -6,7 +6,19 @@ import java.util.List;
 
 import model.Cinema;
 import model.Showtime;
-
+/**
+ * A control class that will handle methods relating to the Showtime model. It
+ * allows for creation, addition, search and editing for the <code>Showtime</code> objects, and updates the database accordingly each time.
+ * 	
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ *
+ */
 public class ShowtimeController {
 	/**
 	 * <code>ArrayList&lt;Showtime&gt;</code> containing all <code>Showtime</code>

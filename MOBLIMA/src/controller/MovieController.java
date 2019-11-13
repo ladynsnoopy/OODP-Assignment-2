@@ -5,6 +5,19 @@ import java.util.Collections;
 
 import model.Movie;
 
+
+/**
+ * A control class that will handle methods relating to the movie model. It
+ * allows for the creation, search and editing of movie objects.
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ *
+ */
 public class MovieController {
 	/**
 	 * <code>ArrayList&lt;Movie&gt;</code> containing all <code>Movie</code>
@@ -168,7 +181,7 @@ public class MovieController {
 	 * @param movieID Unique <code>movieID</code> of target movie
 	 * @return All details of a target movie stored in a
 	 *         <code>ArrayList&lt;String&gt;</code>.
-	 * @see CustomerApp#searchforReview(int)
+	 * @see CustomerController#searchforReview(int)
 	 */
 
 	public static ArrayList<String> searchMovieDetails(int movieID) {

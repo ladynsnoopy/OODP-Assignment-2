@@ -12,7 +12,6 @@ import controller.RecieptController;
 import controller.ReviewController;
 import controller.SeatingPlan;
 import controller.ShowtimeController;
-import controller.StaffController;
 import controller.TicketController;
 import controller.csvRW;
 
@@ -21,10 +20,13 @@ import controller.csvRW;
  * <code>CustomerController</code>. Provides printing and display of options in
  * movie-goer module.
  * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- * @see CustomerController
+ * @see controller
  * @see MainDisplayPage
  *
  */

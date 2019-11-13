@@ -7,10 +7,12 @@ import model.Cineplex;
 
 /**
  * A control class that will handle methods relating to the cinema model. It
- * allows for the initialization of cinemas and cineplexes .
+ * allows for the initialization of <code>Cinema</code> objects.
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
  *

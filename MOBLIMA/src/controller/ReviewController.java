@@ -4,7 +4,19 @@ import java.util.ArrayList;
 
 import model.Movie;
 import model.Review;
-
+/**
+ * A control class that will handle methods relating to the Review model. It
+ * allows for additon and search for the <code>Review</code> objects, and updates the database accordingly each time.
+ * 	
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ *
+ */
 public class ReviewController {
 	/**
 	 * Searches for review details (User rating, comment) given a target

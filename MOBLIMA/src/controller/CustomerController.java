@@ -6,12 +6,8 @@ import model.Customer;
 import view.DisplayUserPage;
 
 /**
- * An control class that will handle methods relating to the customer module. It
- * will manage and control objects that are necessary to allow the customer
- * module to search/list movies, view movie details, check seat availability and
- * allow selection of seats, book and purchase movie tickets, and view past
- * booking history of the customer.
- * 
+ * A control class that will handle methods relating to the customer model.
+ * Contains methods that create and handle the customer object and it's attributes. 
  * 
  * @author Myat Hmu Khin
  * @author Lim Wai Leong
@@ -49,8 +45,6 @@ public class CustomerController implements DisplayUserPage {
 			return Integer.parseInt(csvRW.search("customerdatabase", "Email", email).get(0));
 		}
 	}
-
-
 
 	/**
 	 * Gets all past booking history of customer, including past TIDs, payment mode,
@@ -111,7 +105,5 @@ public class CustomerController implements DisplayUserPage {
 		result[3] = row.get(3);
 		return result;
 	}
-
-	
 
 }

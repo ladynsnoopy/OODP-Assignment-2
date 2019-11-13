@@ -5,6 +5,20 @@ import java.util.ArrayList;
 import model.CurrentTicket;
 import model.Movie;
 
+/**
+ * A control class that will handle methods relating to the Ticket model. It
+ * allows for creation and addition for the <code>Ticket</code>
+ * objects, and updates the database accordingly each time.
+ * 
+ * @author Lim Wai Leong
+ * @author Oh Jun Teng
+ * @author Edhie Wahidin Michelle
+ * @author Myat Hmu Khin
+ * @version 1.0
+ * @since 2019-11-13
+ *
+ *
+ */
 public class TicketController {
 	/**
 	 * Carries out purchase of ticket by customer when given <code>showtimeID</code>
