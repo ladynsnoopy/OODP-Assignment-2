@@ -17,7 +17,7 @@ import model.Movie;
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- * @See Ticket
+ * @see model.Ticket
  * @see SeatingPlan
  */
 public class TicketController {
@@ -30,7 +30,7 @@ public class TicketController {
 	 * @param y          Y-coordinate of seat
 	 * @return -1 if seat is already occupied. <br>
 	 *         1 if purchase was successful.
-	 * @see Ticket
+	 * @see model.Ticket
 	 */
 	public static int buyTicket(int showtimeID, int x, int y) {
 
@@ -79,7 +79,7 @@ public class TicketController {
 	 * @param isAdult    Selection between age categories. 1 for child, 2 for adult
 	 *                   and 3 for senior prices.
 	 * @return Newly created <code>Ticket</code> object.
-	 * @see Ticket
+	 * @see model.Ticket
 	 * @see Movie#increaseTicketSalesByOne()
 	 */
 	public static CurrentTicket addTicket(int showtimeID, String movietitle, int isAdult) {

@@ -14,7 +14,7 @@ import model.Receipt;
  * @author Myat Hmu Khin
  * @version 1.0
  * @since 2019-11-13
- * @see Reciept 
+ * @see Receipt 
  *
  */
 public class RecieptController {

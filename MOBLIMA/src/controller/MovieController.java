@@ -181,7 +181,7 @@ public class MovieController {
 	 * @param movieID Unique <code>movieID</code> of target movie
 	 * @return All details of a target movie stored in a
 	 *         <code>ArrayList&lt;String&gt;</code>.
-	 * @see CustomerController#searchforReview(int)
+	 * @see ReviewController#searchforReview(int)
 	 */
 
 	public static ArrayList<String> searchMovieDetails(int movieID) {
