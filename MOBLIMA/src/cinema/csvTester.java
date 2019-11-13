@@ -22,7 +22,7 @@ public class csvTester {
 //		ArrayList<Showtime> showtimelist = new ArrayList<Showtime>();
 
 //		Cineplex cine = new Cineplex("NTU","AA");
-//		Cinema Ctest = new Cinema("normal",15,10,cine,"1");
+//		Cinema Ctest = new Cinema("normal",15,10,"1");
 //		Showtime test = new Showtime(Ctest,"7pm Sunday");
 //		SeatingPlan.printSeatingPlan(test);
 

@@ -29,7 +29,7 @@ public class CustomerApp implements DisplayUserPage {
 
 	public static void createCustomer(String name, String mobileNum, String email) {
 		Customer a = new Customer(name, mobileNum, email);
-		CustomerToCSV.addCustomerToCSV(a);
+		a.addCustomerToCSV(a);
 	}
 
 	/**
@@ -280,7 +280,7 @@ public class CustomerApp implements DisplayUserPage {
 																			// holiday and
 		// weekend dates in Calendar and Prices
 		addnew.setMovietitle(movietitle);
-		TicketToCSV.addTicketToCSV(addnew); // write new ticket to ticket database
+		addnew.addTicketToCSV(addnew); // write new ticket to ticket database
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movietitle);
 		String id = movie_row.get(0);
 		int ticketSalesCount = Integer.parseInt(movie_row.get(8)) + 1;
@@ -317,7 +317,7 @@ public class CustomerApp implements DisplayUserPage {
 		String[] result = new String[2];
 		Receipt receipt = new Receipt(arr, paymentmode); // creates a new Receipt object
 		receipt.calTotalAmt(); // calculates the total amount of the Receipt
-		ReceiptToCSV.addReceiptToCSV(receipt); // writes it to the Receipt database
+		receipt.addReceiptToCSV(receipt); // writes it to the Receipt database
 		result[0] = receipt.getTID(); //
 		result[1] = Double.toString(receipt.getTotalAmt());
 		return result;
@@ -380,7 +380,7 @@ public class CustomerApp implements DisplayUserPage {
 	public static void addReview(int rating, String comment, String userID, String movie_name) {
 
 		Review a = new Review(rating, comment, userID);
-		ReviewToCSV.addReviewToCSV(a);
+		a.addReviewToCSV(a);
 		ArrayList<String> movie_row = csvRW.search("moviedatabase", "Name", movie_name); // search for that movie in
 																							// movie database
 		String id = movie_row.get(0);
