@@ -351,6 +351,9 @@ public class StaffApp implements DisplayStaffPage, DisplayUserPage {
 			p.setPriceHol(newPrice);
 			System.out.println("Holiday surcharge updated");
 			break;
+		case (6):
+			p.setPriceGoldClass(newPrice);
+			System.out.println("Gold class price updated");
 		}
 	}
 

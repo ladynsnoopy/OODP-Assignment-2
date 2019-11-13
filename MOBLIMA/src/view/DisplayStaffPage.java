@@ -219,11 +219,12 @@ public interface DisplayStaffPage extends MainDisplayPage {
 	 * Displays all the prices from the <code>Price</code> object.
 	 */
 	public static void displayPrices() {
-		System.out.println("Adult price:    $" + StaffApp.price.getPriceAdult());
-		System.out.println("Child price:    $" + StaffApp.price.getPriceChild());
-		System.out.println("Senior price:   $" + StaffApp.price.getPriceSenior());
-		System.out.println("Weekend price:  " + ((double) StaffApp.price.getPriceWeekend() * 100) + "% surcharge");
-		System.out.println("Holiday price:  $" + StaffApp.price.getPriceHol() + " flat increase");
+		System.out.println("Adult price:      $" + StaffApp.price.getPriceAdult());
+		System.out.println("Child price:      $" + StaffApp.price.getPriceChild());
+		System.out.println("Senior price:     $" + StaffApp.price.getPriceSenior());
+		System.out.println("Weekend price:    " + ((double) StaffApp.price.getPriceWeekend() * 100) + "% surcharge");
+		System.out.println("Holiday price:    $" + StaffApp.price.getPriceHol() + " flat increase");
+		System.out.println("Gold class price: $" + StaffApp.price.getPriceGoldClass());
 		System.out.println();
 	}
 

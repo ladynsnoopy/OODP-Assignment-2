@@ -3,7 +3,6 @@ package controller;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Contains methods that handles read and write to CSV.
