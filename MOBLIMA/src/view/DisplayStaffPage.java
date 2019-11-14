@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 /**
  * Boundary class between <code>MainDisplayPage</code> and
- * <code>controller</code> package. Provides printing and display of options in staff
- * module.
+ * <code>controller</code> package. Provides printing and display of options in
+ * staff module. Inherits from parent class <code>DisplayPageAb</code>.
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
@@ -27,6 +27,7 @@ import java.util.ArrayList;
  * @since 2019-11-09
  * @see controller
  * @see MainDisplayPage
+ * @see DisplayPageAb
  *
  */
 public class DisplayStaffPage extends DisplayPageAb {
@@ -230,7 +231,8 @@ public class DisplayStaffPage extends DisplayPageAb {
 		System.out.println("Adult price:      $" + PriceController.price.getPriceAdult());
 		System.out.println("Child price:      $" + PriceController.price.getPriceChild());
 		System.out.println("Senior price:     $" + PriceController.price.getPriceSenior());
-		System.out.println("Weekend price:    " + ((double) PriceController.price.getPriceWeekend() * 100) + "% surcharge");
+		System.out.println(
+				"Weekend price:    " + ((double) PriceController.price.getPriceWeekend() * 100) + "% surcharge");
 		System.out.println("Holiday price:    $" + PriceController.price.getPriceHol() + " flat increase");
 		System.out.println("Gold class price: $" + PriceController.price.getPriceGoldClass());
 		System.out.println();
@@ -241,7 +243,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 	 * Creates a new <code>Movie</code> object with the details and adds it into the
 	 * movie database.
 	 * 
-	 */	
+	 */
 	public static void addMovie() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the name of the movie:");
@@ -432,7 +434,6 @@ public class DisplayStaffPage extends DisplayPageAb {
 		}
 	}
 
-	
 	public static void newStaffacc() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter new username:");
@@ -441,9 +442,10 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String newPw = sc.nextLine();
 		StaffController.createStaff(newUser, newPw);
 		System.out.println("New staff account created");
-		
+
 		return;
 	}
+
 	/**
 	 * Gets user input for the showtime details for staff to add a new showtime.
 	 * Checks if the details are valid. Gets input for new time and edits the
@@ -743,9 +745,9 @@ public class DisplayStaffPage extends DisplayPageAb {
 		CalendarController.configureDates(2, Integer.toString(date), CalendarController.calendar);
 	}
 
-
 	/**
 	 * Selection statement to act as confirmation for actions
+	 * 
 	 * @return input of scanner
 	 */
 	public static int editConfirmation() {

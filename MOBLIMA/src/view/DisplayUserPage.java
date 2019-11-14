@@ -18,7 +18,7 @@ import controller.csvRW;
 /**
  * Boundary class between <code>MainDisplayPage</code> and
  * <code>CustomerController</code>. Provides printing and display of options in
- * movie-goer module.
+ * movie-goer module. Inherits from parent class <code>DisplayPageAb</code>.
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
@@ -28,10 +28,10 @@ import controller.csvRW;
  * @since 2019-11-13
  * @see controller
  * @see MainDisplayPage
+ * @see DisplayPageAb
  *
  */
 public class DisplayUserPage extends DisplayPageAb {
-	
 
 	/**
 	 * Displays the initial menu page shown to user after login. Calls the
