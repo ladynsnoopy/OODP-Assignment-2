@@ -31,7 +31,7 @@ public class MainDisplayPage {
 	 */
 	public static void main(String[] args) {
 		CinemaController.createCineplexAndCinemas();
-		ShowtimeController.createShowtimes();
+		ShowtimeController.loadShowtimes();
 		DisplayUserPage UP = new DisplayUserPage();
 		DisplayStaffPage SP = new DisplayStaffPage();
 		boolean loop = true;

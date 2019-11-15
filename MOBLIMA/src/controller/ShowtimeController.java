@@ -30,7 +30,7 @@ public class ShowtimeController {
 	 * Creates a <code>Showtime</code> object for every showtime entry in the
 	 * database.
 	 */
-	public static void createShowtimes() {
+	public static void loadShowtimes() {
 		showtimeArr = CSVtoShowtime.csvToShowtimeObject();
 	}
 
