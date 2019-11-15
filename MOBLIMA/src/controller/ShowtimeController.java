@@ -60,7 +60,12 @@ public class ShowtimeController {
 
 		if (result.get(10).equals("")) {
 			showtimes = Integer.toString(showtime.getShowtimeID());
-		} else {
+		} 
+		else if (result.get(10).length()==1) {
+			showtimes = result.get(10);
+			showtimes += "," + id;
+		}
+		else {
 			showtimes = result.get(10);
 			showtimes = showtimes.substring(1, showtimes.length() - 1);
 			showtimes = showtimes + "," + id;
@@ -108,6 +113,7 @@ public class ShowtimeController {
 		String[] showtimes = new String[list.size()];
 		int num = 0;
 		for (int i = 1; i < list.size(); i++) {
+			
 			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
 					+ list.get(i)[2].substring(0, 4) + "/" + list.get(i)[2].substring(4, 6) + "/"
 					+ list.get(i)[2].substring(6, 8) + " - " + list.get(i)[2].substring(8));

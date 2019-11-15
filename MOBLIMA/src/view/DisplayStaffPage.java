@@ -97,7 +97,6 @@ public class DisplayStaffPage extends DisplayPageAb {
 				break;
 			case 8:
 				viewInfo();
-				super.enterToReturn();
 				break;
 			case 9:
 				newStaffacc();
@@ -179,7 +178,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String[] arr = ShowtimeController.searchShowtimes();
 		System.out.println("Showtime List:");
 		System.out.println("---------------------------");
-		for (int i = 1; i < arr.length - 1; i++) {
+		for (int i = 0; i < arr.length - 1; i++) {
 			System.out.println(arr[i]);
 		}
 	}
