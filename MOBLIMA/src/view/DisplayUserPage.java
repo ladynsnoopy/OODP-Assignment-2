@@ -209,7 +209,7 @@ public class DisplayUserPage extends DisplayPageAb {
 					System.out.println("No showtimes are available yet.");
 					return;
 				}
-				for (int i = 0; i < showtimes.length; i++) {
+				for (int i = 1; i < showtimes.length; i++) {
 					String showstring = showtimes[i][1];
 					System.out.println("Showtime ID: " + showtimes[i][0]);
 					System.out.println("Time and Date: " + showstring.substring(0, 2) + "-" + showstring.substring(2, 4)
