@@ -71,7 +71,7 @@ public class CurrentTicket extends TicketAb{
 		if (isHols) {
 			base += price.getPriceHol();
 		}
-		if (calendar.checkHols(super.getShowtime())) {
+		if (calendar.checkHols(super.getShowtime())) {   // only using getShowtime
 			base *= price.getPriceWeekend();
 		}
 		if (cinetype.equals("Gold Class")) {

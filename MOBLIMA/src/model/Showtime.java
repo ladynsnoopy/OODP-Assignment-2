@@ -26,7 +26,7 @@ public class Showtime {
 	 * <code>Cinema</code> class that the cinema this showtime is located at belongs
 	 * to
 	 */
-	private Cinema cinema;
+	private CinemaI cinema;
 	/**
 	 * Timing that this showtime will be at in YYYYMMDDHHmm format
 	 */
@@ -67,7 +67,7 @@ public class Showtime {
 	 * @param timing Timing of this showtime in YYYYMMDDHHmm format
 	 * @see Seat
 	 */
-	public Showtime(Cinema cinema, String timing) {
+	public Showtime(CinemaI cinema, String timing) {
 		super();
 		this.cinema = cinema;
 		this.timing = timing;
@@ -82,7 +82,7 @@ public class Showtime {
 	 * 
 	 * @return <code>Cinema</code> object that this showtime belongs to
 	 */
-	public Cinema getCinema() {
+	public CinemaI getCinema() {
 		return cinema;
 	}
 

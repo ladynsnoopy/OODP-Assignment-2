@@ -13,7 +13,7 @@ package model;
  * @since 2019-11-09
  *
  */
-public class Cinema {
+public class Cinema implements CinemaI {
 	/**
 	 * Type of cinema in <code>String</code>. Can be "Gold Class", "Normal".
 	 */
