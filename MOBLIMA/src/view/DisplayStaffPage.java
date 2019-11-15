@@ -461,7 +461,6 @@ public class DisplayStaffPage extends DisplayPageAb {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the movie to add a new showtime for:");
 		String movie = sc.nextLine();
-		System.out.println(movie);
 		if (!MovieController.movieExists(movie)) {
 			System.out.println("Movie does not exist");
 			addShowtime();

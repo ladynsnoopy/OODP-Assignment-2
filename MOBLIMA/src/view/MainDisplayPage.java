@@ -27,7 +27,6 @@ public class MainDisplayPage {
 
 	/**
 	 * Display of starting menu options when the program is started
-	 * 
 	 * @param args <code>main()</code> function
 	 */
 	public static void main(String[] args) {
