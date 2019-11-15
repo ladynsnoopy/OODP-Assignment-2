@@ -212,8 +212,8 @@ public class DisplayUserPage extends DisplayPageAb {
 				for (int i = 1; i < showtimes.length; i++) {
 					String showstring = showtimes[i][1];
 					System.out.println("Showtime ID: " + showtimes[i][0]);
-					System.out.println("Time and Date: " + showstring.substring(0, 2) + "-" + showstring.substring(2, 4)
-							+ "-" + showstring.substring(4, 6) + " " + showstring.substring(6));
+					System.out.println("Time and Date: " + showstring.substring(0, 4) + "/" + showstring.substring(4, 6)
+							+ "/" + showstring.substring(6, 8) + " - " + showstring.substring(8));
 					System.out.println("-----------------------------------------------");
 				}
 			} else {

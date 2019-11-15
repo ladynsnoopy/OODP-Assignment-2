@@ -264,9 +264,6 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String type = sc.nextLine();
 		System.out.println("Enter the age rating for the movie:");
 		String movieRating = sc.nextLine();
-		System.out.println("Press (1) to confirm details");
-		System.out.println("Press (2) to re-enter details");
-		System.out.println("Press (3) to cancel and return to menu");
 		int input = editConfirmation();
 		switch (input) {
 		case (1):
@@ -471,7 +468,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 				}
 			}
 		}
-		System.out.println("Enter date for new showtime (YYMMDD)");
+		System.out.println("Enter date for new showtime (YYYYMMDD)");
 		String date = sc.next();
 		System.out.println("Enter time for new showtime (24h format)");
 		String time = sc.next();
