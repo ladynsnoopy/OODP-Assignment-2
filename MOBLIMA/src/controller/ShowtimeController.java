@@ -85,18 +85,7 @@ public class ShowtimeController {
 	 * @param movietitle Title of movie in showtime to be updated
 	 * @param timing     Timing of showtime to be updated
 	 */
-	public static void updateShowtimes(String showtimeID, String cinemaID, String movietitle, String timing) {
-		Cinema temp = null;
-		// checking if cinemaID exists
-		for (int i = 0; i < CinemaController.cinemaArr.size(); i++) {
-			if (cinemaID.equals(CinemaController.cinemaArr.get(i).getCinemaID())) {
-				temp = CinemaController.cinemaArr.get(i);
-				break;
-			} else if (i == CinemaController.cinemaArr.size() - 1) {
-				System.out.println("Invalid Cinema ID");
-				return;
-			}
-		}
+	public static void updateShowtimes(String showtimeID, String movietitle, String timing) {
 		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
 		return;
 	}

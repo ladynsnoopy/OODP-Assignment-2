@@ -445,6 +445,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 	 */
 	public static void addShowtime() {
 		Scanner sc = new Scanner(System.in);
+		DisplayUserPage.displayAllMovie();
 		System.out.println("Enter the movie to add a new showtime for:");
 		String movie = sc.nextLine();
 		if (!MovieController.movieExists(movie)) {
@@ -502,6 +503,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 	 */
 	public static void editShowtimeDetails() {
 		Scanner sc = new Scanner(System.in);
+		DisplayUserPage.displayAllMovie();
 		System.out.println("Enter the movie to be updated:");
 		String movie = sc.nextLine();
 		if (!MovieController.movieExists(movie)) {
@@ -510,26 +512,22 @@ public class DisplayStaffPage extends DisplayPageAb {
 			return;
 		}
 		boolean loop = true;
-		String cinemaID = null;
-		while (loop) {
-			System.out.println("Enter cinema to add showtime:");
-			cinemaID = sc.nextLine();
-			for (int i = 0; i < CinemaController.cinemaArr.size(); i++) {
-				if (cinemaID.equals(CinemaController.cinemaArr.get(i).getCinemaID())) {
-					loop = false;
-					break;
-				} else if (i == CinemaController.cinemaArr.size() - 1) {
-					System.out.println("Invalid Cinema ID");
-					continue;
-				}
-			}
+		System.out.println("List of showtimes: ");
+		int ID = MovieController.searchOneMovie(movie);
+		String[][] showtimes = ShowtimeController.getShowtimesForMovie(ID);
+		for (int i = 0; i < showtimes.length; i++) {
+			String showstring = showtimes[i][1];
+			String timedate = showstring.substring(0, 4) + "-" + showstring.substring(4, 6) + "-"
+					+ showstring.substring(6, 8) + " " + showstring.substring(8);
+			System.out.println("Showtime ID: " + showtimes[i][0]);
+			System.out.println("Time and Date: " + timedate);
+			System.out.println("-----------------------------------------------");
 		}
-
 		System.out.println("Enter showtimeID to edit:");
 		String showtimeID = sc.next();
-		System.out.println("Enter new timing for the showtime:");
+		System.out.println("Enter new timing for the showtime: (YYYYMMDDhhmm format)");
 		String timing = sc.next();
-		ShowtimeController.updateShowtimes(showtimeID, cinemaID, movie, timing);
+		ShowtimeController.updateShowtimes(showtimeID, movie, timing);
 		System.out.println("Showtime updated successfully");
 	}
 
