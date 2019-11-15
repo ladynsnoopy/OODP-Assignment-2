@@ -57,7 +57,7 @@ public class ReviewController {
 			if (MovieController.searchOneMovie(movie_name) == MovieController.movieArr.get(k).getMovieID()) {
 				MovieController.movieArr.get(k).addReview(review); // add the review to the movie object in movieArr
 				String userRating = MovieController.movieArr.get(k).getOverallUserRating();
-				System.out.println("overall user rating: " + userRating);
+				System.out.println("Overall user rating: " + userRating);
 				csvRW.editCSV("moviedatabase", id, "OverallRating", userRating); // write new Overall Rating to the
 																					// movie database
 				break;
