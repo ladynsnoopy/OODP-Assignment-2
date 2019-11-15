@@ -326,10 +326,10 @@ public class DisplayUserPage extends DisplayPageAb {
 			System.out.println("Showtimes for " + name + ":");
 			System.out.println("-----------------------------------------------");
 			String[][] showtimes = ShowtimeController.getShowtimesForMovie(ID);
-			for (int i = 1; i < showtimes.length; i++) {
+			for (int i = 0; i < showtimes.length; i++) {
 				String showstring = showtimes[i][1];
-				String timedate = showstring.substring(0, 2) + "-" + showstring.substring(2, 4) + "-"
-						+ showstring.substring(4, 6) + " " + showstring.substring(6);
+				String timedate = showstring.substring(0, 4) + "-" + showstring.substring(4, 6) + "-"
+						+ showstring.substring(6, 8) + " " + showstring.substring(8);
 				System.out.println("Showtime ID: " + showtimes[i][0]);
 				System.out.println("Time and Date: " + timedate);
 				System.out.println("-----------------------------------------------");
