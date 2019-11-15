@@ -304,7 +304,8 @@ public class DisplayUserPage extends DisplayPageAb {
 	}
 
 	/**
-	 * Display for buying of ticket(s) by a customer. Includes error-checking for wrong movie and wrong showtimes.
+	 * Display for buying of ticket(s) by a customer. Includes error-checking for
+	 * wrong movie and wrong showtimes.
 	 * 
 	 * @param custID Unique customer ID
 	 * @return 1 if ticket-buying is successful, -1 if not.
@@ -315,12 +316,11 @@ public class DisplayUserPage extends DisplayPageAb {
 		System.out.println("What is the name of the movie you would like to buy?");
 		String name = sc.nextLine();
 
-		if(csvRW.search("moviedatabase", "Name", name)==null) {
-			System.out.println("This movie [" + name + "] is not found."); 
+		if (csvRW.search("moviedatabase", "Name", name) == null) {
+			System.out.println("This movie [" + name + "] is not found.");
 			// unsuccessful buying ticket because movie name entered is not found
 			return -1;
-		}
-		else if (csvRW.search("moviedatabase", "Name", name).get(3).equals("Coming Soon")) {
+		} else if (csvRW.search("moviedatabase", "Name", name).get(3).equals("Coming Soon")) {
 			System.out.println("Movie is not available for booking yet");
 			System.out.println("Returning to menu..");
 			return -1;
@@ -332,148 +332,164 @@ public class DisplayUserPage extends DisplayPageAb {
 			System.out.println("Showtimes for " + name + ":");
 			System.out.println("-----------------------------------------------");
 			String[][] showtimes = ShowtimeController.getShowtimesForMovie(ID);
-			for (int i = 0; i < showtimes.length; i++) {
-				String showstring = showtimes[i][1];
-				String timedate = showstring.substring(0, 4) + "-" + showstring.substring(4, 6) + "-"
-						+ showstring.substring(6, 8) + " " + showstring.substring(8);
-				System.out.println("Showtime ID: " + showtimes[i][0]);
-				System.out.println("Time and Date: " + timedate);
-				System.out.println("-----------------------------------------------");
-			}
-			System.out.println("Enter the showtime ID that you would like to buy: ");
-			int showID;
-			int numSeat;
-			int index = 0;
-			while (true) {
-				if (sc.hasNextInt()) {
-					showID = sc.nextInt();
-					if (ShowtimeController.checkValidityShowtime(showtimes, showID) == 1) { // this function checks that
-																							// showID
-						// entered
-						// belongs to that movie/is valid
-						break;
-					}
-				} else {
-					sc.next();
-				}
-				System.out.println("Invalid Input. Please enter a valid showtime ID.");
-
-			}
-			// prints seating plan of that show time for customers to choose
-			for (int i = 0; i < ShowtimeController.showtimeArr.size(); i++) {
-				if (showID == ShowtimeController.showtimeArr.get(i).getShowtimeID()) {
-					SeatingPlan.printSeatingPlan(ShowtimeController.showtimeArr.get(i));
-					index = i;
-					break;
-				}
-			}
-			System.out.println("How many seats do you want to purchase?");
-			while (true) {
-				if (sc.hasNextInt()) {
-					numSeat = sc.nextInt();
-					if (numSeat > 0
-							&& numSeat < ShowtimeController.showtimeArr.get(index).getCinema().getTotalNumSeat()) {
-						// checks that number of seats to be purchased is reasonable
-						break;
-					}
-				} else {
-					sc.next();
-				}
-				System.out.println("Invalid Input. Please enter a valid number of seats.");
-			}
-			int x, y;
-			boolean keep_loop = true;
-			ArrayList<CurrentTicket> ticketArr = new ArrayList<CurrentTicket>(); // make a new ticketArr to create a
-																					// receipt object
-			for (int h = 0; h < numSeat; h++) {
-				while (keep_loop) {
-					System.out.println("Please enter the x,y position of the seats:");
-					while (true) {
-						if (sc.hasNextInt()) {
-							x = sc.nextInt();
-							y = sc.nextInt();
-							if (x >= 0 && x < ShowtimeController.showtimeArr.get(index).getCinema().getTotalCol()
-									&& y >= 0
-									&& y < ShowtimeController.showtimeArr.get(index).getCinema().getTotalRow()) {
-								// checks that x,y is valid compared to cinema rows and columns
-								break;
-							}
-						} else {
-							sc.next();
+			if (showtimes == null) {
+				System.out
+						.println("There are no showtimes currently available for this movie. Please try again later.");
+				return -1;
+			} else {
+				for (int i = 0; i < showtimes.length; i++) {
+					String showstring = showtimes[i][1];
+					String timedate = showstring.substring(0, 4) + "-" + showstring.substring(4, 6) + "-"
+							+ showstring.substring(6, 8) + " " + showstring.substring(8);
+					String showtimeID = showtimes[i][0];
+					System.out.println("Showtime ID: " + showtimeID);
+					System.out.println("Time and Date: " + timedate);
+					//display of cinema type
+					for (int j = 0; j < ShowtimeController.showtimeArr.size(); j++) {
+						// looks for correct showtime object
+						if (ShowtimeController.showtimeArr.get(j).getShowtimeID() == Integer.parseInt(showtimeID)) {
+							System.out.println(
+									"Cinema Class: " + ShowtimeController.showtimeArr.get(j).getCinema().getType());
 						}
-						System.out.println("Invalid Input. Please enter a valid x,y position.");
 					}
-					int purchase = TicketController.buyTicket(showID, x, y);
-					String timing = ShowtimeController.printRelevantShowTime(showtimes, showID);
-					String timingformatted = timing.substring(0, 2) + "-" + timing.substring(2, 4) + "-"
-							+ timing.substring(4, 6) + " " + timing.substring(6);
-					if (purchase == 1) {
-						System.out.println("Enter the movie goer type:");
-						System.out.println("(1) for child");
-						System.out.println("(2) for adult");
-						System.out.println("(3) for senior citizen");
-						int num = 0;
+					System.out.println("-----------------------------------------------");
+				}
+				System.out.println("Enter the showtime ID that you would like to buy: ");
+				int showID;
+				int numSeat;
+				int index = 0;
+				while (true) {
+					if (sc.hasNextInt()) {
+						showID = sc.nextInt();
+						if (ShowtimeController.checkValidityShowtime(showtimes, showID) == 1) { // this function checks
+																								// that
+																								// showID
+							// entered
+							// belongs to that movie/is valid
+							break;
+						}
+					} else {
+						sc.next();
+					}
+					System.out.println("Invalid Input. Please enter a valid showtime ID.");
+
+				}
+				// prints seating plan of that show time for customers to choose
+				for (int i = 0; i < ShowtimeController.showtimeArr.size(); i++) {
+					if (showID == ShowtimeController.showtimeArr.get(i).getShowtimeID()) {
+						SeatingPlan.printSeatingPlan(ShowtimeController.showtimeArr.get(i));
+						index = i;
+						break;
+					}
+				}
+				System.out.println("How many seats do you want to purchase?");
+				while (true) {
+					if (sc.hasNextInt()) {
+						numSeat = sc.nextInt();
+						if (numSeat > 0
+								&& numSeat < ShowtimeController.showtimeArr.get(index).getCinema().getTotalNumSeat()) {
+							// checks that number of seats to be purchased is reasonable
+							break;
+						}
+					} else {
+						sc.next();
+					}
+					System.out.println("Invalid Input. Please enter a valid number of seats.");
+				}
+				int x, y;
+				boolean keep_loop = true;
+				ArrayList<CurrentTicket> ticketArr = new ArrayList<CurrentTicket>(); // make a new ticketArr to create a
+																						// receipt object
+				for (int h = 0; h < numSeat; h++) {
+					while (keep_loop) {
+						System.out.println("Please enter the x,y position of the seats:");
 						while (true) {
 							if (sc.hasNextInt()) {
-								num = sc.nextInt();
-								if (num >= 1 && num <= 3) {
+								x = sc.nextInt();
+								y = sc.nextInt();
+								if (x >= 0 && x < ShowtimeController.showtimeArr.get(index).getCinema().getTotalCol()
+										&& y >= 0
+										&& y < ShowtimeController.showtimeArr.get(index).getCinema().getTotalRow()) {
+									// checks that x,y is valid compared to cinema rows and columns
 									break;
 								}
 							} else {
 								sc.next();
 							}
-							System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
+							System.out.println("Invalid Input. Please enter a valid x,y position.");
 						}
-						ticketArr.add(TicketController.addTicket(showID, name, num)); // adding to the TicketArr
-						System.out.printf("You are buying Ticket %d,%d to watch %s at %s.\n", x, y, name,
-								timingformatted);
-						break;
+						int purchase = TicketController.buyTicket(showID, x, y);
+						String timing = ShowtimeController.printRelevantShowTime(showtimes, showID);
+						String timingformatted = timing.substring(0, 2) + "-" + timing.substring(2, 4) + "-"
+								+ timing.substring(4, 6) + " " + timing.substring(6);
+						if (purchase == 1) {
+							System.out.println("Enter the movie goer type:");
+							System.out.println("(1) for child");
+							System.out.println("(2) for adult");
+							System.out.println("(3) for senior citizen");
+							int num = 0;
+							while (true) {
+								if (sc.hasNextInt()) {
+									num = sc.nextInt();
+									if (num >= 1 && num <= 3) {
+										break;
+									}
+								} else {
+									sc.next();
+								}
+								System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
+							}
+							ticketArr.add(TicketController.addTicket(showID, name, num)); // adding to the TicketArr
+							System.out.printf("You are buying Ticket %d,%d to watch %s at %s.\n", x, y, name,
+									timingformatted);
+							break;
 
+						} else {
+							System.out.printf("You cannot purchase seat %d,%d as it is already occupied.\n", x, y);
+						}
+					}
+				}
+				int paymentmode;
+				System.out.println("What will be your mode of payment?");
+				System.out.println("(1) for Cash");
+				System.out.println("(2) for Credit/Debit Card");
+				System.out.println("(3) for PayLah");
+				while (true) {
+					if (sc.hasNextInt()) {
+						paymentmode = sc.nextInt();
+						if (paymentmode >= 1 && paymentmode <= 3) {
+							break;
+						}
 					} else {
-						System.out.printf("You cannot purchase seat %d,%d as it is already occupied.\n", x, y);
+						sc.next();
 					}
+					System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
 				}
-			}
-			int paymentmode;
-			System.out.println("What will be your mode of payment?");
-			System.out.println("(1) for Cash");
-			System.out.println("(2) for Credit/Debit Card");
-			System.out.println("(3) for PayLah");
-			while (true) {
-				if (sc.hasNextInt()) {
-					paymentmode = sc.nextInt();
-					if (paymentmode >= 1 && paymentmode <= 3) {
-						break;
-					}
-				} else {
-					sc.next();
+				String payment = getPaymentMode(paymentmode);
+				String[] result = RecieptController.addPayment(ticketArr, payment); // create receipt object and adds to
+																					// the
+				// payment database
+				RecieptController.addReceiptinCustomerDatabase(custID, result[0]); // update booking history in customer
+																					// database
+				System.out.println("Thank you for buying our tickets.");
+				System.out.println("Here is your receipt:");
+				System.out.println("-----------------------------------------------");
+				System.out.println("Transaction ID: " + result[0]);
+				System.out.println("-----------------------------------------------");
+				System.out.println();
+				System.out.println("Number of tickets purchased: " + numSeat);
+				System.out.println("Payment Mode: " + payment);
+				for (int p = 0; p < ticketArr.size(); p++) {
+					ticketArr.get(p).getFinalPrice();
+					System.out.println("Ticket " + (p + 1) + ": $" + ticketArr.get(p).getFinalPrice());
 				}
-				System.out.println("Invalid Input. Please enter a valid number between 1 and 3.");
+				System.out.println("Total Amount: $" + result[1]);
+				System.out.println();
+				System.out.println("-----------------------------------------------");
+				System.out.println();
+				return 1;
 			}
-			String payment = getPaymentMode(paymentmode);
-			String[] result = RecieptController.addPayment(ticketArr, payment); // create receipt object and adds to the
-			// payment database
-			RecieptController.addReceiptinCustomerDatabase(custID, result[0]); // update booking history in customer
-																				// database
-			System.out.println("Thank you for buying our tickets.");
-			System.out.println("Here is your receipt:");
-			System.out.println("-----------------------------------------------");
-			System.out.println("Transaction ID: " + result[0]);
-			System.out.println("-----------------------------------------------");
-			System.out.println();
-			System.out.println("Number of tickets purchased: " + numSeat);
-			System.out.println("Payment Mode: " + payment);
-			for (int p = 0; p < ticketArr.size(); p++) {
-				ticketArr.get(p).getFinalPrice();
-				System.out.println("Ticket " + (p + 1) + ": $" + ticketArr.get(p).getFinalPrice());
-			}
-			System.out.println("Total Amount: $" + result[1]);
-			System.out.println();
-			System.out.println("-----------------------------------------------");
-			System.out.println();
-			return 1;
-		} 
-		else {
+		} else {
 			System.out.println("An error occured. Please try again.");
 			return -1;
 		}
