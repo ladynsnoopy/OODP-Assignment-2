@@ -287,6 +287,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 	 */
 	public static void editMovieDetails() {
 		Scanner sc = new Scanner(System.in);
+		DisplayUserPage.displayAllMovie();
 		System.out.println("Enter name of movie to edit:");
 		String name = sc.nextLine();
 		if (!MovieController.movieExists(name)) {
@@ -456,12 +457,14 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String cinemaID = null;
 		while (loop) {
 			System.out.println("Enter cinema to add showtime:");
+			System.out.println("List of cinema IDs:");
+			System.out.println("AA1, AA2, AA3, BB1, BB2, BB3, CC1, CC2, CC3");
 			cinemaID = sc.nextLine();
-			for (int i = 0; i < CinemaController.cinemaArr.size(); i++) {
-				if (cinemaID.equals(CinemaController.cinemaArr.get(i).getCinemaID())) {
+			for (int j = 0; j < CinemaController.cinemaArr.size(); j++) {
+				if (cinemaID.equals(CinemaController.cinemaArr.get(j).getCinemaID())) {
 					loop = false;
 					break;
-				} else if (i == CinemaController.cinemaArr.size() - 1) {
+				} else if (j == CinemaController.cinemaArr.size() - 1) {
 					System.out.println("Invalid Cinema ID");
 					continue;
 				}
