@@ -303,7 +303,7 @@ public class DisplayUserPage extends DisplayPageAb {
 	}
 
 	/**
-	 * Display for buying of ticket(s) by a customer. Includes error-checking.
+	 * Display for buying of ticket(s) by a customer. Includes error-checking for wrong movie and wrong showtimes.
 	 * 
 	 * @param custID Unique customer ID
 	 * @return 1 if ticket-buying is successful, -1 if not.

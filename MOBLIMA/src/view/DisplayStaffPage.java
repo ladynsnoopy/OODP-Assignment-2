@@ -282,6 +282,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		switch (input) {
 		case (1):
 			MovieController.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);
+			System.out.println("Movie added successfully");
 			return;
 		case (2):
 			addMovie();
@@ -438,11 +439,10 @@ public class DisplayStaffPage extends DisplayPageAb {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter new username:");
 		String newUser = sc.nextLine();
-		System.out.println("Enter new passwork:");
+		System.out.println("Enter new password:");
 		String newPw = sc.nextLine();
 		StaffController.createStaff(newUser, newPw);
 		System.out.println("New staff account created");
-
 		return;
 	}
 
@@ -504,6 +504,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		}
 
 		ShowtimeController.createShowtime(cinemaID, timing, movie);
+		System.out.println("New showtime added successfuly");
 	}
 
 	/**
@@ -544,7 +545,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		System.out.println("Enter new timing for the showtime:");
 		String timing = sc.next();
 		ShowtimeController.updateShowtimes(showtimeID, cinemaID, movie, timing);
-
+		System.out.println("Showtime updated successfully");
 	}
 
 	/**
