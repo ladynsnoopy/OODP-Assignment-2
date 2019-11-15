@@ -261,12 +261,29 @@ public class DisplayUserPage extends DisplayPageAb {
 	 * @param custID Unique customer ID
 	 */
 	public static void displayAddReview(int custID) {
+		boolean flag=true;
+		int rating=0;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What is the name of the movie you would like to add a review for?");
 		String moviename = sc.nextLine();
 		if (MovieController.searchOneMovie(moviename) != -1) {
-			System.out.println("What would you rate this movie upon 10?");
-			int rating = sc.nextInt();
+			while(flag) {
+				try {
+					System.out.println("What would you rate this movie upon 10?");
+					String input = sc.next();
+					rating = Integer.parseInt(input);
+					if (rating < 0 || rating > 10) {
+						System.out.println("Invalid input. Please try again.");
+						continue;
+					}
+					else
+						flag = false;
+				}
+				catch(Exception e) {
+					System.out.println("Invalid input. Please try again.");
+					continue;
+				}
+			}
 			System.out.println("What are your comments about this movie?");
 			sc.nextLine();
 			String comment = sc.nextLine();
