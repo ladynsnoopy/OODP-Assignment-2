@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import model.Movie;
 
-
 /**
  * A control class that will handle methods relating to the movie model. It
  * allows for the creation, search and editing of movie objects.
+ * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
  * @author Edhie Wahidin Michelle
@@ -198,6 +198,8 @@ public class MovieController {
 		result.add("Overall Rating: " + movie_row.get(7));
 		result.add("Movie Age Rating: " + movie_row.get(11));
 		result.add("-----------------------------------------------");
+		result.add("Reviews:");
+		result.add("-----------------------------------------------");
 		String review_col = movie_row.get(9);
 		if (review_col.equals("")) {
 			result.add("No reviews has been written about this movie yet.");
@@ -217,6 +219,7 @@ public class MovieController {
 				String[] review = ReviewController.searchforReview(Integer.parseInt(arr[j]));
 				result.add("Comment: " + review[1]);
 				result.add("User Rating: " + review[0]);
+				result.add("-----------------------------------------------");
 			}
 			return result;
 
