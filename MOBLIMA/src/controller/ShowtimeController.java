@@ -129,7 +129,10 @@ public class ShowtimeController {
 		if (result == null)
 			return null;
 		String showID = result.get(10); // Get all the showtimeID of the particular movie
-		if (showID.length() != 1) {
+		if (showID.isEmpty()) {
+			return null;
+		}
+		else if (showID.length() != 1) {
 			String cut = showID.substring(1, showID.length() - 1);
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			String[][] showtimes = new String[arr.length][2];

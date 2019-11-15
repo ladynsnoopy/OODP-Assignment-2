@@ -185,6 +185,7 @@ public class DisplayUserPage extends DisplayPageAb {
 			for (int i = 0; i < movieDetails.size(); i++) {
 				System.out.println(movieDetails.get(i));
 			}
+			System.out.println();
 			System.out.println("Do you want to see the showtimes for this movie?");
 			System.out.println("Enter (1) for Yes");
 			System.out.println("Enter (2) for No");
