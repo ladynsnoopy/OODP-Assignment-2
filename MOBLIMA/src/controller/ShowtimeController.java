@@ -93,7 +93,6 @@ public class ShowtimeController {
 			}
 		}
 		csvRW.editCSV("showtimedatabase", showtimeID, "Timing", timing);
-		System.out.println("Showtime updated");
 		return;
 	}
 
