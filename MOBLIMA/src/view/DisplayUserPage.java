@@ -311,10 +311,16 @@ public class DisplayUserPage extends DisplayPageAb {
 	 */
 	public static int displayBuyTicket(int custID) {
 		Scanner sc = new Scanner(System.in);
+		displayAllMovie();
 		System.out.println("What is the name of the movie you would like to buy?");
 		String name = sc.nextLine();
 
-		if (csvRW.search("moviedatabase", "Name", name).get(3).equals("Coming Soon")) {
+		if(csvRW.search("moviedatabase", "Name", name)==null) {
+			System.out.println("This movie [" + name + "] is not found."); 
+			// unsuccessful buying ticket because movie name entered is not found
+			return -1;
+		}
+		else if (csvRW.search("moviedatabase", "Name", name).get(3).equals("Coming Soon")) {
 			System.out.println("Movie is not available for booking yet");
 			System.out.println("Returning to menu..");
 			return -1;
@@ -466,9 +472,10 @@ public class DisplayUserPage extends DisplayPageAb {
 			System.out.println("-----------------------------------------------");
 			System.out.println();
 			return 1;
-		} else {
-			System.out.println("This movie [" + name + "] is not found.");
-			return -1; // unsuccessful buying ticket because movie name entered is not found
+		} 
+		else {
+			System.out.println("An error occured. Please try again.");
+			return -1;
 		}
 
 	}
