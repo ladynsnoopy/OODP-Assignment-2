@@ -179,7 +179,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String[] arr = ShowtimeController.searchShowtimes();
 		System.out.println("Showtime List:");
 		System.out.println("---------------------------");
-		for (int i = 1; i < arr.length; i++) {
+		for (int i = 1; i < arr.length-1; i++) {
 			System.out.println(arr[i]);
 		}
 	}

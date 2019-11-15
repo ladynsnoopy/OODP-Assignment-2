@@ -53,7 +53,7 @@ public class ShowtimeController {
 		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
 		if (result == null)
-			System.out.println("This fucking shit is null");
+			System.out.println("Result is null");
 		String id = result.get(0);
 
 		if (result.get(10).equals("")) {
@@ -108,9 +108,10 @@ public class ShowtimeController {
 		ArrayList<String[]> list = csvRW.readCSV("showtimedatabase");
 		String[] showtimes = new String[list.size()];
 		int num = 0;
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 1; i < list.size(); i++) {
+			System.out.println(list.get(i)[2].length());
 			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
-					+ list.get(i)[2]);
+					+ list.get(i)[2].substring(0,4)+"/"+list.get(i)[2].substring(4,6)+"/"+list.get(i)[2].substring(6,8)+ " - "+list.get(i)[2].substring(8));
 			num++;
 		}
 		return showtimes;
