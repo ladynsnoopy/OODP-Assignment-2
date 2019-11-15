@@ -22,7 +22,7 @@ public class CalendarController {
 	 * Initialization of <code>Calendar</code> object that contains all special
 	 * dates that affect price.
 	 */
-	public static Calendar calendar = createCalendar();
+	public static Calendar calendar = new Calendar();
 
 	/**
 	 * 
@@ -51,23 +51,6 @@ public class CalendarController {
 	 * 
 	 * @return calendar object
 	 */
-	public static Calendar createCalendar() {
-		ArrayList<String> holDates = new ArrayList<String>();
-		holDates.add("20191111");
-		holDates.add("20191125");
-		holDates.add("20191124");
-		holDates.add("20191115");
-		ArrayList<String> wkndDates = new ArrayList<String>();
-		wkndDates.add("20191109");
-		wkndDates.add("20191110");
-		wkndDates.add("20191116");
-		wkndDates.add("20191117");
-		wkndDates.add("20191123");
-		wkndDates.add("20191124");
-		wkndDates.add("20191130");
-		Calendar c = new Calendar(holDates, wkndDates);
-		return c;
 
-	}
 
 }

@@ -25,6 +25,21 @@ public class Calendar {
 	 * YYYYMMDD
 	 */
 	private ArrayList<String> weekendArr;
+	
+	public Calendar() {
+		holArr.add("20191111");
+		holArr.add("20191125");
+		holArr.add("20191124");
+		holArr.add("20191115");
+		
+		weekendArr.add("20191109");
+		weekendArr.add("20191110");
+		weekendArr.add("20191116");
+		weekendArr.add("20191117");
+		weekendArr.add("20191123");
+		weekendArr.add("20191124");
+		weekendArr.add("20191130");
+	}
 
 	/**
 	 * Constructor for <code>Calendar</code> object.
@@ -34,11 +49,7 @@ public class Calendar {
 	 * @param weekendArr <code>ArrayList</code> containing weekend dates in
 	 *                   <code>String</code> format YYYYMMDD
 	 */
-	public Calendar(ArrayList<String> holArr, ArrayList<String> weekendArr) {
-		super();
-		this.holArr = holArr;
-		this.weekendArr = weekendArr;
-	}
+
 
 	/**
 	 * @return ArrayList containing weekend dates in <code>String</code> format

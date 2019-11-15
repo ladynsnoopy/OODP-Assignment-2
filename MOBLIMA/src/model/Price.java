@@ -64,17 +64,6 @@ public class Price {
 	 * @param priceGoldClass Pricing for when selected showtime is at a gold class
 	 *                       cinema. Is in terms of flat increment to base price.
 	 */
-	public Price(double priceAdult, double priceChild, double priceSenior, double priceWeekend, double priceHol,
-			double priceGoldClass) {
-		super();
-
-		this.priceAdult = priceAdult;
-		this.priceChild = priceChild;
-		this.priceSenior = priceSenior;
-		this.priceWeekend = priceWeekend;
-		this.priceHol = priceHol;
-		this.priceGoldClass = priceGoldClass;
-	}
 
 	/**
 	 * 
