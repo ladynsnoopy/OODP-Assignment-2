@@ -525,8 +525,11 @@ public class DisplayStaffPage extends DisplayPageAb {
 		}
 		System.out.println("Enter showtimeID to edit:");
 		String showtimeID = sc.next();
-		System.out.println("Enter new timing for the showtime: (YYYYMMDDhhmm format)");
-		String timing = sc.next();
+		System.out.println("Enter date for new showtime (YYYYMMDD)");
+		String date = sc.next();
+		System.out.println("Enter time for new showtime (24h format)");
+		String time = sc.next();
+		String timing = date + time;
 		ShowtimeController.updateShowtimes(showtimeID, movie, timing);
 		System.out.println("Showtime updated successfully");
 	}
