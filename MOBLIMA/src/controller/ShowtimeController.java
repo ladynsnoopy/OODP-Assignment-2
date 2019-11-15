@@ -6,10 +6,13 @@ import java.util.List;
 
 import model.Cinema;
 import model.Showtime;
+
 /**
  * A control class that will handle methods relating to the Showtime model. It
- * allows for creation, addition, search and editing for the <code>Showtime</code> objects, and updates the database accordingly each time.
- * 	
+ * allows for creation, addition, search and editing for the
+ * <code>Showtime</code> objects, and updates the database accordingly each
+ * time.
+ * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
  * @author Edhie Wahidin Michelle
@@ -52,20 +55,17 @@ public class ShowtimeController {
 		showtime.addShowtimeToCSV(showtime);
 		// adding showtimeID to moviedatabase
 		ArrayList<String> result = csvRW.search("moviedatabase", "Name", movietitle);
-		if (result == null)
-			System.out.println("Result is null");
+
 		String id = result.get(0);
 
 		if (result.get(10).equals("")) {
 			showtimes = Integer.toString(showtime.getShowtimeID());
 		} else {
 			showtimes = result.get(10);
-			List<String> items = Arrays.asList(showtimes.split("\\s*,\\s*"));
-			ArrayList<String> showtimelist = new ArrayList<String>(items);
-			showtimelist.add(Integer.toString(showtime.getShowtimeID()));
-			showtimes = showtimelist.toString();
 			showtimes = showtimes.substring(1, showtimes.length() - 1);
+			showtimes = showtimes + "," + id;
 		}
+
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
 
 	}
@@ -109,7 +109,8 @@ public class ShowtimeController {
 		int num = 0;
 		for (int i = 1; i < list.size(); i++) {
 			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
-					+ list.get(i)[2].substring(0,4)+"/"+list.get(i)[2].substring(4,6)+"/"+list.get(i)[2].substring(6,8)+ " - "+list.get(i)[2].substring(8));
+					+ list.get(i)[2].substring(0, 4) + "/" + list.get(i)[2].substring(4, 6) + "/"
+					+ list.get(i)[2].substring(6, 8) + " - " + list.get(i)[2].substring(8));
 			num++;
 		}
 		return showtimes;
@@ -138,7 +139,8 @@ public class ShowtimeController {
 			String[][] showtimes = new String[arr.length][2];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[2];
-				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID", arr[i].replaceAll("\\s+", ""));
+				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID",
+						arr[i].replaceAll("\\s+", ""));
 				inside[0] = arr[i].replaceAll("\\s+", "");
 				inside[1] = show_row.get(2);
 				showtimes[i] = inside; // get timing for each showtimeID and store it into showtimes array
@@ -172,7 +174,7 @@ public class ShowtimeController {
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * Gets timing of showtime given <code>showtimeID</code>
 	 * 
@@ -189,6 +191,5 @@ public class ShowtimeController {
 		}
 		return "NOT VALID";
 	}
-
 
 }
