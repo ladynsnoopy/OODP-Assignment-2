@@ -193,9 +193,14 @@ public class MovieController {
 		result.add("Showing Status: " + movie_row.get(3));
 		result.add("Synopsis: " + movie_row.get(4));
 		result.add("Director: " + movie_row.get(5));
-		String cutted = movie_row.get(6).substring(1, movie_row.get(6).length() - 1);
-		result.add("Cast: " + cutted); // make sure cast is more than one
-		result.add("Overall Rating: " + movie_row.get(7).substring(0,3));
+		String cut = movie_row.get(6).substring(1, movie_row.get(6).length() - 1);
+		result.add("Cast: " + cut); // make sure cast is more than one
+		if(movie_row.get(7).length()>2) {
+			result.add("Overall Rating: " + movie_row.get(7).substring(0,3));
+		}
+		else {
+			result.add("Overall Rating: NA");
+		}
 		result.add("Movie Age Rating: " + movie_row.get(11));
 		result.add("-----------------------------------------------");
 		result.add("Reviews:");
