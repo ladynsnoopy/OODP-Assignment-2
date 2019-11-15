@@ -435,6 +435,9 @@ public class DisplayStaffPage extends DisplayPageAb {
 		}
 	}
 
+	/**
+	 * Display for creation of new staff accoun.
+	 */
 	public static void newStaffacc() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter new username:");
