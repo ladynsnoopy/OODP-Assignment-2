@@ -195,7 +195,7 @@ public class MovieController {
 		result.add("Director: " + movie_row.get(5));
 		String cutted = movie_row.get(6).substring(1, movie_row.get(6).length() - 1);
 		result.add("Cast: " + cutted); // make sure cast is more than one
-		result.add("Overall Rating: " + movie_row.get(7));
+		result.add("Overall Rating: " + movie_row.get(7).substring(0,3));
 		result.add("Movie Age Rating: " + movie_row.get(11));
 		result.add("-----------------------------------------------");
 		result.add("Reviews:");
