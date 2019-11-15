@@ -109,7 +109,6 @@ public class ShowtimeController {
 		String[] showtimes = new String[list.size()];
 		int num = 0;
 		for (int i = 1; i < list.size(); i++) {
-			System.out.println(list.get(i)[2].length());
 			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
 					+ list.get(i)[2].substring(0,4)+"/"+list.get(i)[2].substring(4,6)+"/"+list.get(i)[2].substring(6,8)+ " - "+list.get(i)[2].substring(8));
 			num++;
