@@ -179,7 +179,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String[] arr = ShowtimeController.searchShowtimes();
 		System.out.println("Showtime List:");
 		System.out.println("---------------------------");
-		for (int i = 1; i < arr.length-1; i++) {
+		for (int i = 1; i < arr.length - 1; i++) {
 			System.out.println(arr[i]);
 		}
 	}
@@ -267,18 +267,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 		System.out.println("Press (1) to confirm details");
 		System.out.println("Press (2) to re-enter details");
 		System.out.println("Press (3) to cancel and return to menu");
-		int input;
-		while (true) {
-			if (sc.hasNextInt()) {
-				input = sc.nextInt();
-				if (input >= 1 && input <= 3) {
-					break;
-				}
-			} else {
-				sc.next();
-			}
-			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
-		}
+		int input = editConfirmation();
 		switch (input) {
 		case (1):
 			MovieController.createMovie(name, showingStatus, synopsis, castList, director, type, movieRating);
@@ -488,25 +477,21 @@ public class DisplayStaffPage extends DisplayPageAb {
 		String time = sc.next();
 		String timing = date + time;
 
-		System.out.println("Press (1) to confirm edit");
-		System.out.println("Press (2) to re-enter edit");
-		System.out.println("Press (3) to cancel and return to menu");
-		int input;
-		while (true) {
-			if (sc.hasNextInt()) {
-				input = sc.nextInt();
-				if (input >= 1 && input <= 3) {
-					sc.nextLine();
-					break;
-				}
-			} else {
-				sc.next();
-			}
-			System.out.println("Invalid Input. Please enter a number between 1 and 3.");
+		int input = editConfirmation();
+
+		switch (input) {
+		case (1):
+			ShowtimeController.createShowtime(cinemaID, timing, movie);
+			System.out.println("New showtime added successfuly");
+			return;
+		case (2):
+			addShowtime();
+			return;
+		case (3):
+			return;
+
 		}
 
-		ShowtimeController.createShowtime(cinemaID, timing, movie);
-		System.out.println("New showtime added successfuly");
 	}
 
 	/**
