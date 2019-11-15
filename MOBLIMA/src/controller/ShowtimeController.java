@@ -61,7 +61,7 @@ public class ShowtimeController {
 		if (result.get(10).equals("")) {
 			showtimes = Integer.toString(showtime.getShowtimeID());
 		} 
-		else if (result.get(10).length()==1) {
+		else if (result.get(10).split(",").length==1) {
 			showtimes = result.get(10);
 			showtimes += "," + id;
 		}
@@ -139,15 +139,14 @@ public class ShowtimeController {
 		if (showID.isEmpty()) {
 			return null;
 		}
-		else if (showID.length() != 1) {
+		else if (showID.split(",").length > 1) {
 			String cut = showID.substring(1, showID.length() - 1);
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			String[][] showtimes = new String[arr.length][2];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[2];
-				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID",
-						arr[i].replaceAll("\\s+", ""));
-				inside[0] = arr[i].replaceAll("\\s+", "");
+				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID",	arr[i]);
+				inside[0] = arr[i];
 				inside[1] = show_row.get(2);
 				showtimes[i] = inside; // get timing for each showtimeID and store it into showtimes array
 			}
