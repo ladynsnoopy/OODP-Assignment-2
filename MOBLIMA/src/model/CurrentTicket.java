@@ -16,16 +16,23 @@ import controller.csvRW;
  * @since 2019-11-13
  *
  */
-public class CurrentTicket extends TicketAb{
-	
+public class CurrentTicket extends TicketAb {
+
+	/**
+	 * Final price of the ticket after multipliers have been applied.
+	 */
 	private double finalPrice;
-	
-	
+
+	/**
+	 * Constructor for <code>CurrentTicket</code> object.
+	 * 
+	 * @param showtime <code>Showtime</code> for which this ticket applies to.
+	 */
 	public CurrentTicket(Showtime showtime) {
 		super(showtime);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Gets final price of this ticket after all multipliers have been carried out
 	 * on it
@@ -35,18 +42,19 @@ public class CurrentTicket extends TicketAb{
 	public double getFinalPrice() {
 		return finalPrice;
 	}
+
 	// set isWeekend isAdult before final price
-		/**
-		 * Applies all needed multipliers to the base price and saves it to final price.
-		 * 
-		 * @param calendar <code>Calendar</code> object that contains all special dates.
-		 *                 (Eg. Holidays or weekends)
-		 * @param price    <code>Price</code> object that applies modifiers to base
-		 *                 price
-		 * @param cinetype Type of cinema (Eg. Gold Class, Normal)
-		 * @see Calendar
-		 * @see Price
-		 */
+	/**
+	 * Applies all needed multipliers to the base price and saves it to final price.
+	 * 
+	 * @param calendar <code>Calendar</code> object that contains all special dates.
+	 *                 (Eg. Holidays or weekends)
+	 * @param price    <code>Price</code> object that applies modifiers to base
+	 *                 price
+	 * @param cinetype Type of cinema (Eg. Gold Class, Normal)
+	 * @see Calendar
+	 * @see Price
+	 */
 	public void setFinalPrice(Calendar calendar, Price price, String cinetype) {
 		double base = 0;
 		boolean isHols = calendar.checkHols(super.getShowtime());
@@ -71,7 +79,7 @@ public class CurrentTicket extends TicketAb{
 		if (isHols) {
 			base += price.getPriceHol();
 		}
-		if (calendar.checkHols(super.getShowtime())) {   // only using getShowtime
+		if (calendar.checkHols(super.getShowtime())) { // only using getShowtime
 			base *= price.getPriceWeekend();
 		}
 		if (cinetype.equals("Gold Class")) {
