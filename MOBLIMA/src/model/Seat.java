@@ -40,20 +40,26 @@ public class Seat {
 	}
 
 	/**
-	 * @return x-coordinates.
+	 * Gets x-coordinate of seat
+	 * 
+	 * @return x-coordinate of seat
 	 */
 	public int getxCoor() {
 		return xCoor;
 	}
 
 	/**
-	 * @param xCoor x-coordinate of seat
+	 * Changes x-coordinate of seat
+	 * 
+	 * @param xCoor New x-coordinate of seat
 	 */
 	public void setxCoor(int xCoor) {
 		this.xCoor = xCoor;
 	}
 
 	/**
+	 * Gets y-coordinate of seat.
+	 * 
 	 * @return y-coordinate of seat
 	 */
 	public int getyCoor() {
@@ -61,21 +67,28 @@ public class Seat {
 	}
 
 	/**
-	 * @param yCoor y-coordinate of seat
+	 * Changes y-coordinate of seat
+	 * 
+	 * @param yCoor New y-coordinate of seat
 	 */
 	public void setyCoor(int yCoor) {
 		this.yCoor = yCoor;
 	}
 
 	/**
-	 * @return true if occupied, false if not
+	 * Gets occupied status of seat
+	 * 
+	 * @return <code>true</code> if occupied, <code>false</code> if not
 	 */
 	public boolean isOccupied() {
 		return isOccupied;
 	}
 
 	/**
-	 * @param isOccupied true if occupied, false if not
+	 * Changes occupied status of seat
+	 * 
+	 * @param isOccupied New occupied status of seat. <code>true</code> if occupied,
+	 *                   <code>false</code> if not
 	 */
 	public void setOccupied(boolean isOccupied) {
 		this.isOccupied = isOccupied;
