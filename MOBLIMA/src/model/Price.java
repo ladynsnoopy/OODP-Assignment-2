@@ -83,6 +83,7 @@ public class Price {
 	}
 
 	/**
+	 * Gets Gold Class pricing
 	 * 
 	 * @return Current Gold Class pricing
 	 */
