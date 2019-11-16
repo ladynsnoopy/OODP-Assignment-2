@@ -35,7 +35,8 @@ public class RecieptController {
 
 		} else {
 			// if there are more than one receipt initially
-			if (TIDS.length() < 15) {
+			if (TIDS.length() > 15) {
+				TIDS = TIDS.substring(1, TIDS.length()-1);
 				String[] arr = TIDS.split(",");
 				String change = "";
 				for (int i = 0; i < arr.length; i++) {
