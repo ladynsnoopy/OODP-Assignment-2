@@ -54,6 +54,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Gets type of cinema in <code>String</code>.
 	 * 
 	 * @return Type of cinema in <code>String</code>. Can be "Gold Class", "Normal".
 	 */
@@ -62,6 +63,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Changes type of cinema.
 	 * 
 	 * @param type Type of cinema in <code>String</code>. Can be "Gold Class",
 	 *             "Normal".
@@ -71,6 +73,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Gets total number of rows of seats in a cinema
 	 * 
 	 * @return Total number of rows of seats in a cinema.
 	 */
@@ -79,6 +82,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Changes total number of rows of seats in a cinema.
 	 * 
 	 * @param totalRow Total number of rows of seats in a cinema.
 	 */
@@ -87,6 +91,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Gets total number of columns of seats in a cinema.
 	 * 
 	 * @return Total number of columns of seats in a cinema.
 	 */
@@ -95,6 +100,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Changes total number of columns of seats in a cinema.
 	 * 
 	 * @param totalCol Total number of columns of seats in a cinema.
 	 */
@@ -103,6 +109,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Gets total number of seats in a cinema.
 	 * 
 	 * @return Total number of seats in a cinema.
 	 */
@@ -111,6 +118,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Changes total number of seats in a cinema.
 	 * 
 	 * @param totalNumSeat Total number of seats in a cinema.
 	 */
@@ -119,6 +127,7 @@ public class Cinema implements CinemaI {
 	}
 
 	/**
+	 * Gets Unique <code>String</code> cinema ID.
 	 * 
 	 * @return Unique <code>String</code> cinema ID.
 	 */

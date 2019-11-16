@@ -46,10 +46,11 @@ public class Cineplex {
 	}
 
 	/**
+	 * Gets <code>ArrayList</code> of <code>Cinema</code> objects belonging to this
+	 * cineplex
 	 * 
 	 * @return <code>ArrayList</code> of <code>Cinema</code> objects belonging to
 	 *         this cineplex
-	 * 
 	 * @see Cinema
 	 */
 	public ArrayList<Cinema> getCinemaArr() {
@@ -57,10 +58,11 @@ public class Cineplex {
 	}
 
 	/**
+	 * Changes <code>ArrayList</code> of <code>Cinema</code> objects belonging to
+	 * this cineplex
 	 * 
 	 * @param cinemaArr <code>ArrayList</code> of <code>Cinema</code> objects
 	 *                  belonging to this cineplex
-	 * 
 	 * @see Cinema
 	 */
 	public void setCinemaArr(ArrayList<Cinema> cinemaArr) {
@@ -68,6 +70,7 @@ public class Cineplex {
 	}
 
 	/**
+	 * Gets location of cineplex in <code>String</code>
 	 * 
 	 * @return Location of cineplex in <code>String</code>
 	 */
@@ -76,6 +79,7 @@ public class Cineplex {
 	}
 
 	/**
+	 * Changes location of cineplex
 	 * 
 	 * @param location Location of cineplex in <code>String</code>
 	 */
@@ -84,6 +88,7 @@ public class Cineplex {
 	}
 
 	/**
+	 * Gets unique cineplex ID
 	 * 
 	 * @return Unique cineplex ID
 	 */
@@ -92,6 +97,7 @@ public class Cineplex {
 	}
 
 	/**
+	 * Changes unique cineplex ID
 	 * 
 	 * @param cineplexID Unique cineplex ID
 	 */

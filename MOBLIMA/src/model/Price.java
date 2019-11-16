@@ -35,13 +35,18 @@ public class Price {
 	 * increment to base price.
 	 */
 	private double priceHol; // add price to base
-
-	// TODO should we initialize default values for prices?
+	/**
+	 * Pricing for a gold class cinema.
+	 */	
+	private double priceGoldClass;
+	/**
+	 * Pricing for a 3D movie.
+	 */	
+	private double price3D;
+	
 	/**
 	 * Default constructor for <code>Price</code> object.
-	 */
-	private double priceGoldClass;
-
+	 */	
 	public Price() {
 		this.priceAdult = 7.5;
 		this.priceChild = 5.0;
@@ -49,6 +54,7 @@ public class Price {
 		this.priceWeekend = 0.2;
 		this.priceHol = 1.0;
 		this.priceGoldClass = 10.0;
+		this.setPrice3D(2.0);
 	}
 
 	/**
@@ -66,6 +72,7 @@ public class Price {
 	 */
 
 	/**
+	 * Gets Gold Class pricing
 	 * 
 	 * @return Current Gold Class pricing
 	 */
@@ -79,7 +86,6 @@ public class Price {
 	 * 
 	 * @param priceGoldClass New gold class pricing
 	 */
-
 	public void setPriceGoldClass(double priceGoldClass) {
 		this.priceGoldClass = priceGoldClass;
 	}
@@ -172,6 +178,23 @@ public class Price {
 	 */
 	public void setPriceHol(double priceHol) {
 		this.priceHol = priceHol;
+	}
+	/**
+	 * Gets 3D movie pricing
+	 * 
+	 * @return 3D movie pricing
+	 */
+	public double getPrice3D() {
+		return price3D;
+	}
+
+	/**
+	 * Changes 3D movie pricing
+	 * 
+	 * @param price3d New 3D movie pricing
+	 */
+	public void setPrice3D(double price3d) {
+		price3D = price3d;
 	}
 
 }

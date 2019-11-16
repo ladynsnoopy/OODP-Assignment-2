@@ -52,15 +52,19 @@ public class Calendar {
 
 
 	/**
-	 * @return ArrayList containing weekend dates in <code>String</code> format
-	 *         YYYYMMDD
+	 * Gets <code>ArrayList</code> containing weekend dates
+	 * 
+	 * @return <code>ArrayList</code> containing weekend dates in
+	 *         <code>String</code> format YYYYMMDD
 	 */
 	public ArrayList<String> getWeekendArr() {
 		return weekendArr;
 	}
 
 	/**
-	 * @param weekendArr <code>ArrayList</code> containing weekend dates in
+	 * Changes <code>ArrayList</code> containing weekend dates
+	 * 
+	 * @param weekendArr New <code>ArrayList</code> containing weekend dates in
 	 *                   <code>String</code> format YYYYMMDD
 	 */
 	public void setWeekendArr(ArrayList<String> weekendArr) {
@@ -68,6 +72,8 @@ public class Calendar {
 	}
 
 	/**
+	 * Gets ArrayList <code>ArrayList</code> containing holiday dates.
+	 * 
 	 * @return ArrayList <code>ArrayList</code> containing holiday dates in
 	 *         <code>String</code> format YYYYMMDD
 	 */
@@ -76,16 +82,18 @@ public class Calendar {
 	}
 
 	/**
-	 * @param hol <code>ArrayList</code> containing holiday dates in
-	 *            <code>String</code> format YYYYMMDD
+	 * Adds new holiday date to <code>Calendar</code>
+	 * 
+	 * @param hol Holiday dates in <code>String</code> format YYYYMMDD
 	 */
 	public void addHolArr(String hol) {
 		holArr.add(hol);
 	}
 
 	/**
-	 * @param hol <code>ArrayList</code> containing holiday dates in
-	 *            <code>String</code> format YYYYMMDD
+	 * Adds new weekend date to <code>Calendar</code>
+	 * 
+	 * @param hol Weekend dates in <code>String</code> format YYYYMMDD
 	 */
 	public void addWkndArr(String hol) {
 		weekendArr.add(hol);
@@ -100,7 +108,7 @@ public class Calendar {
 	public boolean checkHols(Showtime a) {
 		boolean isHols = false;
 		for (int i = 0; i < holArr.size(); i++) {
-			if (a.getTiming().equals(holArr.get(i))) {
+			if (a.getTiming().substring(0,8).equals(holArr.get(i))) {
 				isHols = true;
 				break;
 			}
@@ -117,7 +125,7 @@ public class Calendar {
 	public boolean checkWeekend(Showtime a) {
 		boolean isWeekend = false;
 		for (int i = 0; i < weekendArr.size(); i++) {
-			if (a.getTiming().equals(weekendArr.get(i))) {
+			if (a.getTiming().substring(0,8).equals(weekendArr.get(i))) {
 				isWeekend = true;
 				break;
 			}

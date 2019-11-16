@@ -139,10 +139,16 @@ public class MovieController {
 		// 1: sort by overall rating, 2: sort by total sales
 		switch (selection) {
 		case 1:
+
 			Collections.sort(movieObjArr, ratingsComparator);
 			for (int i = 0; i < 5; i++) {
-				output.add(String.format("%s : %s", movieObjArr.get(i).getName(),
-						movieObjArr.get(i).getOverallUserRating()));
+				if (movieObjArr.get(i).getOverallUserRating().length() > 2) {
+					output.add(String.format("%s : %s", movieObjArr.get(i).getName(),
+							movieObjArr.get(i).getOverallUserRating().substring(0, 3)));
+				} else {
+					output.add(String.format("%s : %s", movieObjArr.get(i).getName(),
+							movieObjArr.get(i).getOverallUserRating()));
+				}
 			}
 		case 2:
 			Collections.sort(movieObjArr, salesComparator);
@@ -195,7 +201,11 @@ public class MovieController {
 		result.add("Director: " + movie_row.get(5));
 		String cutted = movie_row.get(6).substring(1, movie_row.get(6).length() - 1);
 		result.add("Cast: " + cutted); // make sure cast is more than one
-		result.add("Overall Rating: " + movie_row.get(7).substring(0,3));
+		if (movie_row.get(7).length() > 2) {
+			result.add("Overall Rating: " + movie_row.get(7).substring(0, 3));
+		} else {
+			result.add("Overall Rating: NA");
+		}
 		result.add("Movie Age Rating: " + movie_row.get(11));
 		result.add("-----------------------------------------------");
 		result.add("Reviews:");

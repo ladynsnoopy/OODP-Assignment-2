@@ -37,6 +37,14 @@ public class ShowtimeController {
 		showtimeArr = CSVtoShowtime.csvToShowtimeObject();
 	}
 
+	/**
+	 * Creates new <code>Showtime</code> object, and adds the new showtime ID to
+	 * relevant <code>Cinema</code> object.
+	 * 
+	 * @param cinemaID Unique cinema ID of cinema showtime is shown in
+	 * @param timing Timing of movie in YYYYMMDDhhmm format
+	 * @param movietitle Title of movie to be shown
+	 */
 	public static void createShowtime(String cinemaID, String timing, String movietitle) {
 		Cinema temp = null;
 
@@ -60,15 +68,13 @@ public class ShowtimeController {
 
 		if (result.get(10).equals("")) {
 			showtimes = Integer.toString(showtime.getShowtimeID());
-		} 
-		else if (result.get(10).split(",").length==1) {
+		} else if (result.get(10).split(",").length == 1) {
 			showtimes = result.get(10);
-			showtimes += "," + id;
-		}
-		else {
+			showtimes += "," + showtime.getShowtimeID();
+		} else {
 			showtimes = result.get(10);
 			showtimes = showtimes.substring(1, showtimes.length() - 1);
-			showtimes = showtimes + "," + id;
+			showtimes = showtimes + "," + showtime.getShowtimeID();
 		}
 
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
@@ -81,7 +87,6 @@ public class ShowtimeController {
 	 * Updates <code>Showtime</code> with new attributes.
 	 * 
 	 * @param showtimeID Unique ID for showtime
-	 * @param cinemaID   Unique ID for cinema
 	 * @param movietitle Title of movie in showtime to be updated
 	 * @param timing     Timing of showtime to be updated
 	 */
@@ -102,7 +107,7 @@ public class ShowtimeController {
 		String[] showtimes = new String[list.size()];
 		int num = 0;
 		for (int i = 1; i < list.size(); i++) {
-			
+
 			showtimes[num] = ("ShowtimeID: " + list.get(i)[0] + " |Cinema: " + list.get(i)[1] + " |Timing:"
 					+ list.get(i)[2].substring(0, 4) + "/" + list.get(i)[2].substring(4, 6) + "/"
 					+ list.get(i)[2].substring(6, 8) + " - " + list.get(i)[2].substring(8));
@@ -127,14 +132,13 @@ public class ShowtimeController {
 		String showID = result.get(10); // Get all the showtimeID of the particular movie
 		if (showID.isEmpty()) {
 			return null;
-		}
-		else if (showID.split(",").length > 1) {
+		} else if (showID.split(",").length > 1) {
 			String cut = showID.substring(1, showID.length() - 1);
 			String[] arr = cut.split(","); // store all the showtimeID in a string array
 			String[][] showtimes = new String[arr.length][2];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[2];
-				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID",	arr[i]);
+				ArrayList<String> show_row = csvRW.search("showtimedatabase", "ShowtimeID", arr[i]);
 				inside[0] = arr[i];
 				inside[1] = show_row.get(2);
 				showtimes[i] = inside; // get timing for each showtimeID and store it into showtimes array

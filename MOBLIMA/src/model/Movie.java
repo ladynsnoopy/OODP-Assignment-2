@@ -47,7 +47,7 @@ public class Movie {
 	 * <code>ArrayList&lt;String&gt;</code> of names of cast members
 	 */
 	private ArrayList<String> cast;
-	/*
+	/**
 	 * Name of director for the movie
 	 */
 	private String director;
