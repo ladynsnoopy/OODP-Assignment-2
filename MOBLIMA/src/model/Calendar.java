@@ -97,7 +97,7 @@ public class Calendar {
 	public boolean checkHols(Showtime a) {
 		boolean isHols = false;
 		for (int i = 0; i < holArr.size(); i++) {
-			if (a.getTiming().equals(holArr.get(i))) {
+			if (a.getTiming().substring(0,8).equals(holArr.get(i))) {
 				isHols = true;
 				break;
 			}
@@ -114,7 +114,7 @@ public class Calendar {
 	public boolean checkWeekend(Showtime a) {
 		boolean isWeekend = false;
 		for (int i = 0; i < weekendArr.size(); i++) {
-			if (a.getTiming().equals(weekendArr.get(i))) {
+			if (a.getTiming().substring(0,8).equals(weekendArr.get(i))) {
 				isWeekend = true;
 				break;
 			}

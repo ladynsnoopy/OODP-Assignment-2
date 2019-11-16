@@ -60,13 +60,14 @@ public class CustomerController {
 
 		ArrayList<String> cust_row = csvRW.search("customerdatabase", "CustomerID", Integer.toString(custID));
 		String tid = cust_row.get(4); // Get all the receipt's TID of the customer
-		if (tid.length() > 15) {
+		if (tid.split(",").length>1) {
 			tid = tid.substring(1, tid.length() - 1);
+			System.out.println(tid);
 			String[] arr = tid.split(","); // store the TIDs in a string array
 			String[][] result = new String[arr.length][4];
 			for (int i = 0; i < arr.length; i++) {
 				String[] inside = new String[4];
-				ArrayList<String> payment_row = csvRW.search("paymentdatabase", "TID", arr[i].replaceAll("\\s", ""));
+				ArrayList<String> payment_row = csvRW.search("paymentdatabase", "TID", arr[i]);
 				inside[0] = arr[i];
 				inside[1] = payment_row.get(1);
 				inside[2] = payment_row.get(2);
