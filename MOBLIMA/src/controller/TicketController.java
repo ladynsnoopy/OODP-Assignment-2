@@ -96,6 +96,7 @@ public class TicketController {
 																								// object
 		addnew.setIsAdult(isAdult); // set the isAdult option of Ticket
 		String cinetype = addnew.getShowtime().getCinema().getType();
+		addnew.setMovietitle(movietitle);
 		addnew.setFinalPrice(CalendarController.calendar, PriceController.price, cinetype); // set the final price of
 																							// the Ticket based on
 		// holiday and

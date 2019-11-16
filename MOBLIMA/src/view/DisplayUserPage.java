@@ -243,7 +243,7 @@ public class DisplayUserPage extends DisplayPageAb {
 				System.out.println("Transaction ID: " + bookHist[i][0]);
 				System.out.println("Payment Mode: " + bookHist[i][1]);
 				System.out.println("Movie Name: " + bookHist[i][2]);
-				System.out.println("Amount: $" + bookHist[i][3].substring(0,3));
+				System.out.println("Amount: $" + bookHist[i][3].substring(0, 3));
 				System.out.println();
 
 			}
@@ -261,13 +261,13 @@ public class DisplayUserPage extends DisplayPageAb {
 	 * @param custID Unique customer ID
 	 */
 	public static void displayAddReview(int custID) {
-		boolean flag=true;
-		int rating=0;
+		boolean flag = true;
+		int rating = 0;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What is the name of the movie you would like to add a review for?");
 		String moviename = sc.nextLine();
 		if (MovieController.searchOneMovie(moviename) != -1) {
-			while(flag) {
+			while (flag) {
 				try {
 					System.out.println("What would you rate this movie upon 10?");
 					String input = sc.next();
@@ -275,11 +275,9 @@ public class DisplayUserPage extends DisplayPageAb {
 					if (rating < 0 || rating > 10) {
 						System.out.println("Invalid input. Please try again.");
 						continue;
-					}
-					else
+					} else
 						flag = false;
-				}
-				catch(Exception e) {
+				} catch (Exception e) {
 					System.out.println("Invalid input. Please try again.");
 					continue;
 				}
@@ -361,13 +359,16 @@ public class DisplayUserPage extends DisplayPageAb {
 					String showtimeID = showtimes[i][0];
 					System.out.println("Showtime ID: " + showtimeID);
 					System.out.println("Time and Date: " + timedate);
-					//display of cinema type
+					// display of cinema type
 					for (int j = 0; j < ShowtimeController.showtimeArr.size(); j++) {
 						// looks for correct showtime object
 						if (ShowtimeController.showtimeArr.get(j).getShowtimeID() == Integer.parseInt(showtimeID)) {
 							System.out.println(
 									"Cinema Class: " + ShowtimeController.showtimeArr.get(j).getCinema().getType());
+							ArrayList<String> movieData = csvRW.search("moviedatabase", "Name", name);
+							System.out.println("Movie type: " + movieData.get(2));
 						}
+
 					}
 					System.out.println("-----------------------------------------------");
 				}
