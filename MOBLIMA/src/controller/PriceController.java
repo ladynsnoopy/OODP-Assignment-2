@@ -65,6 +65,9 @@ public class PriceController {
 		case (6):
 			p.setPriceGoldClass(newPrice);
 			System.out.println("Gold class price updated");
+		case(7):
+			p.setPrice3D(newPrice);
+			System.out.println("3D price updated");
 		}
 	}
 

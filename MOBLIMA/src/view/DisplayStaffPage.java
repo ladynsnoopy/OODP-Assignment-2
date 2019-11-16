@@ -234,6 +234,7 @@ public class DisplayStaffPage extends DisplayPageAb {
 				"Weekend price:    " + ((double) PriceController.price.getPriceWeekend() * 100) + "% surcharge");
 		System.out.println("Holiday price:    $" + PriceController.price.getPriceHol() + " flat increase");
 		System.out.println("Gold class price: $" + PriceController.price.getPriceGoldClass());
+		System.out.println("3D movie price:   $" + PriceController.price.getPrice3D() + " flat increase");
 		System.out.println();
 	}
 
@@ -553,10 +554,12 @@ public class DisplayStaffPage extends DisplayPageAb {
 			System.out.println("Enter (3) to edit senior price");
 			System.out.println("Enter (4) to edit weekend percentage surcharge");
 			System.out.println("Enter (5) to edit flat holiday surcharge");
+			System.out.println("Enter (6) to edit Gold class price");
+			System.out.println("Enter (7) to edit 3D movie price");
 			while (true) {
 				if (sc.hasNextInt()) {
 					input = sc.nextInt();
-					if (input >= 1 && input <= 5) {
+					if (input >= 1 && input <= 7) {
 						sc.nextLine();
 						break;
 					}
@@ -681,7 +684,52 @@ public class DisplayStaffPage extends DisplayPageAb {
 					return;
 				}
 				break;
-
+			case (6):
+				while (true) {
+					System.out.println("Enter new gold class price:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						break;
+					} else {
+						sc.next();
+						System.out.println("Invalid input");
+						continue;
+					}
+				}
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					PriceController.configureTicketprice(6, PriceController.price, newPrice);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
+			case (7):
+				while (true) {
+					System.out.println("Enter new 3D movie price:");
+					if (sc.hasNextDouble()) {
+						newPrice = sc.nextDouble();
+						break;
+					} else {
+						sc.next();
+						System.out.println("Invalid input");
+						continue;
+					}
+				}
+				input = editConfirmation();
+				switch (input) {
+				case (1):
+					PriceController.configureTicketprice(7, PriceController.price, newPrice);
+					return;
+				case (2):
+					continue;
+				case (3):
+					return;
+				}
+				break;
 			}
 
 		}
