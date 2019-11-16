@@ -339,6 +339,10 @@ public class DisplayUserPage extends DisplayPageAb {
 			System.out.println("Movie is not available for booking yet");
 			System.out.println("Returning to menu..");
 			return -1;
+		} else if (csvRW.search("moviedatabase", "Name", name).get(3).equals("End of Showing")) {
+			System.out.println("Movie is no longer showing");
+			System.out.println("Returning to menu..");
+			return -1;
 		}
 
 		int ID = MovieController.searchOneMovie(name); // this function checks the name of movie is valid

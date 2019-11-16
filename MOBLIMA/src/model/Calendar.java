@@ -32,7 +32,6 @@ public class Calendar {
 		holArr.add("20191111");
 		holArr.add("20191125");
 		holArr.add("20191124");
-		holArr.add("20191115");
 		
 		weekendArr.add("20191109");
 		weekendArr.add("20191110");
