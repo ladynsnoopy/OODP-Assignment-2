@@ -85,6 +85,10 @@ public class CurrentTicket extends TicketAb {
 		if (cinetype.equals("Gold Class")) {
 			base += price.getPriceGoldClass();
 		}
+		ArrayList<String> movieData =  csvRW.search("moviedatabase", "name", super.getMovietitle());
+		if (movieData.get(2).equals("3D")) {
+			base += price.getPrice3D();
+		}
 		finalPrice = base;
 
 	}
