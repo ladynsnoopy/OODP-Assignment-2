@@ -27,6 +27,8 @@ public class Calendar {
 	private ArrayList<String> weekendArr;
 	
 	public Calendar() {
+		holArr = new ArrayList<String>();
+		weekendArr = new ArrayList<String>();
 		holArr.add("20191111");
 		holArr.add("20191125");
 		holArr.add("20191124");
