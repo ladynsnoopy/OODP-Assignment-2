@@ -21,16 +21,16 @@ public class Seat {
 	 */
 	private int yCoor;
 	/**
-	 * true if occupied, false if not
+	 * <code>true</code> if occupied, <code>false</code> if not
 	 */
 	private boolean isOccupied;
 
 	/**
-	 * Constructor for Seat object.
+	 * Constructor for <code>Seat</code> object.
 	 * 
 	 * @param xCoor      x-coordinate location of seat
 	 * @param yCoor      y-coordinate location of seat
-	 * @param isOccupied true if occupied, false if not
+	 * @param isOccupied <code>true</code> if occupied, <code>false</code> if not
 	 */
 	public Seat(int xCoor, int yCoor, boolean isOccupied) {
 		super();

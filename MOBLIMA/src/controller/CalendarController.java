@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import model.Calendar;
 
 /**
- * A control class that will handle methods relating to the calendar model. 
- * It allows staff to initialize the <code>Calendar</code> object and modify weekend/holidaydates. 
+ * A control class that will handle methods relating to the calendar model. It
+ * allows staff to initialize the <code>Calendar</code> object and modify
+ * weekend/holidaydates.
  * 
  * @author Lim Wai Leong
  * @author Oh Jun Teng
@@ -25,6 +26,7 @@ public class CalendarController {
 	public static Calendar calendar = createCalendar();
 
 	/**
+	 * Adds new holiday and weekend dates to <code>Calendar</code>
 	 * 
 	 * @param selection Choice of what kind of date to add. "0" for holiday date,
 	 *                  "1" for weekend date.
