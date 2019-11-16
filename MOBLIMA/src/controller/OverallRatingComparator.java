@@ -27,6 +27,16 @@ public class OverallRatingComparator implements Comparator<Movie> {
 	public int compare(Movie first, Movie second) {
 		// multiplying by 10 so as to ensure comparison between decimal points for
 		// differences like 0.1
+		if (first.getOverallUserRating().equals("NA") && second.getOverallUserRating().contentEquals("NA")) {
+			return 0;
+		}
+		if (first.getOverallUserRating().equals("NA") && !second.getOverallUserRating().contentEquals("NA")) {
+			return 1;
+		}
+		if (!first.getOverallUserRating().equals("NA") && second.getOverallUserRating().contentEquals("NA")) {
+			return -1;
+		}
+				
 		if(Double.parseDouble(first.getOverallUserRating()) > Double.parseDouble(second.getOverallUserRating()))
 		{
 			return -1;
