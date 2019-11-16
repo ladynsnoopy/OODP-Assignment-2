@@ -22,7 +22,7 @@ public class MovieController {
 	 * <code>ArrayList&lt;Movie&gt;</code> containing all <code>Movie</code>
 	 * objects.
 	 */
-	public static ArrayList<Movie> movieArr = new ArrayList<Movie>();
+	public static ArrayList<Movie> movieArr = CSVtoMovie.csvToMovieObject();;
 
 	/**
 	 * Creates a Movie object. Adds the newly created object to movieArr. Adds the
@@ -214,7 +214,7 @@ public class MovieController {
 		if (review_col.equals("")) {
 			result.add("No reviews has been written about this movie yet.");
 			return result;
-		} else if (review_col.length() == 1) { // if there is only one review
+		} else if (!review_col.contains(",")) { // if there is only one review
 			String[] review = ReviewController.searchforReview(Integer.parseInt(review_col));
 			result.add("Comment: " + review[1]);
 			result.add("User's Rating: " + review[0]);

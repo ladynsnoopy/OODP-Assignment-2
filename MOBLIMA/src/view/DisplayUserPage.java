@@ -442,8 +442,8 @@ public class DisplayUserPage extends DisplayPageAb {
 						}
 						int purchase = TicketController.buyTicket(showID, x, y);
 						String timing = ShowtimeController.printRelevantShowTime(showtimes, showID);
-						String timingformatted = timing.substring(0, 2) + "-" + timing.substring(2, 4) + "-"
-								+ timing.substring(4, 6) + " " + timing.substring(6);
+						String timingformatted = timing.substring(0, 4) + "-" + timing.substring(4, 6) + "-"
+								+ timing.substring(6, 8) + " " + timing.substring(8);
 						if (purchase == 1) {
 							System.out.println("Enter the movie goer type:");
 							System.out.println("(1) for child");

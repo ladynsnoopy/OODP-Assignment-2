@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import controller.CSVtoMovie;
 import controller.CinemaController;
 import controller.ShowtimeController;
 import controller.csvRW;
@@ -32,6 +33,7 @@ public class MainDisplayPage {
 	public static void main(String[] args) {
 		CinemaController.createCineplexAndCinemas();
 		ShowtimeController.loadShowtimes();
+		CSVtoMovie.csvToMovieObject();
 		DisplayUserPage UP = new DisplayUserPage();
 		DisplayStaffPage SP = new DisplayStaffPage();
 		boolean loop = true;

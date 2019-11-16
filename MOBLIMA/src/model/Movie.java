@@ -181,11 +181,9 @@ public class Movie {
 	}
 
 	/**
-	 * Changes showing status of movie. Can be
-	 * <code>Coming Soon, Preview, Now Showing,
-	 * End of Showing</code>.
+	 * Gets movie ID
 	 * 
-	 * @return Showing Status
+	 * @return movie ID
 	 */
 	public int getMovieID() {
 		return this.movieID;
