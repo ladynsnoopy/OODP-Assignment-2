@@ -70,11 +70,11 @@ public class ShowtimeController {
 			showtimes = Integer.toString(showtime.getShowtimeID());
 		} else if (result.get(10).split(",").length == 1) {
 			showtimes = result.get(10);
-			showtimes += "," + id;
+			showtimes += "," + showtime.getShowtimeID();
 		} else {
 			showtimes = result.get(10);
 			showtimes = showtimes.substring(1, showtimes.length() - 1);
-			showtimes = showtimes + "," + id;
+			showtimes = showtimes + "," + showtime.getShowtimeID();
 		}
 
 		csvRW.editCSV("moviedatabase", id, "ShowtimeID", showtimes);
