@@ -243,7 +243,7 @@ public class DisplayUserPage extends DisplayPageAb {
 				System.out.println("Transaction ID: " + bookHist[i][0]);
 				System.out.println("Payment Mode: " + bookHist[i][1]);
 				System.out.println("Movie Name: " + bookHist[i][2]);
-				System.out.println("Amount: $" + bookHist[i][3]);
+				System.out.println("Amount: $" + bookHist[i][3].substring(0,3));
 				System.out.println();
 
 			}
